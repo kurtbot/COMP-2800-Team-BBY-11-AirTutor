@@ -12,6 +12,7 @@ body {
 header {
     height: 500px;
     background-color: #283b42;
+    margin-bottom: 20px;
 }
 
 #header-text{
@@ -23,7 +24,7 @@ header {
     transform: translateX(-50%) translateY(-50%);
 }
 
-h1, h2, h3, h4, h5 {
+header h1, h2, h3, h4, h5 {
     color: white;
 }
 
@@ -46,3 +47,10 @@ a, a:hover {
     border-color: white;
     padding: 10px;
 }
+
+#about {
+    height: 500px;
+    background-color: #f1f1f1;
+}
+
+#

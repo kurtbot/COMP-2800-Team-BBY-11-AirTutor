@@ -21,5 +21,5 @@ $("#confirm").click(function(){
     localStorage.removeItem("end");
     localStorage.removeItem("title");
     localStorage.removeItem("name");
-    window.location.href="schedule.html";
+    window.location.href="home.html";
 })

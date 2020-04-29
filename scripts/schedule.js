@@ -57,7 +57,9 @@ if (localStorage.getItem("name") != null){
 
 
 
-
+$("#cancel").click(function(){
+    window.location.href = "home.html";
+})
 
 
 

@@ -10,7 +10,9 @@ if (localStorage.getItem("details") != null){
     $("#details").val(localStorage.getItem("details"));
 }
 
-
+$("#cancel").click(function(){
+    window.location.href = "home.html";
+})
 
 
 $("#submit").click(function(){

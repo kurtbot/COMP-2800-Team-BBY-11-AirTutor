@@ -10,5 +10,5 @@ $("#confirm").click(function(){
     localStorage.removeItem("subject");
     localStorage.removeItem("grade");
     localStorage.removeItem("details");
-    window.location.href="request.html";
+    window.location.href="home.html";
 })

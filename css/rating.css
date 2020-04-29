@@ -5,6 +5,12 @@
     bottom: 0;
     width: 100%;
     background-color:grey;
-    color: white;
     text-align: center;
   }
+
+  a[href="faq.html"] {
+    text-decoration-style: none;
+    color:white;
+  }
+
+

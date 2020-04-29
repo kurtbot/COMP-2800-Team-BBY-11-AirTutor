@@ -1,0 +1,26 @@
+#image{
+    border: solid black 2px;
+    background-color:grey;
+    width: 200px;
+    height: 300px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color:grey;
+    color: white;
+    text-align: center;
+  }
+
+  @media (max-width:720px) {
+    #image{
+        margin:auto;
+    }
+    #profile{
+        margin-top:10px;
+        text-align:center;
+    }
+  }

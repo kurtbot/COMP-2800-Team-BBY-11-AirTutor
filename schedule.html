@@ -44,27 +44,79 @@
     <hr>
     <p>Start Time: </p>
 
-    <select class="hour start"></select>
-    <select class="minute start"></select>
-    <select class="am-pm start">
+    <select class="hour start" id="start-hour">
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
+      <option>11</option>
+    </select>
+    <select class="minute start" id="start-minute">
+      <option>0</option>
+      <option>5</option>
+      <option>10</option>
+      <option>15</option>
+      <option>20</option>
+      <option>25</option>
+      <option>30</option>
+      <option>35</option>
+      <option>40</option>
+      <option>45</option>
+      <option>50</option>
+      <option>55</option>
+    </select>
+    <select class="am-pm start" id="start-ap">
       <option>AM</option>
       <option>PM</option>
     </select>
     <p>End Time: </p>
-    <select class="hour end"></select>
-    <select class="minute end"></select>
-    <select class="am-pm end">
+    <select class="hour end" id="end-hour">
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
+      <option>11</option>
+    </select>
+    <select class="minute end" id="end-minute">
+      <option>0</option>
+      <option>5</option>
+      <option>10</option>
+      <option>15</option>
+      <option>20</option>
+      <option>25</option>
+      <option>30</option>
+      <option>35</option>
+      <option>40</option>
+      <option>45</option>
+      <option>50</option>
+      <option>55</option>
+    </select>
+    <select class="am-pm end" id="end-ap">
       <option>AM</option>
       <option>PM</option>
     </select>
     <hr>
-    <p>Title: <input type="text"></p>
-    <p>Student Name: Blob</p>
+    <p>Title: <input type="text" id="title"></p>
+    <p>Student Name: <input type="text" id="name"></p>
 
 
     <p><input type="checkbox">Send me an email about this session</p>
-    <button type="button" class="btn btn-danger">Cancel</button>
-    <button type="button" class="btn btn-success">Confirm</button>
+    <button type="button" class="btn btn-danger" id="cancel">Cancel</button>
+    <button type="button" class="btn btn-success" id="submit">Submit</button>
 
 
       

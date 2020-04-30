@@ -13,6 +13,7 @@ function signup() {
     lastName = lastName.charAt(0).toUpperCase() + lastName.substring(1).toLowerCase();
     let email = document.getElementById('emailSignupField').value;
     let password = document.getElementById('passwordSignupField').value;
+    let country = document.getElementById('countryField').value;
     let name = firstName + " " + lastName;
     // Check for errors in inputs
     if (!(firstName === "") && !(lastName === "") && !(email === "") && !(password === "")) {
@@ -32,15 +33,15 @@ function signup() {
                             var user = firebase.auth().currentUser;
 
                             // add initial data to firebase database
-                            var userDoc = db.collection('user').doc(user.uid);
+                            var userDoc = db.collection('users').doc(user.uid);
                             console.log(user);
                             userDoc.set({
-                                first_name: firstName,
-                                last_name: lastName,
+                                firstName: firstName,
+                                lastName: lastName,
                                 email: user.email,
                                 userID: user.uid,
-                                reputation: 0,
-                                subscriptions: []
+                                country: country,
+                                currency : 0.0,
                             }, { merge: true })
                                 .then(function () {
                                     // for testing purposes

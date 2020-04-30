@@ -1,7 +1,7 @@
 function login() {
 
-    var email = document.getElementById('emailField').value;
-    var password = document.getElementById('passwordField').value;
+    var email = document.getElementById('emailLoginField').value;
+    var password = document.getElementById('passwordLoginField').value;
 
     if (email && password) {
         firebase.auth().signInWithEmailAndPassword(email, password)
@@ -20,4 +20,3 @@ function login() {
     }
 
 }
-

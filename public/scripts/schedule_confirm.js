@@ -10,16 +10,27 @@ $("#back").click(function(){
 })
 
 $("#confirm").click(function(){
-    localStorage.removeItem("date");
-    localStorage.removeItem("startHour");
-    localStorage.removeItem("startMinute");
-    localStorage.removeItem("startAP");
-    localStorage.removeItem("start");
-    localStorage.removeItem("endHour");
-    localStorage.removeItem("endMinute");
-    localStorage.removeItem("endAP");
-    localStorage.removeItem("end");
-    localStorage.removeItem("title");
-    localStorage.removeItem("name");
-    window.location.href="home.html";
+    let promise = db.collections("schedules").add({
+        date: localStorage.getItem("date"),
+        start: localStorage.getItem("start"),
+        end: localStorage.getItem("end"),
+        title: localStorage.getItem("title"),
+        name: localStorage.getItem("name"),
+        user: "place holder"
+    })
+    promise.then(function(){
+        localStorage.removeItem("date");
+        localStorage.removeItem("startHour");
+        localStorage.removeItem("startMinute");
+        localStorage.removeItem("startAP");
+        localStorage.removeItem("start");
+        localStorage.removeItem("endHour");
+        localStorage.removeItem("endMinute");
+        localStorage.removeItem("endAP");
+        localStorage.removeItem("end");
+        localStorage.removeItem("title");
+        localStorage.removeItem("name");
+        window.location.href="home.html";
+    })
+
 })

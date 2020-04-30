@@ -8,9 +8,19 @@ $("#back").click(function(){
 })
 
 $("#confirm").click(function(){
-    localStorage.removeItem("subject");
-    localStorage.removeItem("grade");
-    localStorage.removeItem("details");
-    localStorage.removeItem("retitle");
-    window.location.href="home.html";
+    let promise = db.collection("posts").add({
+        title: localStorage.getItem("retitle"),
+        subject: localStorage.getItem("subject"),
+        grade: localStorage.getItem("grade"),
+        details: localStorage.getItem("details"),
+        user: "placeholder"
+    })
+    promise.then(function(){
+        localStorage.removeItem("subject");
+        localStorage.removeItem("grade");
+        localStorage.removeItem("details");
+        localStorage.removeItem("retitle");
+        window.location.href="home.html";
+    })
+
 })

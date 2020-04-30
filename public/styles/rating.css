@@ -1,16 +1,21 @@
-
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color:grey;
-    text-align: center;
-  }
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: grey;
+  text-align: center;
+}
 
-  a[href="faq.html"] {
-    text-decoration-style: none;
-    color:white;
-  }
+a[href="faq.html"] {
+  text-decoration-style: none;
+  color: white;
+}
 
-
+#yes-option {
+  display:none;
+  
+}
+#no-option {
+  display:none;
+}

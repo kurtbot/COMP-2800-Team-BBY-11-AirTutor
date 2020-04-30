@@ -10,7 +10,7 @@ $("#back").click(function(){
 })
 
 $("#confirm").click(function(){
-    let promise = db.collections("schedules").add({
+    let promise = db.collection("schedules").add({
         date: localStorage.getItem("date"),
         start: localStorage.getItem("start"),
         end: localStorage.getItem("end"),

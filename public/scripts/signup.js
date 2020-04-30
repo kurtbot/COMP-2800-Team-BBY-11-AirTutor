@@ -1,21 +1,30 @@
 function signup() {
-    let firstName = $("#firstNameField");
-    firstName = firstName.charAt(0).toUpperCase() + firstName.substring(1).toLowerCase();
-    let lastName = $("#lastNameField");
-    lastName = lastName.charAt(0).toUpperCase() + lastName.substring(1).toLowerCase();
-    let email = $("#emailSignupField");
-    let password = $("#passwordSignupField");
-    let name = firstName + " " + lastName;
+    // let firstName = $("#firstNameField");
+    // firstName = firstName.charAt(0).toUpperCase() + firstName.substring(1).toLowerCase();
+    // let lastName = $("#lastNameField");
+    // lastName = lastName.charAt(0).toUpperCase() + lastName.substring(1).toLowerCase();
+    // let email = $("#emailSignupField");
+    // let password = $("#passwordSignupField");
+    // let name = firstName + " " + lastName;
 
+    let firstName = document.getElementById('firstNameField').value;
+    firstName = firstName.charAt(0).toUpperCase() + firstName.substring(1).toLowerCase();
+    let lastName = document.getElementById('lastNameField').value;
+    lastName = lastName.charAt(0).toUpperCase() + lastName.substring(1).toLowerCase();
+    let email = document.getElementById('emailSignupField').value;
+    let password = document.getElementById('passwordSignupField').value;
+    let name = firstName + " " + lastName;
     // Check for errors in inputs
     if (!(firstName === "") && !(lastName === "") && !(email === "") && !(password === "")) {
         // Check if email is the right format
-        if (email.includes('@email.com')) {
-
+        // if (email.includes('@email.com')) {
+            alert("signing in")
             // Create user with email and pass.
             // [START createwithemail]
             firebase.auth().createUserWithEmailAndPassword(email, password)
                 .then(function () {
+
+                    alert("signing in new user")
                     // Sign in newly created user
                     firebase.auth().signInWithEmailAndPassword(email, password)
                         .then(function () {
@@ -80,11 +89,11 @@ function signup() {
                 });
             // [END createwithemail]
 
-        } else {
+        // } else {
 
-            // testing
-            alert('email must end with @gmail.com');
-        }
+        //     // testing
+        //     alert('email must end with @gmail.com');
+        // }
 
 
     }

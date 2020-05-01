@@ -13,7 +13,7 @@ function login() {
                 var errorCode = error.code;
                 var errorMessage = error.message;
 
-                // window.alert('Error : ' + errorMessage);
+                window.alert('Error : ' + errorMessage);
                 // document.getElementById('loginHelp').innerText = 'Error : ' + errorMessage;
                 // ...
             });

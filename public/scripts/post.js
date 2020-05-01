@@ -35,34 +35,61 @@ db.collection("posts/").get().then(function (snap) {
 
             let currentUser = firebase.auth().currentUser.uid;
             let chatrooms = db.collection("chatrooms");
-
+            let exist = false;
             chatrooms.get().then((querySnap) => {
                 querySnap.forEach(function (doc) {
-                    var arr = doc.data().users;
-                    console.log(arr);
+                    let u1 = doc.data().user1;
+                    let u2 = doc.data().user2;
+                    // var arr = doc.data().users;
+                    // console.log(arr);
+                    console.log(targetUser);
+                    console.log(currentUser);
+                    console.log(currentUser == u1)
+                    console.log(targetUser == u2)
+                    let con1 = currentUser == u1;
+                    let con2 = currentUser == u2;
+                    let con3 = targetUser == u1;
+                    let con4 = targetUser == u2;
+                    console.log(!((con1 && con4) || (con2 && con3)))
+                    if (((con1 && con4) || (con2 && con3))){
+                        exist = true;
+                    }
                     
-                    if (!((arr[0] == targetUser && arr[1] == currentUser) || (arr[1] == targetUser && arr[0] == currentUser))) {
-                        // if() {
-                            chatrooms.add({
-                                users: [currentUser, targetUser],
-                                // user1: currentUser,
-                                // user1name: getUserName(),
-                                // user2: targetUser,
-                                // user2name: targetUserName
-                            }).then(function() {
-                                db.collection("users/").doc(targetUser).update({
-                                    chatrooms: firebase.firestore.FieldValue.arrayUnion(doc.id)
-                                });
-                            });
+                    // if (!((arr[0] == targetUser && arr[1] == currentUser) || (arr[1] == targetUser && arr[0] == currentUser))) {
+                    //     // if() {
+                    //         chatrooms.add({
+                    //             users: [currentUser, targetUser],
+                    //             // user1: currentUser,
+                    //             // user1name: getUserName(),
+                    //             // user2: targetUser,
+                    //             // user2name: targetUserName
+                    //         }).then(function() {
+                    //             db.collection("users/").doc(targetUser).update({
+                    //                 chatrooms: firebase.firestore.FieldValue.arrayUnion(doc.id)
+                    //             });
+                    //         });
     
                             
     
-                            // db.collection("users/").doc(currentUser).update({
-                            //     chatrooms: firebase.firestore.FieldValue.arrayUnion(doc.id)
-                            // });
-                        // }
-                    } 
+                    //         // db.collection("users/").doc(currentUser).update({
+                    //         //     chatrooms: firebase.firestore.FieldValue.arrayUnion(doc.id)
+                    //         // });
+                    //     // }
+                    // } 
                 })
+                if (!exist){
+                    chatrooms.add({
+                        user1: currentUser,
+                        user2: targetUser
+
+                    })
+                    db.collection("users/").doc(targetUser).update({
+                        chatrooms: firebase.firestore.FieldValue.arrayUnion(doc.id)
+                    })
+                    db.collection("users/").doc(currentUser).update({
+                        chatrooms: firebase.firestore.FieldValue.arrayUnion(doc.id)
+                    })
+                }
             });
 
             
@@ -76,7 +103,7 @@ db.collection("posts/").get().then(function (snap) {
             //     console.error('Error writing new message to database', error);
             // });
 
-            // window.location.href = "messaging.html";
+            window.location.href = "messaging.html";
         }
         box.appendChild(btn);
         card.appendChild(box);

@@ -42,16 +42,40 @@ db.collection("posts/").get().then(function (snap) {
                     let u2 = doc.data().user2;
                     // var arr = doc.data().users;
                     // console.log(arr);
+                    console.log(targetUser);
+                    console.log(currentUser);
+                    console.log(currentUser == u1)
+                    console.log(targetUser == u2)
                     let con1 = currentUser == u1;
                     let con2 = currentUser == u2;
                     let con3 = targetUser == u1;
                     let con4 = targetUser == u2;
+                    console.log(!((con1 && con4) || (con2 && con3)))
                     if (((con1 && con4) || (con2 && con3))){
                         exist = true;
-                        localStorage.setItem("roomID", doc.id);
-                    
                     }
                     
+                    // if (!((arr[0] == targetUser && arr[1] == currentUser) || (arr[1] == targetUser && arr[0] == currentUser))) {
+                    //     // if() {
+                    //         chatrooms.add({
+                    //             users: [currentUser, targetUser],
+                    //             // user1: currentUser,
+                    //             // user1name: getUserName(),
+                    //             // user2: targetUser,
+                    //             // user2name: targetUserName
+                    //         }).then(function() {
+                    //             db.collection("users/").doc(targetUser).update({
+                    //                 chatrooms: firebase.firestore.FieldValue.arrayUnion(doc.id)
+                    //             });
+                    //         });
+    
+                            
+    
+                    //         // db.collection("users/").doc(currentUser).update({
+                    //         //     chatrooms: firebase.firestore.FieldValue.arrayUnion(doc.id)
+                    //         // });
+                    //     // }
+                    // } 
                 })
                 if (!exist){
                     chatrooms.add({
@@ -59,17 +83,22 @@ db.collection("posts/").get().then(function (snap) {
                         user2: targetUser
 
                     })
-                    db.collection("users/").doc(targetUser).update({
-                        chatrooms: firebase.firestore.FieldValue.arrayUnion(doc.id)
+                    .then(function(docRef){
+                        db.collection("users/").doc(targetUser).update({
+                            chatrooms: firebase.firestore.FieldValue.arrayUnion(docRef.id)
+                        })
+                        
+                        db.collection("users/").doc(currentUser).update({
+                            chatrooms: firebase.firestore.FieldValue.arrayUnion(docRef.id)
+                        })
+
                     })
-                    db.collection("users/").doc(currentUser).update({
-                        chatrooms: firebase.firestore.FieldValue.arrayUnion(doc.id)
-                    })
+
                 }
-                
             });
 
-        
+            
+
             // alert("memes")
             // db.firestore().collection('messages').add({
             //     name: getUserName(),
@@ -78,7 +107,8 @@ db.collection("posts/").get().then(function (snap) {
             // }).catch(function (error) {
             //     console.error('Error writing new message to database', error);
             // });
-            window.location.href = "messaging.html";
+
+           window.location.href = "messaging.html";
         }
         box.appendChild(btn);
         card.appendChild(box);

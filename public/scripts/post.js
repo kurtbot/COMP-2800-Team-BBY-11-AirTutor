@@ -1,8 +1,8 @@
 db.collection("posts/").get().then(function (snap) {
     snap.forEach(function (doc) {
         let title = doc.data().title;
-        let userName = doc.data().username;
-        let user = doc.data().user;
+        let targetUserName = doc.data().username;
+        let targetUser = doc.data().user;
         let grade = doc.data().grade;
         let subject = doc.data().subject;
         let date = doc.data().date;
@@ -21,7 +21,7 @@ db.collection("posts/").get().then(function (snap) {
         p3.innerHTML = detail;
         box.appendChild(p3);
         let p4 = document.createElement("p");
-        p4.innerHTML = userName;
+        p4.innerHTML = targetUserName;
         box.appendChild(p4);
         let p5 = document.createElement("p");
         p5.innerHTML = date;
@@ -30,26 +30,44 @@ db.collection("posts/").get().then(function (snap) {
         let btn = document.createElement("button");
         btn.innerHTML = "Message";
         btn.onclick = function () {
-            localStorage.setItem("poster", user);
-            localStorage.setItem("posterName", userName);
+            localStorage.setItem("poster", targetUser);
+            localStorage.setItem("posterName", targetUserName);
 
             let currentUser = firebase.auth().currentUser.uid;
             let chatrooms = db.collection("chatrooms");
 
-            let test2 = false;
-            chatrooms.where("user1", "in", [currentUser, user]).where("user2", "==", [currentUser, user]).get().then(function (doc) { test2 = doc.exists });
-            console.log(test2);
+            chatrooms.get().then((querySnap) => {
+                querySnap.forEach(function (doc) {
+                    var arr = doc.data().users;
+                    console.log(arr);
+                    
+                    if (!((arr[0] == targetUser && arr[1] == currentUser) || (arr[1] == targetUser && arr[0] == currentUser))) {
+                        // if() {
+                            chatrooms.add({
+                                users: [currentUser, targetUser],
+                                // user1: currentUser,
+                                // user1name: getUserName(),
+                                // user2: targetUser,
+                                // user2name: targetUserName
+                            }).then(function() {
+                                db.collection("users/").doc(targetUser).update({
+                                    chatrooms: firebase.firestore.FieldValue.arrayUnion(doc.id)
+                                });
+                            });
+    
+                            
+    
+                            // db.collection("users/").doc(currentUser).update({
+                            //     chatrooms: firebase.firestore.FieldValue.arrayUnion(doc.id)
+                            // });
+                        // }
+                    } 
+                })
+            });
 
-            if (test2) {
-                db.collection("chatrooms").add({
-                    user1: currentUser,
-                    user1name: getUserName(),
-                    user2: user,
-                    user2name: userName
-                });
-            }
+            
 
-            alert("memes")
+            // alert("memes")
             // db.firestore().collection('messages').add({
             //     name: getUserName(),
             //     text: messageText,

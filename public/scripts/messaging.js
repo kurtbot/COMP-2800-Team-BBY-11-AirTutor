@@ -19,13 +19,12 @@ $("#send").css({
 })
 
 firebase.auth().onAuthStateChanged(function (user) {
-
+    let roomID;
+    roomID = localStorage.getItem("roomID");
+    console.log(localStorage.getItem("roomID"));
 
     $("#send").click(function () {
-        let roomID;
-        roomID = localStorage.getItem("roomID");
-        console.log(localStorage.getItem("roomID"));
-        
+
         localStorage.removeItem("roomID");
         console.log(roomID);
         let d = new Date();
@@ -39,7 +38,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         let str = document.querySelector("#textbox").value;
         document.getElementById("chat").innerHTML += user.displayName + ": " + str + "<br>";
         document.querySelector("#textbox").value = "";
-        db.collection('chatrooms').doc(roomID).add({
+        db.collection('chatrooms').doc(roomID).collection("messages").add({
             message: str,
             senderID: firebase.auth().currentUser.uid,
             timestamp: date,

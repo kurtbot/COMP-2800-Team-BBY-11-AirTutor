@@ -25,28 +25,54 @@ db.collection("posts/").get().then(function (snap) {
         box.appendChild(p4);
         let p5 = document.createElement("p");
         p5.innerHTML = date;
-        
+
         box.appendChild(p5);
         let btn = document.createElement("button");
         btn.innerHTML = "Message";
-        btn.onclick = function(){
+        btn.onclick = function () {
             localStorage.setItem("poster", user);
             localStorage.setItem("posterName", userName);
-            window.location.href = "messaging.html";
+
+            let currentUser = firebase.auth().currentUser.uid;
+            let chatrooms = db.collection("chatrooms");
+
+            let test2 = false;
+            chatrooms.where("user1", "in", [currentUser, user]).where("user2", "==", [currentUser, user]).get().then(function (doc) { test2 = doc.exists });
+            console.log(test2);
+
+            if (test2) {
+                db.collection("chatrooms").add({
+                    user1: currentUser,
+                    user1name: getUserName(),
+                    user2: user,
+                    user2name: userName
+                });
+            }
+
+            alert("memes")
+            // db.firestore().collection('messages').add({
+            //     name: getUserName(),
+            //     text: messageText,
+            //     timestamp: db.firestore.FieldValue.serverTimestamp()
+            // }).catch(function (error) {
+            //     console.error('Error writing new message to database', error);
+            // });
+
+            // window.location.href = "messaging.html";
         }
         box.appendChild(btn);
         card.appendChild(box);
         document.body.appendChild(card);
-    //     let card = "<div class='card bg-light text-black mx-3 my-2'>\
-    //     <div class='card-body'>\
-    //       <h4 class='card-title'>" + title + "</h4><hr/>\
-    //       <span class='card-text'>" + subject + " " + grade + "</span>\
-    //       <p class='card-text'>" + detail + "</p>\
-    //       <p class='card-text'> posted by " + userName + "</p>\
-    //       <p class='card-text'>" + date + "</p>\
-    //       <button class='btn btn-primary' onclick = 'localStorage.setItem(\'poster\', user);window.location.href=\'messaging.html\''>Message</button>\
-    //     </div>\
-    //   </div>";
-    //   $("#posts-dat").append(card);
+        //     let card = "<div class='card bg-light text-black mx-3 my-2'>\
+        //     <div class='card-body'>\
+        //       <h4 class='card-title'>" + title + "</h4><hr/>\
+        //       <span class='card-text'>" + subject + " " + grade + "</span>\
+        //       <p class='card-text'>" + detail + "</p>\
+        //       <p class='card-text'> posted by " + userName + "</p>\
+        //       <p class='card-text'>" + date + "</p>\
+        //       <button class='btn btn-primary' onclick = 'localStorage.setItem(\'poster\', user);window.location.href=\'messaging.html\''>Message</button>\
+        //     </div>\
+        //   </div>";
+        //   $("#posts-dat").append(card);
     })
 });

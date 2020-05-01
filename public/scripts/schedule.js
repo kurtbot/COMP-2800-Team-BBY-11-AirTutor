@@ -14,13 +14,7 @@ if (day.length == 1){
 
 $("#date").val(year + "-" + month + "-" + day);
 
-
 $("#name").val(localStorage.getItem("posterName"));
-
-
-
-
-
 
 if (localStorage.getItem("date") != null){
     $("#date").val(localStorage.getItem("date"));
@@ -58,12 +52,9 @@ if (localStorage.getItem("name") != null){
     $("#name").val(localStorage.getItem("name"));
 }
 
-
 $("#cancel").click(function(){
     window.location.href = "messaging.html";
 })
-
-
 
 $("#submit").click(function(){
     let startHour = $("#start-hour").val();

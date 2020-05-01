@@ -5,11 +5,11 @@ $("#bot").css({
     "bottom": "0"
 })
 $("#sch").css({
-    "display":"block"
+    "display": "block"
 })
 
 $("#textbox").css({
-    "width":"80%"
+    "width": "80%"
 })
 
 $("#send").css({
@@ -17,12 +17,12 @@ $("#send").css({
     "position": "absolute",
     "right": "0"
 })
-firebase.auth().onAuthStateChanged(function (user) {
-$("#send").click(function(){
-    console.log("1");
-    let str = document.querySelector("#textbox").value;
-    document.getElementById("chat").innerHTML += user.displayName + ": " + str + "<br>"
-    document.querySelector("#textbox").value = ""
 
-})
+firebase.auth().onAuthStateChanged(function (user) {
+    $("#send").click(function () {
+        console.log("1");
+        let str = document.querySelector("#textbox").value;
+        document.getElementById("chat").innerHTML += user.displayName + ": " + str + "<br>";
+        document.querySelector("#textbox").value = "";
+    });
 })

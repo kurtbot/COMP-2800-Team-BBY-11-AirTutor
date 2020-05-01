@@ -22,9 +22,25 @@ db.collection("schedules/").get().then(function (snap) {
         let name1 = document.createElement("p");
         name1.innerHTML = "Participant 1: " + doc.data().name;
         box.appendChild(name1);
+        let btn1 = document.createElement("button");
+        btn1.innerHTML = "View User";
+        btn1.onclick = function(){
+            localStorage.setItem("viewing", doc.data().nameid);
+            window.location.href = "viewprofile.html";
+        }
+        box.appendChild(btn1);
         let name2 = document.createElement("p");
         name2.innerHTML = "Participant 2: " + doc.data().username;
         box.appendChild(name2);
+        let btn2 = document.createElement("button");
+        btn2.innerHTML = "View User";
+        btn2.onclick = function(){
+            localStorage.setItem("viewing", doc.data().user);
+            window.location.href = "viewprofile.html";
+        }
+        box.appendChild(btn2);
+        let br = document.createElement("br");
+        box.appendChild(br);
         let btn = document.createElement("button");
         btn.innerHTML = "Join Session";
         btn.onclick = function(){

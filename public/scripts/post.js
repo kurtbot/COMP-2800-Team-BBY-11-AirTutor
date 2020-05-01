@@ -61,7 +61,7 @@ db.collection("posts/").get().then(function (snap) {
                     chatrooms.add({
                         user1: currentUser,
                         user2: targetUser
-
+                        
                     })
                     .then(function(docRef){
                         db.collection("users/").doc(targetUser).update({

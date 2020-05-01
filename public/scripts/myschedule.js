@@ -1,7 +1,7 @@
 firebase.auth().onAuthStateChanged(function (user) {
 db.collection("schedules/").get().then(function (snap) {
     snap.forEach(function(doc) {
-        if (doc.data().user == user.uid){
+        if (doc.data().user == user.uid || doc.data().nameid == user.uid){
 
 
         let box = document.createElement("div");

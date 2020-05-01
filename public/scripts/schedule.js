@@ -15,6 +15,9 @@ if (day.length == 1){
 $("#date").val(year + "-" + month + "-" + day);
 
 
+$("#name").val(localStorage.getItem("posterName"));
+
+
 
 
 
@@ -54,7 +57,6 @@ if (localStorage.getItem("title") != null){
 if (localStorage.getItem("name") != null){
     $("#name").val(localStorage.getItem("name"));
 }
-
 
 
 $("#cancel").click(function(){

@@ -54,20 +54,54 @@
         </div>
     </nav>
 
-    <h1>Welcome, <span id="username">user</span>!</h1>
+    <h1 style="text-align: center;">Welcome, <span id="username">user</span>!</h1>
 
     <div id="home-content">
         <div class="row">
             <div class="leftcolumn">
                 <div class="card">
-                    <h2>Your meetings</h2>
-                    <h5>Title description, Posted by <a href="" class="user">some user</a> on Dec 7, 2017</h5>
-                    <div class="fakeimg" style="height:200px;">Image</div>
-                    <p>Some text..</p>
-                    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud
-                        exercitation ullamco.</p>
+                    <h2>Reminder</h2>
+                    <h3 style="padding-top: 0px; padding-bottom: 10px" ;>Just a reminder that you have a meeting<br>
+                        with <span id="user">some
+                            user</span> at <span id="time">this time</span>!</h3>
+                    <p>Title: <span id="user">title</span><br>
+                        User: <span id="user">user</span><br>
+                        Time: <span id="time">time</span></p>
+                </div>
+            </div>
+            <div class="leftcolumn">
+                <div class="card">
+                    <h2>Reminder</h2>
+                    <h3 style="padding-top: 0px; padding-bottom: 10px" ;>Just a reminder that you have a meeting<br>
+                        with
+                        <span id="user">some
+                            user</span> at <span id="time">this time</span>!</h3>
+                    <p>Title: <span id="user">title</span><br>
+                        User: <span id="user">user</span><br>
+                        Time: <span id="time">time</span></p>
+                </div>
+            </div>
+            <div class="leftcolumn">
+                <div class="card">
+                    <h2>Reminder</h2>
+                    <h3 style="padding-top: 0px; padding-bottom: 10px" ;>Just a reminder that you have a meeting<br>
+                        with
+                        <span id="user">some
+                            user</span> at <span id="time">this time</span>!</h3>
+                    <p>Title: <span id="user">title</span><br>
+                        User: <span id="user">user</span><br>
+                        Time: <span id="time">time</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="rightcolumn">
+            <div class="side">
+                <div class="card">
+                    <h2>Last week, you</h2>
+                    <p>Met with <span id="number">number of </span><span id="type">users</span> <br>
+                        Received <span id="number-of-ratings">number</span> five-star ratings <br>
+                        Interacted with <span id="number-of-interactions">number</span> users</p>
                 </div>
             </div>
         </div>
@@ -78,8 +112,10 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
     <script src="scripts/firebase.js"></script>
+
     <!-- Optional JavaScript -->
     <script src="./scripts/logout.js"></script>
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

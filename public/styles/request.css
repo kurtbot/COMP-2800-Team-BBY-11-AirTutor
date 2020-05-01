@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body:not(.navbar navbar-expand-md navbar-light bg-light) {
+    padding: 20px;
+}
+
+body {
+    background-color: #f1f1f1;
+    font-family: "Raleway";
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: "Raleway Black";
+    color: #283b42;
+}
+
+#request, #confirm-request, #schedule, #content {
+    padding: 20px;
+}
+
+input, button, textarea, select {
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #ced4da;
+    border-width: 1.25px;
+}

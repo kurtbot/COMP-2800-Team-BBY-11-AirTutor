@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--My own CSS-->
+    <link rel="stylesheet" type="text/css" href="styles/rating.css">
+    <link rel="stylesheet" type="text/css" href="styles/footer.css">
+</head>
+
+<body>
+     <!--Nav Bar -->
+     <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="home.html">Air Tutor</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="request.html">Request</a>
+                </li>
+                <li class ="nav-item">
+                    <a class="nav-link" href="post.html">Posts</a>
+                </li>
+                <li class ="nav-item">
+                    <a class="nav-link" href="myschedule.html">My Schedule</a>
+                </li>
+                <li class ="nav-item">
+                    <a class="nav-link" href="messages.html">Message</a>
+                </li>
+                <li class ="nav-item">
+                    <a class="nav-link" href="shop.html">Shop</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mt-2 mt-lg-0">
+              <li class="nav-item mr-auto">
+                <a class="nav-item" id="current-cash">Credits: </a>
+              </li>
+          </ul>
+            <ul class="navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item dropdown mr-auto">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Username Here</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="profile.html">View Profile</a>
+                        <a class="dropdown-item" href="editprofile.html">Edit Profile</a>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Header -->
+    <header>
+        <h1 class="text-center my-5">Did your tutor<br>
+            answer your questions?</h1>
+    </header>
+
+    <!--Content-->
+    <div class="text-center">
+        <button type="button" class="btn btn-primary btn-lg mx-4 px-5" id="yes-button" data-toggle="button" aria-pressed="false"
+            autocomplete="off">
+            Yes
+        </button>
+        <button type="button" class="btn btn-primary btn-lg mx-4 px-5" id="no-button" data-toggle="button" aria-pressed="false"
+            autocomplete="off">
+            No
+        </button>
+    </div>
+    <!--Yes Option-->
+    <div class="text-center my-5" id="yes-option">
+        <h2 class="text-center my-4">Rate Your Tutor</h2>
+        <div class="container">
+            <div class="text-center">
+                <h4>Professionalism</h4>
+            </div>
+            <div class="d-flex">
+                <div class="mr-auto p-2">1</div>
+                <div class="p-2">5</div>
+            </div>
+            <input id="pro" type="range" class="custom-range" min="0" max="4" value="2" >
+            <div class="text-center">
+                <h4>Teaching Quality</h4>
+            </div>
+            <div class="d-flex">
+                <div class="mr-auto p-2">1</div>
+                <div class="p-2">5</div>
+            </div>
+            <input id="teaching-qual" type="range" class="custom-range" min="0" max="4" value="2" >
+        </div>
+
+        <div class="mx-2">
+            <button type="button" name="submit" id="yes-submit"
+                class="btn btn-primary btn-lg btn-block my-5">Submit</button>
+        </div>
+    </div>
+
+    <!--No Option-->
+    <div class="my-5" id="no-option">
+        <h2 class="text-center my-4">Are you sure they couldn't help you?</h2>
+        <h4 class="text-center">Your question will be placed back into the request page and your tutor will not get
+            credits</h4>
+        <h4 class="text-center my-2">Can you tell us what went wrong?</h4>
+        <div class ="text-center">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue">
+                    Did not have an answer.
+                </label>
+            </div>
+
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue">
+                    Could not understand the explanation.
+                </label>
+            </div>
+
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue">
+                    Inappropriate.
+                </label>
+            </div>
+
+            <div class="mx-2">
+                <button type="button" name="submit" id="no-submit"
+                    class="btn btn-primary btn-lg btn-block my-5">Submit</button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!--Footer-->
+
+    <footer class="footer">
+        <a href="faq.html">Frequently Asked Questions</a>
+    </footer>
+    <!-- Firebase javascripts -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+    <script src="scripts/firebase.js"></script>
+    <!-- Optional JavaScript -->
+    <script src="scripts/rating.js"></script>
+    <script src="scripts/navbar.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

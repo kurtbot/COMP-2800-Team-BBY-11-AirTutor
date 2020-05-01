@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  background-color: #f1f1f1;
+  font-family: "Raleway";
+  background: #f1f1f1;
+}
+
+header {
+  width: 100%;
+}
+
+#home-content {
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5 {
+  padding-top: 20px;
+  font-family: "Raleway Black";
+  color: #283b42;
+}
+
+.row {
+  margin-left: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex: 90%;
+}
+
+a {
+  color: #283b42;
+}
+
+.side {
+  margin-top: -10px;
+  margin-left: 0px;
+  flex: 10%;
+  background-color: #f1f1f1;
+  padding: 30px;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+  float: left;
+  width: 100%;
+}
+
+/* Right column */
+.rightcolumn {
+  width: 60%;
+}
+
+/* Add a card effect for articles */
+.card {
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: white;
+  border-radius: 25px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {
+    width: 100%;
+  }
+}

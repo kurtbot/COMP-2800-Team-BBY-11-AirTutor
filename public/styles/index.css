@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    background-color: #f1f1f1;
+    font-family: "Raleway";
+    text-align: center;
+}
+
+
+
+/* header elements */
+
+/** Navigation */
+
+nav {
+    background-color: #283B42;
+}
+
+nav > a, li > a{
+    color: #fff;
+}
+
+
+h1, h3, h4, a {
+    font-family: "Raleway Black";
+}
+
+h5 {
+    font-family: "Roboto";
+}
+
+/* main content elements */
+
+/* header {
+    height: 500px;
+    background-color: #283b42;
+    margin-bottom: 20px;
+} */
+
+/* #header-text{
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+} */
+
+/* header, h1, h2, h3, h4, h5 {
+    color: white;
+}
+
+
+a, a:hover {
+    color: white;
+} */
+
+

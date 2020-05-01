@@ -33,13 +33,17 @@ db.collection("schedules/").get().then(function (snap) {
         let btn1 = document.createElement("button");
         btn1.innerHTML = "View User";
         btn1.onclick = function(){
-            if (doc.data().user == user.uid){
-                localStorage.setItem("viewing", doc.data().nameid);
+            // if (doc.data().user == user.uid){
+            //     localStorage.setItem("viewing", doc.data().nameid);
+            // } else {
+            //     localStorage.setItem("viewing", doc.data().user);
+            // }
+            if (doc.data().user == user.uid) {
+                window.location.href = "viewprofile.html?"+doc.data().nameid;
             } else {
-                localStorage.setItem("viewing", doc.data().user);
+                window.location.href = "viewprofile.html?"+doc.data().user;
             }
 
-            window.location.href = "viewprofile.html";
         }
         box.appendChild(btn1);
 
@@ -48,7 +52,12 @@ db.collection("schedules/").get().then(function (snap) {
         let btn = document.createElement("button");
         btn.innerHTML = "Join Session";
         btn.onclick = function(){
-            window.location.href = "session.html"
+            if (doc.data().user == user.uid) {
+                window.location.href = "session.html?" + doc.data().nameid;
+            } else {
+                window.location.href = "session.html?" + doc.data().user;
+            }
+            
         }
         box.appendChild(btn)
         document.body.appendChild(box);

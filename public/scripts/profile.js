@@ -9,6 +9,9 @@ function userInfo() {
         dbref.get()
             .then(snap => {
                 let country = snap.data().country;
+                let education = snap.data().education;
+                let grade = snap.data().grade;
+                
                 displayCountry.innerHTML = "Country: " + country;
                 
             })

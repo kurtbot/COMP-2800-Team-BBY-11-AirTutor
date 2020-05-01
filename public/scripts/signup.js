@@ -14,6 +14,9 @@ function signup() {
     let email = document.getElementById('emailSignupField').value;
     let password = document.getElementById('passwordSignupField').value;
     let country = document.getElementById('countryField').value;
+    let language = document.getElementById('languageField').value;
+    let education =document.getElementById('educationField').value;
+    let grade = document.getElementById('gradeField').value;
     let name = firstName + " " + lastName;
     // Check for errors in inputs
     if (!(firstName === "") && !(lastName === "") && !(email === "") && !(password === "")) {
@@ -42,6 +45,9 @@ function signup() {
                                 userID: user.uid,
                                 country: country,
                                 currency : 0.0,
+                                grade: grade,
+                                language: language,
+                                education: education,
                             }, { merge: true })
                                 .then(function () {
                                     // for testing purposes

@@ -53,29 +53,9 @@ db.collection("posts/").get().then(function (snap) {
                     console.log(!((con1 && con4) || (con2 && con3)))
                     if (((con1 && con4) || (con2 && con3))){
                         exist = true;
+                        localStorage.setItem("roomID", doc.id);
                     }
                     
-                    // if (!((arr[0] == targetUser && arr[1] == currentUser) || (arr[1] == targetUser && arr[0] == currentUser))) {
-                    //     // if() {
-                    //         chatrooms.add({
-                    //             users: [currentUser, targetUser],
-                    //             // user1: currentUser,
-                    //             // user1name: getUserName(),
-                    //             // user2: targetUser,
-                    //             // user2name: targetUserName
-                    //         }).then(function() {
-                    //             db.collection("users/").doc(targetUser).update({
-                    //                 chatrooms: firebase.firestore.FieldValue.arrayUnion(doc.id)
-                    //             });
-                    //         });
-    
-                            
-    
-                    //         // db.collection("users/").doc(currentUser).update({
-                    //         //     chatrooms: firebase.firestore.FieldValue.arrayUnion(doc.id)
-                    //         // });
-                    //     // }
-                    // } 
                 })
                 if (!exist){
                     chatrooms.add({

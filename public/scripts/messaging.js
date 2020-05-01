@@ -19,10 +19,32 @@ $("#send").css({
 })
 
 firebase.auth().onAuthStateChanged(function (user) {
+
+
     $("#send").click(function () {
-        console.log("1");
+        let roomID;
+        roomID = localStorage.getItem("roomID");
+        console.log(localStorage.getItem("roomID"));
+        
+        localStorage.removeItem("roomID");
+        console.log(roomID);
+        let d = new Date();
+        let year = d.getFullYear();
+        let month = d.getMonth() + 1;
+        let day = d.getDay();
+        let hour = d.getHours();
+        let minute = d.getMinutes();
+        let date = year + "-" + month + "-" + day + " " + hour + ":" + minute;
+
         let str = document.querySelector("#textbox").value;
         document.getElementById("chat").innerHTML += user.displayName + ": " + str + "<br>";
         document.querySelector("#textbox").value = "";
+        db.collection('chatrooms').doc(roomID).add({
+            message: str,
+            senderID: firebase.auth().currentUser.uid,
+            timestamp: date,
+            actualTime: d
+        })
+
     });
 })

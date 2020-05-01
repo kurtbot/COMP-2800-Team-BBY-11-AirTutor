@@ -8,7 +8,7 @@ $("#name").html(localStorage.getItem("name"));
 $("#back").click(function(){
     window.location.href="schedule.html";
 })
-
+firebase.auth().onAuthStateChanged(function (user) {
 $("#confirm").click(function(){
     let promise = db.collection("schedules").add({
         date: localStorage.getItem("date"),
@@ -16,7 +16,8 @@ $("#confirm").click(function(){
         end: localStorage.getItem("end"),
         title: localStorage.getItem("title"),
         name: localStorage.getItem("name"),
-        user: "place holder"
+        user: user.uid,
+        username: user.displayName
     })
     promise.then(function(){
         localStorage.removeItem("date");
@@ -33,4 +34,5 @@ $("#confirm").click(function(){
         window.location.href="messaging.html";
     })
 
+})
 })

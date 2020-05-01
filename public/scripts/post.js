@@ -1,36 +1,21 @@
 db.collection("posts/").get().then(function (snap) {
-    snap.forEach(function(doc) {
-        let box = document.createElement("div");
-        let hr = document.createElement("hr");
-        document.body.appendChild(hr);
-        let date = document.createElement("p");
-        date.innerHTML = "Date: " + doc.data().date;
-        box.appendChild(date);
-        let subject = document.createElement("p");
-        subject.innerHTML = "Subject: " + doc.data().subject;
-        box.appendChild(subject);
-        let grade = document.createElement("p");
-        grade.innerHTML = "Grade: " + doc.data().grade;
-        box.appendChild(grade);
-        let title = document.createElement("p");
-        title.innerHTML = "Title: " + doc.data().title;
-        box.appendChild(title);
-        let details = document.createElement("p");
-        details.innerHTML = "Details: " + doc.data().details;
-        box.appendChild(details);
-        let userid = document.createElement("p");
-        userid.innerHTML = "User ID: " + doc.data().user;
-        box.appendChild(userid);
-        let username = document.createElement("p");
-        username.innerHTML = "User Name: " + doc.data().username;
-        box.appendChild(username);
-        let btn = document.createElement("button");
-        btn.innerHTML = "Message";
-        btn.onclick = function(){
-            window.location.href = "messaging.html"
-        }
-        box.appendChild(btn)
-        document.body.appendChild(box);
-        document.body.appendChild(hr);
+    snap.forEach(function (doc) {
+        let title = doc.data().title;
+        let userName = doc.data().username;
+        let user = doc.data().user;
+        let grade = doc.data().grade;
+        let subject = doc.data().subject;
+        let date = doc.data().date;
+        let detail = doc.data().details;
+        let card = "<div class='card bg-light text-black mx-3 my-2'>\
+        <div class='card-body'>\
+          <h4 class='card-title'>" + title + "</h4><hr/>\
+          <span class='card-text'>" + subject + " " + grade + "</span>\
+          <p class='card-text'>" + detail + "</p>\
+          <p class='card-text'> posted by " + userName + "</p>\
+          <a name='' id='' class='btn btn-primary' href='messaging.html' role='button'>Message</a>\
+        </div>\
+      </div>";
+      $("#posts-dat").append(card);
     })
-    });
+});

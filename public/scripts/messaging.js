@@ -23,6 +23,10 @@ firebase.auth().onAuthStateChanged(function (user) {
     roomID = localStorage.getItem("roomID");
     console.log(localStorage.getItem("roomID"));
 
+    db.collection("chatrooms/").doc(roomID).collection("messages").get().then(function (snap) { snap.forEach(function (doc) {
+        document.getElementById("chat").innerHTML += doc.data().senderName + ": " + doc.data().message + "<br>";
+     })});
+
     $("#send").click(function () {
 
         localStorage.removeItem("roomID");
@@ -41,6 +45,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         db.collection('chatrooms').doc(roomID).collection("messages").add({
             message: str,
             senderID: firebase.auth().currentUser.uid,
+            senderName: user.displayName,
             timestamp: date,
             actualTime: d
         })

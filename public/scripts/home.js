@@ -18,7 +18,14 @@ function showPosts() {
         db.collection("schedules/").get().then(function (snap) {
             snap.forEach(function (doc) {
                 if (doc.data().user == user.uid || doc.data().nameid == user.uid) {
+                    let container = document.createElement("div");
+                    // container.style.display = "flex";
+                    // container.style.flexDirection = "column";
+                    // container.style.backgroundColor = "black"
+                    let inner = document.createElement("div");
+                    // inner.setAttribute("class", "leftcolumn");
                     let box = document.createElement("div");
+                    box.setAttribute("class", "card");
                     let h2 = document.createElement("h2");
                     h2.innerHTML = "Reminder";
                     box.appendChild(h2);
@@ -40,9 +47,9 @@ function showPosts() {
                     }
                     name.innerHTML = "Meeting with: " + str;
                     box.appendChild(name);
-                    document.body.appendChild(box);
-                    let hr = document.createElement("hr");
-                    document.body.appendChild(hr);
+                    inner.appendChild(box);
+                    container.appendChild(inner);
+                    document.querySelector("#home-content").appendChild(container);
                 }
             })
         })

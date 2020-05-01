@@ -10,31 +10,30 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    
+    <link rel="stylesheet" href="./styles/signup.css">
 </head>
 
 <body>
-    <p>Create your account</p>
+    <h3>Create your account</h3>
     <input type='text' class='form-control' name='firstNameField' id='firstNameField' aria-describedby='firstNameHelpId'
-        placeholder='first name' required>
+        placeholder='First name' required>
     <input type='text' class='form-control' name='lastNameField' id='lastNameField' aria-describedby='lastNameHelpId'
-        placeholder='last name' required>
+        placeholder='Last name' required>
     <input type='text' class='form-control' name='countryField' id='countryField' aria-describedby='ountryHelpId'
-        placeholder='country' required>
-        <input type='text' class='form-control' name='languageField' id='languageField' aria-describedby='languageHelpId'
-        placeholder='language' required>
-        <input type='text' class='form-control' name='educationField' id='educationField' aria-describedby='educationHelpId'
-        placeholder='education level'required>
-        <input type='text' class='form-control' name='gradeField' id='gradeField' aria-describedby='gradeHelpId'
+        placeholder='Country' required>
+    <input type='text' class='form-control' name='languageField' id='languageField' aria-describedby='languageHelpId'
+        placeholder='Language' required>
+    <input type='text' class='form-control' name='educationField' id='educationField' aria-describedby='educationHelpId'
+        placeholder='Education level' required>
+    <input type='text' class='form-control' name='gradeField' id='gradeField' aria-describedby='gradeHelpId'
         placeholder='Grade (optional)'>
     <input type='email' class='form-control' name='emailSignupField' id='emailSignupField'
-        aria-describedby='emailHelpId' placeholder='email' required>
+        aria-describedby='emailHelpId' placeholder='Email' required>
     <input type='password' class='form-control' name='passwordSignupField' pattern='[A-Za-z0-9]{8,16}'
-        id='passwordSignupField' aria-describedby='passwordHelpId' placeholder='password' required>
+        id='passwordSignupField' aria-describedby='passwordHelpId' placeholder='Password' required>
     <small id='loginHelp' class='form-text text-muted'></small>
     <div>
-        <button type='submit' onclick='signup()'>Signup</button>
+        <button type='submit' onclick='signup()'>Sign up</button>
     </div>
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>

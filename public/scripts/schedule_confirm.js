@@ -30,7 +30,7 @@ $("#confirm").click(function(){
         localStorage.removeItem("end");
         localStorage.removeItem("title");
         localStorage.removeItem("name");
-        window.location.href="home.html";
+        window.location.href="messaging.html";
     })
 
 })

@@ -31,7 +31,7 @@ $("#confirm").click(function(){
         localStorage.removeItem("grade");
         localStorage.removeItem("details");
         localStorage.removeItem("retitle");
-        window.location.href="home.html";
+        window.location.href="post.html";
     })
 
 })

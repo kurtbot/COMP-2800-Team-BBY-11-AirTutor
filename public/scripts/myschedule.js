@@ -19,26 +19,30 @@ db.collection("schedules/").get().then(function (snap) {
         let title = document.createElement("p");
         title.innerHTML = "Title: " + doc.data().title;
         box.appendChild(title);
-        let name1 = document.createElement("p");
-        name1.innerHTML = "Participant 1: " + doc.data().name;
-        box.appendChild(name1);
+        let name = document.createElement("span");
+        let str = "";
+        if (doc.data().user == user.uid){
+            str = doc.data().name
+        } else {
+            str = doc.data().username
+        }
+        name.innerHTML = "Meeting with: " + str + " ";
+        box.appendChild(name);
+
+
         let btn1 = document.createElement("button");
         btn1.innerHTML = "View User";
         btn1.onclick = function(){
-            localStorage.setItem("viewing", doc.data().nameid);
+            if (doc.data().user == user.uid){
+                localStorage.setItem("viewing", doc.data().nameid);
+            } else {
+                localStorage.setItem("viewing", doc.data().user);
+            }
+
             window.location.href = "viewprofile.html";
         }
         box.appendChild(btn1);
-        let name2 = document.createElement("p");
-        name2.innerHTML = "Participant 2: " + doc.data().username;
-        box.appendChild(name2);
-        let btn2 = document.createElement("button");
-        btn2.innerHTML = "View User";
-        btn2.onclick = function(){
-            localStorage.setItem("viewing", doc.data().user);
-            window.location.href = "viewprofile.html";
-        }
-        box.appendChild(btn2);
+
         let br = document.createElement("br");
         box.appendChild(br);
         let btn = document.createElement("button");

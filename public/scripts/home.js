@@ -10,39 +10,38 @@ function showMeetings() {
     });
 }
 
+showName();
+showPosts();
+
 function showPosts() {
     firebase.auth().onAuthStateChanged(function (user) {
         db.collection("schedules/").get().then(function (snap) {
             snap.forEach(function (doc) {
-                if (doc.data().user == user.uid) {
+                if (doc.data().user == user.uid || doc.data().nameid == user.uid) {
                     let box = document.createElement("div");
-                    let hr = document.createElement("hr");
-                    document.body.appendChild(hr);
-                    let date = document.createElement("p");
-                    date.innerHTML = "Date: " + doc.data().date;
-                    box.appendChild(date);
-                    let start = document.createElement("p");
-                    start.innerHTML = "Start time: " + doc.data().start;
-                    box.appendChild(start);
-                    let end = document.createElement("p");
-                    end.innerHTML = "End time: " + doc.data().end;
-                    box.appendChild(end);
+                    let h2 = document.createElement("h2");
+                    h2.innerHTML = "Reminder";
+                    box.appendChild(h2);
+                    let h3 = document.createElement("h3");
+                    h3.innerHTML = "Just a reminder that you have a meeting at this time!"
+                    box.appendChild(h3);
                     let title = document.createElement("p");
                     title.innerHTML = "Title: " + doc.data().title;
                     box.appendChild(title);
-                    let name1 = document.createElement("p");
-                    name1.innerHTML = "Participant 1: " + doc.data().name;
-                    box.appendChild(name1);
-                    let name2 = document.createElement("p");
-                    name2.innerHTML = "Participant 2: " + doc.data().username;
-                    box.appendChild(name2);
-                    let btn = document.createElement("button");
-                    btn.innerHTML = "Join Session";
-                    btn.onclick = function () {
-                        window.location.href = "session.html"
+                    let date = document.createElement("p");
+                    date.innerHTML = "Time: " + doc.data().date + " " + doc.data().start + "~" + doc.data().end;
+                    box.appendChild(date);
+                    let name = document.createElement("p");
+                    let str = "";
+                    if (doc.data().user == user.uid){
+                        str = doc.data().name
+                    } else {
+                        str = doc.data().username
                     }
-                    box.appendChild(btn)
+                    name.innerHTML = "Meeting with: " + str;
+                    box.appendChild(name);
                     document.body.appendChild(box);
+                    let hr = document.createElement("hr");
                     document.body.appendChild(hr);
                 }
             })

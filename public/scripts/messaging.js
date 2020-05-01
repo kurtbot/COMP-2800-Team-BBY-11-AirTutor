@@ -5,11 +5,11 @@ $("#bot").css({
     "bottom": "0"
 })
 $("#sch").css({
-    "display":"block"
+    "display": "block"
 })
 
 $("#textbox").css({
-    "width":"80%"
+    "width": "80%"
 })
 
 $("#send").css({
@@ -17,12 +17,33 @@ $("#send").css({
     "position": "absolute",
     "right": "0"
 })
-firebase.auth().onAuthStateChanged(function (user) {
-$("#send").click(function(){
-    console.log("1");
-    let str = document.querySelector("#textbox").value;
-    document.getElementById("chat").innerHTML += user.displayName + ": " + str + "<br>"
-    document.querySelector("#textbox").value = ""
 
-})
+firebase.auth().onAuthStateChanged(function (user) {
+    let roomID;
+    roomID = localStorage.getItem("roomID");
+    console.log(localStorage.getItem("roomID"));
+
+    $("#send").click(function () {
+
+        localStorage.removeItem("roomID");
+        console.log(roomID);
+        let d = new Date();
+        let year = d.getFullYear();
+        let month = d.getMonth() + 1;
+        let day = d.getDay();
+        let hour = d.getHours();
+        let minute = d.getMinutes();
+        let date = year + "-" + month + "-" + day + " " + hour + ":" + minute;
+
+        let str = document.querySelector("#textbox").value;
+        document.getElementById("chat").innerHTML += user.displayName + ": " + str + "<br>";
+        document.querySelector("#textbox").value = "";
+        db.collection('chatrooms').doc(roomID).collection("messages").add({
+            message: str,
+            senderID: firebase.auth().currentUser.uid,
+            timestamp: date,
+            actualTime: d
+        })
+
+    });
 })

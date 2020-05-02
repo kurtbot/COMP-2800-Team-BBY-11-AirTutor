@@ -61,7 +61,7 @@ db.collection("posts/").get().then(function (snap) {
                     chatrooms.add({
                         user1: currentUser,
                         user2: targetUser
-                        
+
                     })
                     .then(function(docRef){
                         db.collection("users/").doc(targetUser).update({
@@ -72,13 +72,21 @@ db.collection("posts/").get().then(function (snap) {
                             chatrooms: firebase.firestore.FieldValue.arrayUnion(docRef.id)
                         })
                         localStorage.setItem("roomID", docRef.id);
+                    }).then(function(){
+                        window.location.href = "messaging.html";
                     })
 
+                } else {
+                    window.location.href = "messaging.html";
                 }
-                window.location.href = "messaging.html";
-            });
+               
+            })
+                    
+                
+                    
+            }
+        
 
-            
 
             // alert("memes")
             // db.firestore().collection('messages').add({
@@ -90,7 +98,7 @@ db.collection("posts/").get().then(function (snap) {
             // });
 
            
-        }
+        
         box.appendChild(btn);
         card.appendChild(box);
         document.body.appendChild(card);

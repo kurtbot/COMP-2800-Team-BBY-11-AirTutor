@@ -29,7 +29,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     $("#send").click(function () {
 
-        localStorage.removeItem("roomID");
+        //localStorage.removeItem("roomID");
         console.log(roomID);
         let d = new Date();
         let year = d.getFullYear();

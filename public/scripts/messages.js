@@ -9,10 +9,16 @@ firebase.auth().onAuthStateChanged(function (user) {
                 let link = document.createElement("button");
                 link.innerHTML = "view";
                 if (doc.data().user1 == user.uid){
-                   // name.innerHTML = db.collection("users/").doc(n2).data().firstName + db.collection("users/").doc(n2).data().lastName
+                    let docRef = db.collection("users/").doc(n2);
+                    docRef.get().then(function(docc){
+                        name.innerHTML = docc.data().firstName + docc.data().lastName;
+                    })
                     
                 } else {
-                   //name.innerHTML = db.collection("users/").doc(n1).data().firstName + db.collection("users/").doc(n1).data().lastName
+                    let docRef = db.collection("users/").doc(n1);
+                    docRef.get().then(function(docc){
+                        name.innerHTML = docc.data().firstName + docc.data().lastName;
+                    })
                 }
                 link.onclick = function(){
                     localStorage.setItem("roomID", doc.id);

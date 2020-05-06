@@ -1,7 +1,8 @@
 
 let d = new Date();
 let month = d.getMonth() + 1 + "";
-let day = d.getDate();
+let day = d.getDate() + "";
+console.log(day)
 let year = d.getFullYear();
 
 if (month.length == 1){
@@ -12,9 +13,10 @@ if (day.length == 1){
     day = "0" + day;
 }
 
+console.log(day)
 $("#date").val(year + "-" + month + "-" + day);
 
-$("#name").val(localStorage.getItem("posterName"));
+$("#name").val(localStorage.getItem("readerName"));
 
 if (localStorage.getItem("date") != null){
     $("#date").val(localStorage.getItem("date"));

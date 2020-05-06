@@ -15,10 +15,10 @@ $("#confirm").click(function(){
         start: localStorage.getItem("start"),
         end: localStorage.getItem("end"),
         title: localStorage.getItem("title"),
-        name: localStorage.getItem("name"),
-        user: user.uid,
-        username: user.displayName,
-        nameid: localStorage.getItem("poster")
+        name: user.displayName,
+        user: localStorage.getItem("poster"),
+        username:localStorage.getItem("name"),
+        nameid: user.uid
     })
     promise.then(function(){
         localStorage.removeItem("date");
@@ -34,6 +34,8 @@ $("#confirm").click(function(){
         localStorage.removeItem("name");
         localStorage.removeItem("poster");
         localStorage.removeItem("posterName");
+        localStorage.removeItem("reader");
+        localStorage.removeItem("readerName");
         window.location.href="messaging.html";
     })
 

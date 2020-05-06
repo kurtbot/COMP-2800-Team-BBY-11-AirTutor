@@ -18,10 +18,22 @@ $("#send").css({
     "right": "0"
 })
 
+$("#sch").css({
+    "display": "none"
+})
+
+
+
 firebase.auth().onAuthStateChanged(function (user) {
+    if (user.uid == localStorage.getItem("poster")){
+        $("#sch").css({
+            "display": "block"
+        })
+    }
     let roomID;
     roomID = localStorage.getItem("roomID");
     console.log(localStorage.getItem("roomID"));
+
 
     db.collection("chatrooms/").doc(roomID).collection("messages").get().then(function (snap) { snap.forEach(function (doc) {
         document.getElementById("chat").innerHTML += doc.data().senderName + ": " + doc.data().message + "<br>";

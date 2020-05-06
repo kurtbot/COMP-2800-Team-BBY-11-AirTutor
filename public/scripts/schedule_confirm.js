@@ -3,7 +3,7 @@ $("#start").html(localStorage.getItem("start"));
 $("#end").html(localStorage.getItem("end"));
 $("#title").html(localStorage.getItem("title"));
 $("#name").html(localStorage.getItem("name"));
-
+$("#credit").html(localStorage.getItem("credit"));
 
 $("#back").click(function(){
     window.location.href="schedule.html";
@@ -15,10 +15,11 @@ $("#confirm").click(function(){
         start: localStorage.getItem("start"),
         end: localStorage.getItem("end"),
         title: localStorage.getItem("title"),
-        name: localStorage.getItem("name"),
-        user: user.uid,
-        username: user.displayName,
-        nameid: localStorage.getItem("poster")
+        credit: localStorage.getItem("credit"),
+        name: user.displayName,
+        user: localStorage.getItem("teach"),
+        username:localStorage.getItem("name"),
+        nameid: user.uid
     })
     promise.then(function(){
         localStorage.removeItem("date");
@@ -31,9 +32,14 @@ $("#confirm").click(function(){
         localStorage.removeItem("endAP");
         localStorage.removeItem("end");
         localStorage.removeItem("title");
+        localStorage.removeItem("credit");
         localStorage.removeItem("name");
         localStorage.removeItem("poster");
         localStorage.removeItem("posterName");
+        localStorage.removeItem("reader");
+        localStorage.removeItem("readerName");
+        localStorage.removeItem("teach");
+        localStorage.removeItem("teacher")
         window.location.href="messaging.html";
     })
 

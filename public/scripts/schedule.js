@@ -1,7 +1,8 @@
 
 let d = new Date();
 let month = d.getMonth() + 1 + "";
-let day = d.getDate();
+let day = d.getDate() + "";
+console.log(day)
 let year = d.getFullYear();
 
 if (month.length == 1){
@@ -12,9 +13,10 @@ if (day.length == 1){
     day = "0" + day;
 }
 
+console.log(day)
 $("#date").val(year + "-" + month + "-" + day);
 
-$("#name").val(localStorage.getItem("posterName"));
+$("#name").val(localStorage.getItem("teacher"));
 
 if (localStorage.getItem("date") != null){
     $("#date").val(localStorage.getItem("date"));
@@ -52,6 +54,10 @@ if (localStorage.getItem("name") != null){
     $("#name").val(localStorage.getItem("name"));
 }
 
+if (localStorage.getItem("credit") != null){
+    $("#credit").val(localStorage.getItem("credit"));
+}
+
 $("#cancel").click(function(){
     window.location.href = "messaging.html";
 })
@@ -77,5 +83,6 @@ $("#submit").click(function(){
     localStorage.setItem("end", end);
     localStorage.setItem("title", $("#title").val());
     localStorage.setItem("name", $("#name").val());
+    localStorage.setItem("credit", $("#credit").val());
     window.location.href="schedule_confirm.html";
 });

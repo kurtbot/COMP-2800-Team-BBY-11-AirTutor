@@ -18,11 +18,31 @@ firebase.auth().onAuthStateChanged(function (user) {
                     let docRef = db.collection("users/").doc(n1);
                     docRef.get().then(function(docc){
                         name.innerHTML = docc.data().firstName + docc.data().lastName;
-                    })
+
+                     })
                 }
                 link.onclick = function(){
                     localStorage.setItem("roomID", doc.id);
-                    window.location.href = "messaging.html";
+                    if (doc.data().user1 == user.uid){
+                        let docRef = db.collection("users/").doc(n2);
+                        docRef.get().then(function(docc){
+                         localStorage.setItem("teach", docc.data().userID)
+                         localStorage.setItem("teacher", docc.data().firstName + " " + docc.data().lastName)
+                        }).then(function(){
+                            window.location.href = "messaging.html";
+                        })
+                        
+                    } else {
+                        let docRef = db.collection("users/").doc(n1);
+                        docRef.get().then(function(docc){
+                            name.innerHTML = docc.data().firstName + docc.data().lastName;
+                             localStorage.setItem("teach", docc.data().userID)
+                             localStorage.setItem("teacher", docc.data().firstName + " " + docc.data().lastName)
+                         }).then(function(){
+                            window.location.href = "messaging.html";
+                        })
+                    }
+                    
                 }
                 container.appendChild(name);
                 container.appendChild(link);

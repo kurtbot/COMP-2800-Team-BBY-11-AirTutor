@@ -33,7 +33,11 @@ db.collection("posts/").get().then(function (snap) {
             localStorage.setItem("poster", targetUser);
             localStorage.setItem("posterName", targetUserName);
 
+
             let currentUser = firebase.auth().currentUser.uid;
+            localStorage.setItem("reader", currentUser);
+            localStorage.setItem("readerName", firebase.auth().currentUser.displayName)
+
             let chatrooms = db.collection("chatrooms");
             let exist = false;
             chatrooms.get().then((querySnap) => {

@@ -39,7 +39,13 @@ app.get("/myschedule", (req, res) => {
 app.get("/editprofile", (req, res) => {
     res.render("pages/editprofile", {page:"editprofile"});
 })
+app.get("/login", (req, res) => {
+    res.render("pages/login");
+})
 
+app.get("/signup", (req, res) => {
+    res.render("pages/signup");
+})
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions

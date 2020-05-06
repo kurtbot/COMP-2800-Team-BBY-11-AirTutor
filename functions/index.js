@@ -9,7 +9,7 @@ const app = express();
 const port = 3000;
 
 app.use(express.static("public"));
-app.set("view engine","ejs");
+app.set("view engine","./views");
 
 
 app.get("/", (req, res) => {
@@ -24,4 +24,4 @@ app.get("/profile", (req, res) => {
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
-app.helloWorld = functions.https.onRequest(app);
+exports.app = functions.https.onRequest(app);

@@ -59,7 +59,7 @@ function signup() {
                                     }).then(function () {
 
                                         // enter home page
-                                        location.href = 'home.html';
+                                        location.href = '/home';
 
 
                                     }).catch(function (error) {

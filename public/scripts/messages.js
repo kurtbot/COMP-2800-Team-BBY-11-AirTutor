@@ -33,7 +33,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                     //      localStorage.setItem("teach", docc.data().userID)
                     //      localStorage.setItem("teacher", docc.data().firstName + " " + docc.data().lastName)
                     //     }).then(function(){
-                    //         window.location.href = "messaging.html";
+                    //         window.location.href = "/messaging";
                     //     })
                         
                     // } else {
@@ -43,7 +43,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                     //          localStorage.setItem("teach", docc.data().userID)
                     //          localStorage.setItem("teacher", docc.data().firstName + " " + docc.data().lastName)
                     //      }).then(function(){
-                    //         window.location.href = "messaging.html";
+                    //         window.location.href = "/messaging";
                     //     })
                     // }
                     

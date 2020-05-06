@@ -6,7 +6,7 @@ $("#name").html(localStorage.getItem("name"));
 $("#credit").html(localStorage.getItem("credit"));
 
 $("#back").click(function(){
-    window.location.href="schedule.html";
+    window.location.href="/schedule";
 })
 firebase.auth().onAuthStateChanged(function (user) {
 $("#confirm").click(function(){
@@ -36,7 +36,7 @@ $("#confirm").click(function(){
         localStorage.removeItem("name");
         localStorage.removeItem("teach");
         localStorage.removeItem("teacher")
-        window.location.href="messaging.html";
+        window.location.href="/messaging";
     })
 
 })

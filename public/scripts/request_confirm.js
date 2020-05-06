@@ -4,7 +4,7 @@ $("#details").html(localStorage.getItem("details"));
 $("#retitle").html(localStorage.getItem("retitle"));
 
 $("#back").click(function(){
-    window.location.href="request.html";
+    window.location.href="/request";
 })
 
 firebase.auth().onAuthStateChanged(function (user) {

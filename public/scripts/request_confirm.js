@@ -21,8 +21,8 @@ $("#confirm").click(function(){
         subject: localStorage.getItem("subject"),
         grade: localStorage.getItem("grade"),
         details: localStorage.getItem("details"),
-        user: user.uid,
-        username: user.displayName,
+        studentid: user.uid,
+        studentname: user.displayName,
         time: d,
         date: date
     })

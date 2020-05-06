@@ -16,7 +16,7 @@ if (day.length == 1){
 console.log(day)
 $("#date").val(year + "-" + month + "-" + day);
 
-$("#name").val(localStorage.getItem("readerName"));
+$("#name").val(localStorage.getItem("teacher"));
 
 if (localStorage.getItem("date") != null){
     $("#date").val(localStorage.getItem("date"));
@@ -54,6 +54,10 @@ if (localStorage.getItem("name") != null){
     $("#name").val(localStorage.getItem("name"));
 }
 
+if (localStorage.getItem("credit") != null){
+    $("#credit").val(localStorage.getItem("credit"));
+}
+
 $("#cancel").click(function(){
     window.location.href = "messaging.html";
 })
@@ -79,5 +83,6 @@ $("#submit").click(function(){
     localStorage.setItem("end", end);
     localStorage.setItem("title", $("#title").val());
     localStorage.setItem("name", $("#name").val());
+    localStorage.setItem("credit", $("#credit").val());
     window.location.href="schedule_confirm.html";
 });

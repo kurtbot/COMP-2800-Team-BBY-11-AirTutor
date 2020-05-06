@@ -17,16 +17,17 @@ $("#send").css({
     "position": "absolute",
     "right": "0"
 })
-
-if (localStorage.getItem("poster")){
-    $("#sch").hide();
+$("#sch").hide();
+if (!localStorage.getItem("reader")){
+    $("#sch").show()
 }
 
-
 firebase.auth().onAuthStateChanged(function (user) {
-    console.log("ahh" + localStorage.getItem("poster"))
+    console.log("ahh" + localStorage.getItem("reader"))
     console.log(user.uid)
-
+    // if (localStorage.getItem("reader") != user.uid){
+    //     $("#sch").show();
+    // }
     let roomID;
     roomID = localStorage.getItem("roomID");
     console.log(localStorage.getItem("roomID"));

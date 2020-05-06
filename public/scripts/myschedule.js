@@ -53,9 +53,9 @@ db.collection("schedules/").get().then(function (snap) {
         btn.innerHTML = "Join Session";
         btn.onclick = function(){
             if (doc.data().user == user.uid) {
-                window.location.href = "session.html?" + doc.data().nameid;
+                window.location.href = "/session.html?" + doc.data().nameid;
             } else {
-                window.location.href = "session.html?" + doc.data().user;
+                window.location.href = "/session.html?" + doc.data().user;
             }
             
         }

@@ -18,15 +18,15 @@ $("#send").css({
     "right": "0"
 })
 
-
+if (localStorage.getItem("poster")){
+    $("#sch").hide();
+}
 
 
 firebase.auth().onAuthStateChanged(function (user) {
     console.log("ahh" + localStorage.getItem("poster"))
     console.log(user.uid)
-    if (user.uid != localStorage.getItem("poster")){
-        $("#sch").hide();
-    }
+
     let roomID;
     roomID = localStorage.getItem("roomID");
     console.log(localStorage.getItem("roomID"));

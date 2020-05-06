@@ -2,9 +2,6 @@ const functions = require('firebase-functions');
 const firebase = require('firebase-admin');
 const express = require('express');
 
-
-
-
 const app = express();
 const port = 3000;
 
@@ -18,7 +15,29 @@ app.get("/", (req, res) => {
 })
 
 app.get("/profile", (req, res) => {
-    res.render("pages/profile");
+    res.render("pages/profile", {page:"profile"});
+})
+
+app.get("/home", (req, res) => {
+    res.render("pages/home", {page:"home"});
+})
+
+app.get("/request", (req, res) => {
+    res.render("pages/request", {page:"request"});
+})
+
+app.get("/shop", (req, res) => {
+    res.render("pages/shop", {page:"shop"});
+})
+
+
+app.get("/myschedule", (req, res) => {
+    res.render("pages/myschedule", {page:"myschedule"});
+})
+
+
+app.get("/editprofile", (req, res) => {
+    res.render("pages/editprofile", {page:"editprofile"});
 })
 
 

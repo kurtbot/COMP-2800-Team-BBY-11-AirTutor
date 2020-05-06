@@ -17,7 +17,7 @@
 
 <body>
      <!--Nav Bar -->
- 
+ <%- include("../partials/navbar.ejs") %>
     <!--Header-->
 
     <div class="text-center my-3 px-2">
@@ -59,9 +59,7 @@
 
     <!--Footer-->
 
-    <footer class="footer">
-        <a href="faq.html">Frequently Asked Questions</a>
-    </footer>
+    <%- include("../partials/footer.ejs") %>
   <!-- Firebase javascripts -->
   <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>

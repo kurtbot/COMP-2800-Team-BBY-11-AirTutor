@@ -15,7 +15,7 @@ if (localStorage.getItem("retitle") != null){
 }
 
 $("#cancel").click(function(){
-    window.location.href = "home.html";
+    window.location.href = "/home";
 })
 
 
@@ -24,7 +24,7 @@ $("#submit").click(function(){
     localStorage.setItem("grade", $("#grade").val());
     localStorage.setItem("details", $("#details").val());
     localStorage.setItem("retitle", $("#retitle").val());
-    window.location.href="request_confirm.html";
+    window.location.href="/request_confirm";
 
 });
 

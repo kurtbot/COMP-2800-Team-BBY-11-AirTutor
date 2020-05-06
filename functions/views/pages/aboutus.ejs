@@ -2,15 +2,16 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>About Us</title>
     <!-- Required meta tags -->
+    <link rel="shortcut icon" href="./src/logo.png" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="styles/post.css">
+    <link rel="stylesheet" type="text/css" href="styles/about.css">
 </head>
 
 <body>
@@ -30,7 +31,7 @@
                     <a class="nav-link" href="post.html">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="myschedule.html">My Schedule</a>
+                    <a class="nav-link" href="myschedule.html">My Schedule</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="messages.html">Message</a>
@@ -57,14 +58,54 @@
             </ul>
         </div>
     </nav>
-    
-    <!-- Firebase javascripts -->
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
-    <script src="scripts/firebase.js"></script>
+    <!-- Header -->
+    <header>
+        <h1 class="text-center my-5">About Us</h1>
+    </header>
+
+    <!--Content-->
+
+    <div class="text">
+
+        <p>Welcome to our application. We are Air Tutor, a group of students who are looking for a solution to
+            mainstream online learning.
+            <br> We want to spread education faster than COVID-19! </p>
+    </div>
+
+    <div class="outer">
+        <div class="bio">
+            <h3>Dylan Sung</h3>
+            <img class="picture" src="./src/rsz_saltbae.jpg">
+            <p class="description"> Description here </p>
+        </div>
+
+        <div class="bio">
+            <h3>Chris Raganit</h3>
+            <img class="picture" src="./src/chris.jpg">
+            <p class="description">Like any CST student, Chris works hard to get good grades,
+                coding and studying until the ungodly hours of the dawn. When she is not doing schoolwork, she likes
+                jamming on her bass guitar, slamming root beer floats with
+                the boys, playing video games, and working on a very ambitious series of fantasy
+                novels. After receiving her diploma, Chris intends on pursuing a degree in user interface/user
+                experience design and chasing her longtime dream of being a writer.</p>
+        </div>
+
+        <div class="bio">
+            <h3>Kurt Milan</h3>
+            <img class="picture" src="./src/kurt.jpg">
+            <p class="description">Kurt Milan is a Computer Systems Technology student in BCIT. After he finishes CST,
+                he plans on becoming a game programmer. When he is not working, he programs games or plays games, plays
+                the guitar, piano, or ukulele, or hangs out with friends. </p>
+        </div>
+
+        <div class="bio">
+            <h3>Vicly Cao</h3>
+            <img class="picture" src="">
+            <p class="description"> Description here </p>
+        </div>
+    </div>
+
     <!-- Optional JavaScript -->
-    <script src="scripts/navbar.js "></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -75,7 +116,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
         </script>
-    <script src="scripts/myschedule.js"></script>
 </body>
 
 </html>

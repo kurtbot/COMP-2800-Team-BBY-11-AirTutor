@@ -1,0 +1,19 @@
+.outer {
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    border: red 1px solid;
+    padding: 10px;
+}
+p,h3 {
+    text-align:center;
+}
+.picture {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width:200px;
+}
+
+.text {
+    margin:0;
+}

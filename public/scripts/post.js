@@ -78,11 +78,11 @@ postsOrder.orderBy("time").get().then(function (snap) {
                         })
                         localStorage.setItem("roomID", docRef.id);
                     }).then(function(){
-                        window.location.href = "messaging.html";
+                        window.location.href = "/messaging";
                     })
 
                 } else {
-                    window.location.href = "messaging.html";
+                    window.location.href = "/messaging";
                 }
                
             })

@@ -18,22 +18,28 @@ $("#send").css({
     "right": "0"
 })
 $("#sch").hide();
-if (!localStorage.getItem("reader")){
-    $("#sch").show()
-}
+
 
 firebase.auth().onAuthStateChanged(function (user) {
-    console.log("ahh" + localStorage.getItem("reader"))
-    console.log(user.uid)
-    // if (localStorage.getItem("reader") != user.uid){
-    //     $("#sch").show();
-    // }
     let roomID;
     roomID = localStorage.getItem("roomID");
     console.log(localStorage.getItem("roomID"));
+    console.log(user.uid)
+    console.log(db.collection("chatrooms/").doc(roomID).studentid)
+
+    db.collection("chatrooms/").doc(roomID).get().then(function(docc){
+        localStorage.setItem("teach", docc.data().tutorid)
+        localStorage.setItem("teacher", docc.data().tutorname)
+        if (user.uid == docc.data().studentid){
+            $("#sch").show();
+        }
+    })
 
 
-    db.collection("chatrooms/").doc(roomID).collection("messages").get().then(function (snap) { snap.forEach(function (doc) {
+
+
+    let msgOrder = db.collection("chatrooms/").doc(roomID).collection("messages");
+    msgOrder.orderBy("actualTime").get().then(function (snap) { snap.forEach(function (doc) {
         document.getElementById("chat").innerHTML += doc.data().senderName + ": " + doc.data().message + "<br>";
      })});
 

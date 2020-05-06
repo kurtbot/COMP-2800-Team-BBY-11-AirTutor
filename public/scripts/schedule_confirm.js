@@ -34,10 +34,6 @@ $("#confirm").click(function(){
         localStorage.removeItem("title");
         localStorage.removeItem("credit");
         localStorage.removeItem("name");
-        localStorage.removeItem("poster");
-        localStorage.removeItem("posterName");
-        localStorage.removeItem("reader");
-        localStorage.removeItem("readerName");
         localStorage.removeItem("teach");
         localStorage.removeItem("teacher")
         window.location.href="messaging.html";

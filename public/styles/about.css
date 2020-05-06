@@ -24,12 +24,18 @@ h1, h2, h3, h4 {
     font-family: 'Raleway';
 }
 
+.bio {
+    padding: 20px;
+    font-size: 11pt;
+}
+
 .picture {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 250px;
-    height: 250px;
+    width: 225px;
+    height: 225px;
+    padding: 10px;
     object-fit: cover;
     border-radius: 50%;
 }

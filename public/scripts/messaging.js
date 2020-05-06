@@ -38,7 +38,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
 
-db.collection("chatrooms/").doc(roomID).collection("messages").get().then(function (snap) { snap.forEach(function (doc) {
+    let msgOrder = db.collection("chatrooms/").doc(roomID).collection("messages");
+    msgOrder.orderBy("actualTime").get().then(function (snap) { snap.forEach(function (doc) {
         document.getElementById("chat").innerHTML += doc.data().senderName + ": " + doc.data().message + "<br>";
      })});
 

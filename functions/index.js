@@ -9,7 +9,8 @@ const app = express();
 const port = 3000;
 
 app.use(express.static("public"));
-app.set("view engine","./views");
+app.set("views", "./views")
+app.set("view engine","ejs");
 
 
 app.get("/", (req, res) => {

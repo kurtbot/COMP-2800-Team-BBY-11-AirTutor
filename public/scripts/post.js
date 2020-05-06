@@ -1,8 +1,10 @@
 db.collection("posts/").get().then(function (snap) {
     snap.forEach(function (doc) {
+        let post = doc.id;
+        let posttopic = doc.data().title;
         let title = doc.data().title;
-        let targetUserName = doc.data().username;
-        let targetUser = doc.data().user;
+        let targetUserName = doc.data().studentname;
+        let targetUser = doc.data().studentid;
         let grade = doc.data().grade;
         let subject = doc.data().subject;
         let date = doc.data().date;
@@ -30,32 +32,24 @@ db.collection("posts/").get().then(function (snap) {
         let btn = document.createElement("button");
         btn.innerHTML = "Message";
         btn.onclick = function () {
-            localStorage.setItem("poster", targetUser);
-            localStorage.setItem("posterName", targetUserName);
+            let d = new Date();
+            localStorage.setItem("studentid", targetUser);
+            localStorage.setItem("studentname", targetUserName);
 
 
             let currentUser = firebase.auth().currentUser.uid;
-            localStorage.setItem("reader", currentUser);
-            localStorage.setItem("readerName", firebase.auth().currentUser.displayName)
+            let currentUserName = firebase.auth().currentUser.displayName;
+            localStorage.setItem("tutorid", currentUser);
+            localStorage.setItem("tutorname", firebase.auth().currentUser.displayName)
 
             let chatrooms = db.collection("chatrooms");
             let exist = false;
             chatrooms.get().then((querySnap) => {
                 querySnap.forEach(function (doc) {
-                    let u1 = doc.data().user1;
-                    let u2 = doc.data().user2;
-                    // var arr = doc.data().users;
-                    // console.log(arr);
-                    console.log(targetUser);
-                    console.log(currentUser);
-                    console.log(currentUser == u1)
-                    console.log(targetUser == u2)
-                    let con1 = currentUser == u1;
-                    let con2 = currentUser == u2;
-                    let con3 = targetUser == u1;
-                    let con4 = targetUser == u2;
-                    console.log(!((con1 && con4) || (con2 && con3)))
-                    if (((con1 && con4) || (con2 && con3))){
+                    let u1 = doc.data().tutorid
+                    let u2 = doc.data().studentid;
+                    let q = doc.data().requestid
+                    if ((u1 == currentUser && u2 == targetUser && q == post)){
                         exist = true;
                         localStorage.setItem("roomID", doc.id);
                     }
@@ -63,8 +57,14 @@ db.collection("posts/").get().then(function (snap) {
                 })
                 if (!exist){
                     chatrooms.add({
-                        user1: currentUser,
-                        user2: targetUser
+                        tutorid: currentUser,
+                        studentid: targetUser,
+                        tutorname: currentUserName,
+                        studentname: targetUserName,
+                        requestid: post,
+                        topic: posttopic,
+                        time: d
+
 
                     })
                     .then(function(docRef){

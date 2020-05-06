@@ -1,4 +1,5 @@
-db.collection("posts/").get().then(function (snap) {
+let postsOrder = db.collection("posts/")
+postsOrder.orderBy("time").get().then(function (snap) {
     snap.forEach(function (doc) {
         let post = doc.id;
         let posttopic = doc.data().title;

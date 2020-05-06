@@ -35,13 +35,10 @@ firebase.auth().onAuthStateChanged(function (user) {
         }
     })
 
-    // if (localStorage.getItem("reader") != user.uid){
-    //     $("#sch").show();
-    // }
 
 
 
-    db.collection("chatrooms/").doc(roomID).collection("messages").get().then(function (snap) { snap.forEach(function (doc) {
+db.collection("chatrooms/").doc(roomID).collection("messages").get().then(function (snap) { snap.forEach(function (doc) {
         document.getElementById("chat").innerHTML += doc.data().senderName + ": " + doc.data().message + "<br>";
      })});
 

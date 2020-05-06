@@ -10,41 +10,80 @@ app.set("views", "./views")
 app.set("view engine","ejs");
 
 
-app.get("/", (req, res) => {
-    res.render("pages/index");
+app.get("/aboutus", (req, res) => {
+    res.render("pages/aboutus");
 })
 
-app.get("/profile", (req, res) => {
-    res.render("pages/profile", {page:"profile"});
+app.get("/editprofile", (req, res) => {
+    res.render("pages/editprofile");
 })
-
+app.get("/faq", (req, res) => {
+    res.render("pages/faq");
+})
 app.get("/home", (req, res) => {
     res.render("pages/home", {page:"home"});
 })
 
+app.get("/", (req, res) => {
+    res.render("pages/index");
+})
+app.get("/login-verify", (req, res) => {
+    res.render("pages/login-verify");
+})
+
+app.get("/login", (req, res) => {
+    res.render("pages/login");
+})
+app.get("/messages", (req, res) => {
+    res.render("pages/messages");
+})
+app.get("/messaging", (req, res) => {
+    res.render("pages/messaging");
+})
+app.get("/myschedule", (req, res) => {
+    res.render("pages/myschedule", {page:"myschedule"});
+})
+app.get("/post", (req, res) => {
+    res.render("pages/post");
+})
+app.get("/profile", (req, res) => {
+    res.render("pages/profile", {page:"profile"});
+})
+app.get("/rating", (req, res) => {
+    res.render("pages/rating");
+})
+app.get("/request_confirm", (req, res) => {
+    res.render("pages/request_confirm");
+})
 app.get("/request", (req, res) => {
     res.render("pages/request", {page:"request"});
 })
-
+app.get("/schedule_confirm", (req, res) => {
+    res.render("pages/schedule_confirm");
+})
+app.get("/schedule", (req, res) => {
+    res.render("pages/schedule");
+})
+app.get("/session", (req, res) => {
+    res.render("pages/session");
+})
+app.get("/settings", (req, res) => {
+    res.render("pages/settings");
+})
 app.get("/shop", (req, res) => {
     res.render("pages/shop", {page:"shop"});
 })
 
-
-app.get("/myschedule", (req, res) => {
-    res.render("pages/myschedule", {page:"myschedule"});
-})
-
-
-app.get("/editprofile", (req, res) => {
-    res.render("pages/editprofile", {page:"editprofile"});
-})
-app.get("/login", (req, res) => {
-    res.render("pages/login");
+app.get("/signup_verif", (req, res) => {
+    res.render("pages/signup_verif");
 })
 
 app.get("/signup", (req, res) => {
     res.render("pages/signup");
+})
+
+app.get("/viewprofile", (req, res) => {
+    res.render("pages/viewprofile");
 })
 
 // // Create and Deploy Your First Cloud Functions

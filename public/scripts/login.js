@@ -6,7 +6,7 @@ function login() {
     if (email && password) {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(function () {
-                location.href = 'home.html';
+                location.href = '/home';
             })
             .catch(function (error) {
                 // Handle Errors here.

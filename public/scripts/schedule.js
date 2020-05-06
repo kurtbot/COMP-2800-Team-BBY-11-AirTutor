@@ -59,7 +59,7 @@ if (localStorage.getItem("credit") != null){
 }
 
 $("#cancel").click(function(){
-    window.location.href = "messaging.html";
+    window.location.href = "/messaging";
 })
 
 $("#submit").click(function(){
@@ -84,5 +84,5 @@ $("#submit").click(function(){
     localStorage.setItem("title", $("#title").val());
     localStorage.setItem("name", $("#name").val());
     localStorage.setItem("credit", $("#credit").val());
-    window.location.href="schedule_confirm.html";
+    window.location.href="/schedule_confirm";
 });

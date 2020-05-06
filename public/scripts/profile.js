@@ -7,7 +7,7 @@ viewRating();
 document.getElementById("edit").onclick = editProfile;
 
 function editProfile() {
-    window.location.href = "editprofile.html";
+    window.location.href = "/editprofile";
 }
 
 /**

@@ -37,7 +37,7 @@ function submitYesReview() {
  * Takes the user home on No Submit
  */
 function submitNoReview() {
-    $(location).attr('href', 'home.html');
+    $(location).attr('href', '/home');
 
 }
 
@@ -51,7 +51,7 @@ function reviewSubmit() {
         professionalism: parseInt(professional) + 1,
         teachingquality: parseInt(teaching) + 1
     }).then(function(){
-        window.location.href="home.html";
+        window.location.href="/home";
     })
 
 }

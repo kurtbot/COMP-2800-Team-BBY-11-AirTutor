@@ -16,9 +16,10 @@
     <!-- Styles -->
     <link rel="stylesheet" href="./styles/base.css">
     <link rel="stylesheet" href="./styles/messaging.css">
+    <link rel="stylesheet" href="./styles/footer.css">
 
     <!-- Icons -->
-    <%- include("../partials/favicon.ejs") %>
+    <%- include("../partials/favicon.ejs") %>  
 </head>
 
 <body>
@@ -34,21 +35,14 @@
             <div class="chat-window">
                 <div class="chat-log"></div>
             </div>
-            <form class="chat-inputs" action="/chat-message" method="post">
+            <form class="chat-inputs">
                 <input class="chat-input" type="text" placeholder="Enter Message">
                 <input class="send-btn" type="button" value="Send">
             </form>
         </div>
     </main>
-    <!-- <div class="chat-box">
-                <br>
-                <div>
-                    <input type="text" id="textbox">
-                    <button id="send">Send</button>
-                </div>
-            </div> -->
-
-
+    <!--Footer-->
+    <!-- <%- include("../partials/footer.ejs") %> -->
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>

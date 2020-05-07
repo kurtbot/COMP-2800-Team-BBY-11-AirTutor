@@ -86,6 +86,7 @@ firebase.auth().onAuthStateChanged(function (user) {
               let tutorid = doc.data().user;
               let tutor = doc.data().username;
               let request = doc.data().requestID;
+              let credit = doc.data().credit;
 
               let sessionrooms = db.collection("sessionrooms");
               let exist = false;
@@ -111,12 +112,13 @@ firebase.auth().onAuthStateChanged(function (user) {
                         studentname: student,
                         requestid: request,
                         time: d,
+                        credit: credit
                       })
                       .then(function (docRef) {
                         db.collection("users/")
                           .doc(tutorid)
                           .update({
-                            chatrooms: firebase.firestore.FieldValue.arrayUnion(
+                            sessionrooms: firebase.firestore.FieldValue.arrayUnion(
                               docRef.id
                             ),
                           });
@@ -124,7 +126,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                         db.collection("users/")
                           .doc(studentid)
                           .update({
-                            chatrooms: firebase.firestore.FieldValue.arrayUnion(
+                            sessioinrooms: firebase.firestore.FieldValue.arrayUnion(
                               docRef.id
                             ),
                           });

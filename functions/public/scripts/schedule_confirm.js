@@ -19,7 +19,8 @@ $("#confirm").click(function(){
         name: user.displayName,
         user: localStorage.getItem("teach"),
         username:localStorage.getItem("name"),
-        nameid: user.uid
+        nameid: user.uid,
+        requestID: localStorage.getItem("requestID")
     })
     promise.then(function(){
         localStorage.removeItem("date");
@@ -35,7 +36,8 @@ $("#confirm").click(function(){
         localStorage.removeItem("credit");
         localStorage.removeItem("name");
         localStorage.removeItem("teach");
-        localStorage.removeItem("teacher")
+        localStorage.removeItem("teacher");
+        localStorage.removeItem("requestID");
         window.location.href="/messaging";
     })
 

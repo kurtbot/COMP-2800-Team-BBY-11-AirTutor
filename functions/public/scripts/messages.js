@@ -26,6 +26,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                 }
                 link.onclick = function(){
                     localStorage.setItem("roomID", doc.id);
+                    localStorage.setItem("requestID", doc.data().requestid)
                     window.location.href="/messaging"
                     // if (doc.data().tutorid == user.uid){
                     //     let docRef = db.collection("users/").doc(n2);

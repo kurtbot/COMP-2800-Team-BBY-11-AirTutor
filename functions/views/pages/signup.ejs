@@ -15,6 +15,21 @@
 
 <body>
     <h3>Create your account</h3>
+
+    <!--Content-->
+
+    <div class="text-center">
+        <h3>Are you currently a student?</h3>
+        <button type="button" class="btn btn-primary btn-lg mx-4 px-5" id="yes-button" data-toggle="button"
+            aria-pressed="false" autocomplete="off">
+            Yes
+        </button>
+        <button type="button" class="btn btn-primary btn-lg mx-4 px-5" id="no-button" data-toggle="button"
+            aria-pressed="false" autocomplete="off">
+            No
+        </button>
+    </div>
+
     <div>
         <input type='text' class='form-control' name='firstNameField' id='firstNameField'
             aria-describedby='firstNameHelpId' placeholder='First name' required>
@@ -24,28 +39,26 @@
             aria-describedby='emailHelpId' placeholder='Email' required>
         <input type='password' class='form-control' name='passwordSignupField' pattern='[A-Za-z0-9]{8,16}'
             id='passwordSignupField' aria-describedby='passwordHelpId' placeholder='Password' required>
-        <input type='country' class='form-control' name='countryField' id='countryField'
-            aria-describedby='countryHelpId' placeholder='Country' required>
-        <input type='text' class='form-control' name='languageField' id='languageField'
-            aria-describedby='languageHelpId' placeholder='Language' required>
+
+        <%- include("../partials/countryselector.ejs") %>
+
+        <%- include("../partials/languageselector.ejs") %>
     </div>
+
     <div id="student">
-        <input type='text' class='form-control' name='educationField' id='educationField'
-            aria-describedby='educationHelpId' placeholder='Education level' required>
+        <%- include("../partials/educationselector.ejs") %>
         <input type='text' class='form-control' name='gradeField' id='gradeField' aria-describedby='gradeHelpId'
             placeholder='Grade / Year'>
     </div>
 
-    <div id="notStudent">
-        <input type='text' class='form-control' name='educationField' id='educationField'
+    <div id="not-student">
+        <input type='text' class='form-control' name='educationField' id='educationCompField'
             aria-describedby='educationHelpId' placeholder='Education level completed' required>
     </div>
 
-
-
     <small id='loginHelp' class='form-text text-muted'></small>
     <div>
-        <button type='submit' onclick='signup()'>Sign up</button>
+        <button id="submit" type='submit' onclick='signup()'>Sign up</button>
     </div>
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
@@ -53,8 +66,6 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
 
     <script src="scripts/firebase.js"></script>
-    <!-- Optional JavaScript -->
-    <script src="./scripts/signup.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -66,6 +77,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <!-- Optional JavaScript -->
+    <script src="./scripts/signup.js"></script>
 </body>
 
 </html>

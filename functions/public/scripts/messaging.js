@@ -34,7 +34,7 @@ function loadRecentMessages() {
     //         );
     //     })
     // });
-    msgOrder.orderBy("actualTime").limit(12).onSnapshot(function(snapshot) {
+    msgOrder.orderBy("actualTime").onSnapshot(function(snapshot) {
         snapshot.docChanges().forEach(function(change) {
             if (change.type === "added") {
                 console.log("New city: ", change.doc.data());
@@ -76,9 +76,9 @@ firebase.auth().onAuthStateChanged(function (user) {
         let str = document.querySelector(".chat-input").value;
         let output = document.querySelector(".chat-log");
         // udpate chat log
-        $(".chat-log").html(
-            $(".chat-log").html() + user.displayName + ": " + str + "<br>"
-        );
+        // $(".chat-log").html(
+        //     $(".chat-log").html() + user.displayName + ": " + str + "<br>"
+        // );
 
         // remove input text
         $('.chat-input').val('');

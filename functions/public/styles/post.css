@@ -12,6 +12,12 @@ nav {
     padding: 20px;
 }
 
+#content > a, #content > a:hover {
+    color: #283b42;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
 #posts-dat {
     font-family: "Roboto";
     border-radius: 10px;

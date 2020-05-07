@@ -1,0 +1,74 @@
+
+/* chat box */
+
+.messaging-box {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* chat log */
+
+.chat-window {
+    width: 100vw;
+    overflow: scroll;
+}
+
+body::-webkit-scrollbar {
+    width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+    background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #6649b8;
+}
+
+/* chat log outputs */
+
+/* chat inputs */
+
+.chat-inputs {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    display: flex;
+    align-items: stretch;
+    padding: 0.5rem;
+    background-color: var(--bg-primary-light);
+}
+
+
+.send-btn {
+    flex-grow: 1;
+    border: none;
+    background-color: var(--bg-secondary-light);
+    font-size: 1.5rem;
+    color: var(--text-primary-light);
+}
+
+.chat-input {
+    font-size: 1.5rem;
+    flex-grow: 2;
+    border-radius: 0.2rem;
+    border-style: solid;
+    border: none;
+    padding: 0.5rem;
+}
+
+
+/* scheduler button */
+
+.schedule-btn {
+    width: 95vw;
+    margin: 0.5rem 2.5vw 0 2.5vw;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: var(--bg-secondary-light);
+    font-size: 1.5rem;
+    color: var(--text-primary-light);
+    line-height: 3rem;
+}
+

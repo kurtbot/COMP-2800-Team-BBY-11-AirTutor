@@ -39,9 +39,9 @@ db.collection("schedules/").get().then(function (snap) {
             //     localStorage.setItem("viewing", doc.data().user);
             // }
             if (doc.data().user == user.uid) {
-                window.location.href = "viewprofile.html?"+doc.data().nameid;
+                window.location.href = "/viewprofile" + "?" +doc.data().nameid;
             } else {
-                window.location.href = "viewprofile.html?"+doc.data().user;
+                window.location.href = "/viewprofile" + "?" +doc.data().user;
             }
 
         }
@@ -53,9 +53,9 @@ db.collection("schedules/").get().then(function (snap) {
         btn.innerHTML = "Join Session";
         btn.onclick = function(){
             if (doc.data().user == user.uid) {
-                window.location.href = "/session.html?" + doc.data().nameid;
+                window.location.href = "/session" + "?" + doc.data().nameid;
             } else {
-                window.location.href = "/session.html?" + doc.data().user;
+                window.location.href = "/session" + "?" + doc.data().user;
             }
             
         }

@@ -11,5 +11,5 @@ function queryResult() {
 }
 
 function gotoRating() {
-    window.location.href = "rating.html?" + queryResult();
+    window.location.href = "/rating" + "?" + queryResult();
 }

@@ -18,10 +18,46 @@
 <body>
     <!--Nav Bar -->
     <%- include("../partials/navbar.ejs") %>
-    
+
     <div id="content">
         <!--Content-->
-        <h1>FAQ</h1>
+        <h1 style="text-align: center;">Frequently Asked Questions (FAQ)</h1>
+        <br>
+
+        <h2>For tutors</h2>
+        <h4>Am I limited to teaching only one subject?</h4>
+        <p>No, you are not.</p>
+        <h4>Will I be paid to tutor?</h4>
+        <p>Currently, this is a free service. However, in the future, we would like to implement a credit system so that
+            our tutors can get paid for the hard work that they do. </p>
+        <br>
+
+        <h2>For students</h2>
+        <h4>Who are the tutors?</h4>
+        <p>Tutors come from a variety of backgrounds, including former and current one-on-one tutors and others who may
+            have expertise in the subject area. These tutors are very passionate about helping students succeed. </p>
+        <h4>How do I know my tutor will help me?</h4>
+        <p>You may view the tutor’s profile page to see their rating prior to scheduling a meeting with them. Their
+            students have given them the rating after each of their sessions. </p>
+        <h4>Do I need to pay for this service?</h4>
+        <p>Currently, it is a free service. However, in the future, we would like to implement a credit system so that
+            our tutors can get paid for the hard work that they do. </p>
+        <h4>Is the tutoring one-on-one or do I need to do it with a group?</h4>
+        <p>For now, all of our sessions are only one-on-one. </p>
+        <br>
+
+
+        <br>
+        <h2>For all users</h2>
+        <h4>How do I create an account?</h4>
+        <p>You can create an account by signing up <a href="/signup"
+                style="color: black; font-weight: bold; text-decoration: underline;">here.</a></p>
+        <h4>How does the credit system work? </h4>
+        <p>Credits can be purchased in the shop. Each session takes a specific amount of credits, which is stated in the
+            session page. These credits will be deposited in the tutor’s account and removed from the student’s account.
+            These credits will then be available for the tutor to convert into currency. </p>
+        <br>
+        <!-- <h1>FAQ</h1>
         <h3>Online Classrooms</h3>
         <a href="#"> Zoom </a> <br>
         <a href="#"> Bongo </a> <br> <br>
@@ -33,12 +69,12 @@
         <h3>Self Studying Tools</h3>
         <a href="#"> Wolfram Alpha </a> <br>
         <a href="#"> Khan Academy
-        </a>
+        </a> -->
     </div>
 
     <!--Footer-->
-
     <%- include("../partials/footer.ejs") %>
+
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>

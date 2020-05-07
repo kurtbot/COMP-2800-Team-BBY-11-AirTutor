@@ -1,0 +1,35 @@
+
+/* 
+    Base.css contains all globally used class styling
+ */
+ * {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    font-size: 16px;
+    font-family: sans-serif;
+    --text-primary: #283b42;
+    --text-secondary: #d1dddb;
+    --bg-primary: #f1f1f1;
+    --bg-secondary: #1d6a96;
+
+    --text-primary-light: #283b42;
+    --text-secondary-light: #1d6a96;
+    --text-primary-dark: #85b8cb;
+    --text-secondary-dark: #1d6a96;
+
+    --bg-primary-light: #f1f1f1;
+    --bg-secondary-light: #d1dddb;
+    --bg-primary-dark: #323c4a;
+    --bg-secondary-dark: #262834;
+    --transition-speed: 600ms;
+}
+
+
+/* main content section */
+
+main {
+    height: auto;
+}

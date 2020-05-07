@@ -1,50 +1,67 @@
-$("#bot").css({
-    "display": "block",
-    "width": "100%",
-    "position": "absolute",
-    "bottom": "0"
-})
-$("#sch").css({
-    "display": "block"
-})
+let roomID = queryResult();
+console.log("Current Room ID: ", roomID);
 
-$("#textbox").css({
-    "width": "80%"
-})
+function queryResult() {
+    let queryString = decodeURIComponent(window.location.search);
+    let queries = queryString.split("?");
+    let id = queries[1];
+    return id;
+}
 
-$("#send").css({
-    "width": "15%",
-    "position": "absolute",
-    "right": "0"
-})
-$("#sch").hide();
-
-
-firebase.auth().onAuthStateChanged(function (user) {
-    let roomID;
+function initializeRoom(user) {
     roomID = localStorage.getItem("roomID");
     console.log(localStorage.getItem("roomID"));
     console.log(user.uid)
     console.log(db.collection("chatrooms/").doc(roomID).studentid)
+}
 
-    db.collection("chatrooms/").doc(roomID).get().then(function(docc){
+function schedulingAllowed(user) {
+    db.collection("chatrooms/").doc(roomID).get().then(function (docc) {
         localStorage.setItem("teach", docc.data().tutorid)
         localStorage.setItem("teacher", docc.data().tutorname)
-        if (user.uid == docc.data().studentid){
-            $("#sch").show();
+        if (user.uid == docc.data().studentid) {
+            $(".schedule-btn").show();
         }
-    })
+    });
+}
 
-
-
-
+function loadRecentMessages() {
     let msgOrder = db.collection("chatrooms/").doc(roomID).collection("messages");
-    msgOrder.orderBy("actualTime").get().then(function (snap) { snap.forEach(function (doc) {
-        document.getElementById("chat").innerHTML += doc.data().senderName + ": " + doc.data().message + "<br>";
-     })});
+    // msgOrder.orderBy("actualTime").get().then(function (snap) {
+    //     snap.forEach(function (doc) {
+    //         $(".chat-log").html(
+    //             $(".chat-log").html() + doc.data().senderName + ": " + doc.data().message + "<br>"
+    //         );
+    //     })
+    // });
+    msgOrder.orderBy("actualTime").limit(12).onSnapshot(function(snapshot) {
+        snapshot.docChanges().forEach(function(change) {
+            if (change.type === "added") {
+                console.log("New city: ", change.doc.data());
+                $(".chat-log").html(
+                    $(".chat-log").html() + change.doc.data().senderName + ": " + change.doc.data().message + "<br>"
+                );
+            }
 
-    $("#send").click(function () {
+            if (change.type === "removed") {
+                console.log("Removed city: ", change.doc.data());
+            }
+        })});
+}
 
+firebase.auth().onAuthStateChanged(function (user) {
+
+    // Create the chat room
+    initializeRoom(user);
+
+    // Check if users are allowed to create a schedule
+    schedulingAllowed(user);
+
+    // Load recent messages
+    loadRecentMessages();
+
+    // Add button event
+    $(".send-btn").click(function () {
         //localStorage.removeItem("roomID");
         console.log(roomID);
         let d = new Date();
@@ -55,16 +72,27 @@ firebase.auth().onAuthStateChanged(function (user) {
         let minute = d.getMinutes();
         let date = year + "-" + month + "-" + day + " " + hour + ":" + minute;
 
-        let str = document.querySelector("#textbox").value;
-        document.getElementById("chat").innerHTML += user.displayName + ": " + str + "<br>";
-        document.querySelector("#textbox").value = "";
+        // check input
+        let str = document.querySelector(".chat-input").value;
+        let output = document.querySelector(".chat-log");
+        // udpate chat log
+        $(".chat-log").html(
+            $(".chat-log").html() + user.displayName + ": " + str + "<br>"
+        );
+
+        // remove input text
+        $('.chat-input').val('');
+
+        // add to database the sent chat
         db.collection('chatrooms').doc(roomID).collection("messages").add({
             message: str,
             senderID: firebase.auth().currentUser.uid,
             senderName: user.displayName,
             timestamp: date,
             actualTime: d
-        })
+        });
 
     });
-})
+
+});
+

@@ -7,23 +7,48 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Libraries -->
+
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <%- include("../partials/favicon.ejs") %>  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles/base.css">
+    <link rel="stylesheet" href="./styles/messaging.css">
+
+    <!-- Icons -->
+    <%- include("../partials/favicon.ejs") %>
 </head>
-  <body>
-     <!--Nav Bar -->
-     <%- include("../partials/navbar.ejs") %>
-     
-    <p id="chat"></p>
-    <div id="bot">
-        <button id="sch" class="btn-block" onclick="window.location.href = '/schedule';">Schedule a Session</button>
-        <br>
-        <div>
-            <input type="text" id="textbox">
-            <button id="send">Send</button>
+
+<body>
+    <!--Nav Bar -->
+
+    <%- include("../partials/navbar.ejs") %>
+
+    <!-- Main Content -->
+
+    <main>
+        <button class="schedule-btn" onclick="window.location.href = '/schedule';">Schedule a Session</button>
+        <div class="messaging-box">
+            <div class="chat-window">
+                <div class="chat-log"></div>
+            </div>
+            <form class="chat-inputs" action="/chat-message" method="post">
+                <input class="chat-input" type="text" placeholder="Enter Message">
+                <input class="send-btn" type="button" value="Send">
+            </form>
         </div>
-    </div>
+    </main>
+    <!-- <div class="chat-box">
+                <br>
+                <div>
+                    <input type="text" id="textbox">
+                    <button id="send">Send</button>
+                </div>
+            </div> -->
+
+
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
@@ -41,6 +66,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        
     <script src="scripts/messaging.js"></script>
 </body>
 

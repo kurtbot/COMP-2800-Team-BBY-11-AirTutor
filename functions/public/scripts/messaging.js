@@ -41,6 +41,7 @@ function loadRecentMessages() {
                 $(".chat-log").html(
                     $(".chat-log").html() + change.doc.data().senderName + ": " + change.doc.data().message + "<br>"
                 );
+                document.querySelector(".chat-window").scrollTop = document.querySelector(".chat-window").scrollHeight;
             }
 
             if (change.type === "removed") {

@@ -10,8 +10,10 @@
 /* chat log */
 
 .chat-window {
-    width: 100vw;
-    overflow: scroll;
+   /* width: 100vw;*/
+    height: 80vh;
+    overflow-y: scroll;
+    overflow-wrap: break-word;
 }
 
 body::-webkit-scrollbar {

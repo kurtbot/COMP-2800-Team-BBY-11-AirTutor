@@ -1,18 +1,16 @@
 let postsOrder = db.collection("posts/");
-postsOrder
-  .orderBy("time", "desc")
-  .get()
-  .then(function (snap) {
-    snap.forEach(function (doc) {
-      let post = doc.id;
-      let posttopic = doc.data().title;
-      let title = doc.data().title;
-      let targetUserName = doc.data().studentname;
-      let targetUser = doc.data().studentid;
-      let grade = doc.data().grade;
-      let subject = doc.data().subject;
-      let date = doc.data().date;
-      let detail = doc.data().details;
+postsOrder.orderBy("time", "desc").onSnapshot(function (snapshot) {
+  snapshot.docChanges().forEach(function (change) {
+    if (change.type === "added") {
+      let post = change.doc.id;
+      let posttopic = change.doc.data().title;
+      let title = change.doc.data().title;
+      let targetUserName = change.doc.data().studentname;
+      let targetUser = change.doc.data().studentid;
+      let grade = change.doc.data().grade;
+      let subject = change.doc.data().subject;
+      let date = change.doc.data().date;
+      let detail = change.doc.data().details;
       let card = document.createElement("div");
       card.setAttribute("class", "card bg-light text-black mx-3 my-2");
       let box = document.createElement("div");
@@ -103,19 +101,9 @@ postsOrder
       box.appendChild(btn);
       card.appendChild(box);
       document.querySelector("#posts-dat").appendChild(card);
-      //     let card = "<div class='card bg-light text-black mx-3 my-2'>\
-      //     <div class='card-body'>\
-      //       <h4 class='card-title'>" + title + "</h4><hr/>\
-      //       <span class='card-text'>" + subject + " " + grade + "</span>\
-      //       <p class='card-text'>" + detail + "</p>\
-      //       <p class='card-text'> posted by " + userName + "</p>\
-      //       <p class='card-text'>" + date + "</p>\
-      //       <button class='btn btn-primary' onclick = 'localStorage.setItem(\'poster\', user);window.location.href=\'messaging.html\''>Message</button>\
-      //     </div>\
-      //   </div>";
-      //   $("#posts-dat").append(card);
-    });
+    }
   });
+});
 
 $("#filter").click(function () {
   let filtersubject = $("#subjectchoice").val();
@@ -123,12 +111,10 @@ $("#filter").click(function () {
   console.log(filtersubject);
   $(".card").remove();
   let postsOrder = db.collection("posts/");
-  postsOrder
-    .orderBy("time", "desc")
-    .get()
-    .then(function (snap) {
-      snap.forEach(function (doc) {
-        let post = doc.id;
+  postsOrder.orderBy("time", "desc").onSnapshot(function (snapshot) {
+    snapshot.docChanges().forEach(function (change) {
+      if (change.type === "added") {
+        let post = change.doc.id;
         let posttopic = doc.data().title;
         let title = doc.data().title;
         let targetUserName = doc.data().studentname;
@@ -227,6 +213,7 @@ $("#filter").click(function () {
           card.appendChild(box);
           document.querySelector("#posts-dat").appendChild(card);
         }
-      });
+      }
     });
+  });
 });

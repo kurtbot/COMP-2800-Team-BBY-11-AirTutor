@@ -15,22 +15,34 @@
 
 <body>
     <h3>Create your account</h3>
-    <input type='text' class='form-control' name='firstNameField' id='firstNameField' aria-describedby='firstNameHelpId'
-        placeholder='First name' required>
-    <input type='text' class='form-control' name='lastNameField' id='lastNameField' aria-describedby='lastNameHelpId'
-        placeholder='Last name' required>
-    <input type='text' class='form-control' name='countryField' id='countryField' aria-describedby='ountryHelpId'
-        placeholder='Country' required>
-    <input type='text' class='form-control' name='languageField' id='languageField' aria-describedby='languageHelpId'
-        placeholder='Language' required>
-    <input type='text' class='form-control' name='educationField' id='educationField' aria-describedby='educationHelpId'
-        placeholder='Education level' required>
-    <input type='text' class='form-control' name='gradeField' id='gradeField' aria-describedby='gradeHelpId'
-        placeholder='Grade (optional)'>
-    <input type='email' class='form-control' name='emailSignupField' id='emailSignupField'
-        aria-describedby='emailHelpId' placeholder='Email' required>
-    <input type='password' class='form-control' name='passwordSignupField' pattern='[A-Za-z0-9]{8,16}'
-        id='passwordSignupField' aria-describedby='passwordHelpId' placeholder='Password' required>
+    <div>
+        <input type='text' class='form-control' name='firstNameField' id='firstNameField'
+            aria-describedby='firstNameHelpId' placeholder='First name' required>
+        <input type='text' class='form-control' name='lastNameField' id='lastNameField'
+            aria-describedby='lastNameHelpId' placeholder='Last name' required>
+        <input type='email' class='form-control' name='emailSignupField' id='emailSignupField'
+            aria-describedby='emailHelpId' placeholder='Email' required>
+        <input type='password' class='form-control' name='passwordSignupField' pattern='[A-Za-z0-9]{8,16}'
+            id='passwordSignupField' aria-describedby='passwordHelpId' placeholder='Password' required>
+        <input type='country' class='form-control' name='countryField' id='countryField'
+            aria-describedby='countryHelpId' placeholder='Country' required>
+        <input type='text' class='form-control' name='languageField' id='languageField'
+            aria-describedby='languageHelpId' placeholder='Language' required>
+    </div>
+    <div id="student">
+        <input type='text' class='form-control' name='educationField' id='educationField'
+            aria-describedby='educationHelpId' placeholder='Education level' required>
+        <input type='text' class='form-control' name='gradeField' id='gradeField' aria-describedby='gradeHelpId'
+            placeholder='Grade / Year'>
+    </div>
+
+    <div id="notStudent">
+        <input type='text' class='form-control' name='educationField' id='educationField'
+            aria-describedby='educationHelpId' placeholder='Education level completed' required>
+    </div>
+
+
+
     <small id='loginHelp' class='form-text text-muted'></small>
     <div>
         <button type='submit' onclick='signup()'>Sign up</button>
@@ -46,14 +58,14 @@
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

@@ -16,8 +16,10 @@ let student;
 function gotoNext() {
     firebase.auth().onAuthStateChanged(function (user) {
         db.collection("/sessionrooms").doc(queryResult()).get().then(function(doc){
+            credit = doc.data().credit;
             tutor = doc.data().tutorid;
             student = doc.data().studentid;
+            localStorage.setItem("creditxfer", credit);
         }).then(function(){
             if (user.uid == tutor){
                 window.location.href = "/home"

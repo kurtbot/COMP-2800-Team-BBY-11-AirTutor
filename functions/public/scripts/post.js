@@ -102,7 +102,7 @@ postsOrder
 
       box.appendChild(btn);
       card.appendChild(box);
-      document.body.appendChild(card);
+      document.querySelector("#posts-dat").appendChild(card);
       //     let card = "<div class='card bg-light text-black mx-3 my-2'>\
       //     <div class='card-body'>\
       //       <h4 class='card-title'>" + title + "</h4><hr/>\
@@ -225,7 +225,7 @@ $("#filter").click(function () {
         if ((filtersubject == subject) | (filtersubject == "All")) {
           box.appendChild(btn);
           card.appendChild(box);
-          document.body.appendChild(card);
+          document.querySelector("#posts-dat").appendChild(card);
         }
       });
     });

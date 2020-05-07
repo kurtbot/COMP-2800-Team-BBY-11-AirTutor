@@ -6,25 +6,29 @@ firebase.auth().onAuthStateChanged(function (user) {
                 console.log(n1)
                 let n2 = doc.data().studentid;
                 let container = document.createElement("div");
-                let name = document.createElement("h4");
-                let link = document.createElement("button");
-                let topic = document.createElement("h6");
-                topic.innerHTML = doc.data().topic;
-                link.innerHTML = "view";
+                container.style.border = "thin solid black";
+                container.style.marginBottom = "0.5%"
+                //container.style.display = "grid";
+                //container.style.gridTemplateColumn = "1fr 1fr"
+                let name = document.createElement("b");
+                name.style.display = "inline-block";
+                name.style.width = "15%"
+                let topic = document.createElement("span");
+                topic.innerHTML = "Topic: " +  doc.data().topic;
                 if (doc.data().tutorid == user.uid){
                     let docRef = db.collection("users/").doc(n2);
                     docRef.get().then(function(docc){
-                        name.innerHTML = docc.data().firstName + docc.data().lastName;
+                        name.innerHTML = "User: " + docc.data().firstName + " " + docc.data().lastName;
                     })
                     
                 } else {
                     let docRef = db.collection("users/").doc(n1);
                     docRef.get().then(function(docc){
-                        name.innerHTML = docc.data().firstName + docc.data().lastName;
+                        name.innerHTML = "User: " +  docc.data().firstName + " " + docc.data().lastName;
 
                      })
                 }
-                link.onclick = function(){
+                container.onclick = function(){
                     localStorage.setItem("roomID", doc.id);
                     localStorage.setItem("requestID", doc.data().requestid)
                     window.location.href="/messaging"
@@ -51,7 +55,6 @@ firebase.auth().onAuthStateChanged(function (user) {
                 }
                 container.appendChild(name);
                 container.appendChild(topic);
-                container.appendChild(link);
                 document.querySelector("#msgs").appendChild(container);
             }
         })

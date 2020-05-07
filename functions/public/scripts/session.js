@@ -1,6 +1,5 @@
 
-document.getElementById("go-rating").onclick = gotoRating;
-
+document.getElementById("go-rating").onclick = gotoNext;
 
 
 function queryResult() {
@@ -9,7 +8,23 @@ function queryResult() {
     let id = queries[1];
     return id;
 }
+let tutor;
+let student;
 
-function gotoRating() {
-    window.location.href = "/rating" + "?" + queryResult();
+
+
+function gotoNext() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        db.collection("/sessionrooms").doc(queryResult()).get().then(function(doc){
+            tutor = doc.data().tutorid;
+            student = doc.data().studentid;
+        }).then(function(){
+            if (user.uid == tutor){
+                window.location.href = "/home"
+            } else {
+                window.location.href = "/rating" + "?" + tutor;
+            
+            }
+        })
+    })
 }

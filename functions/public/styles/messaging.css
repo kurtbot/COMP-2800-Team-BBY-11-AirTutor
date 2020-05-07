@@ -74,3 +74,6 @@ body::-webkit-scrollbar-thumb {
     line-height: 3rem;
 }
 
+#who{
+    color: var(--text-primary-light);
+}

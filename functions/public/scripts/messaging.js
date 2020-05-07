@@ -1,6 +1,6 @@
 let roomID = queryResult();
 console.log("Current Room ID: ", roomID);
-
+$(".schedule-btn").hide();
 function queryResult() {
     let queryString = decodeURIComponent(window.location.search);
     let queries = queryString.split("?");
@@ -13,6 +13,13 @@ function initializeRoom(user) {
     console.log(localStorage.getItem("roomID"));
     console.log(user.uid)
     console.log(db.collection("chatrooms/").doc(roomID).studentid)
+    db.collection("chatrooms/").doc(roomID).get().then(function (docc) {
+        if (user.uid == docc.data().studentid){
+            $("#who").html(docc.data().tutorname)
+        } else {
+            $("#who").html(docc.data().studentname)
+        }
+    })
 }
 
 function schedulingAllowed(user) {

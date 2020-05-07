@@ -18,6 +18,7 @@ function signup() {
     let education = document.getElementById('educationField').value;
     let educationComp = document.getElementById('educationCompField').value;
     let grade = document.getElementById('gradeField').value;
+    let subject = document.getElementById('subjectField').value;
     let name = firstName + " " + lastName;
     // Check for errors in inputs
     if (!(firstName === "") && !(lastName === "") && !(email === "") && !(password === "")) {
@@ -49,7 +50,8 @@ function signup() {
                             grade: grade,
                             language: language,
                             education: education,
-                            educationcompleted: educationComp
+                            educationcompleted: educationComp,
+                            subject:subject
                         }, { merge: true })
                             .then(function () {
                                 // for testing purposes

@@ -6,13 +6,31 @@ firebase.auth().onAuthStateChanged(function (user) {
                 console.log(n1)
                 let n2 = doc.data().studentid;
                 let container = document.createElement("div");
-                container.style.border = "thin solid black";
-                container.style.marginBottom = "0.5%"
+                $(container).css({
+                    "border": "#EEEEEE solid 1px",
+                    "padding": "5px",
+
+                })
+                $(container).hover(function(){
+                    $(this).css({
+                        "background-color":"#EEEEEE",
+                        "box-shadow":"1px 2px #E2E2E2"
+                    })
+                }, function(){
+                    $(this).css({
+                        "background-color":"",
+                        "box-shadow":""
+                    })
+                })
+
                 //container.style.display = "grid";
                 //container.style.gridTemplateColumn = "1fr 1fr"
                 let name = document.createElement("b");
-                name.style.display = "inline-block";
-                name.style.width = "15%"
+                $(name).css({
+                    "display":"inline-block",
+                    "width":"15%",
+                    "margin-left":"3%"
+                })
                 let topic = document.createElement("span");
                 topic.innerHTML = "Topic: " +  doc.data().topic;
                 if (doc.data().tutorid == user.uid){

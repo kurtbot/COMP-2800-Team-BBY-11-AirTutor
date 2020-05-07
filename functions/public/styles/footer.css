@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
 .footer {
+  color: white;
   padding: 5px;
   font-family: "Raleway";
   position: fixed;
@@ -12,7 +13,11 @@
   text-align: center;
 }
 
-a[href="faq.html"] {
+a[href="/faq"] {
   text-decoration-style: none;
   color: white;
+}
+
+.footer>a, a:hover {
+  color:white;
 }

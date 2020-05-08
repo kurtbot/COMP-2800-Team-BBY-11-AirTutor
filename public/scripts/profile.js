@@ -1,13 +1,14 @@
-let displayCountry = document.getElementById("country");
-let displayEducation = document.getElementById("education");
-let displayGrade = document.getElementById("grade");
-let displayLanguage = document.getElementById("language");
+
+
 userInfo();
 viewRating();
-document.getElementById("edit").onclick = editProfile;
+studentInfo();
+tutorInfo();
+bestSubject();
+$("#edit").click(editProfile);
 
 function editProfile() {
-    window.location.href = "editprofile.html";
+    window.location.href = "/editprofile";
 }
 
 /**
@@ -17,29 +18,81 @@ function userInfo() {
     firebase.auth().onAuthStateChanged(function (user) {
         let dbref = db.collection("users/").doc(user.uid);
         document.getElementById("name").innerHTML = user.displayName;
-        
+
         dbref.get()
             .then(snap => {
                 let country = snap.data().country;
-                let education = snap.data().education;
-                let grade = snap.data().grade;
                 let language = snap.data().language;
-                if(country != ""){
-                    displayCountry.innerHTML = "Country: " + country;
+                let bio = snap.data().bio;
+
+                if (country != "" && country != undefined) {
+                    $("#country").text("Country: " + country);
                 }
-                if(education != ""){
-                    displayEducation.innerHTML = "Education Level: " + education;
+                if (language != "" && language != undefined) {
+                    $("#language").text("Language: " + language);
                 }
-                if(grade != ""){
-                    displayGrade.innerHTML = "Grade: " + grade;
+                if (bio != "" && bio != undefined) {
+                    $("#biotitle").text("About me");
+                    $("#bio").text(bio)
                 }
-                if(language != ""){
-                    displayLanguage.innerHTML = "Language: " + language;
-                }                
+
             })
     })
 }
 
+function studentInfo() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        let dbref = db.collection("users/").doc(user.uid);
+
+        dbref.get()
+            .then(snap => {
+                let education = snap.data().education;
+                let grade = snap.data().grade;
+
+                if (education != "" && education != undefined) {
+                    $("#education").show();
+                    $("#education").text("Education Level: " + education);
+                }
+                if (grade != "" && grade != undefined) {
+                    $("#grade").show();
+                    $("#grade").text("Grade Level: " + grade);
+                }
+            })
+    })
+}
+
+function tutorInfo() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        let dbref = db.collection("users/").doc(user.uid);
+
+        dbref.get()
+            .then(snap => {
+                let eduComplete = snap.data().educationcompleted;
+
+                if (eduComplete != "" && eduComplete != undefined) {
+                    $("#educomplete").show();
+                    $("#educomplete").text("Education Completed: " + eduComplete);
+                }
+            })
+    })
+}
+
+function bestSubject() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        let dbref = db.collection("users/").doc(user.uid);
+
+        dbref.get()
+            .then(snap => {
+                let subject = snap.data().subject;
+
+                if (subject != "" && subject != undefined) {
+                    $("#subject").show();
+                    $("#subject").text("Best Subject: " + subject);
+                }
+
+            })
+    })
+}
 /** 
  * View Ratings
  */
@@ -57,18 +110,23 @@ function getAllProReviews() {
     firebase.auth().onAuthStateChanged(function (user) {
         const dbreviews = db.collection("users/").doc(user.uid).collection("review");
         const proReviews = dbreviews.where("professionalism", ">=", 0)
-        .get()
-        .then(result => {
-            result.forEach(docSnapshot => {
-                sum += docSnapshot.data().professionalism;
-                counter++;
+            .get()
+            .then(result => {
+                result.forEach(docSnapshot => {
+                    sum += docSnapshot.data().professionalism;
+                    counter++;
+                });
+                if (counter == 0) {
+                    counter = 1;
+                }
+                let average = sum / counter;
+                if (average != 0) {
+                    $("#pro").text("Professionalism: " + average.toFixed(1));
+                } else {
+                    $("#norate").text("No ratings yet, tutor others to get some!");
+                }
+
             });
-            if (counter == 0) {
-                counter = 1;
-            }
-            let average = sum / counter;
-            document.getElementById("pro").innerHTML = "Professionalism: " + average.toFixed(1);
-        });
     })
 }
 
@@ -81,18 +139,20 @@ function getAllTQReviews() {
     firebase.auth().onAuthStateChanged(function (user) {
         const dbreviews = db.collection("users/").doc(user.uid).collection("review");
         const proReviews = dbreviews.where("teachingquality", ">=", 0)
-        .get()
-        .then(result => {
-            result.forEach(docSnapshot => {
-                sum += docSnapshot.data().teachingquality;
-                counter++;
+            .get()
+            .then(result => {
+                result.forEach(docSnapshot => {
+                    sum += docSnapshot.data().teachingquality;
+                    counter++;
+                });
+                if (counter == 0) {
+                    counter = 1;
+                }
+                let average = sum / counter;
+                if (average != 0) {
+                    $("#tq").text("Teaching Quality : " + average.toFixed(1));
+                }
             });
-            if (counter == 0) {
-                counter = 1;
-            }
-            let average = sum / counter;
-            document.getElementById("tq").innerHTML = "Teaching Quality : " + average.toFixed(1);
-        });
     })
 }
 

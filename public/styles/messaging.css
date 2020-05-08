@@ -1,0 +1,123 @@
+
+/* chat box */
+
+.messaging-box {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* chat log */
+@media only screen and (min-height: 870px){
+.chat-window {
+   /* width: 100vw;*/
+    height: 70vh;
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+}
+}
+
+@media only screen and (min-height: 670px) and (max-height: 870px){
+    .chat-window {
+       /* width: 100vw;*/
+        height: 60vh;
+        overflow-y: scroll;
+        overflow-wrap: break-word;
+    }
+    }
+    @media only screen and (min-height: 540px) and (max-height: 670px){
+        .chat-window {
+           /* width: 100vw;*/
+            height: 50vh;
+            overflow-y: scroll;
+            overflow-wrap: break-word;
+        }
+        }
+        @media only screen and (min-height: 440px) and (max-height: 540px){
+            .chat-window {
+               /* width: 100vw;*/
+                height: 40vh;
+                overflow-y: scroll;
+                overflow-wrap: break-word;
+            }
+            }
+            @media only screen and (min-height: 360px) and (max-height: 440px){
+                .chat-window {
+                   /* width: 100vw;*/
+                    height: 25vh;
+                    overflow-y: scroll;
+                    overflow-wrap: break-word;
+                }
+                }
+                @media only screen and (max-height: 360px){
+                    .chat-window {
+                       /* width: 100vw;*/
+                        height: 10vh;
+                        overflow-y: scroll;
+                        overflow-wrap: break-word;
+                    }
+                    }
+
+
+body::-webkit-scrollbar {
+    width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+    background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #6649b8;
+}
+
+/* chat log outputs */
+
+/* chat inputs */
+
+.chat-inputs {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    display: flex;
+    align-items: stretch;
+    padding: 0.5rem;
+    background-color: var(--bg-primary-light);
+}
+
+
+.send-btn {
+    flex-grow: 1;
+    border: none;
+    background-color: var(--bg-secondary-light);
+    font-size: 1.5rem;
+    color: var(--text-primary-light);
+}
+
+.chat-input {
+    font-size: 1.5rem;
+    flex-grow: 2;
+    border-radius: 0.2rem;
+    border-style: solid;
+    border: none;
+    padding: 0.5rem;
+}
+
+
+/* scheduler button */
+
+.schedule-btn {
+    width: 95vw;
+    margin: 0.5rem 2.5vw 0 2.5vw;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: var(--bg-secondary-light);
+    font-size: 1.5rem;
+    color: var(--text-primary-light);
+    line-height: 3rem;
+    display: none;
+}
+
+#who, #what{
+    color: var(--text-primary-light);
+}

@@ -12,6 +12,12 @@ nav {
     padding: 20px;
 }
 
+#content > a, #content > a:hover {
+    color: #283b42;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
 #posts-dat {
     font-family: "Roboto";
     border-radius: 10px;
@@ -35,4 +41,24 @@ button {
 
 #content>a {
     color: #1d6a96;    
+}
+
+@media only screen and (min-width: 1024px){
+    #posts-dat{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+    #posts-dat{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 767px){
+    #posts-dat{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 }

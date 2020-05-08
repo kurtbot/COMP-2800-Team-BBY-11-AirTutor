@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+nav {
+    font-family: 'Raleway';
+}
+
+body {
+    font-family: 'Roboto';
+    padding: 10px;
+}
+
+.outer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px;
+}
+
+p, h3 {
+    text-align: center;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Raleway';
+}
+
+.bio {
+    padding: 20px;
+    font-size: 11pt;
+}
+
+.picture {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 225px;
+    height: 225px;
+    padding: 10px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.text > p {
+    margin: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+}

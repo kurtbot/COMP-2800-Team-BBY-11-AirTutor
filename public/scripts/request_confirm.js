@@ -4,25 +4,27 @@ $("#details").html(localStorage.getItem("details"));
 $("#retitle").html(localStorage.getItem("retitle"));
 
 $("#back").click(function(){
-    window.location.href="request.html";
+    window.location.href="/request";
 })
 
 firebase.auth().onAuthStateChanged(function (user) {
+
+$("#confirm").click(function(){
     let d = new Date();
     let year = d.getFullYear();
     let month = d.getMonth() + 1;
-    let day = d.getDay();
+    let day = d.getDate();
+    console.log(day);
     let hour = d.getHours();
     let minute = d.getMinutes();
     let date = year + "-" + month + "-" + day + " " + hour + ":" + minute;
-$("#confirm").click(function(){
     let promise = db.collection("posts").add({
         title: localStorage.getItem("retitle"),
         subject: localStorage.getItem("subject"),
         grade: localStorage.getItem("grade"),
         details: localStorage.getItem("details"),
-        user: user.uid,
-        username: user.displayName,
+        studentid: user.uid,
+        studentname: user.displayName,
         time: d,
         date: date
     })
@@ -31,7 +33,7 @@ $("#confirm").click(function(){
         localStorage.removeItem("grade");
         localStorage.removeItem("details");
         localStorage.removeItem("retitle");
-        window.location.href="post.html";
+        window.location.href="/post";
     })
 
 })

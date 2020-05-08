@@ -1,10 +1,9 @@
-let displayCountry = document.getElementById("country");
-let displayEducation = document.getElementById("education");
-let displayGrade = document.getElementById("grade");
-let displayLanguage = document.getElementById("language");
-
 userInfo();
 viewRating();
+studentInfo();
+tutorInfo();
+bestSubject();
+
 function queryResult() {
     let queryString = decodeURIComponent(window.location.search);
     let queries = queryString.split("?");
@@ -19,22 +18,75 @@ function userInfo() {
     db.collection("users/").doc(queryResult())
         .get()
         .then(snap => {
-            document.getElementById("name").innerHTML = snap.data().firstName + " " + snap.data().lastName;
-            if (country != "") {
-                displayCountry.innerHTML = "Country: " + snap.data().country;
+            $("#name").text(snap.data().firstName + " " + snap.data().lastName);
+            let country = snap.data().country;
+            let language = snap.data().language;
+            let bio = snap.data().language;
+
+            if (country != "" && country != undefined) {
+                $("#country").text("Country: " + country);
             }
-            if (education != "") {
-                displayEducation.innerHTML = "Education Level: " + snap.data().education;
+            if (language != "" && language != undefined) {
+                $("#language").text("Language: " + language);
             }
-            if (grade != "") {
-                displayGrade.innerHTML = "Grade: " + snap.data().grade;
-            }
-            if (language != "") {
-                displayLanguage.innerHTML = "Language: " + snap.data().language;
+
+            if (bio != "" && bio != undefined) {
+                $("#biotitle").text("About me");
+                $("#bio").text(bio)
             }
         })
 }
 
+function studentInfo() {
+    let dbref = db.collection("users/").doc(queryResult());
+    dbref.get()
+        .then(snap => {
+            let education = snap.data().education;
+            let grade = snap.data().grade;
+
+            if (education != "" && education != undefined) {
+                $("#education").show();
+                $("#education").text("Education Level: " + education);
+            }
+            if (grade != "" && grade != undefined) {
+                $("#grade").show();
+                $("#grade").text("Grade Level: " + grade);
+            }
+        })
+
+}
+
+
+function tutorInfo() {
+    let dbref = db.collection("users/").doc(queryResult());
+
+    dbref.get()
+        .then(snap => {
+            let eduComplete = snap.data().educationcompleted;
+
+            if (eduComplete != "" && eduComplete != undefined) {
+                $("#educomplete").show();
+                $("#educomplete").text("Education Completed: " + eduComplete);
+            }
+        })
+}
+
+
+function bestSubject() {
+    let dbref = db.collection("users/").doc(queryResult());
+
+    dbref.get()
+        .then(snap => {
+            let subject = snap.data().subject;
+
+            if (subject != "" && subject != undefined) {
+                $("#subject").show();
+                $("#subject").text("Best Subject: " + eduComplete);
+            }
+
+        })
+
+}
 /** 
  * View Ratings
  */
@@ -74,7 +126,12 @@ function averagePro() {
             counter = 1;
         }
         let average = sum / counter;
-        document.getElementById("pro").innerHTML = "Professionalism: " + average.toFixed(1);
+        if (average !=0) {
+            $("#pro").text("Professionalism: " + average.toFixed(1));
+        } else {
+            $("#norate").text("This is a new tutor!")
+        }
+
     });
 }
 
@@ -108,6 +165,9 @@ function averageTQ() {
             counter = 1;
         }
         let average = sum / counter;
-        document.getElementById("tq").innerHTML = "Teaching Quality: " + average.toFixed(1);
+        if (average !=0){
+            $("#tq").text("Teaching Quality: " + average.toFixed(1));
+        }
+
     });
 }

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Edit profile</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/editprofile.css">
+    <link rel="stylesheet" type="text/css" href="./styles/footer.css">
+    <%- include("../partials/favicon.ejs") %>
+</head>
+
+<body>
+    <!--Nav Bar -->
+    <%- include("../partials/navbar.ejs") %>
+
+    <header>
+        <div id="header-text">
+            <h1>Edit profile</h1>
+        </div>
+    </header>
+
+    <!-- <div class="text-center">
+        <button type="button" class="btn btn-lg mx-4 px-5" id="general-button" data-toggle="button" aria-pressed="false"
+            autocomplete="off">
+            General
+        </button>
+        <button type="button" class="btn  btn-lg mx-4 px-5" id="student-button" data-toggle="button"
+            aria-pressed="false" autocomplete="off">
+            Student
+        </button>
+        <button type="button" class="btn btn-lg mx-4 px-5" id="tutor-button" data-toggle="button" aria-pressed="false"
+            autocomplete="off">
+            Tutor
+        </button>
+    </div> -->
+    <aside>
+        <div class="nav flex-column nav-pills" id="legend" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="general-button" href="" data-toggle="pill" role="tab"
+                aria-controls="v-pills-home" aria-selected="true">General</a>
+            <a class="nav-link" id="student-button" data-toggle="pill" href="" role="tab"
+                aria-controls="v-pills-profile" aria-selected="false">Student</a>
+            <a class="nav-link" id="tutor-button" data-toggle="pill" href="" role="tab" aria-controls="v-pills-messages"
+                aria-selected="false">Tutor </a>
+        </div>
+    </aside>
+
+
+    <main>
+
+
+        <div id="forms">
+            <div id="profile-picture"></div>
+
+
+            <div id="general">
+                <h4 class="text-center">Edit your general account information here!</h4>
+                <!-- <label for="firstNameField">First Name</label>
+                <input type='text' class='form-control' name='firstNameField' id='firstNameField'
+                    aria-describedby='firstNameHelpId' placeholder='First name' required>
+
+                <label for="lastNameField">Last Name</label>
+                <input type='text' class='form-control' name='lastNameField' id='lastNameField'
+                    aria-describedby='lastNameHelpId' placeholder='Last name' required> -->
+<!-- 
+                <label for="emailSignupField">Email</label>
+                <input type='email' class='form-control' name='emailSignupField' id='emailSignupField'
+                    aria-describedby='emailHelpId' placeholder='Email' required> -->
+
+                <!-- <label for="passwordSignupField">Password</label>
+                <input type='password' class='form-control' name='passwordSignupField' pattern='[A-Za-z0-9]{8,16}'
+                    id='passwordSignupField' aria-describedby='passwordHelpId' placeholder='Password' required> -->
+
+                <%- include("../partials/countryselector.ejs") %>
+                <%- include("../partials/languageselector.ejs") %>
+                <label for="bio">Bio:</label>
+                <textarea class='form-control' rows="4" cols="40" id="bioField" name="bio"
+                    placeholder="Description. Tell us something about yourself!"></textarea>
+            </div>
+
+            <div id="student">
+                <h4 class="text-center">Edit your student information here</h4>
+                <%- include("../partials/studentselector.ejs") %>
+            </div>
+
+            <div id="tutor">
+                <h4 class="text-center">Edit your tutor information here</h4>
+                <p class="text-center">If you are a student and want to also tutor, you should fill in this information
+                </p>
+                <%- include("../partials/nonstudentselector.ejs") %>
+
+            </div>
+            <!-- <input class="btn btn-danger my-5" type="reset"> -->
+            
+            <input id="submit-button" class="btn btn-primary my-5"
+                type="submit">
+        </div>
+    </main>
+
+
+    <!--Footer-->
+    <%- include("../partials/footer.ejs") %>
+
+    <!-- Firebase javascripts -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+    <script src="scripts/firebase.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <!-- Optional JavaScript -->
+    <script src="scripts/navbar.js"></script>
+    <script src="./scripts/editprofile.js"></script>
+</body>
+
+</html>

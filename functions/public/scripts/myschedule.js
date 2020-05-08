@@ -1,8 +1,8 @@
 firebase.auth().onAuthStateChanged(function (user) {
   let sch = db.collection("schedules/")
-    sch.orderBy("time").onSnapshot(function (snapshot) {
-        snapshot.docChanges().forEach(function (change) {
-          if (change.type === "added") {
+  sch.orderBy("time").onSnapshot(function (snapshot) {
+    snapshot.docChanges().forEach(function (change) {
+      if (change.type === "added") {
         if (change.doc.data().user == user.uid || change.doc.data().nameid == user.uid) {
           let test1 = new Date(2020, 4, 7, 12, 55);
           console.log(test1.getTime());
@@ -85,7 +85,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                   if (q == request) {
                     exist = true;
                     localStorage.setItem("sessionID", doc.id);
-                    
+
                   }
                 });
                 if (!exist) {
@@ -98,7 +98,8 @@ firebase.auth().onAuthStateChanged(function (user) {
                         studentname: student,
                         requestid: request,
                         time: d,
-                        credit: credit
+                        credit: credit,
+                        tutorCallID: ''
                       })
                       .then(function (docRef) {
                         db.collection("users/")
@@ -144,8 +145,8 @@ firebase.auth().onAuthStateChanged(function (user) {
           document.body.appendChild(box);
           document.body.appendChild(hr);
         }
-    }
-      });
-      
+      }
     });
+
+  });
 });

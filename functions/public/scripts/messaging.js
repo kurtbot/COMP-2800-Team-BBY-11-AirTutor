@@ -1,6 +1,6 @@
 let roomID = queryResult();
 console.log("Current Room ID: ", roomID);
-$(".schedule-btn").hide();
+
 function queryResult() {
     let queryString = decodeURIComponent(window.location.search);
     let queries = queryString.split("?");
@@ -19,6 +19,7 @@ function initializeRoom(user) {
         } else {
             $("#who").html(docc.data().studentname)
         }
+        $("#what").html(docc.data().topic)
     })
 }
 
@@ -100,7 +101,8 @@ firebase.auth().onAuthStateChanged(function (user) {
             actualTime: d
         });
         db.collection("chatrooms").doc(roomID).update({
-            latest: d
+            latest: d,
+            latestTime: date
         })
 
     });

@@ -72,8 +72,9 @@ body::-webkit-scrollbar-thumb {
     font-size: 1.5rem;
     color: var(--text-primary-light);
     line-height: 3rem;
+    display: none;
 }
 
-#who{
+#who, #what{
     color: var(--text-primary-light);
 }

@@ -49,6 +49,14 @@
                     overflow-wrap: break-word;
                 }
                 }
+                @media only screen and (max-height: 360px){
+                    .chat-window {
+                       /* width: 100vw;*/
+                        height: 10vh;
+                        overflow-y: scroll;
+                        overflow-wrap: break-word;
+                    }
+                    }
 
 
 body::-webkit-scrollbar {

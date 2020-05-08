@@ -11,6 +11,7 @@
   width: 100%;
   background-color: grey;
   text-align: center;
+  z-index:1;
 }
 
 a[href="/faq"] {

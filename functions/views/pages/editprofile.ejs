@@ -40,20 +40,24 @@
             Tutor
         </button>
     </div> -->
-    <div class="nav flex-column nav-pills" id="legend" role="tablist" aria-orientation="vertical">
-        <a class="nav-link active" id="general-button" data-toggle="pill" role="tab" aria-controls="v-pills-home" aria-selected="true">General</a>
-        <a class="nav-link" id="student-button" data-toggle="pill"  role="tab" aria-controls="v-pills-profile" aria-selected="false">Student</a>
-        <a class="nav-link" id="tutor-button" data-toggle="pill" role="tab" aria-controls="v-pills-messages" aria-selected="false">Tutor</a>
-      </div>
+    <aside>
+        <div class="nav flex-column nav-pills" id="legend" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="general-button" href="" data-toggle="pill" role="tab" aria-controls="v-pills-home" aria-selected="true">General</a>
+            <a class="nav-link" id="student-button" data-toggle="pill"  href="" role="tab" aria-controls="v-pills-profile" aria-selected="false">Student</a>
+            <a class="nav-link" id="tutor-button" data-toggle="pill"  href="" role="tab" aria-controls="v-pills-messages" aria-selected="false">Tutor   </a>
+          </div>
+        </aside>
+
  
     <main>
     
-        <h4>Edit your general account information here!</h4>
+
         <div id="forms">
             <div id="profile-picture"></div>
     
     
             <div id="general">
+                <h4 class="text-center">Edit your general account information here!</h4>
                 <label for="firstNameField">First Name</label>
                 <input type='text' class='form-control' name='firstNameField' id='firstNameField'
                     aria-describedby='firstNameHelpId' placeholder='First name' required>
@@ -77,17 +81,17 @@
             </div>
     
     <div id="student">
-        <h4>Edit your student information here</h4>
+        <h4 class="text-center">Edit your student information here</h4>
         <%- include("../partials/studentselector.ejs") %>
     </div>
     
     <div id="tutor">
-        <h4>Edit your tutor information here</h4>
-        <p>If you are a student and want to also tutor, you should fill in this information</p>
+        <h4 class="text-center">Edit your tutor information here</h4>
+        <p class="text-center">If you are a student and want to also tutor, you should fill in this information</p>
         <%- include("../partials/nonstudentselector.ejs") %>
 
     </div>
-            <input type="reset"><input type="submit">
+            <input class ="btn btn-danger my-5" type="reset"><input class="btn btn-primary my-5" type="submit">
         </div>
     </main>
  

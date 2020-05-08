@@ -28,6 +28,14 @@ input, textarea, label, select {
     padding: 5px;
 }
 
+#student {
+    display:none;
+}
+
+#tutor {
+    display:none;
+}
+
 @media only screen and (max-width: 600px) {
     .forms {
         width: 100%;
@@ -50,8 +58,13 @@ input, textarea, label, select {
     header {
         grid-area:header;
     }
-    #legend {
+    aside {
         grid-area: legend;
+
+    }
+    #legend {
+        position: sticky;
+        top:0;
     }
     #forms{
         grid-area:forms;

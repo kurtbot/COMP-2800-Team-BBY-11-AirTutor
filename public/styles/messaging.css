@@ -8,13 +8,48 @@
 }
 
 /* chat log */
-
+@media only screen and (min-height: 870px){
 .chat-window {
    /* width: 100vw;*/
-    height: 80vh;
+    height: 70vh;
     overflow-y: scroll;
     overflow-wrap: break-word;
 }
+}
+
+@media only screen and (min-height: 670px) and (max-height: 870px){
+    .chat-window {
+       /* width: 100vw;*/
+        height: 60vh;
+        overflow-y: scroll;
+        overflow-wrap: break-word;
+    }
+    }
+    @media only screen and (min-height: 540px) and (max-height: 670px){
+        .chat-window {
+           /* width: 100vw;*/
+            height: 50vh;
+            overflow-y: scroll;
+            overflow-wrap: break-word;
+        }
+        }
+        @media only screen and (min-height: 440px) and (max-height: 540px){
+            .chat-window {
+               /* width: 100vw;*/
+                height: 40vh;
+                overflow-y: scroll;
+                overflow-wrap: break-word;
+            }
+            }
+            @media only screen and (min-height: 360px) and (max-height: 440px){
+                .chat-window {
+                   /* width: 100vw;*/
+                    height: 25vh;
+                    overflow-y: scroll;
+                    overflow-wrap: break-word;
+                }
+                }
+
 
 body::-webkit-scrollbar {
     width: 0.25rem;

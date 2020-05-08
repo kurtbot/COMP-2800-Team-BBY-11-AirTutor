@@ -1,5 +1,5 @@
 let postsOrder = db.collection("posts/");
-postsOrder.orderBy("time", "desc").onSnapshot(function (snapshot) {
+postsOrder.orderBy("time").onSnapshot(function (snapshot) {
   snapshot.docChanges().forEach(function (change) {
     if (change.type === "added") {
       let post = change.doc.id;
@@ -100,7 +100,7 @@ postsOrder.orderBy("time", "desc").onSnapshot(function (snapshot) {
 
       box.appendChild(btn);
       card.appendChild(box);
-      document.querySelector("#posts-dat").appendChild(card);
+      $("#posts-dat").prepend(card);
     }
   });
 });
@@ -111,18 +111,18 @@ $("#filter").click(function () {
   console.log(filtersubject);
   $(".card").remove();
   let postsOrder = db.collection("posts/");
-  postsOrder.orderBy("time", "desc").onSnapshot(function (snapshot) {
+  postsOrder.orderBy("time").onSnapshot(function (snapshot) {
     snapshot.docChanges().forEach(function (change) {
       if (change.type === "added") {
         let post = change.doc.id;
-        let posttopic = doc.data().title;
-        let title = doc.data().title;
-        let targetUserName = doc.data().studentname;
-        let targetUser = doc.data().studentid;
-        let grade = doc.data().grade;
-        let subject = doc.data().subject;
-        let date = doc.data().date;
-        let detail = doc.data().details;
+        let posttopic = change.doc.data().title;
+        let title = change.doc.data().title;
+        let targetUserName = change.doc.data().studentname;
+        let targetUser = change.doc.data().studentid;
+        let grade = change.doc.data().grade;
+        let subject = change.doc.data().subject;
+        let date = change.doc.data().date;
+        let detail = change.doc.data().details;
         let card = document.createElement("div");
         card.setAttribute("class", "card bg-light text-black mx-3 my-2");
         let box = document.createElement("div");
@@ -211,7 +211,7 @@ $("#filter").click(function () {
         if ((filtersubject == subject) | (filtersubject == "All")) {
           box.appendChild(btn);
           card.appendChild(box);
-          document.querySelector("#posts-dat").appendChild(card);
+          $("#posts-dat").prepend(card);
         }
       }
     });

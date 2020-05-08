@@ -81,7 +81,7 @@ firebase.auth().onAuthStateChanged(function (user) {
               console.log(u1)
               sessionrooms.get().then((querySnap) => {
                 querySnap.forEach(function (doc) {
-                  let q = change.doc.data().requestid;
+                  let q = doc.data().requestid;
                   if (q == request) {
                     exist = true;
                     localStorage.setItem("sessionID", doc.id);

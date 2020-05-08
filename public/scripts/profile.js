@@ -23,6 +23,7 @@ function userInfo() {
             .then(snap => {
                 let country = snap.data().country;
                 let language = snap.data().language;
+                let bio = snap.data().bio;
 
                 if (country != "" && country != undefined) {
                     $("#country").text("Country: " + country);
@@ -30,6 +31,11 @@ function userInfo() {
                 if (language != "" && language != undefined) {
                     $("#language").text("Language: " + language);
                 }
+                if (bio != "" && bio != undefined) {
+                    $("#biotitle").text("About me");
+                    $("#bio").text(bio)
+                }
+
             })
     })
 }

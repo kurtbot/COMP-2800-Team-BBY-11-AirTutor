@@ -99,6 +99,9 @@ firebase.auth().onAuthStateChanged(function (user) {
             timestamp: date,
             actualTime: d
         });
+        db.collection("chatrooms").doc(roomID).update({
+            latest: d
+        })
 
     });
 

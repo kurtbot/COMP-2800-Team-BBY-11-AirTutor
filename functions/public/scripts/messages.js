@@ -1,5 +1,6 @@
 firebase.auth().onAuthStateChanged(function (user) {
-    db.collection("chatrooms/").get().then(function (snap) {
+    let chat = db.collection("chatrooms/");
+    chat.orderBy("latest").get().then(function (snap) {
         snap.forEach(function (doc) {
             if (doc.data().studentid == user.uid || doc.data().tutorid == user.uid) {
                 let n1 = doc.data().tutorid;

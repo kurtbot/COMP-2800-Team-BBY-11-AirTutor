@@ -12,6 +12,7 @@ postsOrder.orderBy("time").onSnapshot(function (snapshot) {
       let date = change.doc.data().date;
       let detail = change.doc.data().details;
       let card = document.createElement("div");
+      card.setAttribute("id", post);
       card.setAttribute("class", "card bg-light text-black mx-3 my-2");
       let box = document.createElement("div");
       box.setAttribute("class", "card-body");
@@ -211,7 +212,9 @@ $("#filter").click(function () {
         if ((filtersubject == subject) | (filtersubject == "All")) {
           box.appendChild(btn);
           card.appendChild(box);
+          if (!document.getElementById(post)){
           $("#posts-dat").prepend(card);
+          }
         }
       }
     });

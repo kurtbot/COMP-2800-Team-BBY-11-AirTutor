@@ -24,8 +24,11 @@ function tutorTab() {
 }
 
 function submit() {
-    write()
-    .then(function(){
+    let promise = new Promise(function(resolve, reject) {
+        write();
+        console.log("test");
+      });
+    promise.then(function(){
         window.location.href="/profile";
     });
 }

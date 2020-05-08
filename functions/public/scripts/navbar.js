@@ -1,4 +1,4 @@
-userInfo();
+setInterval(userInfo,1000);
 
 
 
@@ -9,7 +9,10 @@ function userInfo() {
        dbref.get()
            .then(snap => {
                let credits = snap.data().currency;
-               document.getElementById("current-cash").innerHTML = "Credits: " + credits; 
+               $("#current-cash").text("Credits: " + credits);
+               
+
+
            })
     });
 }

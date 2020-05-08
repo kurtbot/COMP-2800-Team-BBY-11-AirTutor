@@ -30,14 +30,14 @@ firebase.auth().onAuthStateChanged(function (user) {
                 let name = document.createElement("b");
                 $(name).css({
                     "display":"inline-block",
-                    "width":"15%",
+                    "width":"30%",
                     "margin-left":"3%"
                 })
                 let topic = document.createElement("span");
                 topic.innerHTML = "Topic: " +  change.doc.data().topic;
                 $(topic).css({
                     "display":"inline-block",
-                    "width":"50%"
+                    "width":"30%"
                 })
                 let msgtime = document.createElement("span")
                 msgtime.innerHTML = change.doc.data().latestTime

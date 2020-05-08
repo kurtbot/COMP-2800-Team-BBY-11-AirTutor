@@ -26,54 +26,75 @@
     </header>
 
     <!--Content-->
-
     <div class="text">
-
-        <p>Welcome to our application. We are Air Tutor, a group of students who are looking for a solution to
+        <!-- <p>Welcome to our application. We are Air Tutor, a group of students who are looking for a solution to
             mainstream online learning.
-            <br> We want to spread education faster than COVID-19! </p>
+            <br> We want to spread education faster than COVID-19! </p> -->
+
+        <h3>Spreading education faster than COVID-19.</h3>
+        <p>As students are being forced into online learning
+            and many are losing their jobs due to the pandemic, <br>
+            we, the developers of Air Tutor, created this application
+            that helps both students and tutors in this time of need.</p>
     </div>
 
     <div class="outer">
-        <div class="bio">
+        <div id="bio1" class="bio">
             <h3>Dylan Sung</h3>
             <img class="picture" src="./src/rsz_saltbae.jpg">
-            <p class="description">Dylan has gone through more career paths than he would have liked, but he’s here to
-                stay. He enjoys the feeling of cabin fever as it’s somehow motivated him to pick up new hobbies such as
-                gardening, table tennis and hosting online symposiums. He hopes to come out of quarantine speaking a new
+            <p class="description">Dylan has gone through more career paths than he would have liked, but he’s here
+                to
+                stay. He enjoys the feeling of cabin fever as it’s somehow motivated him to pick up new hobbies such
+                as
+                gardening, table tennis and hosting online symposiums. He hopes to come out of quarantine speaking a
+                new
                 language (undecided). </p>
         </div>
 
-        <div class="bio">
+        <div id="bio2" class="bio">
             <h3>Chris Raganit</h3>
             <img class="picture" src="./src/chris.jpg">
-            <p class="description">Like any CST student, Chris codes and studies until the ungodly hours of the dawn.
-                When she is not doing schoolwork, she likes jamming on her bass guitar, slamming root beer floats with
-                the boys, playing video games, and working on a very ambitious series of fantasy novels. After receiving
+            <p class="description">Like any CST student, Chris codes and studies until the ungodly hours of the
+                dawn.
+                When she is not doing schoolwork, she likes jamming on her bass guitar, slamming root beer floats
+                with
+                the boys, playing video games, and working on a very ambitious series of fantasy novels. After
+                receiving
                 her diploma, Chris intends on pursuing a degree in UI design and chasing her longtime dream of being
                 a writer.</p>
         </div>
 
-        <div class="bio">
+        <div id="bio3" class="bio">
             <h3>Kurt Milan</h3>
             <img class="picture" src="./src/kurt.jpg">
-            <p class="description">Kurt Milan is a Computer Systems Technology student in BCIT. After he finishes CST,
-                he plans on becoming a game programmer. When he is not working, he programs games or plays games, plays
+            <p class="description">Kurt Milan is a Computer Systems Technology student in BCIT. After he finishes
+                CST,
+                he plans on becoming a game programmer. When he is not working, he programs games or plays games,
+                plays
                 the guitar, piano, or ukulele, or hangs out with friends. </p>
         </div>
 
-        <div class="bio">
+        <div id="bio4" class="bio">
             <h3>Vicly Cao</h3>
             <img class="picture" src="./src/vicly.jpg">
-            <p class="description"> Vicly spent a few years studying math and physics, then realized that's not what she
+            <p class="description"> Vicly spent a few years studying math and physics, then realized that's not what
+                she
                 wants her career to be on. Now she is a CST student at BCIT trying to become a programmer. She feels
-                accomplished when her friends and family like the websites she made. When she is free, she likes playing
+                accomplished when her friends and family like the websites she made. When she is free, she likes
+                playing
                 games with her friends, reading detective stories, and building wooden and plastic models.</p>
         </div>
+    </div>
     </div>
 
     <!-- Footer -->
     <%- include("../partials/footer.ejs") %>
+
+    <!-- Firebase javascripts -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+    <script src="scripts/firebase.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -17,3 +17,9 @@ function userInfo() {
             })
     });
 }
+
+
+function signOut() {
+    firebase.auth().signOut();
+    window.location.href = ''
+}

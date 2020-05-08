@@ -22,14 +22,52 @@ h5 {
     margin: 10px;
 }
 
-input, textarea, label {
+input, textarea, label, select {
     margin: 10px;
     margin-left: 0px;
     padding: 5px;
+}
+
+#student {
+    display:none;
+}
+
+#tutor {
+    display:none;
 }
 
 @media only screen and (max-width: 600px) {
     .forms {
         width: 100%;
     }
+}
+
+@media only screen and (min-width: 1024px) {
+    body {
+        display:grid;
+        grid-template-areas:
+        "navbar navbar navbar"
+        "header header header"
+        "legend forms forms"
+        "legend forms forms"
+        "legend forms forms";
+    }
+    nav{
+        grid-area:navbar;
+    }
+    header {
+        grid-area:header;
+    }
+    aside {
+        grid-area: legend;
+
+    }
+    #legend {
+        position: sticky;
+        top:0;
+    }
+    #forms{
+        grid-area:forms;
+    }
+
 }

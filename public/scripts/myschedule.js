@@ -99,7 +99,8 @@ firebase.auth().onAuthStateChanged(function (user) {
                         requestid: request,
                         time: d,
                         credit: credit,
-                        tutorCallID: ''
+                        tutorCallId: '',
+                        studentCallId: ''
                       })
                       .then(function (docRef) {
                         db.collection("users/")

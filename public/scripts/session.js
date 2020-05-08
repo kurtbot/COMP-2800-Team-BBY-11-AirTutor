@@ -1,9 +1,10 @@
 
 var peer = new Peer({ key: 'lwjd5qra8257b9' });
-
+var peerID;
 peer.on('open', function (id) {
     console.log('My peer ID is: ' + id);
-    // document.getElementById('userID').innerHTML = id;
+    peerID = "" + id;
+    tutorTest();
 });
 
 document.getElementById("go-rating").onclick = gotoNext;
@@ -22,17 +23,17 @@ let student;
 
 function gotoNext() {
     firebase.auth().onAuthStateChanged(function (user) {
-        db.collection("/sessionrooms").doc(queryResult()).get().then(function(doc){
+        db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
             credit = doc.data().credit;
             tutor = doc.data().tutorid;
             student = doc.data().studentid;
             localStorage.setItem("creditxfer", credit);
-        }).then(function(){
-            if (user.uid == tutor){
+        }).then(function () {
+            if (user.uid == tutor) {
                 window.location.href = "/home"
             } else {
                 window.location.href = "/rating" + "?" + tutor;
-            
+
             }
         })
     })
@@ -41,83 +42,75 @@ function gotoNext() {
 function checkIfTutor() {
     let isTutor = false;
     firebase.auth().onAuthStateChanged(function (user) {
-        db.collection("/sessionrooms").doc(queryResult()).get().then(function(doc){
-
-            isTutor = firebase.auth().currentUser.uid == doc.data().tutorid;
+        db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
+            isTutor = (firebase.auth().currentUser.uid == doc.data().tutorid);
+            console.log("is a tutor? ", isTutor);
         })
     })
-
     return isTutor;
 }
-
-if(checkIfTutor()) {
-    db.collection('/sessionrooms').doc(queryResult()).update({
-        tutorCallID: peer.id
-    })
-} else {
-
-    db.collection("/sessionrooms").doc(queryResult()).get().then(function(doc){
-        console.log(doc.data().tutorCallID);
-        
-        navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
-            var call = peer.call(doc.data().tutorCallID, stream);
-            call.on('stream', function (remoteStream) {
-                // Show stream in some video/canvas element.
-            });
-        }).catch(function (err) {
-            console.log('Failed to get local stream', err);
-        });
-    })
-}
-
-
-var conn = null;
-
-
-// var mediaStream = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-
-
-navigator.mediaDevices.enumerateDevices()
-    .then(gotDevices)
-    .catch(function (err) {
-        console.log(err);
-    });
-
-function gotDevices(deviceInfos) {
-    for (var i = 0; i !== deviceInfos.length; ++i) {
-        var deviceInfo = deviceInfos[i];
-        var option = document.createElement('option');
-        option.value = deviceInfo.deviceId;
-
-        if (deviceInfo.kind === 'audioinput') {
-            console.log(deviceInfo.label);
-
-            //   option.text = deviceInfo.label ||
-            //     'Microphone ' + (audioInputSelect.length + 1);
-            //   audioInputSelect.appendChild(option);
-        } else if (deviceInfo.kind === 'audiooutput') {
-            console.log(deviceInfo.label);
-
-            //   option.text = deviceInfo.label || 'Speaker ' +
-            //     (audioOutputSelect.length + 1);
-            //   audioOutputSelect.appendChild(option);
-        } else if (deviceInfo.kind === 'videoinput') {
-            console.log(deviceInfo.label);
-
-            //   option.text = deviceInfo.label || 'Camera ' +
-            //     (videoSelect.length + 1);
-            //   videoSelect.appendChild(option);
+function tutorTest() {
+    db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
+        isTutor = (firebase.auth().currentUser.uid == doc.data().tutorid);
+        console.log("is a tutor? ", isTutor);
+        if (isTutor) {
+            db.collection('sessionrooms/').doc(queryResult()).update({
+                tutorCallId: peerID
+            }).catch(function (err) {
+                console.log(err);
+            })
+        } else {
+            db.collection('sessionrooms/').doc(queryResult()).update({
+                studentCallId: peerID
+            }).catch(function (err) {
+                console.log(err);
+            })
         }
-    }
+    })
+    db.collection("sessionrooms/").doc(queryResult()).onSnapshot(function (doc) {
+        if (firebase.auth().currentUser.uid == doc.data().tutorid) {
+            if (doc.data().studentCallId !== '') {
+                navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
+                    var call = peer.call(doc.data().studentCallId, stream);
+                    call.on('stream', function (remoteStream) {
+                        var audio = document.querySelector('audio');
+                        audio.srcObject = remoteStream;
+                        audio.onloadedmetadata = function (e) {
+                            console.log('now playing the audio');
+                            audio.play();
+                        }
+                    });
+                }).catch(function (err) {
+                    console.log('Failed to get local stream', err);
+                });
+            }
+        } else {
+            if (doc.data().tutorCallId !== '') {
+                navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
+                    var call = peer.call(doc.data().tutorCallID, stream);
+                    call.on('stream', function (remoteStream) {
+                        var audio = document.querySelector('audio');
+                        audio.srcObject = remoteStream;
+                        audio.onloadedmetadata = function (e) {
+                            console.log('now playing the audio');
+                            audio.play();
+                        }
+                    });
+                }).catch(function (err) {
+                    console.log('Failed to get local stream', err);
+                });
+            }
+        }
+    })
 }
 
 // answer call
 peer.on('call', function (mediaConnection) {
     navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
         mediaConnection.answer(stream); // Answer the call with an A/V stream.
-        mediaConnection.on('stream', function (stream) {
+        mediaConnection.on('stream', function (remoteStream) {
             var audio = document.querySelector('audio');
-            audio.srcObject = stream;
+            audio.srcObject = remoteStream;
             audio.onloadedmetadata = function (e) {
                 console.log('now playing the audio');
                 audio.play();

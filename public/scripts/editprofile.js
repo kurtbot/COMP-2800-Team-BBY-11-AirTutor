@@ -39,24 +39,24 @@ function write() {
         let dbref = db.collection("users/").doc(user.uid);
         console.log("firstname");
 
-        if ($("#firstNameField").val() != undefined && $("#firstNameField").val() != null && $("#firstNameField").val().trim() != "") {
-            dbref.set({
-                firstName: $("#firstNameField").val()
-            }, { merge: true })
-        }
+        // if ($("#firstNameField").val() != undefined && $("#firstNameField").val() != null && $("#firstNameField").val().trim() != "") {
+        //     dbref.set({
+        //         firstName: $("#firstNameField").val()
+        //     }, { merge: true })
+        // }
 
-        console.log("lastname");
-        if ($("#lastNameField").val() != undefined && $("#lastNameField").val() != null && $("#lastNameField").val().trim() != "") {
-            dbref.set({
-                lastName: $("#lastNameField").val()
-            }, { merge: true })
-        }
+        // console.log("lastname");
+        // if ($("#lastNameField").val() != undefined && $("#lastNameField").val() != null && $("#lastNameField").val().trim() != "") {
+        //     dbref.set({
+        //         lastName: $("#lastNameField").val()
+        //     }, { merge: true })
+        // }
 
-        if ($("#emailSignupField").val() != undefined && $("#emailSignupField").val() != null && $("#emailSignupField").val().trim() != "") {
-            dbref.set({
-                email: $("#emailSignupField").val()
-            }, { merge: true })
-        }
+        // if ($("#emailSignupField").val() != undefined && $("#emailSignupField").val() != null && $("#emailSignupField").val().trim() != "") {
+        //     dbref.set({
+        //         email: $("#emailSignupField").val()
+        //     }, { merge: true })
+        // }
 
         console.log("bioname");
         if ($("#bioField").val() != undefined && $("#bioField").val() != null && $("#bioField").val().trim() != "") {

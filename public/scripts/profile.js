@@ -87,7 +87,7 @@ function bestSubject() {
 
                 if (subject != "" && subject != undefined) {
                     $("#subject").show();
-                    $("#subject").text("Best Subject: " + eduComplete);
+                    $("#subject").text("Best Subject: " + subject);
                 }
 
             })

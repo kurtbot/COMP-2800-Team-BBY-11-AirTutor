@@ -21,12 +21,18 @@ function userInfo() {
             $("#name").text(snap.data().firstName + " " + snap.data().lastName);
             let country = snap.data().country;
             let language = snap.data().language;
+            let bio = snap.data().language;
 
             if (country != "" && country != undefined) {
                 $("#country").text("Country: " + country);
             }
             if (language != "" && language != undefined) {
                 $("#language").text("Language: " + language);
+            }
+
+            if (bio != "" && bio != undefined) {
+                $("#biotitle").text("About me");
+                $("#bio").text(bio)
             }
         })
 }

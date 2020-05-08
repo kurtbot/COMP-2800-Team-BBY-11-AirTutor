@@ -22,7 +22,7 @@ h5 {
     margin: 10px;
 }
 
-input, textarea, label {
+input, textarea, label, select {
     margin: 10px;
     margin-left: 0px;
     padding: 5px;
@@ -32,4 +32,29 @@ input, textarea, label {
     .forms {
         width: 100%;
     }
+}
+
+@media only screen and (min-width: 1024px) {
+    body {
+        display:grid;
+        grid-template-areas:
+        "navbar navbar navbar"
+        "header header header"
+        "legend forms forms"
+        "legend forms forms"
+        "legend forms forms";
+    }
+    nav{
+        grid-area:navbar;
+    }
+    header {
+        grid-area:header;
+    }
+    #legend {
+        grid-area: legend;
+    }
+    #forms{
+        grid-area:forms;
+    }
+
 }

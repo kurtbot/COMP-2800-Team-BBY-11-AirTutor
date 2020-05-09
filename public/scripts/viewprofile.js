@@ -21,7 +21,7 @@ function userInfo() {
             $("#name").text(snap.data().firstName + " " + snap.data().lastName);
             let country = snap.data().country;
             let language = snap.data().language;
-            let bio = snap.data().language;
+            let bio = snap.data().bio;
 
             if (country != "" && country != undefined) {
                 $("#country").text("Country: " + country);
@@ -81,7 +81,7 @@ function bestSubject() {
 
             if (subject != "" && subject != undefined) {
                 $("#subject").show();
-                $("#subject").text("Best Subject: " + eduComplete);
+                $("#subject").text("Best Subject: " + subject);
             }
 
         })

@@ -10,6 +10,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles/profile.css">
   <link rel="stylesheet" type="text/css" href="styles/footer.css">
   <%- include("../partials/favicon.ejs") %>
 </head>
@@ -25,42 +26,44 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-3 col-xs-12">
-        <div id="image">Picture goes here</div>
-      </div>
-      <div class="col-md-9 col-xs-12">
-        <div id="profile">
-          <div>
-            <h2 id="name">Loading Name</h2>
-            <p id="country">Country: N/A</p>
-            <p id="language">Language: N/A</p>
-          </div>
-          <div id="student">
-            <p id="education"></p>
-            <p id="grade"></p>
-          </div>
-          <div id="tutor">
-            <p id="educomplete"></p>
-          </div>
-
-          <div id="optional">
-            <p id="subject"></p>
-          </div>
-
-          <div id="rating">
-            <p id="pro"></p>
-            <p id="tq"></p>
-            <p id="norate"></p>
-          </div>
-
-          <div class = "my-3">
-            <h4 id="biotitle"></h4>
-            <p id=bio></p>
+        <div class="col-md-4 col-xs-12">
+            <div id="image">Picture goes here</div>
         </div>
+        <div class="col-md-4 col-xs-12">
+            <div id="profile">
+                <div>
+                    <h2 id="name">Your Name</h2>
+                    <p id="country">Country: N/A</p>
+                    <p id="language">Language: N/A</p>
+                </div>
+                <div id="student">
+                    <p id="education"></p>
+                    <p id="grade"></p>
+                </div>
+                <div id="tutor">
+                    <p id="educomplete"></p>
+                </div>
+
+                <div id="optional">
+                    <p id="subject"></p>
+                </div>
+
+                <div id="rating">
+                    <p id="pro"></p>
+                    <p id="tq"></p>
+                    <p id="norate"></p>
+                </div>
+            </div>
+
         </div>
-      </div>
+        <div id ="bio-container" class ="col-md-4 col-xs-12">
+            <div class = "my-3">
+                <h4 id="biotitle"></h4>
+                <p id=bio></p>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
 
   <!--Footer-->
 

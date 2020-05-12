@@ -38,7 +38,7 @@ function fly() {
       left: left,
       width: $("#plane").width() + 10,
     });
-    if ($("#plane").width() > 100) {
+    if ($("#plane").width() > 200) {
       //drop.clearInterval();
       let away = setInterval(function () {
         $("#plane").css({

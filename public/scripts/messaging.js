@@ -1,6 +1,8 @@
 let roomID = queryResult();
 console.log("Current Room ID: ", roomID);
 
+
+
 function queryResult() {
     let queryString = decodeURIComponent(window.location.search);
     let queries = queryString.split("?");
@@ -16,8 +18,14 @@ function initializeRoom(user) {
     db.collection("chatrooms/").doc(roomID).get().then(function (docc) {
         if (user.uid == docc.data().studentid){
             $("#who").html(docc.data().tutorname)
+            $("#namepic").click(function(){
+                window.location.href = "/viewprofile" + "?" + docc.data().tutorid;
+            })
         } else {
             $("#who").html(docc.data().studentname)
+            $("#namepic").click(function(){
+                window.location.href = "/viewprofile" + "?" + docc.data().studentid;
+            })
         }
         $("#what").html(docc.data().topic)
     })

@@ -121,3 +121,16 @@ body::-webkit-scrollbar-thumb {
 #who, #what{
     color: var(--text-primary-light);
 }
+
+#profile {
+    width: 50px
+}
+
+#namepic{
+    max-width: 300px;
+    border: 1px solid var(--text-primary-light);
+    background-color: lightgoldenrodyellow;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}

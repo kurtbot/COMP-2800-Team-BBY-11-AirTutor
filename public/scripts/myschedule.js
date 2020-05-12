@@ -37,21 +37,21 @@ firebase.auth().onAuthStateChanged(function (user) {
           name.innerHTML = "Meeting with: " + str + " ";
           box.appendChild(name);
 
-          let btn1 = document.createElement("button");
-          btn1.innerHTML = "View User";
-          btn1.onclick = function () {
-            // if (change.doc.data().user == user.uid){
-            //     localStorage.setItem("viewing", change.doc.data().nameid);
-            // } else {
-            //     localStorage.setItem("viewing", change.doc.data().user);
-            // }
-            if (change.doc.data().user == user.uid) {
-              window.location.href = "/viewprofile" + "?" + change.doc.data().nameid;
-            } else {
-              window.location.href = "/viewprofile" + "?" + change.doc.data().user;
-            }
-          };
-          box.appendChild(btn1);
+          // let btn1 = document.createElement("button");
+          // btn1.innerHTML = "View User";
+          // btn1.onclick = function () {
+          //   // if (change.doc.data().user == user.uid){
+          //   //     localStorage.setItem("viewing", change.doc.data().nameid);
+          //   // } else {
+          //   //     localStorage.setItem("viewing", change.doc.data().user);
+          //   // }
+          //   if (change.doc.data().user == user.uid) {
+          //     window.location.href = "/viewprofile" + "?" + change.doc.data().nameid;
+          //   } else {
+          //     window.location.href = "/viewprofile" + "?" + change.doc.data().user;
+          //   }
+          // };
+          // box.appendChild(btn1);
 
           let br = document.createElement("br");
           box.appendChild(br);

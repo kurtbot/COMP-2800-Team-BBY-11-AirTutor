@@ -18,13 +18,21 @@ h1, h2, h3, h4, h5 {
     font-weight: 500;
 }
 
-/* chat box */
 
+@media only screen and (max-width: 767px){
+    html { 
+        overflow-y: scroll; 
+      }
+    
+}
+/* chat box */
 .messaging-box {
     margin-top: auto;
     display: flex;
     flex-direction: column;
 }
+
+
 
 /* chat log */
 

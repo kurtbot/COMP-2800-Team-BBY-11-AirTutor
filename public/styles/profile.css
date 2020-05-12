@@ -17,13 +17,13 @@ body {
     font-family: "Roboto";
 }
 
-#image {
+#imagefile {
+    display:block;
     text-align: center;
     font-family: "Roboto";
     border: solid black 2px;
-    background-color: grey;
-    width: 200px;
-    height: 300px;
+    width: 320px;
+    height: 400px;
 }
 
 h1, h2, h3, h4, h5 {
@@ -36,8 +36,9 @@ h1, h2, h3, h4, h5 {
 }
 
 @media (max-width:800px) {
-    #image {
+    #imagefile {
         margin: auto;
+        
     }
     #profile {
         margin-top: 10px;
@@ -47,4 +48,5 @@ h1, h2, h3, h4, h5 {
         text-align: center;
     }
 }
+
 

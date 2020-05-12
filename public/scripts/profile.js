@@ -5,6 +5,7 @@ viewRating();
 studentInfo();
 tutorInfo();
 bestSubject();
+viewPic();
 $("#edit").click(editProfile);
 
 function editProfile() {
@@ -156,3 +157,20 @@ function getAllTQReviews() {
     })
 }
 
+function viewPic() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        const dbref = db.collection("users/").doc(user.uid)
+        
+        dbref.get()
+            .then(snap => {
+                let picture = snap.data().profilePic;
+
+                if (picture != "" && picture != undefined) {
+                    $("#imagefile").attr("src", picture );
+                }
+
+            })
+
+    })
+
+}

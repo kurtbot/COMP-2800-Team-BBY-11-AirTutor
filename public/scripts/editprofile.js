@@ -117,11 +117,11 @@ function displayFile() {
 
 function uploadImage() {
     if(file.length !=0) {
-        let filePath = firebase.auth().currentUser.uid + '/' + file[0].name;
-        firebase.storage().ref(filePath).put(file)
+        let filePath = firebase.auth().currentUser.uid + '/' + 'profilepic';
+        firebase.storage().ref(filePath).put(file[0])
         .then(function (fileSnapshot) {
             fileSnapshot.ref.getDownloadURL().then((url) => {
-                db.collection('user').doc(firebase.auth().currentUser.uid).set({
+                db.collection('users/').doc(firebase.auth().currentUser.uid).set({
                     profilePic: url
                 },{merge:true})
             })

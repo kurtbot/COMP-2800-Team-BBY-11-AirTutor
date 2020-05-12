@@ -28,6 +28,9 @@ function gotoNext() {
             tutor = doc.data().tutorid;
             student = doc.data().studentid;
             localStorage.setItem("creditxfer", credit);
+            localStorage.setItem("request", doc.data().requestid)
+            localStorage.setItem("session", doc.id)
+            localStorage.setItem("schedule", doc.data().scheduleid)
         }).then(function () {
             if (user.uid == tutor) {
                 window.location.href = "/home"

@@ -37,7 +37,18 @@ function submitYesReview() {
  * Takes the user home on No Submit
  */
 function submitNoReview() {
-    $(location).attr('href', '/home');
+    let promise = new Promise((res, rej)=>{
+        db.collection("sessionrooms").doc(localStorage.getItem("session")).delete()
+        db.collection("schedules").doc(localStorage.getItem("schedule")).delete()
+        res("success")
+        console.log("step 1")
+    }
+    )
+
+    promise.then(result =>{
+        window.location.href = "/home"
+        console.log("step 2")
+    })
 
 }
 
@@ -56,6 +67,12 @@ function reviewSubmit() {
         dbref2.update({
             currency: increment
         })
+        let request = localStorage.getItem("request");
+        console.log(request)
+        db.collection("posts").doc(request).delete()
+        db.collection("sessionrooms").doc(localStorage.getItem("session")).delete()
+        db.collection("schedules").doc(localStorage.getItem("schedule")).delete()
+        
     })
 
 
@@ -67,6 +84,8 @@ function reviewSubmit() {
         professionalism: parseInt(professional) + 1,
         teachingquality: parseInt(teaching) + 1
     }).then(function(){
+        localStorage.removeItem("creditxfer")
+        localStorage.removeItem("request")
         window.location.href="/home";
     })
 

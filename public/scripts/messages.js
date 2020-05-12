@@ -72,6 +72,9 @@ firebase.auth().onAuthStateChanged(function (user) {
                 }
             }
         }
+        if (change.type === "removed"){
+            $("#" + change.doc.id).remove()
+        }
         })
     })
 })

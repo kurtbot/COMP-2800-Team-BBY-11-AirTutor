@@ -23,7 +23,7 @@
           let title = document.createElement("p");
           title.innerHTML = "Title: " + change.doc.data().title;
           box.appendChild(title);
-          let name = document.createElement("span");
+          let name = document.createElement("p");
           let str = "";
 
           let check = change.doc.data().time;
@@ -36,7 +36,17 @@
           name.innerHTML = "Meeting with: " + str + " ";
           box.appendChild(name);
 
+          let role;
+          if (change.doc.data().user == firebase.auth().currentUser.uid) {
+            role = $("<p>My Role: Tutor</p>")
+          } else {
+            role = $("<p>My Role: Student</p>")
+          }
 
+          $(box).append($(role))
+
+          let credit = $("<p></p>").html("Credit: " + change.doc.data().credit)
+          $(box).append($(credit))
 
           let br = document.createElement("br");
           box.appendChild(br);
@@ -56,6 +66,7 @@
 
               //*************
               let d = new Date();
+              let scheduleid = change.doc.id;
               let studentid = change.doc.data().nameid;
               let student = change.doc.data().name;
               let tutorid = change.doc.data().user;
@@ -86,6 +97,7 @@
                         requestid: request,
                         time: d,
                         credit: credit,
+                        scheduleid: scheduleid,
                         tutorCallId: '',
                         studentCallId: ''
                       })

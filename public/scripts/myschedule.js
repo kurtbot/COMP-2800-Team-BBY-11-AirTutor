@@ -1,17 +1,16 @@
-firebase.auth().onAuthStateChanged(function (user) {
+//firebase.auth().onAuthStateChanged(function (user) {
   let sch = db.collection("schedules/")
   sch.orderBy("time").onSnapshot(function (snapshot) {
     snapshot.docChanges().forEach(function (change) {
       if (change.type === "added") {
-        if (change.doc.data().user == user.uid || change.doc.data().nameid == user.uid) {
-          let test1 = new Date(2020, 4, 7, 12, 55);
-          console.log(test1.getTime());
-          let test2 = new Date();
-          console.log(test2.getTime());
+
+
 
           let box = document.createElement("div");
-          let hr = document.createElement("hr");
-          document.body.appendChild(hr);
+          box.setAttribute("id", change.doc.id)
+          console.log(change.doc.id)
+          console.log(box.id)
+          box.setAttribute("class", "card bg-light text-black mx-3 my-2");
           let date = document.createElement("p");
           date.innerHTML = "Date: " + change.doc.data().date;
           box.appendChild(date);
@@ -28,8 +27,8 @@ firebase.auth().onAuthStateChanged(function (user) {
           let str = "";
 
           let check = change.doc.data().time;
-          console.log(check);
-          if (change.doc.data().user == user.uid) {
+
+          if (change.doc.data().user == firebase.auth().currentUser.uid) {
             str = change.doc.data().name;
           } else {
             str = change.doc.data().username;
@@ -37,34 +36,24 @@ firebase.auth().onAuthStateChanged(function (user) {
           name.innerHTML = "Meeting with: " + str + " ";
           box.appendChild(name);
 
-          // let btn1 = document.createElement("button");
-          // btn1.innerHTML = "View User";
-          // btn1.onclick = function () {
-          //   // if (change.doc.data().user == user.uid){
-          //   //     localStorage.setItem("viewing", change.doc.data().nameid);
-          //   // } else {
-          //   //     localStorage.setItem("viewing", change.doc.data().user);
-          //   // }
-          //   if (change.doc.data().user == user.uid) {
-          //     window.location.href = "/viewprofile" + "?" + change.doc.data().nameid;
-          //   } else {
-          //     window.location.href = "/viewprofile" + "?" + change.doc.data().user;
-          //   }
-          // };
-          // box.appendChild(btn1);
+
 
           let br = document.createElement("br");
           box.appendChild(br);
+          let btnbox = $("<div></div>")
+          $(btnbox).css({
+            "display":"flex",
+            "justify-content":"space-between"
+          })
           let btn = document.createElement("button");
           btn.innerHTML = "Join Session";
           btn.onclick = function () {
             //Check if it's meeting time
             let d = new Date();
             let checktime = d.getTime();
-            console.log(check);
-            console.log(checktime);
+
             if (check < checktime) {
-              console.log("ok");
+
               //*************
               let d = new Date();
               let studentid = change.doc.data().nameid;
@@ -77,8 +66,6 @@ firebase.auth().onAuthStateChanged(function (user) {
               let sessionrooms = db.collection("sessionrooms");
               let exist = false;
               let u1;
-              console.log(user.uid)
-              console.log(u1)
               sessionrooms.get().then((querySnap) => {
                 querySnap.forEach(function (doc) {
                   let q = doc.data().requestid;
@@ -89,7 +76,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                   }
                 });
                 if (!exist) {
-                  if (user.uid == tutorid) {
+                  if (firebase.auth().currentUser.uid == tutorid) {
                     sessionrooms
                       .add({
                         tutorid: tutorid,
@@ -142,12 +129,36 @@ firebase.auth().onAuthStateChanged(function (user) {
             //     window.location.href = "/session" + "?" + change.doc.data().user;
             // }
           };
-          box.appendChild(btn);
-          document.body.appendChild(box);
-          document.body.appendChild(hr);
+          $(btnbox).append($(btn))
+
+          let del = $("<button>Delete</button>")
+
+          $(del).click(function(){
+            if (confirm("Are you sure you want to delete this schedule? (It will be deleted for the other user too)")){
+            
+            
+              db.collection("schedules").doc(change.doc.id).delete()
+  
+            }
+          })
+          $(btnbox).append($(del))
+
+
+
+          $(box).append($(btnbox))
+
+
+          if (change.doc.data().user == firebase.auth().currentUser.uid || change.doc.data().nameid == firebase.auth().currentUser.uid){
+          $("#schedules").append($(box))
+          }
+
         }
+      
+      if (change.type === "removed") {
+        $("#" + change.doc.id).remove();
       }
     });
 
+
   });
-});
+//});

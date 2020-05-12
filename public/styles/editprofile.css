@@ -37,6 +37,10 @@ input, textarea, label, select {
     display:none;
 }
 
+#pro-pic {
+    display:none;
+}
+
 @media only screen and (max-width: 600px) {
     .forms {
         width: 100%;

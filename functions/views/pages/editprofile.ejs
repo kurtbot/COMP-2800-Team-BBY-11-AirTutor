@@ -25,6 +25,7 @@
             <h1>Edit profile</h1>
         </div>
     </header>
+
     <aside>
         <div class="nav flex-column nav-pills" id="legend" role="tablist" aria-orientation="vertical">
             <a class="nav-link active" id="general-button" href="" data-toggle="pill" role="tab"
@@ -33,6 +34,8 @@
                 aria-controls="v-pills-profile" aria-selected="false">Student</a>
             <a class="nav-link" id="tutor-button" data-toggle="pill" href="" role="tab" aria-controls="v-pills-messages"
                 aria-selected="false">Tutor </a>
+            <a class="nav-link" id="picture-button" data-toggle="pill" href="" role="tab" aria-controls="v-pills-messages"
+                aria-selected="false">Profile Picture </a>
         </div>
     </aside>
 
@@ -41,8 +44,6 @@
 
 
         <div id="forms">
-            <div id="profile-picture"></div>
-
 
             <div id="general">
                 <h4 class="text-center">Edit your general account information here!</h4>
@@ -66,10 +67,20 @@
                 <%- include("../partials/nonstudentselector.ejs") %>
 
             </div>
+
+            <div id="pro-pic">
+                <h4>Choose a new profile picture</h4>
+                <form>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFile">
+                      <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                  </form>
+                  <button id="check">Checker</button>
+            </div>
             <!-- <input class="btn btn-danger my-5" type="reset"> -->
-            
-            <input id="submit-button" class="btn btn-primary my-5"
-                type="submit">
+
+            <input id="submit-button" class="btn btn-primary my-5" type="submit">
         </div>
     </main>
 
@@ -81,6 +92,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-storage.js"></script>
     <script src="scripts/firebase.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

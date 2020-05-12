@@ -3,6 +3,7 @@ viewRating();
 studentInfo();
 tutorInfo();
 bestSubject();
+viewPic();
 
 function queryResult() {
     let queryString = decodeURIComponent(window.location.search);
@@ -170,4 +171,21 @@ function averageTQ() {
         }
 
     });
+}
+
+function viewPic() {
+        const dbref = db.collection("users/").doc(queryResult())
+        
+        dbref.get()
+            .then(snap => {
+                let picture = snap.data().profilePic;
+
+                if (picture != "" && picture != undefined) {
+                    $("#imagefile").attr("src", picture );
+                }
+
+            })
+
+    
+
 }

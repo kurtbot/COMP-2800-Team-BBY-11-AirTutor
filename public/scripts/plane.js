@@ -39,14 +39,16 @@ function fly() {
       width: $("#plane").width() + 10,
     });
     if ($("#plane").width() > 200) {
-      //drop.clearInterval();
+      //clearInterval(drop)
+
       let away = setInterval(function () {
+        console.log("why")
         $("#plane").css({
           position: "fixed",
           left: $("#plane").offset().left + 3,
         });
       }, 10);
-      setTimeout(away.clearInterval(), 10000);
+      //setTimeout(function(){clearInterval(away)}, 10000);
     }
   }
 }

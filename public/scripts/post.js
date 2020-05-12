@@ -32,6 +32,12 @@ postsOrder.orderBy("time").onSnapshot(function (snapshot) {
       p5.innerHTML = date;
 
       box.appendChild(p5);
+
+      let btnbox = $("<div></div>");
+      btnbox.css({
+        "display":"flex",
+        "justify-content":"space-between"
+      })
       let btn = document.createElement("button");
       btn.innerHTML = "Message";
       btn.onclick = function () {
@@ -99,9 +105,31 @@ postsOrder.orderBy("time").onSnapshot(function (snapshot) {
         });
       };
 
-      box.appendChild(btn);
+      $(btnbox).append($(btn))
+
+      if (firebase.auth().currentUser.uid == change.doc.data().studentid){
+        let del = $("<button>Delete</button>")
+
+        $(del).click(function(){
+          if (confirm("Are you sure you want to delete this post?")){
+          
+          
+            db.collection("posts").doc(change.doc.id).delete()
+
+          }
+        })
+        $(btnbox).append($(del))
+      }
+
+
+
+
+      $(box).append($(btnbox))
       card.appendChild(box);
       $("#posts-dat").prepend(card);
+    }
+    if (change.type === "removed") {
+      $("#" + change.doc.id).remove();
     }
   });
 });
@@ -125,6 +153,7 @@ $("#filter").click(function () {
         let date = change.doc.data().date;
         let detail = change.doc.data().details;
         let card = document.createElement("div");
+        card.setAttribute("id", post);
         card.setAttribute("class", "card bg-light text-black mx-3 my-2");
         let box = document.createElement("div");
         box.setAttribute("class", "card-body");
@@ -144,6 +173,11 @@ $("#filter").click(function () {
         p5.innerHTML = date;
 
         box.appendChild(p5);
+        let btnbox = $("<div></div>");
+        btnbox.css({
+          "display":"flex",
+          "justify-content":"space-between"
+        })
         let btn = document.createElement("button");
         btn.innerHTML = "Message";
         btn.onclick = function () {
@@ -208,14 +242,36 @@ $("#filter").click(function () {
             }
           });
         };
+        $(btnbox).append($(btn))
 
+        if (firebase.auth().currentUser.uid == change.doc.data().studentid){
+          let del = $("<button>Delete</button>")
+  
+          $(del).click(function(){
+            if (confirm("Are you sure you want to delete this post?")){
+            
+            
+              db.collection("posts").doc(change.doc.id).delete()
+  
+            }
+          })
+          $(btnbox).append($(del))
+        }
+  
+  
+  
+  
+        $(box).append($(btnbox))
         if ((filtersubject == subject) | (filtersubject == "All")) {
-          box.appendChild(btn);
+
           card.appendChild(box);
           if (!document.getElementById(post)){
           $("#posts-dat").prepend(card);
           }
         }
+      }
+      if (change.type === "removed") {
+        $("#" + change.doc.id).remove();
       }
     });
   });

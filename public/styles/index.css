@@ -22,7 +22,8 @@ nav > a, li > a{
 
 
 h1, h3, h4, a {
-    font-family: "Raleway Black";
+    font-family: "Raleway";
+    font-weight: 500;
 }
 
 h5 {

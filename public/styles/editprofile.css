@@ -11,7 +11,8 @@ h1, h2, h3, h4, h5 {
     padding-top: 10px;
     color: #283b42;
     text-align: center;
-    font-family: "Raleway Black";
+    font-family: "Raleway";
+    font-weight: 600;
 }
 
 h5 {

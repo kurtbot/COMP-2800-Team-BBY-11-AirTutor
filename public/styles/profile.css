@@ -31,22 +31,19 @@ h1, h2, h3, h4, h5 {
     color: #283b42;
 }
 
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: grey;
-    color: white;
-    text-align: center;
+#bio-container {
+    margin-bottom:35px;
 }
 
-@media (max-width:720px) {
+@media (max-width:800px) {
     #image {
         margin: auto;
     }
     #profile {
         margin-top: 10px;
+        text-align: center;
+    }
+    #bio-container {
         text-align: center;
     }
 }

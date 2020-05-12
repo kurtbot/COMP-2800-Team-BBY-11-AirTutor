@@ -119,6 +119,10 @@ postsOrder.orderBy("time").onSnapshot(function (snapshot) {
           }
         })
         $(btnbox).append($(del))
+        $(btn).css({
+          "visibility":"hidden"
+        })
+
       }
 
 
@@ -256,6 +260,10 @@ $("#filter").click(function () {
             }
           })
           $(btnbox).append($(del))
+          $(btn).css({
+            "visibility":"hidden"
+          })
+
         }
   
   

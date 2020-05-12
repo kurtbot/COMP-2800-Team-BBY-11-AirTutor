@@ -1,0 +1,19 @@
+/* @media (min-width: 550){
+    .container{
+            border: #EEEEEE solid 1px;
+            padding: 5px 
+    }
+    .inner{
+        display: inline
+    }
+}
+
+
+
+@media (max-width: 550){
+.del{
+    position: absolute;
+    right: 20px
+}
+}
+ */

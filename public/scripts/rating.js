@@ -38,10 +38,25 @@ function submitYesReview() {
  */
 function submitNoReview() {
     let promise = new Promise((res, rej)=>{
-        db.collection("sessionrooms").doc(localStorage.getItem("session")).delete()
-        db.collection("schedules").doc(localStorage.getItem("schedule")).delete()
-        res("success")
+
+
+        db.collection("sessionrooms").doc(localStorage.getItem("session")).delete().then(function(){
+            db.collection("schedules").doc(localStorage.getItem("schedule")).delete().then(function() {
+                db.collection("chatrooms/").get().then(function (snap) {
+                    snap.forEach(function (doc) {
+                        if (doc.data().requestid == localStorage.getItem("request")){
+                            db.collection("chatrooms").doc(doc.id).delete()
+                        }
+                    })
+                }).then(function(){              
+                    res("success")})
+
+            })
+          })
+        // db.collection("sessionrooms").doc(localStorage.getItem("session")).delete()
+        // db.collection("schedules").doc(localStorage.getItem("schedule")).delete()
         console.log("step 1")
+
     }
     )
 
@@ -72,6 +87,13 @@ function reviewSubmit() {
         db.collection("posts").doc(request).delete()
         db.collection("sessionrooms").doc(localStorage.getItem("session")).delete()
         db.collection("schedules").doc(localStorage.getItem("schedule")).delete()
+        db.collection("chatrooms/").get().then(function (snap) {
+            snap.forEach(function (doc) {
+                if (doc.data().requestid == localStorage.getItem("request")){
+                    db.collection("chatrooms").doc(doc.id).delete()
+                }
+            })
+        })
         
     })
 

@@ -7,7 +7,12 @@ $("#plane").click(function () {
   count++;
   if (count >= 5) {
     if (!isBar) {
-      let bar = $("<span>| </span>");
+      let bar = $("<img></img>");
+      $(bar).attr("src", "./src/favicon.png")
+      $(bar).css({
+        "width":"30px",
+        "margin":"0px 10px"
+      })
       $("#about").before($(bar));
       isBar = true;
     }

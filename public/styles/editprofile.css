@@ -81,3 +81,10 @@ input, textarea, label, select {
     position:absolute;
     display:none;
 }
+
+#preview {
+    display:block;
+    margin:auto;
+    width: 160px;
+    height: 200px;
+}

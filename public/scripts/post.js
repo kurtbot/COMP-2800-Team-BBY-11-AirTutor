@@ -270,7 +270,7 @@ $("#filter").click(function () {
   
   
         $(box).append($(btnbox))
-        if ((filtersubject == subject) | (filtersubject == "All")) {
+        if ((filtersubject == subject) || (filtersubject == "All"  ||  (filtersubject == "My Posts" && firebase.auth().currentUser.uid == change.doc.data().studentid))) {
 
           card.appendChild(box);
           if (!document.getElementById(post)){

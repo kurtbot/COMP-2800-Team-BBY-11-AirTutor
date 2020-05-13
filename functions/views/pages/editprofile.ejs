@@ -27,7 +27,7 @@
     </header>
 
     <aside>
-        <div class="nav flex-column nav-pills" id="legend" role="tablist" aria-orientation="vertical">
+        <div class="nav flex-column nav-pills mx-4" id="legend" role="tablist" aria-orientation="vertical">
             <a class="nav-link active" id="general-button" href="" data-toggle="pill" role="tab"
                 aria-controls="v-pills-home" aria-selected="true">General</a>
             <a class="nav-link" id="student-button" data-toggle="pill" href="" role="tab"
@@ -70,16 +70,19 @@
 
             <div id="pro-pic">
                 <h4>Choose a new profile picture</h4>
-                <form>
-                    <div class="custom-file">
+                <p class="text-center my-0">This will be see in your profile page</p>
+                <p class="text-center my-0"><i>Limitations: jpg, png and gif only. Under 1MB</i></p>
+                <img src="" id="preview">
+                <form class = "my-5">
+                    <div  class="custom-file my-5">
                       <input type="file" class="custom-file-input" id="customFile">
                       <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                   </form>
             </div>
-            <!-- <input class="btn btn-danger my-5" type="reset"> -->
 
-            <input id="submit-button" class="btn btn-primary my-5" type="submit">
+            <button id="submit-button" class="btn btn-primary my-5 mx-2">Update Profile</button>
+            <button id="return-button" class="btn btn-success my-5 mx-4">Go to Profile</button>
         </div>
     </main>
 

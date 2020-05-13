@@ -1,5 +1,7 @@
+const mb = 1048576;
 //array storing uploaded file
 let file = [];
+let changed = true;
 
 $(document).ready(function () {
     $("#general-button").click(generalTab);
@@ -8,10 +10,28 @@ $(document).ready(function () {
     $("#picture-button").click(pictureTab)
     $("#submit-button").click(submit);
     $("#customFile").on("change", function(e){
-        file = e.target.files;
+
+        const uploaded = this.files[0];
+        const fileType = uploaded['type'];
+        const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+
+
+            if ($.inArray(fileType, validImageTypes) < 0) {
+                alert("Not a valid filetype. Use gif, jpeg or png");
+                changed = false;
+            } else {
+                if(uploaded.size <= mb ) {
+                    file = e.target.files;
+                    console.log(file);
+                    changed = true;
+                } else {
+                    alert("Please choose a file that is smaller than 1 MB");
+                    changed = false;
+                }
+            }
     })
+
     $(".custom-file-input").on("change", displayFile);
-    
 })
 /**
  * Switch to general tab
@@ -66,9 +86,7 @@ function submit() {
 function write() {
     firebase.auth().onAuthStateChanged(function (user) {
         let dbref = db.collection("users/").doc(user.uid);
-        dbref.set(checkField(), { merge: true }).then(function () {
-            window.location.href = "/profile";
-        })
+        dbref.set(checkField(), { merge: true })
     })
 }
 /**
@@ -110,8 +128,11 @@ function checkField() {
  * Displays file name
  */
 function displayFile() {
-    let fileName = $(this).val().split("\\").pop();
-    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    if (changed) {
+        let fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    }
+
 }
 
 async function uploadImage() {

@@ -40,6 +40,7 @@ input, textarea, label, select {
     display:none;
 }
 
+
 @media only screen and (max-width: 600px) {
     .forms {
         width: 100%;
@@ -74,4 +75,16 @@ input, textarea, label, select {
         grid-area:forms;
     }
 
+}
+
+#success{
+    position:absolute;
+    display:none;
+}
+
+#preview {
+    display:block;
+    margin:auto;
+    width: 160px;
+    height: 200px;
 }

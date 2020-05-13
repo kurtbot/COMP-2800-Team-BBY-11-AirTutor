@@ -15,7 +15,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="./styles/base.css">
-    <link rel="stylesheet" href="./styles/messaging.css">
+    <link rel="stylesheet" href="./styles/livechat.css">
     <link rel="stylesheet" href="./styles/footer.css">
 
     <!-- Icons -->
@@ -25,12 +25,15 @@
 <body>
     <!--Nav Bar -->
 
-    <%- include("../partials/navbar.ejs") %>
+
 
     <!-- Main Content -->
 
     <main>
-        <h2 class="text-center">Live Chat</h2>
+        <header>
+        <%- include("../partials/navbar.ejs") %>
+        <h2 class="text-center" id = "who">Live Chat</h2>
+    </header>
 
         <div class="messaging-box">
             <div class="chat-window">

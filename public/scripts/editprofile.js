@@ -10,7 +10,6 @@ $(document).ready(function () {
     $("#customFile").on("change", function(e){
         file = e.target.files;
     })
-    $("#check").click(checker);
     $(".custom-file-input").on("change", displayFile);
     
 })
@@ -54,7 +53,11 @@ function pictureTab() {
  * Submission button, leads to profile page
  */
 function submit() {
-    write();
+    uploadImage()
+    .then(function(){
+        write();
+    })
+
 
 }
 /**
@@ -103,10 +106,6 @@ function checkField() {
     return changes;
 }
 
-function checker() {
-    console.log(file);
-    uploadImage();
-}
 /**
  * Displays file name
  */
@@ -115,13 +114,14 @@ function displayFile() {
     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 }
 
-function uploadImage() {
+async function uploadImage() {
     if(file.length !=0) {
         let filePath = firebase.auth().currentUser.uid + '/' + 'profilepic';
         firebase.storage().ref(filePath).put(file[0])
         .then(function (fileSnapshot) {
             fileSnapshot.ref.getDownloadURL().then((url) => {
                 db.collection('users/').doc(firebase.auth().currentUser.uid).set({
+
                     profilePic: url
                 },{merge:true})
             })

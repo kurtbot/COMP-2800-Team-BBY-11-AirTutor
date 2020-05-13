@@ -15,7 +15,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="./styles/base.css">
-    <link rel="stylesheet" href="./styles/messaging.css">
+    <link rel="stylesheet" href="./styles/livechat.css">
     <link rel="stylesheet" href="./styles/footer.css">
 
     <!-- Icons -->
@@ -23,36 +23,28 @@
 </head>
 
 <body>
+    <!--Nav Bar -->
+
 
 
     <!-- Main Content -->
 
-    <div>
-        <div id="topbox">
-            <header>
-                    <!--Nav Bar -->
+    <main>
+        <header>
+        <%- include("../partials/navbar.ejs") %>
+        <h2 class="text-center" id = "who">Live Chat</h2>
+    </header>
 
-    <%- include("../partials/navbar.ejs") %>
-    <div id="sub">
-        <div id="namepic"  class="text-center"><h2 id="who"></h2>
-        <img src="./src/profile.png" id="profile">
-        </div>
-        <h4 id="what" class="text-center"></h4>
-        <button class="schedule-btn" onclick="window.location.href = '/schedule';">Schedule a Session</button>
-    </div>
-        </header>
         <div class="messaging-box">
             <div class="chat-window">
                 <div class="chat-log"></div>
             </div>
-
+            <div class="chat-inputs">
+                <input class="chat-input" type="text" placeholder="Enter Message">
+                <input class="send-btn" type="button" value="Send">
+            </div>
         </div>
-    </div>
-        <div class="chat-inputs">
-            <input class="chat-input" type="text" placeholder="Enter Message">
-            <input class="send-btn" type="button" value="Send">
-        </div>
-    </div>
+    </main>
     <!--Footer-->
     <!-- <%- include("../partials/footer.ejs") %> -->
     <!-- Firebase javascripts -->
@@ -73,7 +65,7 @@
         crossorigin="anonymous"></script>
             <!-- Optional JavaScript -->
     <script src="scripts/navbar.js"></script>
-    <script src="scripts/messaging.js"></script>
+    <script src="scripts/livechat.js"></script>
 </body>
 
 </html>

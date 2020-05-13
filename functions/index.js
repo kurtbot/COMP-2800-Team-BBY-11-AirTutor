@@ -40,6 +40,9 @@ app.get("/messages", (req, res) => {
 app.get("/messaging", (req, res) => {
     res.render("pages/messaging");
 })
+app.get("/livechat", (req, res) => {
+    res.render("pages/livechat")
+})
 app.get("/myschedule", (req, res) => {
     res.render("pages/myschedule", {page:"myschedule"});
 })

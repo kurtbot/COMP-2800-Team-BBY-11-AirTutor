@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+nav {
+    font-family: "Raleway";
+}
+
+body {
+    font-family: "Roboto";
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+h1, h2, h3, h4, h5 {
+    padding-top: 10px;
+    color: #283b42;
+    text-align: center;
+    font-family: "Raleway";
+    font-weight: 500;
+}
+
+/* 
+@media only screen and (max-width: 767px){
+    html { 
+        overflow-y: scroll; 
+      }
+    
+} */
+/* chat box */
+.messaging-box {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.chat-window{
+    padding: 0px 10px
+}
+
+
+.chat-inputs {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    display: flex;
+    align-items: stretch;
+    padding: 0.5rem;
+    background-color: var(--bg-primary-light);
+}
+
+.send-btn {
+    flex-grow: 1;
+    border: none;
+    background-color: var(--bg-secondary-light);
+    font-size: 1.5rem;
+    color: var(--text-primary-light);
+}
+
+.chat-input {
+    font-size: 1.5rem;
+    flex-grow: 2;
+    border-radius: 0.2rem;
+    border-style: solid;
+    border: none;
+    padding: 0.5rem;
+    min-width: 200px
+}
+
+/* scheduler button */
+
+#who{
+    color: var(--text-primary-light);
+    background-color: white;
+}
+
+.chat-log{
+    margin-bottom: 70px
+}
+
+header{
+    position: sticky;
+    top: 0
+}

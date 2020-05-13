@@ -7,8 +7,8 @@ nav {
 
 body {
     font-family: "Roboto";
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 h1, h2, h3, h4, h5 {
@@ -19,27 +19,27 @@ h1, h2, h3, h4, h5 {
     font-weight: 500;
 }
 
-
+/* 
 @media only screen and (max-width: 767px){
     html { 
         overflow-y: scroll; 
       }
     
-}
+} */
 /* chat box */
-.messaging-box {
+/* .messaging-box {
     margin-top: auto;
     display: flex;
     flex-direction: column;
-}
+} */
 
 
 
 /* chat log */
 
-@media only screen and (min-height: 870px) {
+/* @media only screen and (min-height: 870px) {
     .chat-window {
-        /* width: 100vw;*/
+        
         height: 70vh;
         overflow-y: scroll;
         overflow-wrap: break-word;
@@ -48,7 +48,7 @@ h1, h2, h3, h4, h5 {
 
 @media only screen and (min-height: 670px) and (max-height: 870px) {
     .chat-window {
-        /* width: 100vw;*/
+        
         height: 60vh;
         overflow-y: scroll;
         overflow-wrap: break-word;
@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5 {
 
 @media only screen and (min-height: 540px) and (max-height: 670px) {
     .chat-window {
-        /* width: 100vw;*/
+        
         height: 50vh;
         overflow-y: scroll;
         overflow-wrap: break-word;
@@ -66,7 +66,7 @@ h1, h2, h3, h4, h5 {
 
 @media only screen and (min-height: 440px) and (max-height: 540px) {
     .chat-window {
-        /* width: 100vw;*/
+        
         height: 40vh;
         overflow-y: scroll;
         overflow-wrap: break-word;
@@ -75,7 +75,7 @@ h1, h2, h3, h4, h5 {
 
 @media only screen and (min-height: 360px) and (max-height: 440px) {
     .chat-window {
-        /* width: 100vw;*/
+        
         height: 25vh;
         overflow-y: scroll;
         overflow-wrap: break-word;
@@ -84,14 +84,14 @@ h1, h2, h3, h4, h5 {
 
 @media only screen and (max-height: 360px) {
     .chat-window {
-        /* width: 100vw;*/
+        
         height: 10vh;
         overflow-y: scroll;
         overflow-wrap: break-word;
     }
-}
+} */
 
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
     width: 0.25rem;
 }
 
@@ -101,11 +101,29 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
     background: #6649b8;
-}
+} */
 
 /* chat log outputs */
 
 /* chat inputs */
+
+header{
+    position: sticky;
+    top: 0
+}
+
+#sub{
+    background-color: white;
+}
+
+.chat-log{
+    margin-bottom: 70px
+}
+
+.chat-window{
+    padding: 0px 10px
+}
+
 
 .chat-inputs {
     position: fixed;
@@ -132,6 +150,7 @@ body::-webkit-scrollbar-thumb {
     border-style: solid;
     border: none;
     padding: 0.5rem;
+    min-width: 200px
 }
 
 /* scheduler button */

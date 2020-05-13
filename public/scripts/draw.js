@@ -92,6 +92,8 @@ const touchStart = evt => {
         return;
     }
     evt.preventDefault();
+    console.log('hello');
+    
     startStroke(getTouchPoint(evt));
 };
 

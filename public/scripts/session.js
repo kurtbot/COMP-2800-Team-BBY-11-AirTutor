@@ -7,8 +7,6 @@ peer.on('open', function (id) {
     tutorTest();
 });
 
-document.getElementById("go-rating").onclick = gotoNext;
-
 
 function queryResult() {
     let queryString = decodeURIComponent(window.location.search);
@@ -18,7 +16,6 @@ function queryResult() {
 }
 let tutor;
 let student;
-
 
 
 function gotoNext() {
@@ -52,6 +49,13 @@ function checkIfTutor() {
     })
     return isTutor;
 }
+
+
+// Call Function from here
+
+var mediaStream;
+
+
 function tutorTest() {
     db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
         isTutor = (firebase.auth().currentUser.uid == doc.data().tutorid);
@@ -74,7 +78,12 @@ function tutorTest() {
         if (firebase.auth().currentUser.uid == doc.data().tutorid) {
             if (doc.data().studentCallId !== '') {
                 navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
+                    mediaStream = stream;
                     var call = peer.call(doc.data().studentCallId, stream);
+                    console.log(stream)
+                    console.log(stream.getAudioTracks());
+                    console.log(stream.getVideoTracks());
+                    
                     call.on('stream', function (remoteStream) {
                         var audio = document.querySelector('audio');
                         audio.srcObject = remoteStream;
@@ -90,7 +99,11 @@ function tutorTest() {
         } else {
             if (doc.data().tutorCallId !== '') {
                 navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
+                    mediaStream = stream;
                     var call = peer.call(doc.data().tutorCallID, stream);
+                    console.log(stream)
+                    console.log(stream.getAudioTracks());
+                    console.log(stream.getVideoTracks());
                     call.on('stream', function (remoteStream) {
                         var audio = document.querySelector('audio');
                         audio.srcObject = remoteStream;
@@ -110,6 +123,8 @@ function tutorTest() {
 // answer call
 peer.on('call', function (mediaConnection) {
     navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
+        mediaStream = stream;
+        console.log(stream)
         mediaConnection.answer(stream); // Answer the call with an A/V stream.
         mediaConnection.on('stream', function (remoteStream) {
             var audio = document.querySelector('audio');
@@ -133,3 +148,50 @@ peer.on('call', function (mediaConnection) {
 //     //     conn.send('hi!');
 //     // });
 // })
+
+// Media Stream Elements
+const canvasDom = document.querySelector('canvas');
+const audioDom = document.querySelector('audio');
+const videoDom = document.querySelector('video');
+
+
+// Buttons
+const screenShareBtn = document.querySelector('#screen-share-btn');
+const canvasBrushBtn = document.querySelector('#canvas-brush-btn');
+const micMuteBtn = document.querySelector('#mic-mute-btn');
+const phoneCallBtn = document.querySelector('#phone-call-btn');
+
+screenShareBtn.addEventListener('click', function() {
+    // screen share code here
+})
+
+canvasBrushBtn.addEventListener('click', function() {
+    if(canvasDom.style.display == 'none') {
+        canvasDom.style.display = 'block';
+    }else {
+        canvasDom.style.display = 'none';
+    }
+})
+
+let muted = false;
+
+micMuteBtn.addEventListener('click', function() {
+    if(muted == false) {
+        micMuteBtn.style.backgroundColor = "rgb(187, 20, 20)";
+        muted = true;
+        mediaStream.getAudioTracks().map(function(t) {
+            t.enabled = false;
+        });
+    }else {
+        micMuteBtn.style.backgroundColor = "#262834";
+        muted = false;
+        mediaStream.getAudioTracks().map(function(t) {
+            t.enabled = true;
+        });
+    }
+})
+
+phoneCallBtn.addEventListener('click', gotoNext)
+
+
+console.log('loaded event listeners');

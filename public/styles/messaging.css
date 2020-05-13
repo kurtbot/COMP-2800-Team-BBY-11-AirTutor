@@ -156,8 +156,7 @@ header{
 /* scheduler button */
 
 .schedule-btn {
-    width: 95vw;
-    margin: 0.5rem 2.5vw 0 2.5vw;
+    margin: 10px 0;
     border-radius: 0.5rem;
     border: none;
     background-color: var(--bg-secondary-light);

@@ -6,8 +6,8 @@ nav {
 
 body {
     font-family: "Roboto";
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 h1, h2, h3, h4, h5 {
@@ -18,13 +18,13 @@ h1, h2, h3, h4, h5 {
     font-weight: 500;
 }
 
-
+/* 
 @media only screen and (max-width: 767px){
     html { 
         overflow-y: scroll; 
       }
     
-}
+} */
 /* chat box */
 .messaging-box {
     margin-top: auto;
@@ -90,7 +90,7 @@ h1, h2, h3, h4, h5 {
     }
 }
 
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
     width: 0.25rem;
 }
 
@@ -100,11 +100,17 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
     background: #6649b8;
-}
+} */
 
 /* chat log outputs */
 
 /* chat inputs */
+
+
+.chat-window{
+    padding: 0px 10px
+}
+
 
 .chat-inputs {
     position: fixed;
@@ -131,6 +137,7 @@ body::-webkit-scrollbar-thumb {
     border-style: solid;
     border: none;
     padding: 0.5rem;
+    min-width: 200px
 }
 
 /* scheduler button */

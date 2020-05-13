@@ -76,3 +76,8 @@ input, textarea, label, select {
     }
 
 }
+
+#success{
+    position:absolute;
+    display:none;
+}

@@ -9,6 +9,7 @@ $(document).ready(function () {
     $("#tutor-button").click(tutorTab);
     $("#picture-button").click(pictureTab)
     $("#submit-button").click(submit);
+    $("#return-button").click(returnHome);
     $("#customFile").on("change", function(e){
 
         const uploaded = this.files[0];
@@ -32,6 +33,10 @@ $(document).ready(function () {
     })
 
     $(".custom-file-input").on("change", displayFile);
+
+    $(window).bind('beforeunload', function(){
+        return ' Are you sure you want to leave?'
+    })
 })
 /**
  * Switch to general tab
@@ -76,8 +81,9 @@ function submit() {
     uploadImage()
     .then(function(){
         write();
-    })
+        $("#success").fadeIn('slow').delay(3000).fadeOut('slow');
 
+    })
 
 }
 /**
@@ -94,31 +100,45 @@ function write() {
  */
 function checkField() {
     let changes = {};
-    if ($("#bioField").val() != undefined && $("#bioField").val() != null && $("#bioField").val().trim() != "") {
+    if ($("#bioField").val() != undefined 
+        && $("#bioField").val() != null 
+        && $("#bioField").val().trim() != "") {
         changes['bio'] = $("#bioField").val();
     }
 
-    if ($("#countryField").val() != undefined && $("#countryField").val() != null && $("#countryField").val().trim() != "") {
+    if ($("#countryField").val() != undefined 
+    && $("#countryField").val() != null 
+    && $("#countryField").val().trim() != "") {
         changes['country'] = $("#countryField").val();
     }
 
-    if ($("#languageField").val() != undefined && $("#languageField").val() != null && $("#languageField").val().trim() != "") {
+    if ($("#languageField").val() != undefined 
+        && $("#languageField").val() != null 
+        && $("#languageField").val().trim() != "") {
         changes['language'] = $("#languageField").val();
     }
 
-    if ($("#educationField").val() != undefined && $("#educationField").val() != null && $("#educationField").val().trim() != "") {
+    if ($("#educationField").val() != undefined 
+        && $("#educationField").val() != null 
+        && $("#educationField").val().trim() != "") {
         changes['education'] = $("#educationField").val();
     }
 
-    if ($("#gradeField").val() != undefined && $("#gradeField").val() != null && $("#gradeField").val().trim() != "") {
+    if ($("#gradeField").val() != undefined 
+        && $("#gradeField").val() != null 
+        && $("#gradeField").val().trim() != "") {
         changes['grade'] = $("#gradeField").val();
     }
 
-    if ($("#educationCompField").val() != undefined && $("#educationCompField").val() != null && $("#educationCompField").val().trim() != "") {
+    if ($("#educationCompField").val() != undefined 
+    && $("#educationCompField").val() != null 
+    && $("#educationCompField").val().trim() != "") {
         changes['educationcompleted'] = $("#educationCompField").val();
     }
 
-    if ($("#subjectField").val() != undefined && $("#subjectField").val() != null && $("#subjectField").val().trim() != "") {
+    if ($("#subjectField").val() != undefined 
+        && $("#subjectField").val() != null 
+        && $("#subjectField").val().trim() != "") {
         changes['subject'] = $("#subjectField").val();
     }
     return changes;
@@ -148,4 +168,8 @@ async function uploadImage() {
             })
         })
     }
+}
+
+function returnHome() {
+    window.location.href= "/profile"
 }

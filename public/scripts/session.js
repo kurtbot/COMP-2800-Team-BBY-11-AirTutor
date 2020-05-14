@@ -172,11 +172,11 @@ function call(peerID) {
             }
             console.log(remoteStream);
             
-            videoDom.srcObject = remoteStream;
-            videoDom.onloadedmetadata = function (e) {
-                console.log('now playing the videooooo');
-                videoDom.play();
-            }
+            // videoDom.srcObject = remoteStream;
+            // videoDom.onloadedmetadata = function (e) {
+            //     console.log('now playing the videooooo');
+            //     videoDom.play();
+            // }
 
         });
     }).catch(function (err) {
@@ -203,11 +203,11 @@ peer.on('call', function (mediaConnection) {
                 console.log('now playing the audio');
                 audio.play();
             }
-            videoDom.srcObject = remoteStream;
-            videoDom.onloadedmetadata = function (e) {
-                console.log('now playing the videooooo');
-                videoDom.play();
-            }
+            // videoDom.srcObject = remoteStream;
+            // videoDom.onloadedmetadata = function (e) {
+            //     console.log('now playing the videooooo');
+            //     videoDom.play();
+            // }
         });
     }).catch(function (err) {
         console.log('Failed to get local stream', err);
@@ -241,11 +241,16 @@ const micMuteBtn = document.querySelector('#mic-mute-btn');
 const phoneCallBtn = document.querySelector('#phone-call-btn');
 
 screenShareBtn.addEventListener('click', function () {
-    if (videoDom.style.display == 'none') {
-        videoDom.style.display = 'block';
-    } else {
-        videoDom.style.display = 'none';
-    }
+    // if (videoDom.style.display == 'none') {
+    //     videoDom.style.display = 'block';
+    // } else {
+    //     videoDom.style.display = 'none';
+    // }
+
+    // let imageDat = context.getImageData(0, 0, canvasDom.width, canvasDom.height);
+    // db.collection("sessionrooms/").doc(queryResult()).update({
+    //     canvasData: points
+    // })
 })
 
 canvasBrushBtn.addEventListener('click', function () {

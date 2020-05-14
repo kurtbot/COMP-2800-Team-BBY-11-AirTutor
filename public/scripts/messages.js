@@ -61,8 +61,15 @@
                 $(del).click(function(){
                   if (confirm("Are you sure you want to delete this chat and all its history? (It will be deleted for the other user too)")){
                   
-                  
+                    db.collection("chatrooms").doc(change.doc.id).collection("messages")
+                    .get().then(function(snap){
+                        snap.forEach(function(docc){
+                            db.collection("chatrooms").doc(change.doc.id).collection("messages").doc(docc.id).delete()
+                        })
+
+                    })
                     db.collection("chatrooms").doc(change.doc.id).delete()
+
         
                   }
                 })

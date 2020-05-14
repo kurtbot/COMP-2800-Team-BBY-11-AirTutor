@@ -39,7 +39,7 @@ video {
 /* Canvas */
 
 canvas {
-    /* background-color: aliceblue; */
+    background-color: aliceblue;
     margin: 0;
     padding: 0;
     /* display: none; */

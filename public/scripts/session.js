@@ -112,6 +112,8 @@ function createRoomSnapshot() {
 
         if (firebase.auth().currentUser.uid == doc.data().tutorid) {
 
+            console.log('Im a tutor');
+            
             // if student's peer id changes
             if (doc.data().studentCallId !== '') {
 
@@ -129,6 +131,8 @@ function createRoomSnapshot() {
         }
         // else if the user is a student
         else {
+
+            console.log('Im a student');
 
             // if the tutor's peer id changes
             if (doc.data().tutorCallId !== '') {
@@ -160,10 +164,13 @@ function call(peerID) {
         call.on('stream', function (remoteStream) {
             var audio = document.querySelector('audio');
             audio.srcObject = remoteStream;
+            audio.volume = 0.5;
             audio.onloadedmetadata = function (e) {
                 console.log('now playing the audio');
                 audio.play();
             }
+            console.log(remoteStream);
+            
             videoDom.srcObject = remoteStream;
             videoDom.onloadedmetadata = function (e) {
                 console.log('now playing the videooooo');
@@ -190,6 +197,7 @@ peer.on('call', function (mediaConnection) {
         mediaConnection.on('stream', function (remoteStream) {
             var audio = document.querySelector('audio');
             audio.srcObject = remoteStream;
+            audio.volume = 0.5;
             audio.onloadedmetadata = function (e) {
                 console.log('now playing the audio');
                 audio.play();
@@ -214,11 +222,11 @@ peer.on('connection', function (conn) {
 
         if (data['stream']) {
             console.log('checking data stream');
-            videoDom.srcObject = data['stream'];
-            videoDom.onloadedmetadata = function (e) {
-                console.log('now playing the video');
-                videoDom.play();
-            }
+            // videoDom.srcObject = data['stream'];
+            // videoDom.onloadedmetadata = function (e) {
+            //     console.log('now playing the video');
+            //     videoDom.play();
+            // }
         }
     })
 

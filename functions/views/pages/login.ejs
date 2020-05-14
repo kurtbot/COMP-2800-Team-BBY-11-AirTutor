@@ -16,7 +16,7 @@
 </head>
 
 <body>
-  <!-- <div>
+  <div>
     <h3> Log in</h3>
     <div class="form-group">
       <label for=""></label>
@@ -31,7 +31,7 @@
       <small id="emailHelpId" class="form-text text-muted">Password</small>
     </div>
     <button type="submit" onclick="login()">Login</button>
-  </div> -->
+  </div>
 
   <!-- The surrounding HTML is left untouched by FirebaseUI.
      Your app may use that space for branding, controls and other customizations.-->
@@ -60,7 +60,7 @@
   <!-- Optional JavaScript -->
   <script src="./scripts/login.js"></script>
 
-  <script>
+  <!-- <script>
     // Initialize the FirebaseUI Widget using Firebase.
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     ui.start('#firebaseui-auth-container', {
@@ -91,7 +91,7 @@
       ui.start('#firebaseui-auth-container', uiConfig);
     }
     // This can also be done via:
-    if ((firebase.auth().isSignInWithEmailLink(window.location.href)) {
+    if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
       ui.start('#firebaseui-auth-container', uiConfig);
     }
     ui.start('#firebaseui-auth-container', {
@@ -132,7 +132,7 @@
         }
       ]
     });
-  </script>
+  </script> -->
 </body>
 
 </html>

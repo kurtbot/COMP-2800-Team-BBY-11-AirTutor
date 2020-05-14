@@ -13,7 +13,14 @@ postsOrder.orderBy("time").onSnapshot(function (snapshot) {
       let detail = change.doc.data().details;
       let card = document.createElement("div");
       card.setAttribute("id", post);
-      card.setAttribute("class", "card bg-light text-black mx-3 my-2");
+      // card.setAttribute("class", "card bg-light text-black mx-3 my-2");
+      card.setAttribute("class", "card mx-3 my-2")
+      $(card).css({
+        "background-color":"rgb(154, 219, 250)",
+        "color":"rgb(40, 59, 66)",
+        "border":"5px ridge rgb(108, 202, 247)",
+        "font-weight":"bold"
+      })
       let box = document.createElement("div");
       box.setAttribute("class", "card-body");
       let p1 = document.createElement("h4");
@@ -144,7 +151,13 @@ $("#filter").click(function () {
         let detail = change.doc.data().details;
         let card = document.createElement("div");
         card.setAttribute("id", post);
-        card.setAttribute("class", "card bg-light text-black mx-3 my-2");
+        card.setAttribute("class", "card mx-3 my-2")
+        $(card).css({
+          "background-color":"rgb(154, 219, 250)",
+          "color":"rgb(40, 59, 66)",
+          "border":"5px ridge rgb(108, 202, 247)",
+          "font-weight":"bold"
+        })
         let box = document.createElement("div");
         box.setAttribute("class", "card-body");
         let p1 = document.createElement("h4");

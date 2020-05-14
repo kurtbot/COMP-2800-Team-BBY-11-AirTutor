@@ -10,7 +10,14 @@
           box.setAttribute("id", change.doc.id)
           console.log(change.doc.id)
           console.log(box.id)
-          box.setAttribute("class", "card bg-light text-black mx-3 my-2");
+          box.setAttribute("class", "card mx-3 my-2")
+          $(box).css({
+            "background-color":"rgb(154, 219, 250)",
+            "color":"rgb(40, 59, 66)",
+            "border":"5px ridge rgb(108, 202, 247)",
+            "padding":"15px",
+            "font-weight":"bold"
+          })
           let date = document.createElement("p");
           date.innerHTML = "Date: " + change.doc.data().date;
           box.appendChild(date);

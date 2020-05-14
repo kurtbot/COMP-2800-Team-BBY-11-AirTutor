@@ -29,24 +29,25 @@ function queryResult() {
 let tutor;
 let student;
 
+db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
+    credit = doc.data().credit;
+    tutor = doc.data().tutorid;
+    student = doc.data().studentid;
+    localStorage.setItem("creditxfer", credit);
+    localStorage.setItem("request", doc.data().requestid)
+    localStorage.setItem("session", doc.id)
+    localStorage.setItem("schedule", doc.data().scheduleid)
+})
+
 function gotoNext() {
     firebase.auth().onAuthStateChanged(function (user) {
-        db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
-            credit = doc.data().credit;
-            tutor = doc.data().tutorid;
-            student = doc.data().studentid;
-            localStorage.setItem("creditxfer", credit);
-            localStorage.setItem("request", doc.data().requestid)
-            localStorage.setItem("session", doc.id)
-            localStorage.setItem("schedule", doc.data().scheduleid)
-        }).then(function () {
             if (user.uid == tutor) {
                 window.location.href = "/home"
             } else {
                 window.location.href = "/rating" + "?" + tutor;
 
             }
-        })
+        
     })
 }
 

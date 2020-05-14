@@ -16,7 +16,7 @@
 </head>
 
 <body>
-  <!-- <div>
+  <div>
     <h3> Log in</h3>
     <div class="form-group">
       <label for=""></label>
@@ -31,7 +31,7 @@
       <small id="emailHelpId" class="form-text text-muted">Password</small>
     </div>
     <button type="submit" onclick="login()">Login</button>
-  </div> -->
+  </div>
 
   <!-- The surrounding HTML is left untouched by FirebaseUI.
      Your app may use that space for branding, controls and other customizations.-->
@@ -46,7 +46,6 @@
   <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
   <script src="scripts/firebase.js"></script>
 
-
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -57,26 +56,52 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+
   <!-- Optional JavaScript -->
   <script src="./scripts/login.js"></script>
 
   <script>
     // Initialize the FirebaseUI Widget using Firebase.
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+    var uiConfig = {
+      callbacks: {
+        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+          // User successfully signed in.
+          // Return type determines whether we continue the redirect automatically
+          // or whether we leave that to developer to handle.
+          return true;
+        },
+        uiShown: function () {
+          // The widget is rendered.
+          // Hide the loader.
+          document.getElementById('loader').style.display = 'none';
+        }
+      },
+      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+      signInFlow: 'popup',
+      signInSuccessUrl: 'https://airtutormvp.web.app/',
+      signInOptions: [
+        // Leave the lines as is for the providers you want to offer your users.
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      ],
+      // Terms of service url.
+      tosUrl: '<your-tos-url>',
+      // Privacy policy url.
+      privacyPolicyUrl: '<your-privacy-policy-url>'
+    };
+
+    // The start method will wait until the DOM is loaded.
+    ui.start('#firebaseui-auth-container', uiConfig);
+
     ui.start('#firebaseui-auth-container', {
       signInOptions: [
         firebase.auth.EmailAuthProvider.PROVIDER_ID
       ],
       // Other config options...
     });
-    ui.start('#firebaseui-auth-container', {
-      signInOptions: [
-        {
-          provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          requireDisplayName: true
-        }
-      ]
-    });
+
     ui.start('#firebaseui-auth-container', {
       signInOptions: [
         {
@@ -86,14 +111,16 @@
       ],
       // Other config options...
     });
+
     // Is there an email link sign-in?
     if (ui.isPendingRedirect()) {
       ui.start('#firebaseui-auth-container', uiConfig);
     }
     // This can also be done via:
-    if ((firebase.auth().isSignInWithEmailLink(window.location.href)) {
+    if ((firebase.auth().isSignInWithEmailLink(window.location.href))) {
       ui.start('#firebaseui-auth-container', uiConfig);
     }
+
     ui.start('#firebaseui-auth-container', {
       signInOptions: [
         {
@@ -111,19 +138,19 @@
               // Additional state showPromo=1234 can be retrieved from URL on
               // sign-in completion in signInSuccess callback by checking
               // window.location.href.
-              url: 'https://www.example.com/completeSignIn?showPromo=1234',
+              url: 'https://airtutormvp.web.app/',
               // Custom FDL domain.
               dynamicLinkDomain: 'example.page.link',
               // Always true for email link sign-in.
               handleCodeInApp: true,
               // Whether to handle link in iOS app if installed.
               iOS: {
-                bundleId: 'com.example.ios' //not applicable
+                bundleId: 'com.example.ios'
               },
               // Whether to handle link in Android app if opened in an Android
               // device.
               android: {
-                packageName: 'com.example.android', //not applicable
+                packageName: 'com.example.android',
                 installApp: true,
                 minimumVersion: '12'
               }
@@ -132,6 +159,7 @@
         }
       ]
     });
+
   </script>
 </body>
 

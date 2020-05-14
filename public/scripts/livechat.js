@@ -57,12 +57,15 @@ function loadRecentMessages() {
                 promise.then(function(){
                     setTimeout(function(){
                         db.collection("livechat").doc(change.doc.id).delete()
-                    }, 5000)
+                    }, 1000)
 
                 })
                    
                 
                 window.scrollTo(0,document.body.scrollHeight);
+                }
+                else {
+                    db.collection("livechat").doc(change.doc.id).delete()
                 }
             }
 

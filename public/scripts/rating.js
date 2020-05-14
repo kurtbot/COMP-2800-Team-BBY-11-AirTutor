@@ -45,7 +45,14 @@ function submitNoReview() {
                 db.collection("chatrooms/").get().then(function (snap) {
                     snap.forEach(function (doc) {
                         if (doc.data().requestid == localStorage.getItem("request")){
-                            db.collection("chatrooms").doc(doc.id).delete()
+                            db.collection("chatrooms").doc(change.doc.id).collection("messages")
+                            .get().then(function(snap){
+                                snap.forEach(function(docc){
+                                    db.collection("chatrooms").doc(change.doc.id).collection("messages").doc(docc.id).delete()
+                                })
+        
+                            })
+                            db.collection("chatrooms").doc(change.doc.id).delete()
                         }
                     })
                 }).then(function(){              

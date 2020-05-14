@@ -1,5 +1,5 @@
 userInfo();
-
+loggedIn();
 
 
 function userInfo() {
@@ -22,4 +22,13 @@ function userInfo() {
 function signOut() {
     firebase.auth().signOut();
     window.location.href = ''
+}
+
+function loggedIn() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            $("#hideme").show();
+            $("#hideme").css('display', 'flex')
+        }
+    })
 }

@@ -45,3 +45,7 @@ h1, h2, h3, h4 {
     padding-left: 20px;
     padding-right: 20px;
 }
+
+#hideme {
+    display:none;
+}

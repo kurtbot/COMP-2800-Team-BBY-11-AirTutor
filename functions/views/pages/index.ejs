@@ -251,6 +251,7 @@
 
 
         @media (max-width: 1060px) {
+
             .description-column,
             #description,
             .description-img {
@@ -323,9 +324,9 @@
 <body>
     <div id="main-sidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">Sign in</a>
-        <a href="#">About</a>
-        <a href="#">FAQ</a>
+        <a href="/login">Sign in</a>
+        <a href="/aboutus">About</a>
+        <a href="/faq">FAQ</a>
     </div>
 
     <!-- Use any element to open the sidenav -->
@@ -351,7 +352,7 @@
                         this time of need.
                     </p><br>
 
-                    <a href="" class="signup-button">Create an account</a>
+                    <a href="/signup" class="signup-button">Create an account</a>
                 </div>
 
                 <div class="column" class="description-column">
@@ -443,32 +444,21 @@
 
         <div class="signup-content">
             <h1>Sign up for Air Tutor today.</h1>
-            <a href="" class="signup-button">Sign up for an account</a>
+            <a href="/signup" class="signup-button">Sign up for an account</a>
         </div>
     </div>
 
-    <script>
-        /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-        function openNav() {
-            document.getElementById("main-sidenav").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-        }
-
-        /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-        function closeNav() {
-            document.getElementById("main-sidenav").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-        }
-    </script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <!--Optional JS-->
+    <script src="scripts/index.js"></script>
 </body>

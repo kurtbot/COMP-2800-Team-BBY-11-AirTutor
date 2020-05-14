@@ -241,11 +241,16 @@ const micMuteBtn = document.querySelector('#mic-mute-btn');
 const phoneCallBtn = document.querySelector('#phone-call-btn');
 
 screenShareBtn.addEventListener('click', function () {
-    if (videoDom.style.display == 'none') {
-        videoDom.style.display = 'block';
-    } else {
-        videoDom.style.display = 'none';
-    }
+    // if (videoDom.style.display == 'none') {
+    //     videoDom.style.display = 'block';
+    // } else {
+    //     videoDom.style.display = 'none';
+    // }
+
+    // let imageDat = context.getImageData(0, 0, canvasDom.width, canvasDom.height);
+    // db.collection("sessionrooms/").doc(queryResult()).update({
+    //     canvasData: points
+    // })
 })
 
 canvasBrushBtn.addEventListener('click', function () {

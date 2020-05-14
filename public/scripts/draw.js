@@ -20,6 +20,29 @@ context.canvas.height = window.innerHeight;
 
 console.log('draw.js loaded');
 
+
+/**
+ * 
+ * 
+ * i
+ * {
+ *      old: {x: 0, y: 0},
+ *      new: {x: 0, y: 0}
+ * },
+ * i+1
+ * {
+ *      old: {x: 0, y: 0},
+ *      new: {x: 0, y: 0}
+ * },
+ * 
+ * 
+ * 
+ */
+
+
+var sessionRef = firebase.database().ref('sessionrooms/' + queryResult() + '/canvasData');
+let coordsJsonArr = []
+
 // Drawing functions
 
 const continueStroke = newPoint => {
@@ -31,8 +54,15 @@ const continueStroke = newPoint => {
     context.lineJoin = "round";
     context.lineTo(newPoint[0], newPoint[1]);
     context.stroke();
-
+    coordsJsonArr.push({
+        old: { x: latestPoint[0], y: latestPoint[1] },
+        new: { x: newPoint[0], y: newPoint[1] },
+    })
     latestPoint = newPoint;
+
+    firebase.database().ref('sessionrooms/' + queryResult() + '/canvasData').set({
+        canvasData: coordsJsonArr
+    });
 };
 
 // Event helpers
@@ -93,7 +123,7 @@ const touchStart = evt => {
     }
     evt.preventDefault();
     console.log('hello');
-    
+
     startStroke(getTouchPoint(evt));
 };
 
@@ -108,14 +138,47 @@ const touchEnd = evt => {
     drawing = false;
 };
 
-canvas.addEventListener("touchstart", touchStart, false);
-canvas.addEventListener("touchend", touchEnd, false);
-canvas.addEventListener("touchcancel", touchEnd, false);
-canvas.addEventListener("touchmove", touchMove, false);
 
-// Register event handlers
+// Firebase Draw Events
 
-canvas.addEventListener("mousedown", mouseDown, false);
-canvas.addEventListener("mouseup", endStroke, false);
-canvas.addEventListener("mouseout", endStroke, false);
-canvas.addEventListener("mouseenter", mouseEnter, false);
+const DrawUpdate = (pairPoints) => {
+    for (let i = 0; i < pairPoints.length; i++) {
+        context.beginPath();
+        context.moveTo(pairPoints[i].old.x, pairPoints[0].old.y);
+        context.strokeStyle = colour;
+        context.lineWidth = strokeWidth;
+        context.lineCap = "round";
+        context.lineJoin = "round";
+        context.lineTo(pairPoints[i].new.x, newPoint[i].new.y);
+        context.stroke();
+    }
+}
+
+const setup = () => {
+    canvas.addEventListener("touchstart", touchStart, false);
+    canvas.addEventListener("touchend", touchEnd, false);
+    canvas.addEventListener("touchcancel", touchEnd, false);
+    canvas.addEventListener("touchmove", touchMove, false);
+
+    // Register event handlers
+
+    canvas.addEventListener("mousedown", mouseDown, false);
+    canvas.addEventListener("mouseup", endStroke, false);
+    canvas.addEventListener("mouseout", endStroke, false);
+    canvas.addEventListener("mouseenter", mouseEnter, false);
+
+    // db.collection("sessionrooms/").doc(queryResult()).onSnapShot(function (snapshot) {
+    //     snapshot.docChanges().forEach(change => {
+    //         if (change.type === 'modified') {
+    //             // updatePage() function
+    //         }
+    //     })
+    // })
+
+    sessionRef.on('value', function (snapshot) {
+        console.log(snapshot);
+    });
+}
+
+
+setup();

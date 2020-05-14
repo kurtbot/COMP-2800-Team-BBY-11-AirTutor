@@ -3,6 +3,8 @@ console.log("Current Room ID: ", roomID);
 
 
 
+roomID = localStorage.getItem("roomID");
+
 function queryResult() {
     let queryString = decodeURIComponent(window.location.search);
     let queries = queryString.split("?");
@@ -10,7 +12,10 @@ function queryResult() {
     return id;
 }
 
+
+
 function initializeRoom(user) {
+
     roomID = localStorage.getItem("roomID");
     console.log(localStorage.getItem("roomID"));
     console.log(user.uid)
@@ -29,6 +34,24 @@ function initializeRoom(user) {
         }
         $("#what").html(docc.data().topic)
     })
+    setInterval(function(){
+        db.collection("chatrooms").doc(roomID).get().then(function(doc){
+            firebase.auth().onAuthStateChanged(function (user) {
+            
+                if (user.uid == doc.data().studentid){
+                    db.collection("chatrooms").doc(roomID).update({
+                        unreadstudent: false
+                    })
+                } else {
+                    db.collection("chatrooms").doc(roomID).update({
+                        unreadtutor: false
+                    })
+                }
+                })
+        })
+
+    
+    }, 100)
 }
 
 function schedulingAllowed(user) {
@@ -154,7 +177,9 @@ firebase.auth().onAuthStateChanged(function (user) {
         });
         db.collection("chatrooms").doc(roomID).update({
             latest: d,
-            latestTime: date
+            latestTime: date,
+            unreadtutor: true,
+            unreadstudent: true
         })
 
     });
@@ -196,7 +221,10 @@ $(".chat-input").on('keyup', function (e) {
                 });
                 db.collection("chatrooms").doc(roomID).update({
                     latest: d,
-                    latestTime: date
+                    latestTime: date,
+                    
+            unreadtutor: true,
+            unreadstudent: true
                 })
     }
 });

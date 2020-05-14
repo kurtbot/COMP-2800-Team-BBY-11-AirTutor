@@ -78,21 +78,7 @@ postsOrder.orderBy("time").onSnapshot(function (snapshot) {
                 time: d,
               })
               .then(function (docRef) {
-                db.collection("users/")
-                  .doc(targetUser)
-                  .update({
-                    chatrooms: firebase.firestore.FieldValue.arrayUnion(
-                      docRef.id
-                    ),
-                  });
-
-                db.collection("users/")
-                  .doc(currentUser)
-                  .update({
-                    chatrooms: firebase.firestore.FieldValue.arrayUnion(
-                      docRef.id
-                    ),
-                  });
+                
                 localStorage.setItem("roomID", docRef.id);
                 localStorage.setItem("requestID", post);
               })
@@ -221,21 +207,7 @@ $("#filter").click(function () {
                   time: d,
                 })
                 .then(function (docRef) {
-                  db.collection("users/")
-                    .doc(targetUser)
-                    .update({
-                      chatrooms: firebase.firestore.FieldValue.arrayUnion(
-                        docRef.id
-                      ),
-                    });
-
-                  db.collection("users/")
-                    .doc(currentUser)
-                    .update({
-                      chatrooms: firebase.firestore.FieldValue.arrayUnion(
-                        docRef.id
-                      ),
-                    });
+                  
                   localStorage.setItem("roomID", docRef.id);
                 })
                 .then(function () {

@@ -36,30 +36,40 @@ function submitYesReview() {
 /**
  * Takes the user home on No Submit
  */
-function submitNoReview() {
+async function submitNoReview() {
     let promise = new Promise((res, rej)=>{
-
-
+        let dbref2 = db.collection("users/").doc(queryResult());
+        let up = firebase.firestore.FieldValue.increment(1)
+        dbref2.set({
+            warning: up
+        }, {merge: true})
+        
         db.collection("sessionrooms").doc(localStorage.getItem("session")).delete().then(function(){
             db.collection("schedules").doc(localStorage.getItem("schedule")).delete().then(function() {
                 db.collection("chatrooms/").get().then(function (snap) {
                     snap.forEach(function (doc) {
                         if (doc.data().requestid == localStorage.getItem("request")){
-                            db.collection("chatrooms").doc(change.doc.id).collection("messages")
-                            .get().then(function(snap){
-                                snap.forEach(function(docc){
-                                    db.collection("chatrooms").doc(change.doc.id).collection("messages").doc(docc.id).delete()
-                                })
+                            // db.collection("chatrooms").doc(doc.id).collection("messages")
+                            // .get().then(function(snap2){
+                            //     snap2.forEach(function(docc){
+                            //         db.collection("chatrooms").doc(doc.id).collection("messages").doc(docc.id).delete()
+                            //     })
         
-                            })
-                            db.collection("chatrooms").doc(change.doc.id).delete()
+                            // }).then(function(){
+                                db.collection("chatrooms").doc(doc.id).delete()
+                                //await (console.log("ok"))
+                            //})
+
                         }
                     })
-                }).then(function(){              
-                    res("success")})
+          
+
+            }).then(function(){
+                res("success")
 
             })
           })
+        })
         // db.collection("sessionrooms").doc(localStorage.getItem("session")).delete()
         // db.collection("schedules").doc(localStorage.getItem("schedule")).delete()
         console.log("step 1")
@@ -77,45 +87,74 @@ function submitNoReview() {
 
 function reviewSubmit() {
     firebase.auth().onAuthStateChanged(function (user) {
+        let promise = new Promise((res, rej) =>{
+            
+        
         let amount = parseInt(localStorage.getItem("creditxfer"));
         let minus = amount * (-1);
         let decrement = firebase.firestore.FieldValue.increment(minus);
         let increment = firebase.firestore.FieldValue.increment(amount);
+        let up = firebase.firestore.FieldValue.increment(1)
         let dbref = db.collection("users/").doc(user.uid);
         dbref.update({
             currency: decrement
         })
         let dbref2 = db.collection("users/").doc(queryResult());
-        dbref2.update({
-            currency: increment
-        })
+
+        dbref2.set({
+            currency: increment,
+            answeredQuestion: up
+        }, {merge: true})
         let request = localStorage.getItem("request");
         console.log(request)
-        db.collection("posts").doc(request).delete()
-        db.collection("sessionrooms").doc(localStorage.getItem("session")).delete()
-        db.collection("schedules").doc(localStorage.getItem("schedule")).delete()
-        db.collection("chatrooms/").get().then(function (snap) {
-            snap.forEach(function (doc) {
-                if (doc.data().requestid == localStorage.getItem("request")){
-                    db.collection("chatrooms").doc(doc.id).delete()
-                }
+        let professional = document.getElementById("pro").value;
+        let teaching = document.getElementById("teaching-qual").value;
+        let reviewedAccount = db.collection("users/").doc(queryResult());
+    
+        reviewedAccount.collection("review").add({
+            professionalism: parseInt(professional) + 1,
+            teachingquality: parseInt(teaching) + 1
+        })
+        db.collection("posts").doc(request).delete().then(function(){
+        db.collection("sessionrooms").doc(localStorage.getItem("session")).delete().then(function(){
+            db.collection("schedules").doc(localStorage.getItem("schedule")).delete().then(function() {
+                db.collection("chatrooms/").get().then(function (snap) {
+                    snap.forEach(function (doc) {
+                        if (doc.data().requestid == localStorage.getItem("request")){
+                            // db.collection("chatrooms").doc(doc.id).collection("messages")
+                            // .get().then(function(snap2){
+                            //     snap2.forEach(function(docc){
+                            //         db.collection("chatrooms").doc(doc.id).collection("messages").doc(docc.id).delete()
+                            //     })
+        
+                            // }).then(function(){
+                                db.collection("chatrooms").doc(doc.id).delete()
+                                //await (console.log("ok"))
+                            //})
+
+                        }
+                    })
+          
+
+            }).then(function(){
+                res("success")
+
             })
+          })
+        })
+    })
+
+    })
+
+        promise.then(function(){
+            localStorage.removeItem("creditxfer")
+            localStorage.removeItem("request")
+            window.location.href="/home";
         })
         
     })
 
 
-    let professional = document.getElementById("pro").value;
-    let teaching = document.getElementById("teaching-qual").value;
-    let reviewedAccount = db.collection("users/").doc(queryResult());
 
-    reviewedAccount.collection("review").add({
-        professionalism: parseInt(professional) + 1,
-        teachingquality: parseInt(teaching) + 1
-    }).then(function(){
-        localStorage.removeItem("creditxfer")
-        localStorage.removeItem("request")
-        window.location.href="/home";
-    })
 
 }

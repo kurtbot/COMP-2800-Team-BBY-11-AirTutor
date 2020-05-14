@@ -102,21 +102,7 @@
                         studentCallId: ''
                       })
                       .then(function (docRef) {
-                        db.collection("users/")
-                          .doc(tutorid)
-                          .update({
-                            sessionrooms: firebase.firestore.FieldValue.arrayUnion(
-                              docRef.id
-                            ),
-                          });
-
-                        db.collection("users/")
-                          .doc(studentid)
-                          .update({
-                            sessioinrooms: firebase.firestore.FieldValue.arrayUnion(
-                              docRef.id
-                            ),
-                          });
+                        
                         localStorage.setItem("sessionID", docRef.id);
                       })
                       .then(function () {

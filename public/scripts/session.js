@@ -172,11 +172,11 @@ function call(peerID) {
             }
             console.log(remoteStream);
             
-            videoDom.srcObject = remoteStream;
-            videoDom.onloadedmetadata = function (e) {
-                console.log('now playing the videooooo');
-                videoDom.play();
-            }
+            // videoDom.srcObject = remoteStream;
+            // videoDom.onloadedmetadata = function (e) {
+            //     console.log('now playing the videooooo');
+            //     videoDom.play();
+            // }
 
         });
     }).catch(function (err) {
@@ -203,11 +203,11 @@ peer.on('call', function (mediaConnection) {
                 console.log('now playing the audio');
                 audio.play();
             }
-            videoDom.srcObject = remoteStream;
-            videoDom.onloadedmetadata = function (e) {
-                console.log('now playing the videooooo');
-                videoDom.play();
-            }
+            // videoDom.srcObject = remoteStream;
+            // videoDom.onloadedmetadata = function (e) {
+            //     console.log('now playing the videooooo');
+            //     videoDom.play();
+            // }
         });
     }).catch(function (err) {
         console.log('Failed to get local stream', err);

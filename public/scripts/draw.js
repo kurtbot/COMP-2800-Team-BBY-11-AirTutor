@@ -142,6 +142,8 @@ const touchEnd = evt => {
 // Firebase Draw Events
 
 const DrawUpdate = (pairPoints) => {
+    console.log("pairPoints: ", pairPoints);
+    
     for (let i = 0; i < pairPoints.length; i++) {
         context.beginPath();
         context.moveTo(pairPoints[i].old.x, pairPoints[0].old.y);
@@ -149,8 +151,10 @@ const DrawUpdate = (pairPoints) => {
         context.lineWidth = strokeWidth;
         context.lineCap = "round";
         context.lineJoin = "round";
-        context.lineTo(pairPoints[i].new.x, newPoint[i].new.y);
+        context.lineTo(pairPoints[i].new.x, pairPoints[i].new.y);
         context.stroke();
+        console.log('draw');
+
     }
 }
 
@@ -176,7 +180,8 @@ const setup = () => {
     // })
 
     sessionRef.on('value', function (snapshot) {
-        console.log(snapshot);
+        // console.log(snapshot.val());
+        DrawUpdate(snapshot.val()['canvasData']);
     });
 }
 

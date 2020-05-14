@@ -18,15 +18,9 @@
 
                 })
                 $(container).hover(function(){
-                    $(this).css({
-                        "background-color":"#EEEEEE",
-                        "box-shadow":"1px 2px #E2E2E2"
-                    })
+                    $(this).addClass("hover")
                 }, function(){
-                    $(this).css({
-                        "background-color":"",
-                        "box-shadow":""
-                    })
+                    $(this).removeClass("hover")
                 })
 
 
@@ -102,14 +96,14 @@
                     if (firebase.auth().currentUser.uid == change.doc.data().studentid){
                         if (change.doc.data().unreadstudent){
                             $(container).css({
-                                "color":"red"
+                                "background-color":"lightblue"
                             })
                         }
         
                     } else {
                         if (change.doc.data().unreadtutor){
                             $(container).css({
-                                "color":"red"
+                                "background-color":"lightblue"
                             })
                         }
                     }
@@ -119,14 +113,14 @@
                     if (firebase.auth().currentUser.uid == change.doc.data().studentid){
                         if (change.doc.data().unreadstudent){
                             $(container).css({
-                                "color":"red"
+                                "background-color":"lightblue"
                             })
                         }
         
                     } else {
                         if (change.doc.data().unreadtutor){
                             $(container).css({
-                                "color":"red"
+                                "background-color":"lightblue"
                             })
                         }
                     }

@@ -11,6 +11,9 @@ function userInfo() {
                     let credits = doc.data().currency;
                     $("#current-cash").text("Credits: " + credits);
 
+                    if (doc.data().flagged == true) {
+                        $("#warning").fadeIn("slow");
+                    }
                 })
 
             })

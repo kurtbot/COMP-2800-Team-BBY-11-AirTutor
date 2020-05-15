@@ -10,10 +10,6 @@ app.set("views", "./views")
 app.set("view engine","ejs");
 
 
-app.use(function(req, res, next) {
-    res.status(404).redirect('/404.html')
-})
-
 app.get("/aboutus", (req, res) => {
     res.render("pages/aboutus");
 })
@@ -103,6 +99,10 @@ app.get("/signup_1", (req, res) => {
 
 app.get("/viewprofile", (req, res) => {
     res.render("pages/viewprofile");
+})
+
+app.use(function(req, res, next) {
+    res.status(404).render('/404.html')
 })
 
 // // Create and Deploy Your First Cloud Functions

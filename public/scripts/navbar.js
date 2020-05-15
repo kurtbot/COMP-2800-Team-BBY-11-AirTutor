@@ -18,6 +18,7 @@ function userInfo() {
 
                     if (doc.data().flagged == true) {
                         $("#warning").fadeIn("slow");
+                        $("#reason").text(doc.data().reason);
                     }
                 })
 

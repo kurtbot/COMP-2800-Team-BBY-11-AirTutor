@@ -47,6 +47,7 @@ let coordsJsonArr = []
 
 const continueStroke = newPoint => {
     context.beginPath();
+    context.moveTo(0,0);
     context.moveTo(latestPoint[0], latestPoint[1]);
     context.strokeStyle = colour;
     context.lineWidth = strokeWidth;
@@ -55,17 +56,19 @@ const continueStroke = newPoint => {
     context.lineTo(newPoint[0], newPoint[1]);
     context.stroke();
 
+
+    var w = canvas.width;
+    var h = canvas.height;
+
     // Store points
     coordsJsonArr.push({
-        old: { x: latestPoint[0], y: latestPoint[1] },
-        new: { x: newPoint[0], y: newPoint[1] },
+        old: { x: latestPoint[0] / w, y: latestPoint[1] / h },
+        new: { x: newPoint[0] / w, y: newPoint[1] / h },
     })
 
     latestPoint = newPoint;
 
-    firebase.database().ref('sessionrooms/' + queryResult() + '/canvasData').set({
-        canvasData: coordsJsonArr
-    });
+
 };
 
 // Event helpers
@@ -109,6 +112,9 @@ const endStroke = evt => {
     }
     drawing = false;
     evt.currentTarget.removeEventListener("mousemove", mouseMove, false);
+    firebase.database().ref('sessionrooms/' + queryResult() + '/canvasData').set({
+        canvasData: coordsJsonArr
+    });
 };
 
 const getTouchPoint = evt => {
@@ -139,28 +145,48 @@ const touchMove = evt => {
 
 const touchEnd = evt => {
     drawing = false;
+    firebase.database().ref('sessionrooms/' + queryResult() + '/canvasData').set({
+        canvasData: coordsJsonArr
+    });
 };
 
 
 // Firebase Draw Events
 
 const DrawUpdate = (pairPoints) => {
+    var w = canvas.width;
+    var h = canvas.height;
     console.log("pairPoints: ", pairPoints);
+    let lastPoint;
+    context.strokeStyle = colour;
+    context.lineWidth = strokeWidth;
+    context.lineCap = "round";
+    context.lineJoin = "round";
     for (let i = 0; i < pairPoints.length; i++) {
         context.beginPath();
-        context.moveTo(pairPoints[i].old.x, pairPoints[0].old.y);
+        context.moveTo(pairPoints[i].old.x * w, pairPoints[i].old.y * h);
+        context.lineTo(pairPoints[i].new.x * w, pairPoints[i].new.y * h);
+        context.stroke();
+        context.closePath()
+        console.log('draw');
+
+    }
+}
+
+const DrawUpdatePoint = (points) => {
+    console.log("pairPoints: ", points);
+    for (let i = 0; i < points.length; i++) {
+        context.beginPath();
+        context.moveTo(points[i].old.x, points[0].old.y);
         context.strokeStyle = colour;
         context.lineWidth = strokeWidth;
         context.lineCap = "round";
         context.lineJoin = "round";
-        context.lineTo(pairPoints[i].new.x, pairPoints[i].new.y);
+        context.lineTo(points[i].new.x, points[i].new.y);
         context.stroke();
         console.log('draw');
-        StillDrawing = true;
     }
 }
-
-let StillDrawing = false;
 
 const setup = () => {
     canvas.addEventListener("touchstart", touchStart, false);
@@ -185,8 +211,8 @@ const setup = () => {
 
     sessionRef.on('value', function (snapshot) {
         // console.log(snapshot.val());
-        if (!StillDrawing)
-            DrawUpdate(snapshot.val()['canvasData']);
+
+        DrawUpdate(snapshot.val()['canvasData']);
     });
 }
 

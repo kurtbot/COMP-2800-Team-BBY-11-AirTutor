@@ -9,10 +9,10 @@
     <title>Air Tutor</title>
 
     <!-- My style sheets -->
-    <link rel="stylesheet" type="text/css" href="styles/index.css">
-
+    
     <%- include("../partials/favicon.ejs") %>
-
+    
+    <link rel="stylesheet" type="text/css" href="./styles/index.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
@@ -352,7 +352,7 @@
                         this time of need.
                     </p><br>
 
-                    <a href="/signup" class="signup-button">Create an account</a>
+                    <div class="signup-button">Create an account</div>
                 </div>
 
                 <div class="column" class="description-column">
@@ -448,6 +448,11 @@
         </div>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+    <script src="scripts/firebase.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -461,4 +466,5 @@
     </script>
     <!--Optional JS-->
     <script src="scripts/index.js"></script>
+    <script src="scripts/signup_1.js"></script>
 </body>

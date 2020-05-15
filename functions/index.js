@@ -14,11 +14,19 @@ app.get("/aboutus", (req, res) => {
     res.render("pages/aboutus");
 })
 
+app.get("/aboutus2", (req, res) => {
+    res.render("pages/aboutus2");
+})
+
 app.get("/editprofile", (req, res) => {
     res.render("pages/editprofile");
 })
 app.get("/faq", (req, res) => {
     res.render("pages/faq");
+})
+
+app.get("/faq2", (req, res) => {
+    res.render("pages/faq2");
 })
 app.get("/home", (req, res) => {
     res.render("pages/home", {page:"home"});

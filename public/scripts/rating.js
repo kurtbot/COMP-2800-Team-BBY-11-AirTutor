@@ -39,9 +39,11 @@ function submitYesReview() {
 async function submitNoReview() {
     let promise = new Promise((res, rej)=>{
         let dbref2 = db.collection("users/").doc(queryResult());
-        let up = firebase.firestore.FieldValue.increment(1)
+        // let up = firebase.firestore.FieldValue.increment(1)
+        let reason = $("#complaint").val()
         dbref2.set({
-            warning: up
+            flagged: true,
+            reason: reason
         }, {merge: true})
         
         db.collection("sessionrooms").doc(localStorage.getItem("session")).delete().then(function(){

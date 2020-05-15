@@ -130,11 +130,22 @@ p {
 
 #description-content>.row>.column>h1 {
     text-align: left;
+}
+
+#description-content>.row>.column>h1 {
+    font-size: 48pt;
+}
+
+p, .signup-button {
+    font-size: 16pt;
+}
+
+#features-content>h1, #testimonials-content>h1 {
     font-size: 36pt;
 }
 
-#description-content>.row>.column>p {
-    font-size: 16pt;
+#features-content>.row>.column>h2 {
+    font-size: 24pt;
 }
 
 #description-content>.row {
@@ -228,18 +239,18 @@ p {
 }
 
 /* Media queries */
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-
 @media (max-width: 450px) {
-    #description>h1 {
-        font-size: 28pt;
+    #description-content>.row>.column>h1 {
+        font-size: 36pt;
     }
-    #description>p {
-        font-size: 10pt;
+    p {
+        font-size: 12pt;
     }
-    .signup-button {
-        font-size: 16pt;
+    #features-content>h1, #testimonials-content>h1 {
+        font-size: 24pt;
+    }
+    #features-content>.row>.column>h2 {
+        font-size: 18pt;
     }
     .column, #description, .description-img {
         flex: 100%;
@@ -251,12 +262,6 @@ p {
     #description-content>.row {
         padding: 8px 8px;
     }
-    .sidenav {
-        padding-top: 15px;
-    }
-    .sidenav a {
-        font-size: 18px;
-    }
 }
 
 @media (max-width: 780px) {
@@ -267,13 +272,19 @@ p {
         font-size: 16pt;
     }
     .description-img {
-        height: 400px;
+        height: 56vh;
     }
     #features-content>h1, #testimonials-content>h1 {
         font-size: 36pt;
     }
     #features-content>.row>.column>h2 {
         font-size: 24pt;
+    }
+    .sidenav {
+        padding-top: 16px;
+    }
+    .sidenav a {
+        font-size: 18pt;
     }
 }
 
@@ -297,7 +308,7 @@ p {
 
 /* Responsive layout - makes a one column-layout instead of three columns */
 
-@media (max-width: 1070px) {
+@media (max-width: 1264px) {
     #description-content>h1 {
         font-size: 36pt;
     }
@@ -312,6 +323,6 @@ p {
     .description-img {
         padding: 0px;
         margin-left: 0px;
-        height: 56vh;
+        height: 64vh;
     }
 }

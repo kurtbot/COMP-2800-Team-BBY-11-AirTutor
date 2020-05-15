@@ -312,5 +312,6 @@ p {
     .description-img {
         padding: 0px;
         margin-left: 0px;
+        height: 56vh;
     }
 }

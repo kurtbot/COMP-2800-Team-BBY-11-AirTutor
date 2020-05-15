@@ -27,7 +27,7 @@ function signOut() {
 function updateMessage() {
     firebase.auth().onAuthStateChanged(function (user) {
         let dbref = db.collection('/chatrooms/');
-        dbref.onSnapshot(function (snapshot) {
+        dbref.get().then(function (snapshot) {
             snapshot.docChanges().forEach(function (change) {
                 if (change.type === "added" || change.type === "modified") {
 

@@ -54,10 +54,13 @@ const continueStroke = newPoint => {
     context.lineJoin = "round";
     context.lineTo(newPoint[0], newPoint[1]);
     context.stroke();
+
+    // Store points
     coordsJsonArr.push({
         old: { x: latestPoint[0], y: latestPoint[1] },
         new: { x: newPoint[0], y: newPoint[1] },
     })
+
     latestPoint = newPoint;
 
     firebase.database().ref('sessionrooms/' + queryResult() + '/canvasData').set({
@@ -143,7 +146,6 @@ const touchEnd = evt => {
 
 const DrawUpdate = (pairPoints) => {
     console.log("pairPoints: ", pairPoints);
-    
     for (let i = 0; i < pairPoints.length; i++) {
         context.beginPath();
         context.moveTo(pairPoints[i].old.x, pairPoints[0].old.y);
@@ -154,9 +156,11 @@ const DrawUpdate = (pairPoints) => {
         context.lineTo(pairPoints[i].new.x, pairPoints[i].new.y);
         context.stroke();
         console.log('draw');
-
+        StillDrawing = true;
     }
 }
+
+let StillDrawing = false;
 
 const setup = () => {
     canvas.addEventListener("touchstart", touchStart, false);
@@ -181,7 +185,8 @@ const setup = () => {
 
     sessionRef.on('value', function (snapshot) {
         // console.log(snapshot.val());
-        DrawUpdate(snapshot.val()['canvasData']);
+        if (!StillDrawing)
+            DrawUpdate(snapshot.val()['canvasData']);
     });
 }
 

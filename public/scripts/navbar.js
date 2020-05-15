@@ -1,5 +1,10 @@
+$(document).ready(function(){
+    $("#understand").click(understood);
+})
+
 userInfo();
 updateMessage();
+
 
 function userInfo() {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -55,6 +60,12 @@ function updateMessage() {
     })
 }
 
-function getNotified() {
-    
+function understood() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        let dbref = db.collection("users/").doc(user.uid);
+        dbref.update({
+            flagged:false
+        })
+    })
+    $("#warning").fadeOut("slow");
 }

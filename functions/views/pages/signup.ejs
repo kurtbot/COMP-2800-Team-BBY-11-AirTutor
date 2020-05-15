@@ -15,10 +15,10 @@
 </head>
 
 <body>
-    <h3>Create your account</h3>
+    <div id="profile-creation-img"><img src="/src/index/profile-creation.png"></div>
+    <h2>One more thing, and your Air Tutor account is good to go.</h2>
 
     <!--Content-->
-
     <div class="text-center">
         <h3>Are you currently a student?</h3>
         <button type="button" class="btn btn-primary btn-lg mx-4 px-5" id="yes-button" data-toggle="button"
@@ -32,11 +32,9 @@
     </div>
 
     <div>
-        <%- include("../partials/profileinfo.ejs") %>
-
-        <%- include("../partials/countryselector.ejs") %>
-
-        <%- include("../partials/languageselector.ejs") %>
+        <!-- <%- include("../partials/profileinfo.ejs") %> -->
+        <!-- <%- include("../partials/countryselector.ejs") %> -->
+        <!-- <%- include("../partials/languageselector.ejs") %> -->
     </div>
 
     <div id="student">
@@ -48,10 +46,12 @@
 
     </div>
 
-    <small id='loginHelp' class='form-text text-muted'></small>
+    <!-- <small id='loginHelp' class='form-text text-muted'></small> -->
+    <br>
     <div>
-        <button id="submit" type='submit' onclick='signup()'>Sign up</button>
+        <button id="submit" type='submit' onclick='signup()'>Create my account</button>
     </div>
+    
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>

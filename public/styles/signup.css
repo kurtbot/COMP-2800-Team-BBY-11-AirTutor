@@ -1,29 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-nav {
-    font-family: "Raleway";
+* {
+    background-color: #f1f1f1;
 }
 
 body {
+    background-color: #f1f1f1;
+    padding: 20px;
     font-family: "Roboto";
-    padding-left: 20px;
-    padding-right: 20px; 
+    font-size: 16pt;
+    background-image: url("src/index/background.png");
 }
 
 h1, h2, h3, h4, h5 {
-    padding-top: 10px;
     color: #283b42;
     text-align: center;
     font-family: "Raleway";
-    font-weight: 500;
+    font-weight: bolder;
+    padding-bottom: 8px;
+}
+
+#yes-button, #no-button {
+    margin-top: 16px;
+    font-family: 'Raleway';
+    background-color: #1d6a96;
 }
 
 input, button {
-    font-family: "Roboto";
-    margin: 10px;
-    margin-left: 0px;
-    padding: 5px;
     border-radius: 10px;
     border-style: solid;
     border-color: #ced4da;
@@ -32,18 +36,36 @@ input, button {
 
 select {
     font-family: "Roboto";
-    margin: 10px;
-    margin-left: 0px;
-    padding: 5px;
     border-radius: 10px;
     border-style: solid;
     border-color: #ced4da;
     border-width: 1.25px;
 }
+
 #student, #not-student, #submit {
-    display:none;
+    display: none;
+}
+
+#submit {
+    color: #f1f1f1;
+    padding: 8px 24px 8px 24px;
+    font-weight: 500;
+    font-size: 16pt;
+    background-color: #1d6a96;
+    border: solid 1px #1d6a96;
+    border-radius: 50px;
+    width: 100%;
 }
 
 .hidden {
-    display:none;
+    display: none;
+}
+
+#profile-creation-img {
+    text-align: center;
+}
+
+#profile-creation-img > img {
+    width: 240px;
+    height: 240px;
 }

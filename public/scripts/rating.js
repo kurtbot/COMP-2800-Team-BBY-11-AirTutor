@@ -39,35 +39,37 @@ function submitYesReview() {
 async function submitNoReview() {
     let promise = new Promise((res, rej)=>{
         let dbref2 = db.collection("users/").doc(queryResult());
-        let up = firebase.firestore.FieldValue.increment(1)
+        // let up = firebase.firestore.FieldValue.increment(1)
+        let reason = $("#complaint").val()
         dbref2.set({
-            warning: up
+            flagged: true,
+            reason: reason
         }, {merge: true})
         
         db.collection("sessionrooms").doc(localStorage.getItem("session")).delete().then(function(){
             db.collection("schedules").doc(localStorage.getItem("schedule")).delete().then(function() {
-                db.collection("chatrooms/").get().then(function (snap) {
-                    snap.forEach(function (doc) {
-                        if (doc.data().requestid == localStorage.getItem("request")){
-                            // db.collection("chatrooms").doc(doc.id).collection("messages")
-                            // .get().then(function(snap2){
-                            //     snap2.forEach(function(docc){
-                            //         db.collection("chatrooms").doc(doc.id).collection("messages").doc(docc.id).delete()
-                            //     })
+            //     db.collection("chatrooms/").get().then(function (snap) {
+            //         snap.forEach(function (doc) {
+            //             if (doc.data().requestid == localStorage.getItem("request")){
+            //                 // db.collection("chatrooms").doc(doc.id).collection("messages")
+            //                 // .get().then(function(snap2){
+            //                 //     snap2.forEach(function(docc){
+            //                 //         db.collection("chatrooms").doc(doc.id).collection("messages").doc(docc.id).delete()
+            //                 //     })
         
-                            // }).then(function(){
-                                db.collection("chatrooms").doc(doc.id).delete()
-                                //await (console.log("ok"))
-                            //})
+            //                 // }).then(function(){
+            //                     db.collection("chatrooms").doc(doc.id).delete()
+            //                     //await (console.log("ok"))
+            //                 //})
 
-                        }
-                    })
+            //             }
+            //         })
           
 
-            }).then(function(){
+            // }).then(function(){
                 res("success")
 
-            })
+            //})
           })
         })
         // db.collection("sessionrooms").doc(localStorage.getItem("session")).delete()
@@ -118,28 +120,28 @@ function reviewSubmit() {
         db.collection("posts").doc(request).delete().then(function(){
         db.collection("sessionrooms").doc(localStorage.getItem("session")).delete().then(function(){
             db.collection("schedules").doc(localStorage.getItem("schedule")).delete().then(function() {
-                db.collection("chatrooms/").get().then(function (snap) {
-                    snap.forEach(function (doc) {
-                        if (doc.data().requestid == localStorage.getItem("request")){
-                            // db.collection("chatrooms").doc(doc.id).collection("messages")
-                            // .get().then(function(snap2){
-                            //     snap2.forEach(function(docc){
-                            //         db.collection("chatrooms").doc(doc.id).collection("messages").doc(docc.id).delete()
-                            //     })
+            //     db.collection("chatrooms/").get().then(function (snap) {
+            //         snap.forEach(function (doc) {
+            //             if (doc.data().requestid == localStorage.getItem("request")){
+            //                 // db.collection("chatrooms").doc(doc.id).collection("messages")
+            //                 // .get().then(function(snap2){
+            //                 //     snap2.forEach(function(docc){
+            //                 //         db.collection("chatrooms").doc(doc.id).collection("messages").doc(docc.id).delete()
+            //                 //     })
         
-                            // }).then(function(){
-                                db.collection("chatrooms").doc(doc.id).delete()
-                                //await (console.log("ok"))
-                            //})
+            //                 // }).then(function(){
+            //                     db.collection("chatrooms").doc(doc.id).delete()
+            //                     //await (console.log("ok"))
+            //                 //})
 
-                        }
-                    })
+            //             }
+            //         })
           
 
-            }).then(function(){
+            // }).then(function(){
                 res("success")
 
-            })
+            //})
           })
         })
     })

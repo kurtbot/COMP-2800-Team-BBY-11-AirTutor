@@ -14,7 +14,8 @@ function email_verify() {
             installApp: true,
             minimumVersion: '12'
         },
-        dynamicLinkDomain: 'example.page.link' //not applicable
+        dynamicLinkDomain: 'https://airtutormvp.page.link/V9Hh' 
+
     };
 
     let email = document.getElementById('emailSignupField').value;

@@ -93,6 +93,10 @@ app.get("/signup", (req, res) => {
     res.render("pages/signup");
 })
 
+app.get("/signup_1", (req, res) => {
+    res.render("pages/signup_1");
+})
+
 app.get("/viewprofile", (req, res) => {
     res.render("pages/viewprofile");
 })

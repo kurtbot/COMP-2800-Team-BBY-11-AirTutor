@@ -13,6 +13,7 @@
     <!--My own CSS-->
     <link rel="stylesheet" type="text/css" href="styles/rating.css">
     <link rel="stylesheet" type="text/css" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/navbar.css">
     <%- include("../partials/favicon.ejs") %>
 </head>
 
@@ -69,30 +70,13 @@
     <!--No Option-->
     <div class="my-5" id="no-option">
         <h2 class="text-center my-4">Are you sure they couldn't help you?</h2>
-        <h4 class="text-center">Your question will be placed back into the request page and your tutor will not get
-            credits</h4>
+        <h4 class="text-center my-5">Tutors will not get any credits for this question!</h4>
         <h4 class="text-center my-2">Can you tell us what went wrong?</h4>
-        <div class="text-center">
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue">
-                    Did not have an answer.
-                </label>
-            </div>
 
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue">
-                    Could not understand the explanation.
-                </label>
-            </div>
+        <div class="form-group text-center mx-5">
+            <textarea class="form-control "id="complaint" rows="4" > </textarea>
+        </div>
 
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue">
-                    Inappropriate.
-                </label>
-            </div>
 
             <div class="mx-2">
                 <button type="button" name="submit" id="no-submit"
@@ -114,9 +98,7 @@
     <script src="scripts/firebase.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>

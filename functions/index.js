@@ -102,7 +102,7 @@ app.get("/viewprofile", (req, res) => {
 })
 
 app.use(function(req, res, next) {
-    res.status(404).render('/404.html')
+    res.status(404).redirect('/404.html')
 })
 
 // // Create and Deploy Your First Cloud Functions

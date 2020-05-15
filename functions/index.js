@@ -10,6 +10,10 @@ app.set("views", "./views")
 app.set("view engine","ejs");
 
 
+app.use(function(req, res, next) {
+    res.status(404).redirect('/404.html')
+})
+
 app.get("/aboutus", (req, res) => {
     res.render("pages/aboutus");
 })

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light">
+<nav id="hideme" class="navbar navbar-expand-md navbar-light bg-light">
   <a class="navbar-brand" href="/home">Air Tutor</a>
   <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
     aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +16,10 @@
         <a class="nav-link" href="/myschedule">My Schedule</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/messages">Message</a>
+        <a id ="new-message" class="nav-link" href="/messages">Message</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/livechat">Live Chat</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/shop">Shop</a>
@@ -24,7 +27,7 @@
     </ul>
     <ul class="navbar-nav mt-2 mt-lg-0">
       <li class="nav-item dropdown mr-auto">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+        <a class="nav-link dropdown-toggle" href="" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">Username Here</a>
         <div class="dropdown-menu" aria-labelledby="dropdownId">
           <a class="dropdown-item" href="/profile">View Profile</a>
@@ -40,3 +43,11 @@
     </ul>
   </div>
 </nav>
+
+<div id="warning" class= "text-center alert alert-danger">
+  <h3>Attention:</h3>
+  <p>You were not awarded credits because the student was not satisfied with your work. </p>
+  <p>Reason:</p>
+  <div id="reason"><p><i></i></p></div>
+  <button id="understand" class="btn btn-danger">I understand</button>
+</div>

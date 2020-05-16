@@ -14,17 +14,16 @@ showName();
 showPosts();
 
 function showPosts() {
-    firebase.auth().onAuthStateChanged(function (user) {
         let sch = db.collection("schedules/")
           sch.orderBy("time").onSnapshot(function (snapshot) {
               snapshot.docChanges().forEach(function (change) {
                 if (change.type === "added") {
-              if (change.doc.data().user == user.uid || change.doc.data().nameid == user.uid) {
 
       
                 let container = document.createElement("div");
                 let inner = document.createElement("div");
                 let box = document.createElement("div");
+                container.setAttribute("id", change.doc.id)
                 box.setAttribute("class", "card");
                 let h2 = document.createElement("h2");
                 h2.innerHTML = "Reminder";
@@ -40,7 +39,7 @@ function showPosts() {
                 box.appendChild(date);
                 let name = document.createElement("p");
                 let str = "";
-                if (change.doc.data().user == user.uid){
+                if (change.doc.data().user == firebase.auth().currentUser.uid){
                     str = change.doc.data().name
                 } else {
                     str = change.doc.data().username
@@ -49,11 +48,17 @@ function showPosts() {
                 box.appendChild(name);
                 inner.appendChild(box);
                 container.appendChild(inner);
-                document.querySelector("#home-content").appendChild(container);
-            }
+                if (change.doc.data().user == firebase.auth().currentUser.uid || change.doc.data().nameid == firebase.auth().currentUser.uid){
+                    $("#home-content").append($(container))
+                    }
+            
         }
+              
+      if (change.type === "removed") {
+        $("#" + change.doc.id).remove();
+      }
     }
     )
 })
-    })
+    
 }

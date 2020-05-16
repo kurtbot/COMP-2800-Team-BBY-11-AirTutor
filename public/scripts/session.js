@@ -1,14 +1,24 @@
 
 var peer = new Peer({ key: 'lwjd5qra8257b9' });
+// var peer = new Peer({
+//     key: 'lwjd5qra8257b9', 
+//     config: {
+//         'iceServers': [
+//             { url: 'stun:stun1.l.google.com:19302' },
+//             {
+//                 url: 'turn:numb.viagenie.ca',
+//                 credential: 'muazkh',
+//                 username: 'webrtc@live.com'
+//             }
+//         ]
+//     }
+// });
 var peerID;
 peer.on('open', function (id) {
     console.log('My peer ID is: ' + id);
     peerID = "" + id;
     tutorTest();
 });
-
-document.getElementById("go-rating").onclick = gotoNext;
-
 
 function queryResult() {
     let queryString = decodeURIComponent(window.location.search);
@@ -19,23 +29,25 @@ function queryResult() {
 let tutor;
 let student;
 
-
+db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
+    credit = doc.data().credit;
+    tutor = doc.data().tutorid;
+    student = doc.data().studentid;
+    localStorage.setItem("creditxfer", credit);
+    localStorage.setItem("request", doc.data().requestid)
+    localStorage.setItem("session", doc.id)
+    localStorage.setItem("schedule", doc.data().scheduleid)
+})
 
 function gotoNext() {
     firebase.auth().onAuthStateChanged(function (user) {
-        db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
-            credit = doc.data().credit;
-            tutor = doc.data().tutorid;
-            student = doc.data().studentid;
-            localStorage.setItem("creditxfer", credit);
-        }).then(function () {
             if (user.uid == tutor) {
                 window.location.href = "/home"
             } else {
                 window.location.href = "/rating" + "?" + tutor;
 
             }
-        })
+        
     })
 }
 
@@ -49,6 +61,19 @@ function checkIfTutor() {
     })
     return isTutor;
 }
+
+// Media Stream Elements
+const canvasDom = document.querySelector('canvas');
+const canvasContext = canvasDom.getContext('2d');
+const canvasStream = canvasDom.captureStream(60);
+const audioDom = document.querySelector('audio');
+const videoDom = document.querySelector('video');
+
+// Call Function from here
+
+var mediaStream;
+var conn;
+
 function tutorTest() {
     db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
         isTutor = (firebase.auth().currentUser.uid == doc.data().tutorid);
@@ -67,66 +92,194 @@ function tutorTest() {
             })
         }
     })
+
+    createRoomSnapshot();
+}
+
+videoDom.addEventListener('play', function () {
+    var $this = this; //cache
+    (function loop() {
+        if (!$this.paused && !$this.ended) {
+            canvasContext.drawImage($this, 0, 0);
+            setTimeout(loop, 1000 / 30); // drawing at 30fps
+        }
+    })();
+}, 0);
+
+function createRoomSnapshot() {
     db.collection("sessionrooms/").doc(queryResult()).onSnapshot(function (doc) {
+
+        // if the current user is a tutor
+
         if (firebase.auth().currentUser.uid == doc.data().tutorid) {
+
+            console.log('Im a tutor');
+            
+            // if student's peer id changes
             if (doc.data().studentCallId !== '') {
-                navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
-                    var call = peer.call(doc.data().studentCallId, stream);
-                    call.on('stream', function (remoteStream) {
-                        var audio = document.querySelector('audio');
-                        audio.srcObject = remoteStream;
-                        audio.onloadedmetadata = function (e) {
-                            console.log('now playing the audio');
-                            audio.play();
-                        }
-                    });
-                }).catch(function (err) {
-                    console.log('Failed to get local stream', err);
-                });
+
+                // =======================
+                // Reconnect
+                // =======================
+                conn = peer.connect(doc.data().studentCallId);
+                conn.on('open', function () {
+                    // conn.send('hi from tutor');
+                    conn.send({stream : canvasStream});
+                })
+
+                call(doc.data().studentCallId);
             }
-        } else {
+        }
+        // else if the user is a student
+        else {
+
+            console.log('Im a student');
+
+            // if the tutor's peer id changes
             if (doc.data().tutorCallId !== '') {
-                navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
-                    var call = peer.call(doc.data().tutorCallID, stream);
-                    call.on('stream', function (remoteStream) {
-                        var audio = document.querySelector('audio');
-                        audio.srcObject = remoteStream;
-                        audio.onloadedmetadata = function (e) {
-                            console.log('now playing the audio');
-                            audio.play();
-                        }
-                    });
-                }).catch(function (err) {
-                    console.log('Failed to get local stream', err);
-                });
+
+                // =======================
+                // Reconnect
+                // =======================
+                conn = peer.connect(doc.data().tutorCallID);
+                conn.on('open', function () {
+                    conn.send('hi from student');
+                })
+
+                call(doc.data().tutorCallId);
             }
         }
     })
 }
 
-// answer call
-peer.on('call', function (mediaConnection) {
+function call(peerID) {
+
     navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
-        mediaConnection.answer(stream); // Answer the call with an A/V stream.
-        mediaConnection.on('stream', function (remoteStream) {
+
+        canvasDom.captureStream().getTracks().forEach(track => {
+            stream.addTrack(track);
+        })
+        mediaStream = stream;
+        var call = peer.call(peerID, stream);
+
+        call.on('stream', function (remoteStream) {
             var audio = document.querySelector('audio');
             audio.srcObject = remoteStream;
+            audio.volume = 0.5;
             audio.onloadedmetadata = function (e) {
                 console.log('now playing the audio');
                 audio.play();
             }
+            console.log(remoteStream);
+            
+            // videoDom.srcObject = remoteStream;
+            // videoDom.onloadedmetadata = function (e) {
+            //     console.log('now playing the videooooo');
+            //     videoDom.play();
+            // }
+
+        });
+    }).catch(function (err) {
+        console.log('Failed to get local stream', err);
+    });
+
+}
+
+// answer call
+peer.on('call', function (mediaConnection) {
+    navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
+        mediaStream = stream;
+        // stream.addTrack(canvasDom.captureStream(60));
+        console.log('someone called');
+
+        // console.log(stream)
+        // console.log(stream.getAudioTracks());
+        mediaConnection.answer(stream); // Answer the call with an A/V stream.
+        mediaConnection.on('stream', function (remoteStream) {
+            var audio = document.querySelector('audio');
+            audio.srcObject = remoteStream;
+            audio.volume = 0.5;
+            audio.onloadedmetadata = function (e) {
+                console.log('now playing the audio');
+                audio.play();
+            }
+            // videoDom.srcObject = remoteStream;
+            // videoDom.onloadedmetadata = function (e) {
+            //     console.log('now playing the videooooo');
+            //     videoDom.play();
+            // }
         });
     }).catch(function (err) {
         console.log('Failed to get local stream', err);
     });
 });
 
-// connect
-// connect.addEventListener('click', function () {
-//     // var conn = peer.connect(userIDConn.value);
-//     // // on open will be launch when you successfully connect to PeerServer
-//     // conn.on('open', function () {
-//     //     // here you have conn.id
-//     //     conn.send('hi!');
-//     // });
-// })
+// Create Connection
+peer.on('connection', function (conn) {
+    console.log('connected to: ' + conn);
+    console.log(conn);
+    conn.on('data', function (data) {
+        console.log(data);
+
+        if (data['stream']) {
+            console.log('checking data stream');
+            // videoDom.srcObject = data['stream'];
+            // videoDom.onloadedmetadata = function (e) {
+            //     console.log('now playing the video');
+            //     videoDom.play();
+            // }
+        }
+    })
+
+})
+
+
+// Buttons
+const screenShareBtn = document.querySelector('#screen-share-btn');
+const canvasBrushBtn = document.querySelector('#canvas-brush-btn');
+const micMuteBtn = document.querySelector('#mic-mute-btn');
+const phoneCallBtn = document.querySelector('#phone-call-btn');
+
+screenShareBtn.addEventListener('click', function () {
+    // if (videoDom.style.display == 'none') {
+    //     videoDom.style.display = 'block';
+    // } else {
+    //     videoDom.style.display = 'none';
+    // }
+
+    // let imageDat = context.getImageData(0, 0, canvasDom.width, canvasDom.height);
+    // db.collection("sessionrooms/").doc(queryResult()).update({
+    //     canvasData: points
+    // })
+})
+
+canvasBrushBtn.addEventListener('click', function () {
+    if (canvasDom.style.display == 'none') {
+        canvasDom.style.display = 'block';
+    } else {
+        canvasDom.style.display = 'none';
+    }
+})
+
+let muted = false;
+
+micMuteBtn.addEventListener('click', function () {
+    if (muted == false) {
+        micMuteBtn.style.backgroundColor = "rgb(187, 20, 20)";
+        muted = true;
+        mediaStream.getAudioTracks().map(function (t) {
+            t.enabled = false;
+        });
+    } else {
+        micMuteBtn.style.backgroundColor = "#262834";
+        muted = false;
+        mediaStream.getAudioTracks().map(function (t) {
+            t.enabled = true;
+        });
+    }
+})
+
+phoneCallBtn.addEventListener('click', gotoNext)
+
+
+console.log('loaded event listeners');

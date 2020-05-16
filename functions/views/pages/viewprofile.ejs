@@ -10,7 +10,9 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles/profile.css">
   <link rel="stylesheet" type="text/css" href="styles/footer.css">
+  <link rel="stylesheet" href="styles/navbar.css">
   <%- include("../partials/favicon.ejs") %>
 </head>
 
@@ -23,44 +25,46 @@
   </div>
   <!--Content-->
 
-  <div class="container">
+  <div class="container my-5">
     <div class="row">
-      <div class="col-md-3 col-xs-12">
-        <div id="image">Picture goes here</div>
-      </div>
-      <div class="col-md-9 col-xs-12">
-        <div id="profile">
-          <div>
-            <h2 id="name">Loading Name</h2>
-            <p id="country">Country: N/A</p>
-            <p id="language">Language: N/A</p>
-          </div>
-          <div id="student">
-            <p id="education"></p>
-            <p id="grade"></p>
-          </div>
-          <div id="tutor">
-            <p id="educomplete"></p>
-          </div>
-
-          <div id="optional">
-            <p id="subject"></p>
-          </div>
-
-          <div id="rating">
-            <p id="pro"></p>
-            <p id="tq"></p>
-            <p id="norate"></p>
-          </div>
-
-          <div class = "my-3">
-            <h4 id="biotitle"></h4>
-            <p id=bio></p>
-        </div>
-        </div>
-      </div>
+      <div class="my-3 col-md-4 col-xs-12">
+        <img src="/src/profile.png" id="imagefile">
     </div>
-  </div>
+        <div class="col-md-4 col-xs-12">
+            <div id="profile">
+                <div>
+                    <h2 id="name">Your Name</h2>
+                    <p id="country">Country: N/A</p>
+                    <p id="language">Language: N/A</p>
+                </div>
+                <div id="student">
+                    <p id="education"></p>
+                    <p id="grade"></p>
+                </div>
+                <div id="tutor">
+                    <p id="educomplete"></p>
+                </div>
+
+                <div id="optional">
+                    <p id="subject"></p>
+                </div>
+
+                <div id="rating">
+                    <p id="pro"></p>
+                    <p id="tq"></p>
+                    <p id="norate"></p>
+                </div>
+            </div>
+
+        </div>
+        <div id ="bio-container" class ="col-md-4 col-xs-12">
+            <div class = "my-3">
+                <h4 id="biotitle"></h4>
+                <p id=bio></p>
+            </div>
+        </div>
+    </div>
+</div>
 
   <!--Footer-->
 
@@ -71,9 +75,7 @@
   <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
   <script src="scripts/firebase.js"></script>
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
   </script>

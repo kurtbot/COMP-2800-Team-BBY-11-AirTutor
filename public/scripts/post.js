@@ -13,7 +13,14 @@ postsOrder.orderBy("time").onSnapshot(function (snapshot) {
       let detail = change.doc.data().details;
       let card = document.createElement("div");
       card.setAttribute("id", post);
-      card.setAttribute("class", "card bg-light text-black mx-3 my-2");
+      // card.setAttribute("class", "card bg-light text-black mx-3 my-2");
+      card.setAttribute("class", "card mx-3 my-2")
+      $(card).css({
+        "background-color":"rgb(154, 219, 250)",
+        "color":"rgb(40, 59, 66)",
+        "border":"5px ridge rgb(108, 202, 247)",
+        "font-weight":"bold"
+      })
       let box = document.createElement("div");
       box.setAttribute("class", "card-body");
       let p1 = document.createElement("h4");
@@ -32,6 +39,12 @@ postsOrder.orderBy("time").onSnapshot(function (snapshot) {
       p5.innerHTML = date;
 
       box.appendChild(p5);
+
+      let btnbox = $("<div></div>");
+      btnbox.css({
+        "display":"flex",
+        "justify-content":"space-between"
+      })
       let btn = document.createElement("button");
       btn.innerHTML = "Message";
       btn.onclick = function () {
@@ -72,21 +85,7 @@ postsOrder.orderBy("time").onSnapshot(function (snapshot) {
                 time: d,
               })
               .then(function (docRef) {
-                db.collection("users/")
-                  .doc(targetUser)
-                  .update({
-                    chatrooms: firebase.firestore.FieldValue.arrayUnion(
-                      docRef.id
-                    ),
-                  });
-
-                db.collection("users/")
-                  .doc(currentUser)
-                  .update({
-                    chatrooms: firebase.firestore.FieldValue.arrayUnion(
-                      docRef.id
-                    ),
-                  });
+                
                 localStorage.setItem("roomID", docRef.id);
                 localStorage.setItem("requestID", post);
               })
@@ -99,9 +98,35 @@ postsOrder.orderBy("time").onSnapshot(function (snapshot) {
         });
       };
 
-      box.appendChild(btn);
+      $(btnbox).append($(btn))
+
+      if (firebase.auth().currentUser.uid == change.doc.data().studentid){
+        let del = $("<button>Delete</button>")
+
+        $(del).click(function(){
+          if (confirm("Are you sure you want to delete this post?")){
+          
+          
+            db.collection("posts").doc(change.doc.id).delete()
+
+          }
+        })
+        $(btnbox).append($(del))
+        $(btn).css({
+          "visibility":"hidden"
+        })
+
+      }
+
+
+
+
+      $(box).append($(btnbox))
       card.appendChild(box);
       $("#posts-dat").prepend(card);
+    }
+    if (change.type === "removed") {
+      $("#" + change.doc.id).remove();
     }
   });
 });
@@ -125,7 +150,14 @@ $("#filter").click(function () {
         let date = change.doc.data().date;
         let detail = change.doc.data().details;
         let card = document.createElement("div");
-        card.setAttribute("class", "card bg-light text-black mx-3 my-2");
+        card.setAttribute("id", post);
+        card.setAttribute("class", "card mx-3 my-2")
+        $(card).css({
+          "background-color":"rgb(154, 219, 250)",
+          "color":"rgb(40, 59, 66)",
+          "border":"5px ridge rgb(108, 202, 247)",
+          "font-weight":"bold"
+        })
         let box = document.createElement("div");
         box.setAttribute("class", "card-body");
         let p1 = document.createElement("h4");
@@ -144,6 +176,11 @@ $("#filter").click(function () {
         p5.innerHTML = date;
 
         box.appendChild(p5);
+        let btnbox = $("<div></div>");
+        btnbox.css({
+          "display":"flex",
+          "justify-content":"space-between"
+        })
         let btn = document.createElement("button");
         btn.innerHTML = "Message";
         btn.onclick = function () {
@@ -183,21 +220,7 @@ $("#filter").click(function () {
                   time: d,
                 })
                 .then(function (docRef) {
-                  db.collection("users/")
-                    .doc(targetUser)
-                    .update({
-                      chatrooms: firebase.firestore.FieldValue.arrayUnion(
-                        docRef.id
-                      ),
-                    });
-
-                  db.collection("users/")
-                    .doc(currentUser)
-                    .update({
-                      chatrooms: firebase.firestore.FieldValue.arrayUnion(
-                        docRef.id
-                      ),
-                    });
+                  
                   localStorage.setItem("roomID", docRef.id);
                 })
                 .then(function () {
@@ -208,14 +231,40 @@ $("#filter").click(function () {
             }
           });
         };
+        $(btnbox).append($(btn))
 
-        if ((filtersubject == subject) | (filtersubject == "All")) {
-          box.appendChild(btn);
+        if (firebase.auth().currentUser.uid == change.doc.data().studentid){
+          let del = $("<button>Delete</button>")
+  
+          $(del).click(function(){
+            if (confirm("Are you sure you want to delete this post?")){
+            
+            
+              db.collection("posts").doc(change.doc.id).delete()
+  
+            }
+          })
+          $(btnbox).append($(del))
+          $(btn).css({
+            "visibility":"hidden"
+          })
+
+        }
+  
+  
+  
+  
+        $(box).append($(btnbox))
+        if ((filtersubject == subject) || (filtersubject == "All"  ||  (filtersubject == "My Posts" && firebase.auth().currentUser.uid == change.doc.data().studentid))) {
+
           card.appendChild(box);
           if (!document.getElementById(post)){
           $("#posts-dat").prepend(card);
           }
         }
+      }
+      if (change.type === "removed") {
+        $("#" + change.doc.id).remove();
       }
     });
   });

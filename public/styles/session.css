@@ -1,0 +1,86 @@
+body{ 
+    margin: 0;
+    padding: 0;
+    background-color: black
+}
+
+#layer1 {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    background-color: red;
+}
+
+#layer2 {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    background-color: yellow;
+}
+
+#layer3 {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    /* background-color: green; */
+}
+
+/* Video */
+
+video {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+}
+
+/* Canvas */
+
+canvas {
+    background-color: aliceblue;
+    margin: 0;
+    padding: 0;
+    /* display: none; */
+}
+
+
+/* Buttons */
+
+.buttons {
+    bottom: 2rem;
+    position: fixed;
+    /* background-color: blue; */
+    width: 100vw;
+    margin: 0;
+}
+
+.buttonList {
+    /* background-color: blueviolet; */
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttonItem {
+    background-color: var(--bg-secondary-dark);
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.buttonItem > svg {
+    transform: scale(0.6);
+    height: 4rem;
+    width: 4rem;
+    fill: var(--text-primary-dark);
+}
+
+.buttonItem:nth-child(4) {
+    background-color: rgb(187, 20, 20);
+}
+

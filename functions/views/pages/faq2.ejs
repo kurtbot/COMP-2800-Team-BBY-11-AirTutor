@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>FAQ</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles/footer.css">
+    <link rel="stylesheet" type="text/css" href="styles/post.css">
+    <link rel="stylesheet" type="text/css" href="styles/faq.css">
+    
+    <%- include("../partials/favicon.ejs") %>
+</head>
+
+<body>
+
+    <div id="content" class="mb-5">
+        <!--Content-->
+        <h1 style="text-align: center;">Frequently Asked Questions (FAQ)</h1>
+        <br>
+
+        <h2>For tutors</h2>
+        <h4>Am I limited to teaching only one subject?</h4>
+        <p>No, you are not.</p>
+        <h4>Will I be paid to tutor?</h4>
+        <p>Currently, this is a free service. However, in the future, we would like to implement a credit system so that
+            our tutors can get paid for the hard work that they do. </p>
+        <br>
+
+        <h2>For students</h2>
+        <h4>Who are the tutors?</h4>
+        <p>Tutors come from a variety of backgrounds, including former and current one-on-one tutors and others who may
+            have expertise in the subject area. These tutors are very passionate about helping students succeed. </p>
+        <h4>How do I know my tutor will help me?</h4>
+        <p>You may view the tutor’s profile page to see their rating prior to scheduling a meeting with them. Their
+            students have given them the rating after each of their sessions. </p>
+        <h4>Do I need to pay for this service?</h4>
+        <p>Currently, it is a free service. However, in the future, we would like to implement a credit system so that
+            our tutors can get paid for the hard work that they do. </p>
+        <h4>Is the tutoring one-on-one or do I need to do it with a group?</h4>
+        <p>For now, all of our sessions are only one-on-one. </p>
+        <br>
+
+
+        <br>
+        <h2>For all users</h2>
+        <h4>How do I create an account?</h4>
+        <p>You can create an account by signing up <a href="/signup"
+                style="color: black; font-weight: bold; text-decoration: underline;">here.</a></p>
+        <h4>How does the credit system work? </h4>
+        <p>Credits can be purchased in the shop. Each session takes a specific amount of credits, which is stated in the
+            session page. These credits will be deposited in the tutor’s account and removed from the student’s account.
+            These credits will then be available for the tutor to convert into currency. </p>
+        <br>
+        <!-- <h1>FAQ</h1>
+        <h3>Online Classrooms</h3>
+        <a href="#"> Zoom </a> <br>
+        <a href="#"> Bongo </a> <br> <br>
+        
+        <h3>Online Forums</h3>
+        <a href="#"> StackOverflow </a> <br>
+        <a href="#"> Quora </a> <br> <br>
+        
+        <h3>Self Studying Tools</h3>
+        <a href="#"> Wolfram Alpha </a> <br>
+        <a href="#"> Khan Academy
+        </a> -->
+    </div>
+
+    <!--Footer-->
+    <%- include("../partials/footer.ejs") %>
+
+    <!-- Firebase javascripts -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+    <script src="scripts/firebase.js"></script>
+
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+            <!-- Optional JavaScript -->
+    <script src="scripts/navbar.js"></script>
+</body>
+
+</html>

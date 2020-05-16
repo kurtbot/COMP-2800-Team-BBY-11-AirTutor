@@ -3,6 +3,7 @@ viewRating();
 studentInfo();
 tutorInfo();
 bestSubject();
+viewPic();
 
 function queryResult() {
     let queryString = decodeURIComponent(window.location.search);
@@ -21,7 +22,7 @@ function userInfo() {
             $("#name").text(snap.data().firstName + " " + snap.data().lastName);
             let country = snap.data().country;
             let language = snap.data().language;
-            let bio = snap.data().language;
+            let bio = snap.data().bio;
 
             if (country != "" && country != undefined) {
                 $("#country").text("Country: " + country);
@@ -81,7 +82,7 @@ function bestSubject() {
 
             if (subject != "" && subject != undefined) {
                 $("#subject").show();
-                $("#subject").text("Best Subject: " + eduComplete);
+                $("#subject").text("Best Subject: " + subject);
             }
 
         })
@@ -170,4 +171,21 @@ function averageTQ() {
         }
 
     });
+}
+
+function viewPic() {
+        const dbref = db.collection("users/").doc(queryResult())
+        
+        dbref.get()
+            .then(snap => {
+                let picture = snap.data().profilePic;
+
+                if (picture != "" && picture != undefined) {
+                    $("#imagefile").attr("src", picture );
+                }
+
+            })
+
+    
+
 }

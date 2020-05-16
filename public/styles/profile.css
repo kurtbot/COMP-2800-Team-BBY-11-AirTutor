@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 .navbar {
@@ -17,37 +15,37 @@ body {
     font-family: "Roboto";
 }
 
-#image {
+#imagefile {
+    display:block;
     text-align: center;
     font-family: "Roboto";
     border: solid black 2px;
-    background-color: grey;
-    width: 200px;
-    height: 300px;
+    width: 320px;
+    height: 400px;
 }
 
 h1, h2, h3, h4, h5 {
-    font-family: "Raleway Black";
+    font-family: "Raleway";
+    font-weight: 500;
     color: #283b42;
 }
 
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: grey;
-    color: white;
-    text-align: center;
+#bio-container {
+    margin-bottom:35px;
 }
 
-@media (max-width:720px) {
-    #image {
+@media (max-width:800px) {
+    #imagefile {
         margin: auto;
+        
     }
     #profile {
         margin-top: 10px;
         text-align: center;
     }
+    #bio-container {
+        text-align: center;
+    }
 }
+
 

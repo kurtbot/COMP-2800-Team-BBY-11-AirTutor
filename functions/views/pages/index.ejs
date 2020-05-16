@@ -1,91 +1,161 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Index</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./styles/index.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Air Tutor</title>
+
+    <!-- My style sheets -->
+    <link rel="stylesheet" type="text/css" href="/styles/index.css">
+
     <%- include("../partials/favicon.ejs") %>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm" style="background-color: #283B42;">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-                aria-expanded="false" aria-label="Toggle navigation"></button>
-            <div class="collapse navbar-collapse" id="collapsibleNavId">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/aboutus">About Us<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/faq">FAQs</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <a class="btn btn-primary mr-1" href="/login" role="button">Login</a>
-                    <a class="btn btn-primary mr-1" href="/signup" role="button">Sign up</a>
-                </form>
+    <div id="main-sidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/login">Sign in</a>
+        <a href="/aboutus2">About</a>
+        <a href="/faq2">FAQ</a>
+    </div>
+
+    <!-- Use any element to open the sidenav -->
+    <header id="header-content">
+        <span id="menu-button" onclick="openNav()"><svg aria-hidden="true" id="menu-svg" focusable="false"
+                data-prefix="fas" data-icon="paper-plane" class="svg-inline--fa fa-paper-plane fa-w-16" role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="currentColor" d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9
+                    13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9
+                    33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z">
+                </path>
+            </svg>
+        </span>
+
+        <div id="description-content">
+            <div class="row">
+                <div class="column" class="description-column">
+                    <h1>Welcome to <br><span class="title">Air Tutor.</span></h1>
+
+                    <p> As students are being forced into online learning and many are losing their jobs due to the
+                        pandemic,
+                        we, the developers of Air Tutor, created an application that helps both students and tutors in
+                        this time of need.
+                    </p><br>
+
+                    <div class="signup-button">Sign in with Google</div>
+                </div>
+
+                <div class="column" class="description-column">
+                    <div class="description-img"></div>
+                </div>
             </div>
-        </nav>
-    </header>
-    
-    <div id="main-content">
-        <div class="py-2 text-center">
-            <h2>Welcome to</h2>
-            <h1>Air Tutor</h1>
         </div>
-        <div class="card-columns px-4">
-            <div class="card">
-                <img class="card-img-top" src="holder.js/100x180/" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Create an Account</h4>
-                    <a name="" id="" class="btn btn-primary" href="/signup" role="button">Sign Up</a>
+    </header>
+
+    <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+    <div id="main-content">
+
+        <div id="features-content">
+            <h1>All the learning tools you need, in <span class="title">Air Tutor.</span></h1>
+            <div class="row">
+                <div class="column">
+                    <div class="features-img">
+                        <img src="src/index/posting-feature.png">
+                    </div>
+
+                    <h2>Your call for help,<br> answered in Air Tutor.</h2>
+
+                    <p>Stuck on a homework question? Post a request on Air Tutor. Our highly-qualified tutors will reach
+                        out to you. Believe me, they want to help.</p>
+                </div>
+
+                <div class="column">
+                    <div class="features-img">
+                        <img src="src/index/scheduling-feature.png">
+                    </div>
+
+                    <h2>Features that help you communicate like never before.</h2>
+
+                    <p>We in Air Tutor believe that communication is the key to success. Tutors and students can
+                        privately message each other and schedule sessions to help students better learn the material.
+                    </p>
+                </div>
+
+                <div class="column">
+                    <div class="features-img">
+                        <img src="src/index/collaboration-feature.png">
+                    </div>
+
+                    <h2>Learning the material<br> has never been easier.</h2>
+
+                    <p>Air Tutor provides you with all the tools you need to succeed. Drawing tools, screen sharing, and
+                        video calling — you name it, we got it.</p>
                 </div>
             </div>
-            <div class="card">
-                <img class="card-img-top" src="holder.js/100x180/" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Already have an account</h4>
-                    <a name="" id="" class="btn btn-primary" href="/login" role="button">Login</a>
+        </div>
+
+        <div id="testimonials-content">
+            <h1>What the community is saying about <span class="title">Air Tutor.</span></h1>
+            <div class="row">
+                <div class="column">
+                    <div class="testimonials-img">
+                        <img src="src/index/testimonial1.jpg">
+                    </div>
+                    <p>"As a student, I really feel like I'm learning the material now, thanks to the help of my tutors
+                        at Air Tutor! Each and every one of them has been able to help me understand concepts very
+                        easily, and I'm not sure what I would have done without them."
+                        <br><br><span class="author">Ann, Burnaby</span>
+                    </p>
+                </div>
+
+                <div class="column">
+                    <div class="testimonials-img">
+                        <img src="src/index/testimonial2.jpg">
+                    </div>
+                    <p>"As a tutor, I sure am grateful that Air Tutor allows me to use every possible tool I might need
+                        in order to teach my students. Though physics can get really tricky, Air Tutor is really easy to
+                        use!"
+                        <br><br><span class="author">Jacob, Maryland</span>
+                    </p>
+                </div>
+
+                <div class="column">
+                    <div class="testimonials-img">
+                        <img src="src/index/testimonial3.jpg">
+                    </div>
+                    <p>"As a student, I am glad that I can message and receive messages from tutors whenever I need the
+                        help. You can really see the difference in my grades, before and after I started using Air
+                        Tutor."
+                        <br><br><span class="author">Christopher, Orlando</span>
+                    </p>
                 </div>
             </div>
-            <div class="card">
-                <img class="card-img-top" src="holder.js/100x180/" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Sign in with Google</h4>
-                    <a name="" id="" class="btn btn-primary" role="button">Google Sign in [WIP]</a>
-                </div>
-            </div>
+        </div>
+
+        <div class="signup-content">
+            <h1>Sign up for Air Tutor today.</h1>
+            <a class="signup-button">Sign in with Google</a>
         </div>
     </div>
 
-
-    <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
     <script src="scripts/firebase.js"></script>
-    <script src="scripts/index_main.js"></script>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-</body>
 
-</html>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+    <!--Optional JS-->
+    <script src="/scripts/index.js"></script>
+    <script src="/scripts/signup_1.js"></script>
+</body>

@@ -22,3 +22,8 @@ a[href="/faq"] {
 .footer>a, a:hover {
   color:white;
 }
+
+#plane{
+  width: 50px
+}
+

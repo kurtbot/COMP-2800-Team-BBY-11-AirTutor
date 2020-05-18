@@ -48,28 +48,18 @@ async function submitNoReview() {
         
         db.collection("sessionrooms").doc(localStorage.getItem("session")).delete().then(function(){
             db.collection("schedules").doc(localStorage.getItem("schedule")).delete().then(function() {
-            //     db.collection("chatrooms/").get().then(function (snap) {
-            //         snap.forEach(function (doc) {
-            //             if (doc.data().requestid == localStorage.getItem("request")){
-            //                 // db.collection("chatrooms").doc(doc.id).collection("messages")
-            //                 // .get().then(function(snap2){
-            //                 //     snap2.forEach(function(docc){
-            //                 //         db.collection("chatrooms").doc(doc.id).collection("messages").doc(docc.id).delete()
-            //                 //     })
-        
-            //                 // }).then(function(){
-            //                     db.collection("chatrooms").doc(doc.id).delete()
-            //                     //await (console.log("ok"))
-            //                 //})
+                db.collection("chatrooms").doc(localStorage.getItem("chat")).collection("messages")
+                .get().then(function(snap){
+                    snap.forEach(function(docc){
+                        db.collection("chatrooms").doc(localStorage.getItem("chat")).collection("messages").doc(docc.id).delete()
+                    })
 
-            //             }
-            //         })
-          
+                }).then(function(){
+                    db.collection("chatrooms").doc(localStorage.getItem("chat")).delete().then(function(){
+                        res("success")
+                    })
+                })
 
-            // }).then(function(){
-                res("success")
-
-            //})
           })
         })
         // db.collection("sessionrooms").doc(localStorage.getItem("session")).delete()
@@ -120,28 +110,18 @@ function reviewSubmit() {
         db.collection("posts").doc(request).delete().then(function(){
         db.collection("sessionrooms").doc(localStorage.getItem("session")).delete().then(function(){
             db.collection("schedules").doc(localStorage.getItem("schedule")).delete().then(function() {
-            //     db.collection("chatrooms/").get().then(function (snap) {
-            //         snap.forEach(function (doc) {
-            //             if (doc.data().requestid == localStorage.getItem("request")){
-            //                 // db.collection("chatrooms").doc(doc.id).collection("messages")
-            //                 // .get().then(function(snap2){
-            //                 //     snap2.forEach(function(docc){
-            //                 //         db.collection("chatrooms").doc(doc.id).collection("messages").doc(docc.id).delete()
-            //                 //     })
-        
-            //                 // }).then(function(){
-            //                     db.collection("chatrooms").doc(doc.id).delete()
-            //                     //await (console.log("ok"))
-            //                 //})
+                db.collection("chatrooms").doc(localStorage.getItem("chat")).collection("messages")
+                .get().then(function(snap){
+                    snap.forEach(function(docc){
+                        db.collection("chatrooms").doc(localStorage.getItem("chat")).collection("messages").doc(docc.id).delete()
+                    })
 
-            //             }
-            //         })
-          
+                }).then(function(){
+                    db.collection("chatrooms").doc(localStorage.getItem("chat")).delete().then(function(){
+                        res("success")
+                    })
+                })
 
-            // }).then(function(){
-                res("success")
-
-            //})
           })
         })
     })

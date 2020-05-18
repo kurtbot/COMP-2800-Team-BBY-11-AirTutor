@@ -18,7 +18,8 @@ function loadSchedule(){
         let tutorid = change.doc.data().user;
         let tutor = change.doc.data().username;
         let request = change.doc.data().requestID;
-        let creditval = change.doc.data().credit;  
+        let creditval = change.doc.data().credit;
+        let chat = change.doc.data().chatroom;  
         let box = $("<div></div>").attr({"id":change.doc.id, "class":"card mx-3 my-2"}).css({
           "background-color": "rgb(154, 219, 250)",
           "color": "rgb(40, 59, 66)",
@@ -30,14 +31,15 @@ function loadSchedule(){
         let start = $("<p></p>").html("Start time: " + change.doc.data().start);
         let end = $("<p></p>").html("End time: " + change.doc.data().end);
         let title = $("<p></p>").html("Title: " + change.doc.data().title);
-        let name = $("<p></p>").html("Meeting with: " + tutorid == firebase.auth().currentUser.uid? student : tutor);
+        let str = tutorid == firebase.auth().currentUser.uid? student : tutor
+        let name = $("<p></p>").html("Meeting with: " + str);
         let role = tutorid == firebase.auth().currentUser.uid? $("<p>My Role: Tutor</p>") : $("<p>My Role: Student</p>");
         let credit = $("<p></p>").html("Credit: " + creditval);
         let btnbox = $("<div></div>").css({
           "display": "flex",
           "justify-content": "space-between"
         });
-        let btn = $("<button></button>").html("Join Session").click(function(){join(check, scheduleid, studentid, student, tutorid, tutor, request, creditval)})
+        let btn = $("<button></button>").html("Join Session").click(function(){join(check, scheduleid, studentid, student, tutorid, tutor, request, creditval, chat)})
         createSchedule(scheduleid, btnbox, btn, box, date, start, end, title, name, role, credit, tutorid, studentid);
  
       }
@@ -62,8 +64,9 @@ function loadSchedule(){
  * @param {*} tutor the tutor's name
  * @param {*} request the original post's id
  * @param {*} creditval the credit assigned for this meeting
+ * @param {*} chat id of the chatroom that created schedule
  */
-function join(check, scheduleid, studentid, student, tutorid, tutor, request, creditval){
+function join(check, scheduleid, studentid, student, tutorid, tutor, request, creditval, chat){
   let d = new Date();
   let checktime = d.getTime();
   // Check if current time is after meeting time
@@ -91,6 +94,7 @@ function join(check, scheduleid, studentid, student, tutorid, tutor, request, cr
             time: d,
             credit: creditval,
             scheduleid: scheduleid,
+            chatroom: chat,
             tutorCallId: "",
             studentCallId: ""
           })

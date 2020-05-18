@@ -37,6 +37,7 @@ db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
     localStorage.setItem("request", doc.data().requestid)
     localStorage.setItem("session", doc.id)
     localStorage.setItem("schedule", doc.data().scheduleid)
+    localStorage.setItem("chat", doc.data().chatroom)
 })
 
 function gotoNext() {

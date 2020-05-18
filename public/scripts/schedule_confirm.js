@@ -1,3 +1,6 @@
+console.log(localStorage.getItem("roomID"))
+
+
 $("#date").html(localStorage.getItem("date"));
 $("#start").html(localStorage.getItem("start"));
 $("#end").html(localStorage.getItem("end"));
@@ -37,7 +40,8 @@ $("#confirm").click(function(){
         username:localStorage.getItem("name"),
         nameid: user.uid,
         requestID: localStorage.getItem("requestID"),
-        time: check
+        time: check,
+        chatroom: localStorage.getItem("roomID")
     })
     promise.then(function(){
         localStorage.removeItem("date");

@@ -24,7 +24,6 @@ function drop(){
   if (!startFall){
   dropping = setInterval(function () {
     let top = $("#plane").offset().top - $(window).scrollTop();
-    console.log(top)
     let bottom = $(window).height() - top - $("#plane").height();
     top = top + 2;
     if (bottom > 5) {
@@ -56,7 +55,6 @@ function fly() {
       clearInterval(dropping)
 
       let away = setInterval(function () {
-        console.log("why")
         $("#plane").css({
           position: "fixed",
           left: $("#plane").offset().left + 3,

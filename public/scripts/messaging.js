@@ -29,24 +29,7 @@ function initializeRoom(user) {
         }
         $("#what").html(docc.data().topic)
     })
-    // setInterval(function(){
-    //     db.collection("chatrooms").doc(roomID).get().then(function(doc){
-    //         firebase.auth().onAuthStateChanged(function (user) {
-            
-    //             if (user.uid == doc.data().studentid){
-    //                 db.collection("chatrooms").doc(roomID).update({
-    //                     unreadstudent: false
-    //                 })
-    //             } else {
-    //                 db.collection("chatrooms").doc(roomID).update({
-    //                     unreadtutor: false
-    //                 })
-    //             }
-    //             })
-    //     })
 
-    
-    // }, 1000)
 }
 
 function schedulingAllowed(user) {
@@ -61,20 +44,10 @@ function schedulingAllowed(user) {
 
 function loadRecentMessages() {
     let msgOrder = db.collection("chatrooms/").doc(roomID).collection("messages");
-    // msgOrder.orderBy("actualTime").get().then(function (snap) {
-    //     snap.forEach(function (doc) {
-    //         $(".chat-log").html(
-    //             $(".chat-log").html() + doc.data().senderName + ": " + doc.data().message + "<br>"
-    //         );
-    //     })
-    // });
     msgOrder.orderBy("actualTime").onSnapshot(function(snapshot) {
         snapshot.docChanges().forEach(function(change) {
             if (change.type === "added") {
-                // console.log("New city: ", change.doc.data());
-                // $(".chat-log").html(
-                //     $(".chat-log").html() + change.doc.data().senderName + ": " + change.doc.data().message + "<br>"
-                // );
+
                 let newcontent1 = change.doc.data().senderName
                 let newcontent2 = change.doc.data().timestamp
                 let newcontent3 = change.doc.data().message
@@ -114,17 +87,12 @@ function loadRecentMessages() {
                     })
                 }
 
-                // $(".chat-log").html(
-                //     $(".chat-log").html() + newbox
-                //     );
                 $(outerbox).append($(newbox))
                 $(".chat-log").append($(outerbox))
                 window.scrollTo(0,document.body.scrollHeight);
             }
 
-            // if (change.type === "removed") {
-            //     console.log("Removed city: ", change.doc.data());
-            // }
+
         })});
 }
 
@@ -154,10 +122,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         // check input
         let str = document.querySelector(".chat-input").value;
         let output = document.querySelector(".chat-log");
-        // udpate chat log
-        // $(".chat-log").html(
-        //     $(".chat-log").html() + user.displayName + ": " + str + "<br>"
-        // );
+
 
         // remove input text
         $('.chat-input').val('');
@@ -197,7 +162,6 @@ firebase.auth().onAuthStateChanged(function (user) {
 $(".chat-input").on('keyup', function (e) {
     if (e.keyCode === 13) {
         console.log("ahhhhh")
-                //localStorage.removeItem("roomID");
                 console.log(roomID);
                 let d = new Date();
                 let year = d.getFullYear();
@@ -210,11 +174,7 @@ $(".chat-input").on('keyup', function (e) {
                 // check input
                 let str = document.querySelector(".chat-input").value;
                 let output = document.querySelector(".chat-log");
-                // udpate chat log
-                // $(".chat-log").html(
-                //     $(".chat-log").html() + user.displayName + ": " + str + "<br>"
-                // );
-        
+
                 // remove input text
                 $('.chat-input').val('');
         

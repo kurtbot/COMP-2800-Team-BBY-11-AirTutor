@@ -117,9 +117,13 @@ function reviewSubmit() {
                     })
 
                 }).then(function(){
+                    if ($("#deletechat").val() == "Yes"){
                     db.collection("chatrooms").doc(localStorage.getItem("chat")).delete().then(function(){
                         res("success")
                     })
+                } else {
+                    res("success")
+                }
                 })
 
           })

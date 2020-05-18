@@ -34,31 +34,31 @@ function signOut() {
 
 
 function updateMessage() {
-    firebase.auth().onAuthStateChanged(function (user) {
+
         let dbref = db.collection('/chatrooms/');
         dbref.get().then(function (snapshot) {
             snapshot.docChanges().forEach(function (change) {
                 if (change.type === "added" || change.type === "modified") {
 
-                    if (change.doc.data().studentid == user.uid) {
+
+                    if (change.doc.data().studentid == firebase.auth().currentUser.uid) {
+                        console.log("help")
                         if (change.doc.data().unreadstudent == true) {
                             $("#new-message").text("Message*").css("color", "red");
-                        } else {
-                            $("#new-message").text("Message").css("color", "grey");
-                        }
+                        } 
                     }
 
-                    if (change.doc.data().tutorid == user.uid) {
+                    if (change.doc.data().tutorid == firebase.auth().currentUser.uid) {
+
                         if (change.doc.data().unreadtutor == true) {
+                            console.log("help1")
                             $("#new-message").text("Message*").css("color", "red");
-                        } else {
-                            $("#new-message").text("Message").css("color", "grey");
-                        }
+                        } 
                     }
                 }
             })
         })
-    })
+    
 }
 
 function understood() {

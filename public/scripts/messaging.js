@@ -1,16 +1,11 @@
-let roomID = queryResult();
+let roomID = localStorage.getItem("roomID");
 console.log("Current Room ID: ", roomID);
-
-
-
-roomID = localStorage.getItem("roomID");
-
-function queryResult() {
-    let queryString = decodeURIComponent(window.location.search);
-    let queries = queryString.split("?");
-    let id = queries[1];
-    return id;
-}
+// function queryResult() {
+//     let queryString = decodeURIComponent(window.location.search);
+//     let queries = queryString.split("?");
+//     let id = queries[1];
+//     return id;
+// }
 
 
 
@@ -34,24 +29,24 @@ function initializeRoom(user) {
         }
         $("#what").html(docc.data().topic)
     })
-    setInterval(function(){
-        db.collection("chatrooms").doc(roomID).get().then(function(doc){
-            firebase.auth().onAuthStateChanged(function (user) {
+    // setInterval(function(){
+    //     db.collection("chatrooms").doc(roomID).get().then(function(doc){
+    //         firebase.auth().onAuthStateChanged(function (user) {
             
-                if (user.uid == doc.data().studentid){
-                    db.collection("chatrooms").doc(roomID).update({
-                        unreadstudent: false
-                    })
-                } else {
-                    db.collection("chatrooms").doc(roomID).update({
-                        unreadtutor: false
-                    })
-                }
-                })
-        })
+    //             if (user.uid == doc.data().studentid){
+    //                 db.collection("chatrooms").doc(roomID).update({
+    //                     unreadstudent: false
+    //                 })
+    //             } else {
+    //                 db.collection("chatrooms").doc(roomID).update({
+    //                     unreadtutor: false
+    //                 })
+    //             }
+    //             })
+    //     })
 
     
-    }, 100)
+    // }, 1000)
 }
 
 function schedulingAllowed(user) {
@@ -178,9 +173,21 @@ firebase.auth().onAuthStateChanged(function (user) {
         db.collection("chatrooms").doc(roomID).update({
             latest: d,
             latestTime: date,
-            unreadtutor: true,
-            unreadstudent: true
         })
+        db.collection("chatrooms").doc(roomID).get().then(function(doc){
+            firebase.auth().onAuthStateChanged(function (user) {
+            
+                if (user.uid == doc.data().studentid){
+                    db.collection("chatrooms").doc(roomID).update({
+                        unreadtutor: true
+                    })
+                } else {
+                    db.collection("chatrooms").doc(roomID).update({
+                        unreadstudent: true
+                    })
+                }
+                })
+            })
 
     });
 
@@ -222,10 +229,39 @@ $(".chat-input").on('keyup', function (e) {
                 db.collection("chatrooms").doc(roomID).update({
                     latest: d,
                     latestTime: date,
-                    
-            unreadtutor: true,
-            unreadstudent: true
                 })
+                db.collection("chatrooms").doc(roomID).get().then(function(doc){
+                    firebase.auth().onAuthStateChanged(function (user) {
+                    
+                        if (user.uid == doc.data().studentid){
+                            db.collection("chatrooms").doc(roomID).update({
+                                unreadtutor: true
+                            })
+                        } else {
+                            db.collection("chatrooms").doc(roomID).update({
+                                unreadstudent: true
+                            })
+                        }
+                        })
+                    })
     }
 });
 })
+
+$(".chat-input").focus(function(){
+    db.collection("chatrooms").doc(roomID).get().then(function(doc){
+        firebase.auth().onAuthStateChanged(function (user) {
+        
+            if (user.uid == doc.data().studentid){
+                db.collection("chatrooms").doc(roomID).update({
+                    unreadstudent: false
+                })
+            } else {
+                db.collection("chatrooms").doc(roomID).update({
+                    unreadtutor: false
+                })
+            }
+            })
+        })
+})
+

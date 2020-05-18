@@ -22,7 +22,7 @@
 
   <div id="schedule">
     <h1>Schedule a Session</h1>
-    <p>Date: </p>
+    <p>Date: <i>* required</i></p>
     <input type="date" id="date">
     <hr>
     <p>Start Time: </p>
@@ -93,8 +93,8 @@
       <option>PM</option>
     </select>
     <hr>
-    <p>Title: <input type="text" id="title"></p>
-    <p>Tutor Name: <input type="text" id="name"></p>
+    <p>Title: <i>* required</i><br><input type="text" id="title"></p>
+    <p>Tutor Name: <input type="text" id="name" readonly></p>
     <p>Credit Reward: </p>
     <select id="credit">
       <option>100</option>
@@ -108,8 +108,9 @@
       <option>900</option>
       <option>1000</option>
     </select>
-
-    <p><input type="checkbox">Send me an email about this session</p>
+    <br>
+    <hr>
+    <!-- <p><input type="checkbox">Send me an email about this session</p> -->
     <button type="button" class="btn btn-danger" id="cancel">Cancel</button>
     <button type="button" class="btn btn-success" id="submit">Submit</button>
 

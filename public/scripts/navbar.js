@@ -42,7 +42,6 @@ function updateMessage() {
 
 
                     if (change.doc.data().studentid == firebase.auth().currentUser.uid) {
-                        console.log("help")
                         if (change.doc.data().unreadstudent == true) {
                             $("#new-message").text("Message*").css("color", "red");
                         } 
@@ -51,7 +50,6 @@ function updateMessage() {
                     if (change.doc.data().tutorid == firebase.auth().currentUser.uid) {
 
                         if (change.doc.data().unreadtutor == true) {
-                            console.log("help1")
                             $("#new-message").text("Message*").css("color", "red");
                         } 
                     }

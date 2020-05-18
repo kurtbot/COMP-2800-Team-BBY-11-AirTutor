@@ -109,6 +109,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     // Add button event
     $(".send-btn").click(function () {
+        if ($(".chat-input").val().trim()){
         //localStorage.removeItem("roomID");
         console.log(roomID);
         let d = new Date();
@@ -153,7 +154,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                 }
                 })
             })
-
+        }
     });
 
 });
@@ -161,6 +162,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 firebase.auth().onAuthStateChanged(function (user) {
 $(".chat-input").on('keyup', function (e) {
     if (e.keyCode === 13) {
+        if ($(".chat-input").val().trim()){
         console.log("ahhhhh")
                 console.log(roomID);
                 let d = new Date();
@@ -204,6 +206,7 @@ $(".chat-input").on('keyup', function (e) {
                         }
                         })
                     })
+                }
     }
 });
 })

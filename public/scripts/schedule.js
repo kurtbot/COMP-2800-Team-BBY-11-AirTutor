@@ -63,6 +63,10 @@ $("#cancel").click(function(){
 })
 
 $("#submit").click(function(){
+    let condition1 = $("#date").val().trim();
+    let condition2 = $("#title").val().trim();
+    if (condition1 && condition2){
+
     let startHour = $("#start-hour").val();
     let startMinute = $("#start-minute").val();
     let startAP = $("#start-ap").val();
@@ -85,4 +89,7 @@ $("#submit").click(function(){
     localStorage.setItem("name", $("#name").val());
     localStorage.setItem("credit", $("#credit").val());
     window.location.href="/schedule_confirm";
+    } else {
+        alert("Please fill out the required fields")
+    }
 });

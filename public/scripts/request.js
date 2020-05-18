@@ -20,11 +20,18 @@ $("#cancel").click(function(){
 
 
 $("#submit").click(function(){
-    localStorage.setItem("subject", $("#subject").val());
-    localStorage.setItem("grade", $("#grade").val());
-    localStorage.setItem("details", $("#details").val());
-    localStorage.setItem("retitle", $("#retitle").val());
-    window.location.href="/request_confirm";
+    let condition1 = $("#retitle").val().trim();
+    let condition2 = $("#details").val().trim();
+    if (condition1 && condition2){
+        localStorage.setItem("subject", $("#subject").val());
+        localStorage.setItem("grade", $("#grade").val());
+        localStorage.setItem("details", $("#details").val());
+        localStorage.setItem("retitle", $("#retitle").val());
+        window.location.href="/request_confirm";
+    } else {
+        alert("Please fill out the required fields")
+    }
+
 
 });
 

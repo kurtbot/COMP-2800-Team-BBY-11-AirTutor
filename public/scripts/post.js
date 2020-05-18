@@ -124,7 +124,7 @@ function createPost(btnbox, btn, card, box, p1, p2, p3, p4, p5, targetUser, subj
     // Delete button to remove the post
     let del = $("<button>Delete</button>").click(function () {
       if (confirm("Are you sure you want to delete this post?")) {
-        db.collection("posts").doc(change.doc.id).delete();
+        db.collection("posts").doc(post).delete();
       }
     });
     $(btnbox).append(del);

@@ -16,6 +16,15 @@ header {
   flex-direction: column;
 }
 
+@media only screen and (min-width: 800px){
+  #home-content{
+    flex-direction: row;
+  }
+  #leftcolumn{
+    width: 50%
+  }
+}
+
 h1, h2, h3, h4, h5 {
   padding-top: 20px;
   font-family: "Raleway";
@@ -42,17 +51,6 @@ a {
   padding: 30px;
 }
 
-/* Create two unequal columns that floats next to each other */
-/* Left column */
-.leftcolumn {
-  float: left;
-  width: 100%;
-}
-
-/* Right column */
-.rightcolumn {
-  width: 60%;
-}
 
 /* Add a card effect for articles */
 .card {
@@ -63,9 +61,18 @@ a {
   border-radius: 25px;
 }
 
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 800px) {
-  .leftcolumn, .rightcolumn {
-    width: 100%;
-  }
+#leftcolumn{
+  text-align: center;
+}
+
+.icon{
+  width: 100px
+}
+
+#box{
+  display: flex;
+}
+
+.dir{
+  border: 1px dashed black;
 }

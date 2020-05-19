@@ -24,55 +24,28 @@
 
 
     <div id="home-content" class="mb-5">
-        <h1 style="text-align: center;">Welcome, <span id="username">user</span>!</h1>
-        <!-- <div class="row">
-            <div class="leftcolumn">
-                <div class="card">
-                    <h2>Reminder</h2>
-                    <h3 style="padding-top: 0px; padding-bottom: 10px" ;>Just a reminder that you have a meeting<br>
-                        with <span class="user">some
-                            user</span> at <span class="time">this time</span>!</h3>
-                    <p>Title: <span class="user">title</span><br>
-                        User: <span class="user">user</span><br>
-                        Time: <span class="time">time</span></p>
+        <div id="leftcolumn">
+            <h1 class="text-center">Welcome, <span id="username">user</span>!</h1>
+            <img id="profilePic">
+            <h2 class="text-center">You currently have <span id="count"></span> meetings scheduled.</h2>
+        </div>
+        <div id="rightcolumn">
+            <div class="card" id="prompt">
+                <h2>Connect with others!</h2>
+                <div id="box">
+                    <div class="dir" onclick="window.location.href = '/request';">
+                        <h4>Make a request and let others message you</h4>
+                        <img class="icon" src="./src/request.png">
+                        </div>
+                    <div class="dir" onclick="window.location.href = '/post';">
+                        <h4>Or message someone who made a post</h4>
+                        <img class="icon" src="./src/msg.png">
+                    </div>
                 </div>
-            </div>
-            <div class="leftcolumn">
-                <div class="card">
-                    <h2>Reminder</h2>
-                    <h3 style="padding-top: 0px; padding-bottom: 10px" ;>Just a reminder that you have a meeting<br>
-                        with
-                        <span id="user">some
-                            user</span> at <span id="time">this time</span>!</h3>
-                    <p>Title: <span class="user">title</span><br>
-                        User: <span class="user">user</span><br>
-                        Time: <span class="time">time</span></p>
-                </div>
-            </div>
-            <div class="leftcolumn">
-                <div class="card">
-                    <h2>Reminder</h2>
-                    <h3 style="padding-top: 0px; padding-bottom: 10px" ;>Just a reminder that you have a meeting<br>
-                        with
-                        <span id="user">some
-                            user</span> at <span id="time">this time</span>!</h3>
-                    <p>Title: <span class="user">title</span><br>
-                        User: <span class="user">user</span><br>
-                        Time: <span class="time">time</span></p>
-                </div>
-            </div>
-        </div> -->
 
-        <!-- <div class="rightcolumn">
-            <div class="side">
-                <div class="card">
-                    <h2>Last week, you</h2>
-                    <p>Met with <span id="number">number of </span><span id="type">users</span> <br>
-                        Received <span id="number-of-ratings">number</span> five-star ratings <br>
-                        Interacted with <span id="number-of-interactions">number</span> users</p>
-                </div>
             </div>
-        </div> -->
+        </div>
+
     </div>
 
      <!--Footer-->

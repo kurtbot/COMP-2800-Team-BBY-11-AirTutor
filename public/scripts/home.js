@@ -1,70 +1,75 @@
-/*
-showName() method.
-Displays the user's first name and last name in a welcome message upon visiting the home page.
-*/
+$(document).ready(function(){
+    showName();
+    showSchedules();
+    showImage();
+});
+
+/**
+ * Display the user's full name in a welcome message
+ */
 function showName() {
     firebase.auth().onAuthStateChanged(function (user) {
         document.getElementById("username").innerHTML = user.displayName;
     });
 }
 
-function showMeetings() {
-    firebase.auth().onAuthStateChanged(function (user) {
-
-    });
-}
-
-showName();
-showPosts();
-
-/*
-showPosts() method.
-Displays the post that reminds the user what sessions they have scheduled.
-*/
-function showPosts() {
+/**
+ * Show the list of scheduled meetings this user has as a reminder.
+ */
+function showSchedules() {
+    let n = 0;
     let sch = db.collection("schedules/")
     sch.orderBy("time").onSnapshot(function (snapshot) {
         snapshot.docChanges().forEach(function (change) {
             if (change.type === "added") {
-                let container = document.createElement("div");
-                let inner = document.createElement("div");
-                let box = document.createElement("div");
-                container.setAttribute("id", change.doc.id)
-                box.setAttribute("class", "card");
-                let h2 = document.createElement("h2");
-                h2.innerHTML = "Reminder";
-                box.appendChild(h2);
-                let h3 = document.createElement("h3");
-                h3.innerHTML = "Just a reminder that you have a meeting at this time!"
-                box.appendChild(h3);
-                let title = document.createElement("p");
-                title.innerHTML = "Title: " + change.doc.data().title;
-                box.appendChild(title);
-                let date = document.createElement("p");
-                date.innerHTML = "Time: " + change.doc.data().date + " " + change.doc.data().start + "~" + change.doc.data().end;
-                box.appendChild(date);
-                let name = document.createElement("p");
-                let str = "";
-                if (change.doc.data().user == firebase.auth().currentUser.uid) {
-                    str = change.doc.data().name
-                } else {
-                    str = change.doc.data().username
-                }
-                name.innerHTML = "Meeting with: " + str;
-                box.appendChild(name);
-                inner.appendChild(box);
-                container.appendChild(inner);
+                let h2 = $("<h2></h2>").html("Reminder");
+                let h3 = $("<h3></h3>").html("Just a reminder that you have a meeting at this time!");
+                let title = $("<p></p>").html("Title: " + change.doc.data().title);
+                let date = $("<p></p>").html("Time: " + change.doc.data().date + " " + change.doc.data().start + "~" + change.doc.data().end);
+                let str = change.doc.data().user == firebase.auth().currentUser.uid? change.doc.data().name : change.doc.data().username;
+                let name = $("<p></p>").html("Meeting with: " + str)
+                let box = $("<div></div>").attr("class", "card").append(h2, h3, title, date, name);
+                let inner = $("<div></div>").append(box)
+                let container = $("<div></div>").attr("id", change.doc.id).append(inner)
                 if (change.doc.data().user == firebase.auth().currentUser.uid || change.doc.data().nameid == firebase.auth().currentUser.uid) {
-                    $("#home-content").append($(container))
+                    $("#rightcolumn").append(container)
+                    n++;
                 }
 
             }
 
             if (change.type === "removed") {
                 $("#" + change.doc.id).remove();
+                n--;
             }
         }
         )
+        console.log(n)
+        $("#count").html(n)
+        if (n==0){
+            $("#prompt").show();
+        } else {
+            $("#prompt").hide();
+        }
+    })
+
+
+}
+
+function showImage() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        const dbref = db.collection("users/").doc(user.uid)
+        
+        dbref.get()
+            .then(snap => {
+                let picture = snap.data().profilePic;
+
+                if (picture != "" && picture != undefined) {
+                    $("#profilePic").attr({"src": picture, "width": "300px"});
+                }
+
+            })
+
     })
 
 }

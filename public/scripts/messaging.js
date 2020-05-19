@@ -1,20 +1,12 @@
+// Get the chatroom ID from local storage
 let roomID = localStorage.getItem("roomID");
-console.log("Current Room ID: ", roomID);
-// function queryResult() {
-//     let queryString = decodeURIComponent(window.location.search);
-//     let queries = queryString.split("?");
-//     let id = queries[1];
-//     return id;
-// }
 
-
-
+/**
+ * Initialize the chatroom, set up name of chatroom's other participant, a link to their profile, and the chatroom topic (from the post).
+ * @param {*} user the logged in user
+ */
 function initializeRoom(user) {
 
-    roomID = localStorage.getItem("roomID");
-    console.log(localStorage.getItem("roomID"));
-    console.log(user.uid)
-    console.log(db.collection("chatrooms/").doc(roomID).studentid)
     db.collection("chatrooms/").doc(roomID).get().then(function (docc) {
         if (user.uid == docc.data().studentid){
             $("#who").html(docc.data().tutorname)
@@ -32,6 +24,10 @@ function initializeRoom(user) {
 
 }
 
+/**
+ * Display the Schedule button if user is the student.
+ * @param {*} user logged in user
+ */
 function schedulingAllowed(user) {
     db.collection("chatrooms/").doc(roomID).get().then(function (docc) {
         localStorage.setItem("teach", docc.data().tutorid)
@@ -42,12 +38,15 @@ function schedulingAllowed(user) {
     });
 }
 
+/**
+ * Load messages from the database.
+ */
 function loadRecentMessages() {
     let msgOrder = db.collection("chatrooms/").doc(roomID).collection("messages");
     msgOrder.orderBy("actualTime").onSnapshot(function(snapshot) {
         snapshot.docChanges().forEach(function(change) {
             if (change.type === "added") {
-
+                // The message's sender name, time, and content
                 let newcontent1 = change.doc.data().senderName
                 let newcontent2 = change.doc.data().timestamp
                 let newcontent3 = change.doc.data().message
@@ -60,7 +59,8 @@ function loadRecentMessages() {
                 $(newbox).css({
                     "display":"inline-block"
                 })
-                console.log(newbox)
+
+                // CSS if this message is sent by this user
                 if (firebase.auth().currentUser.uid == change.doc.data().senderID){
                     $(newbox).css({
                         "background-color":"rgb(69, 223, 110)",
@@ -73,6 +73,7 @@ function loadRecentMessages() {
                     $(outerbox).css({
                         "justify-content":"flex-end"
                     })
+                // CSS if this message is sent by the other user
                 } else {
                     $(newbox).css({
                         "background-color":"rgb(237 237 237)",
@@ -86,14 +87,13 @@ function loadRecentMessages() {
                         "justify-content":"flex-start"
                     })
                 }
-
                 $(outerbox).append($(newbox))
                 $(".chat-log").append($(outerbox))
+                // Whenever a new message is added, scroll the screen to the bottom
                 window.scrollTo(0,document.body.scrollHeight);
             }
-
-
-        })});
+        })
+    });
 }
 
 firebase.auth().onAuthStateChanged(function (user) {
@@ -107,64 +107,29 @@ firebase.auth().onAuthStateChanged(function (user) {
     // Load recent messages
     loadRecentMessages();
 
-    // Add button event
-    $(".send-btn").click(function () {
-        if ($(".chat-input").val().trim()){
-        //localStorage.removeItem("roomID");
-        console.log(roomID);
-        let d = new Date();
-        let year = d.getFullYear();
-        let month = d.getMonth() + 1;
-        let day = d.getDate();
-        let hour = d.getHours();
-        let minute = d.getMinutes();
-        let date = year + "-" + month + "-" + day + " " + hour + ":" + minute;
+    /**
+     * When the Send button is clicked, write the message typed into the database.
+     */
+    $(".send-btn").click(function () {sendMessage(user)});
 
-        // check input
-        let str = document.querySelector(".chat-input").value;
-        let output = document.querySelector(".chat-log");
-
-
-        // remove input text
-        $('.chat-input').val('');
-
-        // add to database the sent chat
-        db.collection('chatrooms').doc(roomID).collection("messages").add({
-            message: str,
-            senderID: firebase.auth().currentUser.uid,
-            senderName: user.displayName,
-            timestamp: date,
-            actualTime: d
-        });
-        db.collection("chatrooms").doc(roomID).update({
-            latest: d,
-            latestTime: date,
-        })
-        db.collection("chatrooms").doc(roomID).get().then(function(doc){
-            firebase.auth().onAuthStateChanged(function (user) {
-            
-                if (user.uid == doc.data().studentid){
-                    db.collection("chatrooms").doc(roomID).update({
-                        unreadtutor: true
-                    })
-                } else {
-                    db.collection("chatrooms").doc(roomID).update({
-                        unreadstudent: true
-                    })
-                }
-                })
-            })
+    /**
+     * When the enter button is pressed in the input message box, write the message typed into the database.
+     */
+    $(".chat-input").keyup(function(event){
+        // Determine if the key pressed is "Enter" (which has code 13)
+        if (event.which == 13){
+            sendMessage(user)
         }
-    });
-
+    })
 });
-
-firebase.auth().onAuthStateChanged(function (user) {
-$(".chat-input").on('keyup', function (e) {
-    if (e.keyCode === 13) {
-        if ($(".chat-input").val().trim()){
-        console.log("ahhhhh")
-                console.log(roomID);
+/**
+ * Write the message typed in the input box into the database.
+ * @param {*} user logged in user
+ */
+function sendMessage(user){
+            // Only send the message if it's not empty or only white space
+            if ($(".chat-input").val().trim()){
+                // Get the time when the message is sent
                 let d = new Date();
                 let year = d.getFullYear();
                 let month = d.getMonth() + 1;
@@ -172,14 +137,14 @@ $(".chat-input").on('keyup', function (e) {
                 let hour = d.getHours();
                 let minute = d.getMinutes();
                 let date = year + "-" + month + "-" + day + " " + hour + ":" + minute;
-        
+    
                 // check input
                 let str = document.querySelector(".chat-input").value;
-                let output = document.querySelector(".chat-log");
-
+    
+    
                 // remove input text
                 $('.chat-input').val('');
-        
+    
                 // add to database the sent chat
                 db.collection('chatrooms').doc(roomID).collection("messages").add({
                     message: str,
@@ -188,10 +153,12 @@ $(".chat-input").on('keyup', function (e) {
                     timestamp: date,
                     actualTime: d
                 });
+                // add to database time of the most recent message
                 db.collection("chatrooms").doc(roomID).update({
                     latest: d,
                     latestTime: date,
                 })
+                // turn the unread statue of the other participant to true
                 db.collection("chatrooms").doc(roomID).get().then(function(doc){
                     firebase.auth().onAuthStateChanged(function (user) {
                     
@@ -204,13 +171,14 @@ $(".chat-input").on('keyup', function (e) {
                                 unreadstudent: true
                             })
                         }
-                        })
                     })
-                }
-    }
-});
-})
+                })
+            }
+}
 
+/**
+ * Change the user's unread status to false when user clicks on the chat input box.
+ */
 $(".chat-input").focus(function(){
     db.collection("chatrooms").doc(roomID).get().then(function(doc){
         firebase.auth().onAuthStateChanged(function (user) {
@@ -224,7 +192,7 @@ $(".chat-input").focus(function(){
                     unreadtutor: false
                 })
             }
-            })
         })
+    })
 })
 

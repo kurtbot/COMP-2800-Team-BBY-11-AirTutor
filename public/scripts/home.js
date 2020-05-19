@@ -1,3 +1,7 @@
+/*
+showName() method.
+Displays the user's first name and last name in a welcome message upon visiting the home page.
+*/
 function showName() {
     firebase.auth().onAuthStateChanged(function (user) {
         document.getElementById("username").innerHTML = user.displayName;
@@ -13,13 +17,15 @@ function showMeetings() {
 showName();
 showPosts();
 
+/*
+showPosts() method.
+Displays the post that reminds the user what sessions they have scheduled.
+*/
 function showPosts() {
-        let sch = db.collection("schedules/")
-          sch.orderBy("time").onSnapshot(function (snapshot) {
-              snapshot.docChanges().forEach(function (change) {
-                if (change.type === "added") {
-
-      
+    let sch = db.collection("schedules/")
+    sch.orderBy("time").onSnapshot(function (snapshot) {
+        snapshot.docChanges().forEach(function (change) {
+            if (change.type === "added") {
                 let container = document.createElement("div");
                 let inner = document.createElement("div");
                 let box = document.createElement("div");
@@ -39,7 +45,7 @@ function showPosts() {
                 box.appendChild(date);
                 let name = document.createElement("p");
                 let str = "";
-                if (change.doc.data().user == firebase.auth().currentUser.uid){
+                if (change.doc.data().user == firebase.auth().currentUser.uid) {
                     str = change.doc.data().name
                 } else {
                     str = change.doc.data().username
@@ -48,17 +54,17 @@ function showPosts() {
                 box.appendChild(name);
                 inner.appendChild(box);
                 container.appendChild(inner);
-                if (change.doc.data().user == firebase.auth().currentUser.uid || change.doc.data().nameid == firebase.auth().currentUser.uid){
+                if (change.doc.data().user == firebase.auth().currentUser.uid || change.doc.data().nameid == firebase.auth().currentUser.uid) {
                     $("#home-content").append($(container))
-                    }
-            
+                }
+
+            }
+
+            if (change.type === "removed") {
+                $("#" + change.doc.id).remove();
+            }
         }
-              
-      if (change.type === "removed") {
-        $("#" + change.doc.id).remove();
-      }
-    }
-    )
-})
-    
+        )
+    })
+
 }

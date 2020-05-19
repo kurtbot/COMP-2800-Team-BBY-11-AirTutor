@@ -35,7 +35,7 @@ function loginAsDev(email, password) {
 function signUpAsDevStudent(firstName, lastName, email, password) {
     console.log('firstName: ', firstName);
     console.log('lastName: ', lastName);
-    
+
     let data = {
         currency: 0,
         language: 'English',
@@ -52,7 +52,7 @@ function signUpAsDevStudent(firstName, lastName, email, password) {
 }
 
 /**
- * Sign Up a tutor account
+ * Sign up a tutor account
  * @param {String} firstName first name
  * @param {String} lastName last name
  * @param {String} email email
@@ -75,7 +75,6 @@ function signUpAsDevTutor(firstName, lastName, email, password) {
 }
 
 // Helper Functions
-
 /**
  * Creates a new user then logs them in to the home page
  * @param {String} email email
@@ -97,7 +96,7 @@ function signUpEmailPass(email, password, data) {
                 .then(function () {
                     user.updateProfile({
                         displayName: data['firstName'] + ' ' + data['lastName'],
-                    }).then(function() {
+                    }).then(function () {
                         alert('logging in')
                         loginAsDev(email, password);
                     })

@@ -96,7 +96,6 @@ firebase.auth().onAuthStateChanged(function (user) {
     // Load recent messages
     loadRecentMessages();
 
-
     /**
      * When the Send button is clicked, write the message typed into the database.
      */

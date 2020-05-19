@@ -43,6 +43,7 @@ function schedulingAllowed(user) {
  */
 function loadRecentMessages() {
     let msgOrder = db.collection("chatrooms/").doc(roomID).collection("messages");
+    // Sort messages by time sent
     msgOrder.orderBy("actualTime").onSnapshot(function(snapshot) {
         snapshot.docChanges().forEach(function(change) {
             if (change.type === "added") {
@@ -50,6 +51,8 @@ function loadRecentMessages() {
                 let newcontent1 = change.doc.data().senderName
                 let newcontent2 = change.doc.data().timestamp
                 let newcontent3 = change.doc.data().message
+
+                let sender = change.doc.data().senderID
                 let outerbox = $("<div></div>")
                 $(outerbox).css({
                     "display":"flex"
@@ -59,41 +62,50 @@ function loadRecentMessages() {
                 $(newbox).css({
                     "display":"inline-block"
                 })
-
-                // CSS if this message is sent by this user
-                if (firebase.auth().currentUser.uid == change.doc.data().senderID){
-                    $(newbox).css({
-                        "background-color":"rgb(69, 223, 110)",
-                        "border":" rgb(69, 223, 110) solid 1px",
-                        "border-radius":"10px",
-                        "margin":"3px",
-                        "padding":"5px",
-                        "color":"black"
-                    })
-                    $(outerbox).css({
-                        "justify-content":"flex-end"
-                    })
-                // CSS if this message is sent by the other user
-                } else {
-                    $(newbox).css({
-                        "background-color":"rgb(237 237 237)",
-                        "border":"rgb(237 237 237) solid 1px",
-                        "border-radius":"10px",
-                        "margin":"5px",
-                        "padding":"5px",
-                        "color":"black"
-                    })
-                    $(outerbox).css({
-                        "justify-content":"flex-start"
-                    })
-                }
-                $(outerbox).append($(newbox))
-                $(".chat-log").append($(outerbox))
+                // Create this message on the page
+                createMessage(newbox, outerbox, sender)
                 // Whenever a new message is added, scroll the screen to the bottom
                 window.scrollTo(0,document.body.scrollHeight);
             }
         })
     });
+}
+/**
+ * Create the new message.
+ * @param {*} newbox message div containing the message content
+ * @param {*} outerbox outer div containing the message div
+ * @param {*} sender id of user that sent the message
+ */
+function createMessage(newbox, outerbox, sender){
+    // CSS if this message is sent by this user
+    if (firebase.auth().currentUser.uid == sender){
+        $(newbox).css({
+            "background-color":"rgb(69, 223, 110)",
+            "border":" rgb(69, 223, 110) solid 1px",
+            "border-radius":"10px",
+            "margin":"3px",
+            "padding":"5px",
+            "color":"black"
+        })
+        $(outerbox).css({
+            "justify-content":"flex-end"
+        })
+    // CSS if this message is sent by the other user
+    } else {
+        $(newbox).css({
+            "background-color":"rgb(237 237 237)",
+            "border":"rgb(237 237 237) solid 1px",
+            "border-radius":"10px",
+            "margin":"5px",
+            "padding":"5px",
+            "color":"black"
+        })
+        $(outerbox).css({
+            "justify-content":"flex-start"
+        })
+    }
+    $(outerbox).append($(newbox))
+    $(".chat-log").append($(outerbox))
 }
 
 firebase.auth().onAuthStateChanged(function (user) {
@@ -127,53 +139,53 @@ firebase.auth().onAuthStateChanged(function (user) {
  * @param {*} user logged in user
  */
 function sendMessage(user){
-            // Only send the message if it's not empty or only white space
-            if ($(".chat-input").val().trim()){
-                // Get the time when the message is sent
-                let d = new Date();
-                let year = d.getFullYear();
-                let month = d.getMonth() + 1;
-                let day = d.getDate();
-                let hour = d.getHours();
-                let minute = d.getMinutes();
-                let date = year + "-" + month + "-" + day + " " + hour + ":" + minute;
-    
-                // check input
-                let str = document.querySelector(".chat-input").value;
-    
-    
-                // remove input text
-                $('.chat-input').val('');
-    
-                // add to database the sent chat
-                db.collection('chatrooms').doc(roomID).collection("messages").add({
-                    message: str,
-                    senderID: firebase.auth().currentUser.uid,
-                    senderName: user.displayName,
-                    timestamp: date,
-                    actualTime: d
-                });
-                // add to database time of the most recent message
-                db.collection("chatrooms").doc(roomID).update({
-                    latest: d,
-                    latestTime: date,
-                })
-                // turn the unread statue of the other participant to true
-                db.collection("chatrooms").doc(roomID).get().then(function(doc){
-                    firebase.auth().onAuthStateChanged(function (user) {
-                    
-                        if (user.uid == doc.data().studentid){
-                            db.collection("chatrooms").doc(roomID).update({
-                                unreadtutor: true
-                            })
-                        } else {
-                            db.collection("chatrooms").doc(roomID).update({
-                                unreadstudent: true
-                            })
-                        }
+    // Only send the message if it's not empty or only white space
+    if ($(".chat-input").val().trim()){
+        // Get the time when the message is sent
+        let d = new Date();
+        let year = d.getFullYear();
+        let month = d.getMonth() + 1;
+        let day = d.getDate();
+        let hour = d.getHours();
+        let minute = d.getMinutes();
+        let date = year + "-" + month + "-" + day + " " + hour + ":" + minute;
+
+        // check input
+        let str = document.querySelector(".chat-input").value;
+
+
+        // remove input text
+        $('.chat-input').val('');
+
+        // add to database the sent chat
+        db.collection('chatrooms').doc(roomID).collection("messages").add({
+            message: str,
+            senderID: firebase.auth().currentUser.uid,
+            senderName: user.displayName,
+            timestamp: date,
+            actualTime: d
+        });
+        // add to database time of the most recent message
+        db.collection("chatrooms").doc(roomID).update({
+            latest: d,
+            latestTime: date,
+        })
+        // turn the unread statue of the other participant to true
+        db.collection("chatrooms").doc(roomID).get().then(function(doc){
+            firebase.auth().onAuthStateChanged(function (user) {
+            
+                if (user.uid == doc.data().studentid){
+                    db.collection("chatrooms").doc(roomID).update({
+                        unreadtutor: true
                     })
-                })
-            }
+                } else {
+                    db.collection("chatrooms").doc(roomID).update({
+                        unreadstudent: true
+                    })
+                }
+            })
+        })
+    }
 }
 
 /**

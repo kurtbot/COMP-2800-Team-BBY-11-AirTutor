@@ -1,30 +1,10 @@
-/* @media (min-width: 550){
-    .container{
-            border: #EEEEEE solid 1px;
-            padding: 5px 
-    }
-    .inner{
-        display: inline
-    }
-}
-
-
-
-@media (max-width: 550){
-.del{
-    position: absolute;
-    right: 20px
-}
-}
- */
-
  body{
      padding-left: 0;
      padding-right: 0
  }
 
  .hover{
-            background-color:#EEEEEE;
-            box-shadow:1px 2px #E2E2E2
+    background-color:#EEEEEE;
+    box-shadow:1px 2px #E2E2E2
  }
 

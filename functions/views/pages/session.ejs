@@ -10,35 +10,49 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="styles/footer.css">
 
     <!-- CSS -->
     <link rel="stylesheet" href="./styles/session.css">
     <link rel="stylesheet" href="./styles/base.css">
-    <link rel="stylesheet" href="styles/navbar.css">
 
     <script src="https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js"></script>
     <%- include("../partials/favicon.ejs") %>
 </head>
 
 <body>
-
+    <div id="palette-trigger" onclick="closeNav()"></div>
+    <div id="palette">
+        <div class="palette-title">Color</div>
+        <div id="colors">
+            <div class="color black">✓</div>
+            <div class="color white">&nbsp;</div>
+            <div class="color red">&nbsp;</div>
+            <div class="color blue">&nbsp;</div>
+            <div class="color yellow">&nbsp;</div>
+            <div class="color green">&nbsp;</div>
+        </div>
+        <hr>
+        <div class="palette-title">Brush Size</div>
+        <div id="brush-size">
+            <div class="small-brush">
+                <div class="brush small">✓</div>
+            </div>
+            <div class="medium-brush">
+                <div class="brush medium">&nbsp;</div>
+            </div>
+            <div class="large-brush">
+                <div class="brush large">&nbsp;</div>
+            </div>
+        </div>
+        <hr>
+        <div id="palette-done" onclick="closeNav()">Done</div>
+    </div>
     <div id="layer3">
         <audio src=""></audio>
         <video src=""></video>
         <canvas id="canvas" height="375" width="812" style="border: 2px solid black;"></canvas>
         <div class="buttons">
             <div class="buttonList">
-                <!-- Screen Share -->
-                <div class="buttonItem" id="screen-share-btn">
-                    <svg id="laptop-share-screen" aria-hidden="true" focusable="false" data-name="Layer 1"
-                        xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 640 512">
-                        <path
-                            d="M624,416H381.54c-.74,19.81-14.71,32-32.74,32H288c-18.69,0-33-17.47-32.77-32H16A16,16,0,0,0,0,432v16a64.19,64.19,0,0,0,64,64H576a64.19,64.19,0,0,0,64-64V432A16,16,0,0,0,624,416ZM576,48A48.14,48.14,0,0,0,528,0H112A48.14,48.14,0,0,0,64,48V384H576ZM512,320H128V64H512Z" />
-                        <path
-                            d="M419.52,174.88,348.8,113.81a9.65,9.65,0,0,0-15.94,7.3v32.17C268.32,154,217.14,167,217.14,228.11c0,24.69,15.91,49.14,33.49,61.93,5.48,4,13.3-1,11.28-7.49-18.22-58.26,8.64-73.73,70.95-74.62v35.32a9.64,9.64,0,0,0,15.94,7.3l70.72-61.07A9.65,9.65,0,0,0,419.52,174.88Z" />
-                        </svg>
-                </div>
                 <!-- Canvas -->
                 <div class="buttonItem" id="canvas-brush-btn">
                     <svg id="canvas-brush" aria-hidden="true" focusable="false" data-prefix="fas"
@@ -71,7 +85,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>

@@ -1,18 +1,6 @@
 
 var peer = new Peer({ key: 'lwjd5qra8257b9' });
-// var peer = new Peer({
-//     key: 'lwjd5qra8257b9', 
-//     config: {
-//         'iceServers': [
-//             { url: 'stun:stun1.l.google.com:19302' },
-//             {
-//                 url: 'turn:numb.viagenie.ca',
-//                 credential: 'muazkh',
-//                 username: 'webrtc@live.com'
-//             }
-//         ]
-//     }
-// });
+
 var peerID;
 peer.on('open', function (id) {
     console.log('My peer ID is: ' + id);
@@ -42,13 +30,13 @@ db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
 
 function gotoNext() {
     firebase.auth().onAuthStateChanged(function (user) {
-            if (user.uid == tutor) {
-                window.location.href = "/home"
-            } else {
-                window.location.href = "/rating" + "?" + tutor;
+        if (user.uid == tutor) {
+            window.location.href = "/home"
+        } else {
+            window.location.href = "/rating" + "?" + tutor;
 
-            }
-        
+        }
+
     })
 }
 
@@ -65,8 +53,8 @@ function checkIfTutor() {
 
 // Media Stream Elements
 const canvasDom = document.querySelector('canvas');
-const canvasContext = canvasDom.getContext('2d');
-const canvasStream = canvasDom.captureStream(60);
+const canvasContext = canvas.getContext('2d');
+const canvasStream = canvas.captureStream(60);
 const audioDom = document.querySelector('audio');
 const videoDom = document.querySelector('video');
 
@@ -115,7 +103,7 @@ function createRoomSnapshot() {
         if (firebase.auth().currentUser.uid == doc.data().tutorid) {
 
             console.log('Im a tutor');
-            
+
             // if student's peer id changes
             if (doc.data().studentCallId !== '') {
 
@@ -125,7 +113,7 @@ function createRoomSnapshot() {
                 conn = peer.connect(doc.data().studentCallId);
                 conn.on('open', function () {
                     // conn.send('hi from tutor');
-                    conn.send({stream : canvasStream});
+                    conn.send({ stream: canvasStream });
                 })
 
                 call(doc.data().studentCallId);
@@ -157,7 +145,7 @@ function call(peerID) {
 
     navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
 
-        canvasDom.captureStream().getTracks().forEach(track => {
+        canvas.captureStream().getTracks().forEach(track => {
             stream.addTrack(track);
         })
         mediaStream = stream;
@@ -172,7 +160,7 @@ function call(peerID) {
                 audio.play();
             }
             console.log(remoteStream);
-            
+
             // videoDom.srcObject = remoteStream;
             // videoDom.onloadedmetadata = function (e) {
             //     console.log('now playing the videooooo');
@@ -236,34 +224,16 @@ peer.on('connection', function (conn) {
 
 
 // Buttons
-const screenShareBtn = document.querySelector('#screen-share-btn');
+// const screenShareBtn = document.querySelector('#screen-share-btn');
 const canvasBrushBtn = document.querySelector('#canvas-brush-btn');
 const micMuteBtn = document.querySelector('#mic-mute-btn');
 const phoneCallBtn = document.querySelector('#phone-call-btn');
 
-screenShareBtn.addEventListener('click', function () {
-    // if (videoDom.style.display == 'none') {
-    //     videoDom.style.display = 'block';
-    // } else {
-    //     videoDom.style.display = 'none';
-    // }
-
-    // let imageDat = context.getImageData(0, 0, canvasDom.width, canvasDom.height);
-    // db.collection("sessionrooms/").doc(queryResult()).update({
-    //     canvasData: points
-    // })
-})
-
 canvasBrushBtn.addEventListener('click', function () {
-    if (canvasDom.style.display == 'none') {
-        canvasDom.style.display = 'block';
-    } else {
-        canvasDom.style.display = 'none';
-    }
+    openNav();
 })
 
 let muted = false;
-
 micMuteBtn.addEventListener('click', function () {
     if (muted == false) {
         micMuteBtn.style.backgroundColor = "rgb(187, 20, 20)";
@@ -279,8 +249,23 @@ micMuteBtn.addEventListener('click', function () {
         });
     }
 })
-
 phoneCallBtn.addEventListener('click', gotoNext)
 
-
 console.log('loaded event listeners');
+
+
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+function openNav() {
+    document.getElementById("palette-trigger").style.height = "100%";
+    document.getElementById("palette").style.height = "auto";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+function closeNav() {
+    document.getElementById("palette-trigger").style.height = "0";
+    document.getElementById("palette").style.height = "0";
+}
+
+$(document).ready(function () {
+    closeNav();
+})

@@ -23,7 +23,6 @@ $(document).ready(function () {
         } else {
             if (uploaded.size <= mb) {
                 file = e.target.files;
-                console.log(file);
                 changed = true;
                 previewImage();
 
@@ -33,6 +32,7 @@ $(document).ready(function () {
             }
         }
     })
+    
     $(".custom-file-input").on("change", displayFile);
 
 

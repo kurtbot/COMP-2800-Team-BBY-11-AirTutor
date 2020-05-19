@@ -29,5 +29,43 @@ p {
 }
 
 #login-img {
-    width: 40vw;
+    width: 28vw;
+}
+
+#content {
+    margin-left: 64px;
+    margin-right: 64px; 
+}
+
+#login-button {
+    text-align: center;
+    color: #f1f1f1;
+    padding: 8px 24px 8px 24px;
+    background-color: #1d6a96;
+    border: solid 1px #1d6a96;
+    border-radius: 50px;
+    width: 100%;
+    font-size: 12pt;
+}
+
+small {
+    text-align: left !important;
+}
+
+@media (max-width: 600px) {
+    #content {
+        margin-left: 32px;
+        margin-right: 32px;
+    }
+
+    #login-img {
+        width: 300px;
+    }
+}
+
+
+@media (max-width: 800px) {
+    #content {
+        margin-top: 32px;
+    }
 }

@@ -12,6 +12,30 @@
     <link rel="stylesheet" type="text/css" href="/styles/index.css">
 
     <%- include("../partials/favicon.ejs") %>
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '265211758218768',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v7.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+    </script>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
 </head>
 
 <body>
@@ -20,6 +44,7 @@
         <a href="/login">Sign in</a>
         <a href="/aboutus2">About</a>
         <a href="/faq2">FAQ</a>
+        <a id="shareBtn">Share</a>
     </div>
 
     <!-- Use any element to open the sidenav -->
@@ -45,6 +70,8 @@
                     </p><br>
 
                     <div class="signup-button">Sign in with Google</div>
+                    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                    </fb:login-button>
                 </div>
 
                 <div class="column" class="description-column">
@@ -146,6 +173,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
     <script src="scripts/firebase.js"></script>
 
+    <!-- @author -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -155,6 +183,15 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
         </script>
     <!--Optional JS-->
+    <script>
+        document.getElementById('shareBtn').onclick = function () {
+            FB.ui({
+                display: 'popup',
+                method: 'share',
+                href: 'https://airtutormvp.web.app/',
+            }, function (response) { });
+        }
+    </script>
     <script src="/scripts/index.js"></script>
     <script src="/scripts/signup_1.js"></script>
 </body>

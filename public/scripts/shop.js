@@ -1,37 +1,57 @@
-let successMessage =  document.getElementById("success");
-let credit500 = document.getElementById("buy-5");
-let credit1100 = document.getElementById("buy-10");
-let credit2300 = document.getElementById("buy-20");
-let credit6000 = document.getElementById("buy-50");
+//timer to prevent overpurchase of credits
+const timer = 3000;
+//locks buttons when false
+let clickable = true;
+
+$(document).ready(function () {
+    /**
+     * Buys 500 credits on click.
+     */
+    $("#buy-5").click(function () {
+        purchase(buy5())
+    });
+
+    /**
+     * Buys 1100 credits on click.
+     */
+    $("#buy-10").click(function () {
+        purchase(buy10())
+    });
+
+    /**
+     * Buys 2300 credits on click.
+     */
+    $("#buy-20").click(function () {
+        purchase(buy20())
+    });
+
+    /**
+     * Buys 6000 credits on click.
+     */
+    $("#buy-50").click(function () {
+        purchase(buy50())
+    });
+})
+
+
 
 /**
- * Buys 500 credits on click.
+ * Adds credits to the user's account and displays a success message on purchase. While the 
+ * message is displayed the buy buttons are disabled.
+ * @param {*} amount 
+ *          functiont that writes a numerical value to the database 
+ *          and prints the amount added.
  */
-credit500.onclick = function(){
-    successMessage.innerHTML = "You have successfully purchased " + buy5() + " credits";
-};
-
-/**
- * Buys 1100 credits on click.
- */
-credit1100.onclick = function(){
-    successMessage.innerHTML = "You have successfully purchased " + buy10() + " credits";
-};
-
-/**
- * Buys 2300 credits on click.
- */
-credit2300.onclick = function(){
-    successMessage.innerHTML = "You have successfully purchased " + buy20() + " credits";
-};
-
-/**
- * Buys 6000 credits on click.
- */
-credit6000.onclick = function(){
-    successMessage.innerHTML = "You have successfully purchased " + buy50() + " credits";
-};
-
+function purchase(amount) {
+    if (clickable) {
+        $("#success").text("You have successfully purchased " + amount + " credits");
+        $("#success").show().delay(timer).fadeOut('slow');
+        clickable = false;
+        setTimeout(function () {
+            clickable = true;
+        }, timer);
+    }
+}
 
 /**
  * Adds 500 credits to the account.

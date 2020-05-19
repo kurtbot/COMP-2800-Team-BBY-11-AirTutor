@@ -149,55 +149,36 @@
                             <path fill="currentColor"
                                 d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
                             </path>
+                        </svg></span>How does Air Tutor work?</h3>
+                <span class="answer" id="answer7">First, the student makes a request asking for help with their
+                    homework.
+                    This can be done on the Request page. This request is sent to the Posts page, which is a list of
+                    requests made by students.<br><br>
+                    When the tutor browses the Posts page, they can message the student. The
+                    student then schedules a meeting and decides the payment. At the time of the session, the tutor
+                    begins the session where the student can join. During the session, they are able to use our voice
+                    calling and canvas functions in order to communicate and learn better.<br><br>
+                    After the session is over,
+                    the student rates the teacher based on whether or not they were able to answer the question. This
+                    rating will be later averaged on the tutor's profile, which will be helpful for the tutor's future
+                    students to see.</span>
+            </div>
+            <div class="question" id="question8" onclick="openQuestion1()">
+                <h3><span id="sign8"><svg aria-hidden="true" id="plus-svg" focusable="false" data-prefix="fas"
+                            data-icon="plus" class="svg-inline--fa fa-plus fa-w-14" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path fill="currentColor"
+                                d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
+                            </path>
                         </svg></span>How does the credit system work?</h3>
-                <span class="answer" id="answer7">Credits can be purchased in the shop. Each session takes a specific
+                <span class="answer" id="answer8">Credits can be purchased in the shop. Each session takes a specific
                     amount of credits, which is stated in the session page. These credits will be deposited in the
                     tutor’s account and removed from the student’s account. These credits will then be available for the
-                    tutor to convert into currency.</span>
+                    tutor to convert into currency.
+                </span>
             </div>
         </div>
     </div>
-
-    <script>
-        var minus_sign = "<svg aria-hidden=\"true\" id=\"minus-svg\" focusable=\"false\"data-prefix=\"fas\" data-icon=\"minus\" class=\"svg - inline--fa fa - minus fa - w - 14\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\"><path fill=\"currentColor\" d=\"M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z\"></path></svg>";
-        var plus_sign = "<svg aria-hidden=\"true\" id=\"plus-svg\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"plus\" class=\"svg-inline--fa fa-plus fa-w-14\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\"><path fill=\"currentColor\" d=\"M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z\"></path></svg>"
-
-        addOpen(document.getElementById("question1"), document.getElementById("sign1"), document.getElementById("answer1"));
-        addOpen(document.getElementById("question2"), document.getElementById("sign2"), document.getElementById("answer2"));
-        addOpen(document.getElementById("question3"), document.getElementById("sign3"), document.getElementById("answer3"));
-        addOpen(document.getElementById("question4"), document.getElementById("sign4"), document.getElementById("answer4"));
-        addOpen(document.getElementById("question5"), document.getElementById("sign5"), document.getElementById("answer5"));
-        addOpen(document.getElementById("question6"), document.getElementById("sign6"), document.getElementById("answer6"));
-        addOpen(document.getElementById("question7"), document.getElementById("sign7"), document.getElementById("answer7"));
-
-        function addClose(question, signLoc, answer) {
-            answer.style.display = "block";
-            signLoc.innerHTML = minus_sign;
-            question.onclick = function () {
-                addOpen(question, signLoc, answer);
-            };
-        }
-
-        function addOpen(question, signLoc, answer) {
-            answer.style.display = "none";
-            signLoc.innerHTML = plus_sign;
-            question.onclick = function () {
-                addClose(question, signLoc, answer);
-            };
-        }
-
-        /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-        function openNav() {
-            document.getElementById("main-sidenav").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-        }
-
-        /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-        function closeNav() {
-            document.getElementById("main-sidenav").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-        }
-    </script>
 
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
@@ -213,8 +194,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
     <!-- Optional JavaScript -->
     <!-- <script src="scripts/navbar.js"></script> -->
+    <script src="scripts/faq2.js"></script>
 </body>
 
 </html>

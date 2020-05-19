@@ -1,33 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-* {
-    box-sizing: border-box;
-}
-
-h1, h3 {
-    text-decoration: underline;
-    text-decoration-color: #85b6cb;
-}
-
-body {
-    font-family: 'Roboto';
-    background-color: #f1f1f1;
-    color: #262834;
-    text-align: center;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Raleway';
-    font-weight: bolder;
-    text-align: center;
-}
-
-p {
-    line-height: 1.6;
-    font-size: 12pt;
-    text-align: center;
-}
-
 #login-img {
     width: 28vw;
 }
@@ -52,7 +22,7 @@ small {
     text-align: left !important;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     #content {
         margin-left: 32px;
         margin-right: 32px;

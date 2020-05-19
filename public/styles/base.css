@@ -1,9 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 /* 
     Base.css contains all globally used class styling
  */
- * {
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+h1, h3 {
+    text-decoration: underline;
+    text-decoration-color: #85b6cb;
+}
+
+body {
+    font-family: 'Roboto';
+    background-color: #f1f1f1;
+    color: #262834;
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway';
+    font-weight: bolder;
+    text-align: center;
+}
+
+p {
+    line-height: 1.6;
+    font-size: 12pt;
+    text-align: center;
 }
 
 :root {
@@ -25,7 +53,6 @@
     --bg-secondary-dark: #262834;
     --transition-speed: 200ms;
 }
-
 
 /* main content section */
 main {

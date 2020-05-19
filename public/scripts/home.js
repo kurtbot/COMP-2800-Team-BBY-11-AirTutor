@@ -65,7 +65,7 @@ function showImage() {
                 let picture = snap.data().profilePic;
 
                 if (picture != "" && picture != undefined) {
-                    $("#profilePic").attr({"src": picture, "width": "300px"});
+                    $("#profilePic").attr({"src": picture, "width": "200px"});
                 }
 
             })

@@ -80,3 +80,7 @@ a {
 #profilePic{
   width: 200px
 }
+
+#prompt{
+  display: none
+}

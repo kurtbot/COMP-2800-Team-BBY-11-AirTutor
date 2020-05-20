@@ -1,5 +1,3 @@
-// Keep track of how many chatrooms this user has
-let n = 0;
 // Display all existing chatrooms when document is ready
 $(document).ready(loadMessages);
 /**
@@ -28,10 +26,14 @@ function loadMessages(){
             // Remove the chatroom if it's deleted from the database
             if (change.type === "removed") {
                 $("#" + change.doc.id).remove();
-                n--;
             }
-        });
-        console.log(n)
+        })
+        console.log($("b").length)
+        if ($("b").length == 0){
+            $("#nomsg").show()
+        } else {
+            $("#nomsg").hide()
+        }
     });
     
 }
@@ -136,7 +138,6 @@ function includeMessage(studentid, tutorid, roomID, unreadstudent, unreadtutor, 
             $("#" + roomID).remove();
         }
         $("#msgs").prepend(container);
-        n++;
     }
 }
 

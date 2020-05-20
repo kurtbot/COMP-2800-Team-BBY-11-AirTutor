@@ -16,20 +16,20 @@ header {
   flex-direction: column;
 }
 
-@media only screen and (min-width: 800px){
-  #home-content{
-    flex-direction: row;
-  }
-  #leftcolumn{
-    width: 50%
-  }
+h1, h2, h3, h4, h5 {
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  text-align: center;
+  font-family: 'Raleway';
+  font-weight: bolder;
 }
 
-h1, h2, h3, h4, h5 {
-  padding-top: 20px;
-  font-family: "Raleway";
-  font-weight: 500;
-  color: #283b42;
+h1 {
+  text-decoration: underline;
+  text-decoration-color: #85b6cb;
+  margin-bottom: 24px;
 }
 
 .row {
@@ -43,40 +43,99 @@ a {
   color: #283b42;
 }
 
+p {
+  margin: 8px;
+}
+
 .side {
   margin-top: -10px;
   margin-left: 0px;
   flex: 10%;
   background-color: #f1f1f1;
-  padding: 30px;
 }
-
 
 /* Add a card effect for articles */
 .card {
-  margin-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: white;
-  border-radius: 25px;
-}
-
-#leftcolumn{
   text-align: center;
+  margin-bottom: 20px;
+  padding: 8px 16px 16px 16px;
+  background-color: whitesmoke;
+  border-radius: 25px;
+  box-shadow: 23px 59px 100px -57px rgba(40, 59, 66, 0.55);
 }
 
-.icon{
-  width: 100px
+#leftcolumn {
+  margin-left: 32px;
+  margin-right: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: whitesmoke;
+  border-radius: 25px;
+  box-shadow: 23px 59px 100px -57px rgba(40, 59, 66, 0.55);
+  height: 100%;
+  padding: 8px 16px 16px 16px;
 }
 
-#box{
+#rightcolumn {
+  margin-right: 32px;
+}
+
+.icon {
+  width: 100px;
+}
+
+#box {
   display: flex;
 }
 
-.dir{
-  border: 1px dashed black;
+.dir {
+  border-radius: 20px;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding: 8px;
+  padding-bottom: 0px;
+  background-color: #1d6a96;
+  color: #f1f1f1;
 }
 
-#profilePic{
-  width: 200px
+.dir:hover {
+  cursor: pointer;
+}
+
+.dir > img {
+  padding: 0px;
+}
+
+#profilePic {
+  width: 160px;
+  border-radius: 50%;
+  background-color: #1d6a96;
+  border: 5px solid #1d6a96;
+  margin-top: -60px;
+}
+
+#prompt {
+  display: none;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, .1)
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible
+}
+
+@media only screen and (min-width: 900px) {
+  #home-content {
+    flex-direction: row;
+  }
+  #leftcolumn {
+    width: 50%
+  }
 }

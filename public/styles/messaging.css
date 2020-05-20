@@ -9,6 +9,7 @@ body {
     font-family: "Roboto";
     padding-left: 0px;
     padding-right: 0px;
+    background-color: white;
 }
 
 h1, h2, h3, h4, h5 {
@@ -176,6 +177,7 @@ header{
 
 #namepic {
     max-width: 300px;
+    max-height: 50px;
     border: 1px solid var(--text-primary-light);
     background-color: lightgoldenrodyellow;
     margin: auto;

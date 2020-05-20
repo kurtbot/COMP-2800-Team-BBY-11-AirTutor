@@ -68,3 +68,25 @@ input, textarea, label, select {
     width: 160px;
     height: 200px;
 }
+
+.nav-pills a:hover {
+    color: #85b8cb !important;
+}
+.nav-pills a{
+    color:#283b42;
+}
+.active {
+    background-color:#283b42 !important;
+    color: #f1f1f1 !important;
+}
+
+#submit-button {
+    background-color: #283b42;
+    color:#f1f1f1;
+}
+
+#return-button {
+    background-color: #17A38B;
+    color:#f1f1f1;
+}
+

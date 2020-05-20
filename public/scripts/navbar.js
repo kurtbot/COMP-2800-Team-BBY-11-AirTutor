@@ -5,6 +5,7 @@ $(document).ready(function () {
     $("#understand").click(understood);
     userInfo();
     updateMessage();
+    $("signout").click(signOut);
 })
 
 

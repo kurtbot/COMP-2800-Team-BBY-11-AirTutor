@@ -19,28 +19,15 @@ function loadSchedule(){
         let tutor = change.doc.data().username;
         let request = change.doc.data().requestID;
         let creditval = change.doc.data().credit;
-        let chat = change.doc.data().chatroom;  
-        let box = $("<div></div>").attr({"id":change.doc.id, "class":"card mx-3 my-2"}).css({
-          "background-color": "rgb(154, 219, 250)",
-          "color": "rgb(40, 59, 66)",
-          "border": "5px ridge rgb(108, 202, 247)",
-          "padding": "15px",
-          "font-weight": "bold"
-        });
-        let date = $("<p></p>").html("Date: " + change.doc.data().date);
-        let start = $("<p></p>").html("Start time: " + change.doc.data().start);
-        let end = $("<p></p>").html("End time: " + change.doc.data().end);
-        let title = $("<p></p>").html("Title: " + change.doc.data().title);
-        let str = tutorid == firebase.auth().currentUser.uid? student : tutor
-        let name = $("<p></p>").html("Meeting with: " + str);
-        let role = tutorid == firebase.auth().currentUser.uid? $("<p>My Role: Tutor</p>") : $("<p>My Role: Student</p>");
-        let credit = $("<p></p>").html("Credit: " + creditval);
-        let btnbox = $("<div></div>").css({
-          "display": "flex",
-          "justify-content": "space-between"
-        });
+        let chat = change.doc.data().chatroom;
+        let dateval = change.doc.data().date;
+        let starttime = change.doc.data().start;
+        let endtime = change.doc.data().end;
+        let schtitle = change.doc.data().title;
+
         let btn = $("<button></button>").html("Join Session").click(function(){join(check, scheduleid, studentid, student, tutorid, tutor, request, creditval, chat)})
-        createSchedule(scheduleid, btnbox, btn, box, date, start, end, title, name, role, credit, tutorid, studentid);
+        createCard(btn, dateval, starttime, endtime, schtitle, scheduleid, tutorid, studentid, tutor, student, creditval)  
+
  
       }
       // When a schedule is removed from the database, remove the schedule from this page
@@ -55,8 +42,44 @@ function loadSchedule(){
       $("#nosch").hide();
     }
   });
-  
+}
 
+/**
+ * Create the elements on a schedule card
+ * @param {*} btn join session button
+ * @param {*} dateval date value
+ * @param {*} starttime start time of meeting
+ * @param {*} endtime end time of meeting
+ * @param {*} schtitle meeting title
+ * @param {*} scheduleid id of schedule
+ * @param {*} tutorid tutor's user id
+ * @param {*} studentid student's user id
+ * @param {*} tutor tutor's name
+ * @param {*} student student's name
+ * @param {*} creditval credit value
+ */
+function createCard(btn, dateval, starttime, endtime, schtitle, scheduleid, tutorid, studentid, tutor, student, creditval){
+  let box = $("<div></div>").attr({"id":scheduleid, "class":"card mx-3 my-2"}).css({
+    "background-color": "rgb(154, 219, 250)",
+    "color": "rgb(40, 59, 66)",
+    "border": "5px ridge rgb(108, 202, 247)",
+    "padding": "15px",
+    "font-weight": "bold"
+  });
+
+  let date = $("<p></p>").html("Date: " + dateval);
+  let start = $("<p></p>").html("Start time: " + starttime);
+  let end = $("<p></p>").html("End time: " + endtime);
+  let title = $("<p></p>").html("Title: " + schtitle);
+  let str = tutorid == firebase.auth().currentUser.uid? student : tutor
+  let name = $("<p></p>").html("Meeting with: " + str);
+  let role = tutorid == firebase.auth().currentUser.uid? $("<p>My Role: Tutor</p>") : $("<p>My Role: Student</p>");
+  let credit = $("<p></p>").html("Credit: " + creditval);
+  let btnbox = $("<div></div>").css({
+    "display": "flex",
+    "justify-content": "space-between"
+  });
+  createSchedule(scheduleid, btnbox, btn, box, date, start, end, title, name, role, credit, tutorid, studentid);
 }
 
 /**

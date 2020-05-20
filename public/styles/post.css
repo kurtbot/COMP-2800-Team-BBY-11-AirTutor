@@ -61,3 +61,7 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
+#nopost{
+    display: none;
+}

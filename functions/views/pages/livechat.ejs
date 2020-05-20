@@ -14,32 +14,31 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="./styles/base.css">  
+    <link rel="stylesheet" href="./styles/base.css">
     <link rel="stylesheet" href="./styles/livechat.css">
     <link rel="stylesheet" href="./styles/navbar.css">
 
 
     <!-- Icons -->
-    <%- include("../partials/favicon.ejs") %>  
+    <%- include("../partials/favicon.ejs") %>
 </head>
 
 <body>
-    <!--Nav Bar -->
-
-
-
     <!-- Main Content -->
-
     <div>
         <header>
-        <%- include("../partials/navbar.ejs") %>
-        <h2 class="text-center" id = "who">Live Chat</h2>
-    </header>
+            <!--Nav Bar -->
+            <%- include("../partials/navbar.ejs") %>
+            <!-- Title of this page -->
+            <h2 class="text-center" id="who">Live Chat</h2>
+        </header>
 
         <div class="messaging-box">
+            <!-- Where chat messages are displayed -->
             <div class="chat-window">
                 <div class="chat-log"></div>
             </div>
+            <!-- Input box and send button -->
             <div class="chat-inputs">
                 <input class="chat-input" type="text" placeholder="Enter Message">
                 <input class="send-btn" type="button" value="Send">
@@ -60,7 +59,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-            <!-- Optional JavaScript -->
+    <!-- Optional JavaScript -->
     <script src="scripts/navbar.js"></script>
     <script src="scripts/livechat.js"></script>
 </body>

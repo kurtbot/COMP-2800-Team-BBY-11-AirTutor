@@ -24,15 +24,18 @@
 <body>
      <!--Nav Bar -->
      <%- include("../partials/navbar.ejs") %>
-
+    <!-- Home page content -->
     <div id="home-content" class="mb-5">
+        <!-- Welcome message with user name and profile picture -->
         <div id="leftcolumn">
             <h1 class="text-center">Welcome, <span id="username">user</span>!</h1>
-            <img id="profilePic">
+            <img id="profilePic" src="./src/profile.png">
             <h2 class="text-center">You currently have <span id="count"></span> meetings scheduled.</h2>
         </div>
+        <!-- Where reminders of scheduled meetings are displayed -->
         <div id="rightcolumn">
             <div class="card" id="prompt">
+                <!-- This message displays if user has no meetings -->
                 <h2>Connect with others!</h2>
                 <div id="box">
                     <div class="dir" onclick="window.location.href = '/request';">

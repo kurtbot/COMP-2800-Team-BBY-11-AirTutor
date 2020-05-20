@@ -7,8 +7,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Libraries -->
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -23,31 +21,31 @@
 </head>
 
 <body>
-
-
     <!-- Main Content -->
-
     <div>
         <div id="topbox">
             <header>
-                    <!--Nav Bar -->
-
-    <%- include("../partials/navbar.ejs") %>
-    <div id="sub">
-        <div id="namepic"  class="text-center"><h2 id="who"></h2>
-        <img src="./src/profile.png" id="profile">
-        </div>
-        <h4 id="what" class="text-center"></h4>
-        <button class="schedule-btn btn-block" onclick="window.location.href = '/schedule';">Schedule a Session</button>
-    </div>
-        </header>
-        <div class="messaging-box">
-            <div class="chat-window">
-                <div class="chat-log"></div>
+                <!--Nav Bar -->
+                <%- include("../partials/navbar.ejs") %>
+                <div id="sub">
+                    <!-- Who the user is messaging -->
+                    <div id="namepic"  class="text-center"><h2 id="who"></h2>
+                        <img src="./src/profile.png" id="profile">
+                    </div>
+                    <!-- Request topic for this chatroom -->
+                    <h4 id="what" class="text-center"></h4>
+                    <!-- Schedule meeting button, only shown for student side -->
+                    <button class="schedule-btn btn-block" onclick="window.location.href = '/schedule';">Schedule a Session</button>
+                </div>
+            </header>
+            <!-- Where messages are displayed -->
+            <div class="messaging-box">
+                <div class="chat-window">
+                    <div class="chat-log"></div>
+                </div>
             </div>
-
         </div>
-    </div>
+        <!-- Input box and send button -->
         <div class="chat-inputs">
             <input class="chat-input" type="text" placeholder="Enter Message / Read">
             <input class="send-btn" type="button" value="Send">
@@ -67,7 +65,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-            <!-- Optional JavaScript -->
+    <!-- Optional JavaScript -->
     <script src="scripts/navbar.js"></script>
     <script src="scripts/messaging.js"></script>
 </body>

@@ -19,11 +19,12 @@
   <!--Nav Bar -->
   <%- include("../partials/navbar.ejs") %>
   
+  <!-- Request form -->
   <div id="request">
     <h1>Make a Request</h1>
 
     <p>Title <i id="require1">* required</i><br><input type="text" id="retitle"></p>
-
+    <!-- Bootstrap dropdown select form to select a subject -->
     <div class="form-group">
       <label for="sel1">Subject</label>
       <select class="form-control" id="subject">
@@ -41,6 +42,7 @@
         <option>Other (Please specify in details)</option>
       </select>
     </div>
+    <!-- Bootstrap dropdown select form to select a grade level -->
     <div class="form-group">
       <label for="sel2">Grade</label>
       <select class="form-control" id="grade">

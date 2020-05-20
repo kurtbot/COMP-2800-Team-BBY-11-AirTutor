@@ -1,6 +1,31 @@
 <!--Navbar for all pages that user is logged in on-->
+<div id="main-sidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="/home" >Air Tutor</a>
+  <a href="/profile" id="dropdownId">Profile Page</a>
+  <a href="/editprofile">Edit Profile</a>
+  <a href="/shop" id="current-cash">Credits:</a>
+  <hr>
+  <a href="/request">Request</a>
+  <a href="/post">Posts</a>
+  <a href="/myschedule">My Schedule</a>
+  <a href="/messages">Message</a>
+  <a href="/livechat">Live Chat</a>
+  <a href="href=/" onclick="signOut()">Logout</a>
 
-<nav id="hideme" class="navbar navbar-expand-md navbar-light bg-light">
+</div>
+
+<span id="menu-button" onclick="openNav()"><svg aria-hidden="true" id="menu-svg" focusable="false"
+  data-prefix="fas" data-icon="paper-plane" class="svg-inline--fa fa-paper-plane fa-w-16" role="img"
+  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <path fill="currentColor" d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9
+  13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9
+  33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z">
+  </path>
+</svg>
+</span>
+
+<!-- <nav id="hideme" class="navbar navbar-expand-md navbar-light bg-light">
   <a class="navbar-brand" href="/home">Air Tutor</a>
   <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
     aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +69,7 @@
       </li>
     </ul>
   </div>
-</nav>
+</nav> -->
 
 <div id="warning" class= "text-center alert alert-danger">
   <h3>Attention:</h3>

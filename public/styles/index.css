@@ -88,7 +88,7 @@ p {
 }
 
 #description-content, #features-content, #testimonials-content, .signup-content {
-    margin-bottom: 128px;
+    margin-bottom: 64px;
 }
 
 #features-content>h1, #testimonials-content>h1, .signup-content>h1 {

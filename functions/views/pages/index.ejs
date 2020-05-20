@@ -13,7 +13,6 @@
 
     <%- include("../partials/favicon.ejs") %>
 
-    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
 </head>
 
 <body>
@@ -22,7 +21,6 @@
         <a href="/login">Sign in</a>
         <a href="/aboutus2">About</a>
         <a href="/faq2">FAQ</a>
-        <a id="shareBtn">Share</a>
     </div>
 
     <!-- Use any element to open the sidenav -->
@@ -49,8 +47,6 @@
                     </p>
 
                     <div class="signup-button">Sign in with Google</div>
-                    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                    </fb:login-button>
                 </div>
 
                 <div class="column" class="description-column">

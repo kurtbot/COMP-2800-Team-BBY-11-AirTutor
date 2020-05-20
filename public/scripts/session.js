@@ -1,4 +1,7 @@
-
+/**
+ * 
+ * Peer.js Documentation: https://peerjs.com/docs.html#api
+ */
 var peer = new Peer({ key: 'lwjd5qra8257b9' });
 let tutor;
 let student;
@@ -9,6 +12,9 @@ peer.on('open', function (id) {
     tutorTest();
 });
 
+/**
+ * Gets the query of the page url
+ */
 function queryResult() {
     let queryString = decodeURIComponent(window.location.search);
     let queries = queryString.split("?");
@@ -16,7 +22,9 @@ function queryResult() {
     return id;
 }
 
-
+/**
+ * Passes the info into the rating page
+ */
 db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
     credit = doc.data().credit;
     tutor = doc.data().tutorid;
@@ -28,18 +36,22 @@ db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
     localStorage.setItem("chat", doc.data().chatroom)
 })
 
+/**
+ * Redirects the user after click on the hang up button
+ */
 function gotoNext() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user.uid == tutor) {
             window.location.href = "/home"
         } else {
             window.location.href = "/rating" + "?" + tutor;
-
         }
-
     })
 }
 
+/**
+ * Checks if the user is a tutor
+ */
 function checkIfTutor() {
     let isTutor = false;
     firebase.auth().onAuthStateChanged(function (user) {
@@ -63,6 +75,9 @@ const videoDom = document.querySelector('video');
 var mediaStream;
 var conn;
 
+/**
+ * Is called once every time the user enters the session room
+ */
 function tutorTest() {
     db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
         isTutor = (firebase.auth().currentUser.uid == doc.data().tutorid);
@@ -85,6 +100,9 @@ function tutorTest() {
     createRoomSnapshot();
 }
 
+/**
+ * 
+ */
 videoDom.addEventListener('play', function () {
     var $this = this; //cache
     (function loop() {
@@ -95,6 +113,9 @@ videoDom.addEventListener('play', function () {
     })();
 }, 0);
 
+/**
+ * The create room snapshot is used to automatically call the other user when they enter the room.
+ */
 function createRoomSnapshot() {
     db.collection("sessionrooms/").doc(queryResult()).onSnapshot(function (doc) {
 
@@ -141,6 +162,10 @@ function createRoomSnapshot() {
     })
 }
 
+/**
+ * Calls the user based on their peerID which is saved from the database
+ * @param {String} peerID 
+ */
 function call(peerID) {
 
     navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
@@ -174,7 +199,9 @@ function call(peerID) {
 
 }
 
-// answer call
+/**
+ * Listens for a incoming call and answers it.
+ */
 peer.on('call', function (mediaConnection) {
     navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
         mediaStream = stream;
@@ -203,22 +230,14 @@ peer.on('call', function (mediaConnection) {
     });
 });
 
-// Create Connection
+/**
+ * Used to check if a connection is made between the student and the tutor
+ */
 peer.on('connection', function (conn) {
     console.log('connected to: ' + conn);
     console.log(conn);
     conn.on('data', function (data) {
         console.log(data);
-
-        //! will remove this code later
-        // if (data['stream']) {
-        //     console.log('checking data stream');
-        //     // videoDom.srcObject = data['stream'];
-        //     // videoDom.onloadedmetadata = function (e) {
-        //     //     console.log('now playing the video');
-        //     //     videoDom.play();
-        //     // }
-        // }
     })
 
 })
@@ -230,10 +249,17 @@ const canvasBrushBtn = document.querySelector('#canvas-brush-btn');
 const micMuteBtn = document.querySelector('#mic-mute-btn');
 const phoneCallBtn = document.querySelector('#phone-call-btn');
 
+/**
+ * 
+ */
 canvasBrushBtn.addEventListener('click', function () {
-    openNav();
+    openPalette();
 })
 
+
+/**
+ * 
+ */
 let muted = false;
 micMuteBtn.addEventListener('click', function () {
     if (muted == false) {
@@ -256,17 +282,17 @@ console.log('loaded event listeners');
 
 
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-function openNav() {
+function openPalette() {
     document.getElementById("palette-trigger").style.height = "100%";
     document.getElementById("palette").style.height = "auto";
 }
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-function closeNav() {
+function closePalette() {
     document.getElementById("palette-trigger").style.height = "0";
     document.getElementById("palette").style.height = "0";
 }
 
 $(document).ready(function () {
-    closeNav();
+    closePalette();
 })

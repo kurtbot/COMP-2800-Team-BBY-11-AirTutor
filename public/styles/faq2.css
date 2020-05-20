@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -12,7 +13,6 @@ h1 {
 body {
     margin: 0;
     font-family: 'Roboto', Arial;
-    background-color: #f1f1f1;
     color: #262834;
 }
 
@@ -198,7 +198,6 @@ a:hover {
 }
 
 @media (max-width: 400px) {
-
     .categories-column>img {
         height: 40px;
         margin: 0px;

@@ -36,6 +36,10 @@ input, button {
     border-width: 1.25px;
 }
 
+.btn:active, .btn:checked, .btn:enabled {
+    border: none;
+}
+
 select {
     font-family: "Roboto";
     border-radius: 10px;

@@ -51,25 +51,20 @@ input, textarea, label, select {
     body {
         display:grid;
         grid-template-areas:
-        "navbar navbar navbar"
-        "header header header"
-        "legend forms forms"
-        "legend forms forms"
-        "legend forms forms";
+        "nav header header"
+        "nav forms legend"
+        "nav forms legend"
+        "nav forms legend";
     }
-    nav{
-        grid-area:navbar;
+    nav {
+        grid-area:nav;
     }
     header {
         grid-area:header;
     }
     aside {
-        grid-area: legend;
+        grid-area:legend;
 
-    }
-    #legend {
-        position: sticky;
-        top:0;
     }
     #forms{
         grid-area:forms;

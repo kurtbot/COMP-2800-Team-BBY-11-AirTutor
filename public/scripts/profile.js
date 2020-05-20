@@ -1,13 +1,19 @@
+/**
+ * Loads function after document is fully loaded
+ */
+$(document).ready(function () {
+    userInfo();
+    viewRating();
+    studentInfo();
+    tutorInfo();
+    bestSubject();
+    viewPic();
+    $("#edit").click(editProfile);
+})
 
-
-userInfo();
-viewRating();
-studentInfo();
-tutorInfo();
-bestSubject();
-viewPic();
-$("#edit").click(editProfile);
-
+/**
+ * Go to edit profile page
+ */
 function editProfile() {
     window.location.href = "/editprofile";
 }
@@ -40,7 +46,9 @@ function userInfo() {
             })
     })
 }
-
+/**
+ * Displays student information on profile page if it is present.
+ */
 function studentInfo() {
     firebase.auth().onAuthStateChanged(function (user) {
         let dbref = db.collection("users/").doc(user.uid);
@@ -61,7 +69,9 @@ function studentInfo() {
             })
     })
 }
-
+/**
+ * Display tutor information on profile page if it is present
+ */
 function tutorInfo() {
     firebase.auth().onAuthStateChanged(function (user) {
         let dbref = db.collection("users/").doc(user.uid);
@@ -77,7 +87,9 @@ function tutorInfo() {
             })
     })
 }
-
+/**
+ * Display the user's best subject if that field is filled.
+ */
 function bestSubject() {
     firebase.auth().onAuthStateChanged(function (user) {
         let dbref = db.collection("users/").doc(user.uid);
@@ -95,7 +107,7 @@ function bestSubject() {
     })
 }
 /** 
- * View Ratings
+ * View Ratings on the profile page
  */
 function viewRating() {
     getAllProReviews();
@@ -104,6 +116,11 @@ function viewRating() {
 
 /** 
  * Reads all the professional ratings using query and averages and prints to database
+ *  * I made this code for a similar project in COMP 1800 Sunny Side Cooking to average ratings
+ * found in a database
+ * 
+ * @author Dylan Sung
+ * @see https://github.com/dys907/Sunny-Side-Cooking
  */
 function getAllProReviews() {
     let sum = 0;
@@ -132,7 +149,12 @@ function getAllProReviews() {
 }
 
 /** 
- * Reads all the professional ratings using query and averages and prints to database
+ * Reads all the professional ratings using query and averages and prints to database.
+ * I made this code for a similar project in COMP 1800 Sunny Side Cooking to average ratings
+ * found in a database
+ * 
+ * @author Dylan Sung
+ * @see https://github.com/dys907/Sunny-Side-Cooking
  */
 function getAllTQReviews() {
     let sum = 0;
@@ -156,17 +178,19 @@ function getAllTQReviews() {
             });
     })
 }
-
+/**
+ * Displays the image file found in database.
+ */
 function viewPic() {
     firebase.auth().onAuthStateChanged(function (user) {
         const dbref = db.collection("users/").doc(user.uid)
-        
+
         dbref.get()
             .then(snap => {
                 let picture = snap.data().profilePic;
 
                 if (picture != "" && picture != undefined) {
-                    $("#imagefile").attr("src", picture );
+                    $("#imagefile").attr("src", picture);
                 }
 
             })

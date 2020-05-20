@@ -8,8 +8,6 @@ $(document).ready(function () {
     $("signout").click(signOut);
 })
 
-
-
 /**
  * Shows the current logged in user's name on the nav bar
  * Real-time updates the credits a user has in their account

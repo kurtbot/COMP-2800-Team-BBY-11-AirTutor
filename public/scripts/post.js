@@ -23,10 +23,10 @@ function loadPost() {
         let targetUser = change.doc.data().studentid;
         let subject = change.doc.data().subject;
         let card = $("<div></div>").attr({ id: post, class: "card mx-3 my-2" }).css({
-          "background-color": "rgb(154, 219, 250)",
-          "color": "rgb(40, 59, 66)",
-          "border": "5px ridge rgb(108, 202, 247)",
-          "font-weight":"bold"
+          "background-color": "#85b8cb",
+          "color": "#262834",
+          "border-radius": "20px",
+          "margin-bottom":"8px"
         });
         let box = $("<div></div>").attr("class", "card-body");
         let p1 = $("<h4></h4>").html(posttopic);

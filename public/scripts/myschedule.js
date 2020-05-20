@@ -60,11 +60,11 @@ function loadSchedule(){
  */
 function createCard(btn, dateval, starttime, endtime, schtitle, scheduleid, tutorid, studentid, tutor, student, creditval){
   let box = $("<div></div>").attr({"id":scheduleid, "class":"card mx-3 my-2"}).css({
-    "background-color": "rgb(154, 219, 250)",
-    "color": "rgb(40, 59, 66)",
-    "border": "5px ridge rgb(108, 202, 247)",
-    "padding": "15px",
-    "font-weight": "bold"
+    "background-color": "#85b8cb",
+    "color": "#262834",
+    "border-radius": "20px",
+    "margin-bottom":"8px",
+    "padding":"20px"
   });
 
   let date = $("<p></p>").html("Date: " + dateval);

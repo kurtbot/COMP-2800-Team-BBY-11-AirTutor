@@ -18,16 +18,12 @@
 </head>
 
 <body>
-    <!--Nav Bar -->
-    <%- include("../partials/navbar.ejs") %>
 
-    <header>
-        <div id="header-text">
-            <h1>Edit profile</h1>
-        </div>
-    </header>
+
 
     <aside>
+        <!--Nav Bar -->
+        <%- include("../partials/navbar.ejs") %>
         <div class="nav flex-column nav-pills mx-4" id="legend" role="tablist" aria-orientation="vertical">
             <a class="nav-link active" id="general-button" href="" data-toggle="pill" role="tab"
                 aria-controls="v-pills-home" aria-selected="true">General</a>
@@ -35,15 +31,16 @@
                 aria-controls="v-pills-profile" aria-selected="false">Student</a>
             <a class="nav-link" id="tutor-button" data-toggle="pill" href="" role="tab" aria-controls="v-pills-messages"
                 aria-selected="false">Tutor </a>
-            <a class="nav-link" id="picture-button" data-toggle="pill" href="" role="tab" aria-controls="v-pills-messages"
-                aria-selected="false">Profile Picture </a>
+            <a class="nav-link" id="picture-button" data-toggle="pill" href="" role="tab"
+                aria-controls="v-pills-messages" aria-selected="false">Profile Picture </a>
         </div>
     </aside>
 
 
     <main>
-
-
+        <div id="header-text">
+            <h1>Edit profile</h1>
+        </div>
         <div id="forms">
 
             <div id="general">
@@ -75,12 +72,12 @@
                 <p class="text-center my-1"><i>Limitations: jpg, png and gif only. Under 1MB</i></p>
                 <img src="./src/profile.png" id="preview">
                 <p class="text-center">Preview Here</p>
-                <form class = "my-1">
-                    <div  class="custom-file my-1">
-                      <input type="file" class="custom-file-input" id="customFile">
-                      <label class="custom-file-label" for="customFile">Choose file</label>
+                <form class="my-1">
+                    <div class="custom-file my-1">
+                        <input type="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
-                  </form>
+                </form>
             </div>
 
             <p class="text-center" id="success">Your changes have been saved!</p>

@@ -47,7 +47,13 @@ function loadSchedule(){
       if (change.type === "removed") {
         $("#" + change.doc.id).remove();
       }
-    });
+    })
+    console.log($(".card").length)
+    if ($(".card").length == 0){
+      $("#nosch").show();
+    } else {
+      $("#nosch").hide();
+    }
   });
   
 

@@ -38,7 +38,7 @@ function clickNo() {
  */
 function submitYesReview() {
     reviewSubmit();
-
+    
 }
 /**
  * Takes the user home on No Submit
@@ -59,6 +59,7 @@ async function submitNoReview() {
         console.log("step 1")
 
     })
+
     // Remove local storage data and go to home page
     promise.then(function(){
         storageDump();

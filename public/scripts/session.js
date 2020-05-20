@@ -1,6 +1,7 @@
 
 var peer = new Peer({ key: 'lwjd5qra8257b9' });
-
+let tutor;
+let student;
 var peerID;
 peer.on('open', function (id) {
     console.log('My peer ID is: ' + id);
@@ -14,8 +15,7 @@ function queryResult() {
     let id = queries[1];
     return id;
 }
-let tutor;
-let student;
+
 
 db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
     credit = doc.data().credit;
@@ -112,8 +112,8 @@ function createRoomSnapshot() {
                 // =======================
                 conn = peer.connect(doc.data().studentCallId);
                 conn.on('open', function () {
-                    // conn.send('hi from tutor');
-                    conn.send({ stream: canvasStream });
+                    conn.send('hi from tutor');
+                    // conn.send({ stream: canvasStream });
                 })
 
                 call(doc.data().studentCallId);
@@ -210,14 +210,15 @@ peer.on('connection', function (conn) {
     conn.on('data', function (data) {
         console.log(data);
 
-        if (data['stream']) {
-            console.log('checking data stream');
-            // videoDom.srcObject = data['stream'];
-            // videoDom.onloadedmetadata = function (e) {
-            //     console.log('now playing the video');
-            //     videoDom.play();
-            // }
-        }
+        //! will remove this code later
+        // if (data['stream']) {
+        //     console.log('checking data stream');
+        //     // videoDom.srcObject = data['stream'];
+        //     // videoDom.onloadedmetadata = function (e) {
+        //     //     console.log('now playing the video');
+        //     //     videoDom.play();
+        //     // }
+        // }
     })
 
 })

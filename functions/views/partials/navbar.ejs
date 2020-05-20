@@ -1,4 +1,5 @@
 <!--Navbar for all pages that user is logged in on-->
+<div id="fb-root"></div><script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=265211758218768&autoLogAppEvents=1"></script>
 <nav id="main-sidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="/home">Air Tutor</a>
@@ -11,8 +12,10 @@
   <a href="/myschedule">My Schedule</a>
   <a href="/messages" id="new-message">Message</a>
   <a href="/livechat">Live Chat</a>
-  <a href="/" id ="signout">Logout</a>
-
+  <a href="/" id="signout">Logout</a>
+  <hr>
+  <div class="fb-share-button" data-href="https://airtutormvp.web.app/" data-layout="button" data-text="Need help answering homework questions? Need help trying to find homework questions to answer? Air Tutor is for both students and tutors. Sign up now!" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fairtutormvp.web.app%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+  <div class="tw-share-button"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Need help answering homework questions? Need help trying to find homework questions to answer? Air Tutor is for both students and tutors. Sign up now!" data-url="https://airtutormvp.web.app/" data-hashtags="homeworkhelp" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
 </nav>
 
 <span id="menu-button" onclick="openNav()"><svg aria-hidden="true" id="menu-svg" focusable="false" data-prefix="fas"
@@ -71,7 +74,7 @@
   </div>
 </nav> -->
 
-<div id="warning" class="text-center alert alert-danger">
+<!-- <div id="warning" class="text-center alert alert-danger">
   <h3>Attention:</h3>
   <p>You were not awarded credits because the student was not satisfied with your work. </p>
   <p>Reason:</p>
@@ -79,4 +82,23 @@
     <p><i></i></p>
   </div>
   <button id="understand" class="btn btn-danger">I understand</button>
+</div> -->
+
+
+<!-- Modal that will be used for pages -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div id="modal-cont" class="modal-content">
+    <h3>Attention:</h3>
+    <p>You were not awarded credits because the student was not satisfied with your work. </p>
+    <p>Reason:</p>
+    <div id="reason">
+      <p><i></i></p>
+    </div>
+    <button id="close" class="btn btn-danger">I understand</button>
+  </div>
+
 </div>
+
+

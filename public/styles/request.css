@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-* {
-    box-sizing: border-box;
-}
 
 body {
     margin: 0;
@@ -30,10 +27,52 @@ input, button, textarea, select {
 }
 
 i {
-    color: #85b6cb;
+    color: #073fb0
 }
 
 label {
     font-family: 'Raleway';
     font-weight: 500;
 }
+
+.confirmform{
+    max-width: 1000px;
+    margin: auto;
+}
+
+.innerform{
+    background-color: rgb(136, 199, 236);
+    padding: 30px 30px;
+    border-radius: 50px;
+    box-shadow: 5px 5px;
+}
+
+.innerfill{
+    padding: 40px 40px;
+}
+
+@media only screen and (min-width: 1000px){
+    .innerform > *{
+        font-size: 30px;
+    }
+    .innerform textarea, .innerform select {
+        font-size: 30px;
+    }
+}
+@media only screen and (min-width: 500px) and (max-width: 1000px){
+    .innerform > *{
+        font-size: 25px;
+    }
+    .innerform textarea, .innerform select {
+        font-size: 25px;
+    }
+}
+@media only screen and (max-width: 500px){
+    .innerform > *{
+        font-size: 20px;
+    }
+    .innerform textarea, .innerform select {
+        font-size: 20px;
+    }
+}
+

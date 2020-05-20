@@ -21,12 +21,14 @@
     <%- include("../partials/navbar.ejs") %>
 
     <!-- Display info that user entered in request page -->
-    <div id="confirm-request">
+    <div id="confirm-request" class="confirmform">
         <h1 class="text-center">Confirm your request</h1>
-        <p class="text-center my-5">Title: <span id="retitle"></span></p>
-        <p class="text-center my-5">Subject: <span id="subject"></span></p>
-        <p class="text-center my-5">Grade: <span id="grade"></span></p>
-        <p class="text-center my-5">Details: <span id="details"></span></p>
+        <div class="innerform">
+            <p class="text-center my-5">Title: <span id="retitle"></span></p>
+            <p class="text-center my-5">Subject: <span id="subject"></span></p>
+            <p class="text-center my-5">Grade: <span id="grade"></span></p>
+            <p class="text-center my-5">Details: <span id="details"></span></p>
+        </div>
         <div class="text-center my-5">
             <button type="button" class="btn btn-danger" id="back">Back</button>
             <button type="button" class="btn btn-success" id="confirm">Confirm</button>
@@ -47,7 +49,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-            <!-- Optional JavaScript -->
+    <!-- Optional JavaScript -->
     <script src="scripts/navbar.js"></script>
     <script src="scripts/request_confirm.js"></script>
 </body>

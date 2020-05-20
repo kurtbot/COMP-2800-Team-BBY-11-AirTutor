@@ -86,13 +86,13 @@ function write() {
  */
 function checkField() {
     let changes = {};
-    checker("bioField",changes,'bio');
-    checker("countryField",changes,'country');
-    checker("languageField",changes,'language');
-    checker("educationField",changes,'education');
-    checker("gradeField",changes,'grade');
-    checker("educationCompField",changes,'educationcompleted');
-    checker("subjectField",changes,'subject');
+    checker("bioField", changes, 'bio');
+    checker("countryField", changes, 'country');
+    checker("languageField", changes, 'language');
+    checker("educationField", changes, 'education');
+    checker("gradeField", changes, 'grade');
+    checker("educationCompField", changes, 'educationcompleted');
+    checker("subjectField", changes, 'subject');
     return changes;
 }
 
@@ -104,16 +104,26 @@ function checkField() {
  *          The object that holds all the changes going through
  * @param {String} changeComp
  *          The key of the change object being added
- */       
-function checker(field,change,changeComp){
+ */
+function checker(field, change, changeComp) {
     console.log($("#" + field).val());
     if ($("#" + field).val() != undefined
-    && $("#" + field).val() != null
-    && $("#" + field).val().trim() != "") {
-    change[changeComp] = $("#" + field).val();
+        && $("#" + field).val() != null
+        && $("#" + field).val().trim() != "") {
+        change[changeComp] = $("#" + field).val();
+    }
 }
-}
-
+/**
+ * Checks if an uploaded file is the right file type and under the 1MB limit. If they
+ * are, the image is displayed on the profile.
+ * I found snippets of this code on stackoverflow.com
+ * 
+ * @author Hoyen
+ * @see https://stackoverflow.com/questions/29805909/jquery-how-to-check-if-uploaded-file-is-an-image-without-checking-extensions
+ * 
+ * @param {*} event
+ *              On event the function will target the file picker 
+ */
 function fileUpload(e) {
     const uploaded = this.files[0];
     const fileType = uploaded['type'];

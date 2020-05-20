@@ -21,6 +21,7 @@ function showSchedules() {
     let sch = db.collection("schedules/")
     sch.orderBy("time").onSnapshot(function (snapshot) {
         snapshot.docChanges().forEach(function (change) {
+            // When a schedule is added, add it to this page
             if (change.type === "added") {
                 let h2 = $("<h2></h2>").html("Reminder");
                 let h3 = $("<h3></h3>").html("Just a reminder that you have a meeting at this time!");
@@ -37,15 +38,16 @@ function showSchedules() {
                 }
 
             }
-
+            // When a schedule is removed, remove it from this page
             if (change.type === "removed") {
                 $("#" + change.doc.id).remove();
                 n--;
             }
-        }
-        )
+        })
         console.log(n)
+        // Show the number of schedules this user has
         $("#count").html(n)
+        // Show the no schedule prompt when user has 0 schedules
         if (n==0){
             $("#prompt").show();
         } else {
@@ -55,7 +57,9 @@ function showSchedules() {
 
 
 }
-
+/**
+ * Show the user's profile picture.
+ */
 function showImage() {
     firebase.auth().onAuthStateChanged(function (user) {
         const dbref = db.collection("users/").doc(user.uid)

@@ -27,7 +27,13 @@ function loadMessages(){
             if (change.type === "removed") {
                 $("#" + change.doc.id).remove();
             }
-        });
+        })
+        console.log($("b").length)
+        if ($("b").length == 0){
+            $("#nomsg").show()
+        } else {
+            $("#nomsg").hide()
+        }
     });
     
 }

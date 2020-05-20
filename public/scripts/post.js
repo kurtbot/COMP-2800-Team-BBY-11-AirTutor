@@ -46,6 +46,11 @@ function loadPost() {
         $("#" + change.doc.id).remove();
       }
     });
+    if ($(".card").length == 0){
+      $("#nopost").show();
+    } else {
+      $("#nopost").hide();
+    }
   });
 }
 

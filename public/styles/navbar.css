@@ -3,7 +3,6 @@
 }
 
 .sidenav {
-    overflow: hidden;
     height: 100%;
     /* 100% Full-height */
     width: 0;
@@ -22,6 +21,19 @@
     /* Place content 60px from the top */
     transition: 1s;
     /* 1 second transition effect to slide in the sidenav */
+}
+
+.sidenav::-webkit-scrollbar {
+    width: 0.25rem;
+}
+
+.sidenav::-webkit-scrollbar-track {
+    background: #1d6a96;
+}
+
+.sidenav::-webkit-scrollbar-thumb {
+    background: #85b8cb;
+    border-radius: 5px;
 }
 
 /* The navigation menu links */

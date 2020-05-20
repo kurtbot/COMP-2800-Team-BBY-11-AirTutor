@@ -43,6 +43,10 @@ a {
   color: #283b42;
 }
 
+p {
+  margin: 8px;
+}
+
 .side {
   margin-top: -10px;
   margin-left: 0px;
@@ -96,6 +100,10 @@ a {
 
 .dir:hover {
   cursor: pointer;
+}
+
+.dir > img {
+  padding: 0px;
 }
 
 #profilePic {

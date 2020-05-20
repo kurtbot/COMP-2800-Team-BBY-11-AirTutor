@@ -150,8 +150,6 @@ function averagePro() {
         let average = sum / counter;
         if (average != 0) {
             $("#pro").text("Professionalism: " + average.toFixed(1));
-        } else {
-            $("#norate").text("This is a new tutor!")
         }
 
     });

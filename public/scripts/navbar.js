@@ -54,12 +54,12 @@ function updateMessage() {
             if (change.type === "added" || change.type === "modified") {
                 if (change.doc.data().studentid == firebase.auth().currentUser.uid) {
                     if (change.doc.data().unreadstudent == true) {
-                        $("#new-message").text("Message*").css("color", "red");
+                        $("#new-message").text("Message*").css("color", "orange");
                     }
                 }
                 if (change.doc.data().tutorid == firebase.auth().currentUser.uid) {
                     if (change.doc.data().unreadtutor == true) {
-                        $("#new-message").text("Message*").css("color", "red");
+                        $("#new-message").text("Message*").css("color", "orange");
                     }
                 }
             }

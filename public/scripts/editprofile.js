@@ -129,7 +129,6 @@ function fileUpload(e) {
     const fileType = uploaded['type'];
     const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
 
-
     if ($.inArray(fileType, validImageTypes) < 0) {
         alert("Not a valid filetype. Use gif, jpeg or png");
         changed = false;
@@ -138,7 +137,6 @@ function fileUpload(e) {
             file = e.target.files;
             changed = true;
             previewImage();
-
         } else {
             alert("Please choose a file that is smaller than 1 MB");
             changed = false;
@@ -154,7 +152,6 @@ function displayFile() {
         let fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     }
-
 }
 /**
  * Gives a preview of the image submitted into the file picker.

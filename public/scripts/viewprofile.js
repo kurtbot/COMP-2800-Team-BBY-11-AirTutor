@@ -1,14 +1,11 @@
-/**
- * Loads function after document is fully loaded
- */
-$(document).ready(function(){
+
     userInfo();
     viewRating();
     studentInfo();
     tutorInfo();
     bestSubject();
     viewPic();
-})
+
 
 /**
  * Grabs the user id of the other user attending the session with current user

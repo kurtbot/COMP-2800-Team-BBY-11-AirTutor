@@ -9,7 +9,7 @@ $(document).ready(function () {
      */
     $("#buy-5").click(function () {
         if (clickable) {
-        purchase(buy5())
+        purchase(buy5());
         clickable = false;
         setTimeout(function () {
             clickable = true;
@@ -56,8 +56,6 @@ $(document).ready(function () {
         }
     });
 })
-
-
 
 /**
  * Adds credits to the user's account and displays a success message on purchase. While the 

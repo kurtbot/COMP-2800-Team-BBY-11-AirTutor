@@ -1,15 +1,12 @@
-/**
- * Loads function after document is fully loaded
- */
-$(document).ready(function () {
-    userInfo();
-    viewRating();
-    studentInfo();
-    tutorInfo();
-    bestSubject();
-    viewPic();
-    $("#edit").click(editProfile);
-})
+
+userInfo();
+viewRating();
+studentInfo();
+tutorInfo();
+bestSubject();
+viewPic();
+$("#edit").click(editProfile);
+
 
 /**
  * Go to edit profile page

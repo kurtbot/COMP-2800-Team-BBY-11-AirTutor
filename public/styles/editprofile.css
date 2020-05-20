@@ -50,25 +50,9 @@ input, textarea, label, select {
 @media only screen and (min-width: 1024px) {
     body {
         display:grid;
-        grid-template-areas:
-        "nav header header"
-        "nav forms legend"
-        "nav forms legend"
-        "nav forms legend";
+        grid-template-columns: 1fr 3fr;
     }
-    nav {
-        grid-area:nav;
-    }
-    header {
-        grid-area:header;
-    }
-    aside {
-        grid-area:legend;
 
-    }
-    #forms{
-        grid-area:forms;
-    }
 
 }
 

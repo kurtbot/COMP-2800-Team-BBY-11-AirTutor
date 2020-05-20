@@ -24,14 +24,66 @@ function userInfo() {
                     $("#current-cash").text("Credits: " + credits);
 
                     if (doc.data().flagged == true) {
+                        $('#modal-cont').html(`<h3>Attention:</h3>
+                        <p>You were not awarded credits because the student was not satisfied with your work. </p>
+                        <p>Reason:</p>
+                        <div id="reason">
+                          <p><i></i></p>
+                        </div>
+                        <button id="close" class="btn btn-danger">I understand</button>`)
                         $("#warning").fadeIn("slow");
                         $("#reason").text(doc.data().reason);
+                    }
+
+                    if (doc.data().sessionSuccess == true) {
+                        let modalContainer = $('#modal-cont');
+                        modalContainer.html(`
+                        <span class="close">&times;</span>
+                        <h3>Are you enjoying our app? Share it with your friends</h3>
+                        `)
+
+                        modalContainer.html(fbShare());
+                        modalContainer.html(twShareTutor());
                     }
                 })
 
             })
     });
 }
+
+/**
+ * Source: https://developers.facebook.com/docs/sharing/web/
+ */
+
+function fbShare() {
+    let fbShare = $('<div id="fb-share">Share to Facebook</div>')
+    fbShare.click(function () {
+        FB.ui({
+            display: 'popup',
+            method: 'share',
+            href: 'https://airtutormvp.web.app/',
+        }, function (response) { });
+    })
+
+    return fbShare;
+}
+
+/**
+ * Source: https://publish.twitter.com/
+ */
+
+function twShareTutor() {
+    let twShare = $('<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="I answered a question on Air Tutor! Join now to help students with their homework problems!" data-url="https://airtutormvp.web.app/" data-hashtags="homeworkhelp" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>');
+
+    return twShare;
+}
+
+function twShareStudent() {
+    let twShare = $('<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="I just had my question answered on Air Tutor! Join now and you can get fast help too!" data-url="https://airtutormvp.web.app/" data-hashtags="homeworkhelp" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>');
+
+    return twShare;
+}
+
 
 /**
  * Signs the user out of their account.
@@ -87,4 +139,34 @@ function openNav() {
 /* Set the width of the side navigation to 0*/
 function closeNav() {
     document.getElementById("main-sidenav").style.width = "0";
+}
+
+/* Shows the modal on the screen */
+function showModal() {
+    document.getElementById('myModal').style.top = "50%";
+    document.getElementById('myModal').style.display = "block";
+}
+
+function hideModal() {
+    document.getElementById('myModal').style.top = "0";
+    document.getElementById('myModal').style.display = "none";
+}
+
+// Get the modal
+var modal = document.getElementById("myModal");
+var modalCont = document.getElementById('modal-cont')
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementById("close");
+
+// When the user clicks the button, open the modal 
+btn.onclick = function () {
+    $(modal).fadeIn(500);
+}
+
+span.onclick = function () {
+    $(modal).fadeOut(500);
 }

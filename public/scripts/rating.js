@@ -38,7 +38,7 @@ function clickNo() {
  */
 function submitYesReview() {
     reviewSubmit();
-
+    
 }
 /**
  * Takes the user home on No Submit
@@ -59,6 +59,7 @@ async function submitNoReview() {
         console.log("step 1")
 
     })
+
     // Remove local storage data and go to home page
     promise.then(function(){
         storageDump();
@@ -88,7 +89,8 @@ function reviewSubmit() {
 
             dbref2.set({
                 currency: increment,
-                answeredQuestion: up
+                answeredQuestion: up,
+                sessionSuccess: true
             }, {merge: true})
             let request = localStorage.getItem("request");
             let professional = document.getElementById("pro").value;

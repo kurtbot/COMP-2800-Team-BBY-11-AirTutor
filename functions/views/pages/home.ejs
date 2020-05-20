@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
     <!-- Home styling -->
     <link rel="stylesheet" type="text/css" href="./styles/home.css">
     <link rel="stylesheet" type="text/css" href="./styles/navbar.css">
@@ -22,40 +22,40 @@
 </head>
 
 <body>
-     <!--Nav Bar -->
-     <%- include("../partials/navbar.ejs") %>
+    <!--Nav Bar -->
+    <%- include("../partials/navbar.ejs") %>
+
     <!-- Home page content -->
     <div id="home-content" class="mb-5">
         <!-- Welcome message with user name and profile picture -->
         <div id="leftcolumn">
-            <h1 class="text-center">Welcome, <span id="username">user</span>!</h1>
             <img id="profilePic" src="./src/profile.png">
-            <h2 class="text-center">You currently have <span id="count"></span> meetings scheduled.</h2>
+            <h1 class="text-center">Welcome, <br><span id="username">user</span>!</h1>
+            <h3 class="text-center">You currently have <span id="count"></span> meetings scheduled.</h3>
         </div>
+
         <!-- Where reminders of scheduled meetings are displayed -->
         <div id="rightcolumn">
-            <div class="card" id="prompt">
+            <div class="card">
                 <!-- This message displays if user has no meetings -->
-                <h2>Connect with others!</h2>
+                <h1>Connect with others!</h1>
                 <div id="box">
                     <div class="dir" onclick="window.location.href = '/request';">
-                        <h4>Make a request and let others message you</h4>
-                        <img class="icon" src="./src/request.png">
-                        </div>
+                        <img class="icon" src="./src/home/home-request.png">
+                        <p>Make a request and let others message you...</p>
+                    </div>
                     <div class="dir" onclick="window.location.href = '/post';">
-                        <h4>Or message someone who made a post</h4>
-                        <img class="icon" src="./src/msg.png">
+                        <img class="icon" src="./src/home/home-msg.png">
+                        <p>or message someone who made a post!</p>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 
-     <!--Footer-->
+    <!--Footer-->
+    <%- include("../partials/footer.ejs") %>
 
-     <%- include("../partials/footer.ejs") %>
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
@@ -63,7 +63,7 @@
     <script src="scripts/firebase.js"></script>
 
     <!-- Optional JavaScript -->
-    <script src="scripts/navbar.js"></script>
+    <script src="./scripts/navbar.js"></script>
     <script src="./scripts/logout.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -75,8 +75,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="./scripts/home.js"></script>
-
-
 </body>
 
 </html>

@@ -10,10 +10,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="styles/post.css">
     <link rel="stylesheet" href="./styles/footer.css">
-    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="./styles/navbar.css">
+
+    <!-- Favicon -->
     <%- include("../partials/favicon.ejs") %>
 </head>
 
@@ -24,7 +27,8 @@
     <h1>Student requests</h1>
 
     <!-- Bootstrap dropdown select form to pick filtered subject -->
-    <h3>Filter by subject</h3>
+    <h3 class="mx-3">Filter by subject</h3>
+    <div class="mx-3">
     <select class="form-control" id="subjectchoice">
         <option>All</option>
         <option>My Posts</option>
@@ -41,7 +45,8 @@
         <option>French</option>
         <option>Other (Please specify in details)</option>
     </select>
-    <button id="filter">Filter</button>
+    </div>
+    <button id="filter" class="mx-3 my-3">Filter</button>
     <p id = "nopost"><i>There are currently no posts here</i></p>
     <!-- Where the posts are displayed -->
     <div id="posts" class="mb-5">

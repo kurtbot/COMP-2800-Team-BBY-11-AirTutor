@@ -129,7 +129,7 @@ function showMissing(condition1, condition2){
         })
     } else {
         $("#require1").css({
-            "color":"#85b8cb"
+            "color":"#073fb0"
         })
     }
     if (!condition2){
@@ -138,7 +138,7 @@ function showMissing(condition1, condition2){
         })
     } else {
         $("#require2").css({
-            "color":"#85b8cb"
+            "color":"#073fb0"
         })
     }
 }

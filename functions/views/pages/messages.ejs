@@ -21,7 +21,9 @@
 <body>
   <!--Nav Bar -->
   <%- include("../partials/navbar.ejs") %>
-  
+  <!-- Prompt when user has no messages -->
+  <p class="text-center" id="nomsg"><i>Your inbox is empty</i></p>
+
   <!-- Where the chats are displayed -->
   <div id="msgs" class="mb-5">
   </div>

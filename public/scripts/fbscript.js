@@ -1,3 +1,9 @@
+/**
+ * The following code instantiates the Facebook SDK for our app.
+ * Source : https://developers.facebook.com/
+ */
+
+
 window.fbAsyncInit = function () {
     FB.init({
         appId: '265211758218768',
@@ -15,6 +21,7 @@ window.fbAsyncInit = function () {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-FB.getLoginStatus(function (response) {
-    statusChangeCallback(response);
-});
+// used to test if a user is logged in
+// FB.getLoginStatus(function (response) {
+//     statusChangeCallback(response);
+// });

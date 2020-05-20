@@ -89,8 +89,7 @@ function reviewSubmit() {
 
             dbref2.set({
                 currency: increment,
-                answeredQuestion: up,
-                sessionSuccess: true
+                answeredQuestion: up
             }, {merge: true})
             let request = localStorage.getItem("request");
             let professional = document.getElementById("pro").value;

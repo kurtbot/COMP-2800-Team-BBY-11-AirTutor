@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
 * {
     box-sizing: border-box;
 }
@@ -176,6 +175,19 @@ a:hover {
     padding-bottom: 16px;
 }
 
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, .1)
+}
+
+hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible
+}
+
 @media (max-width: 800px) {
     .categories-column {
         flex: 100%;
@@ -190,7 +202,6 @@ a:hover {
         margin-left: 16px;
         margin-right: 16px;
     }
-
     .categories-column>img {
         height: 80px;
         margin: 4px;

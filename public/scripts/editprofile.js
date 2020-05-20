@@ -125,7 +125,7 @@ function checker(field, change, changeComp) {
  *              On event the function will target the file picker 
  */
 function fileUpload(e) {
-    const uploaded = this.files[0];
+    const uploaded = e.target.files[0];
     const fileType = uploaded['type'];
     const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
 

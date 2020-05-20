@@ -107,9 +107,10 @@ p {
 }
 
 #profilePic {
-  width: 116px;
+  width: 160px;
   border-radius: 50%;
   background-color: #1d6a96;
+  border: 5px solid #1d6a96;
   margin-top: -60px;
 }
 

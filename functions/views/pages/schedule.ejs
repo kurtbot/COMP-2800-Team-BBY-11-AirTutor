@@ -25,7 +25,7 @@
     <input type="date" id="date">
     <hr>
     <p>Start Time: </p>
-
+    <!-- Bootstrap dropdown select form to pick an hour -->
     <select class="hour start" id="start-hour">
       <option>01</option>
       <option>02</option>
@@ -40,6 +40,7 @@
       <option>11</option>
       <option>12</option>
     </select>
+    <!-- Bootstrap dropdown select form to pick a minute -->
     <select class="minute start" id="start-minute">
       <option>00</option>
       <option>05</option>
@@ -54,11 +55,13 @@
       <option>50</option>
       <option>55</option>
     </select>
+    <!-- Bootstrap dropdown select form to pick AM or PM -->
     <select class="am-pm start" id="start-ap">
       <option>AM</option>
       <option>PM</option>
     </select>
     <p>End Time: </p>
+    <!-- Bootstrap dropdown select form to pick an hour -->
     <select class="hour end" id="end-hour">
       <option>01</option>
       <option>02</option>
@@ -73,6 +76,7 @@
       <option>11</option>
       <option>12</option>
     </select>
+    <!-- Bootstrap dropdown select form to pick a minute -->
     <select class="minute end" id="end-minute">
       <option>00</option>
       <option>05</option>
@@ -87,6 +91,7 @@
       <option>50</option>
       <option>55</option>
     </select>
+    <!-- Bootstrap dropdown select form to pick AM or PM -->    
     <select class="am-pm end" id="end-ap">
       <option>AM</option>
       <option>PM</option>
@@ -95,6 +100,7 @@
     <p>Title: <i id="require2">* required</i><br><input type="text" id="title"></p>
     <p>Tutor Name: <input type="text" id="name" readonly></p>
     <p>Credit Reward: </p>
+    <!-- Bootstrap dropdown select form to pick a credit reward for this session -->
     <select id="credit">
       <option>100</option>
       <option>200</option>
@@ -109,7 +115,6 @@
     </select>
     <br>
     <hr>
-    <!-- <p><input type="checkbox">Send me an email about this session</p> -->
     <button type="button" class="btn btn-danger" id="cancel">Cancel</button>
     <button type="button" class="btn btn-success" id="submit">Submit</button>
 

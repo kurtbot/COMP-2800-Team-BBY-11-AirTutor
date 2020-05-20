@@ -76,3 +76,7 @@ a {
 .dir{
   border: 1px dashed black;
 }
+
+#profilePic{
+  width: 200px
+}

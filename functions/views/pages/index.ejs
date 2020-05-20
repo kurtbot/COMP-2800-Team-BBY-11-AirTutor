@@ -9,7 +9,7 @@
     <title>Air Tutor</title>
 
     <!-- My style sheets -->
-    <link rel="stylesheet" type="text/css" href="/styles/index.css">
+    <link rel="stylesheet" type="text/css" href="./styles/index.css">
 
     <%- include("../partials/favicon.ejs") %>
 
@@ -62,12 +62,13 @@
         <div id="description-content">
             <div class="row">
                 <div class="column" class="description-column">
-                    <h1>Welcome to <br><span class="title">Air Tutor.</span></h1>
-                    <p> As students are being forced into online learning and many are losing their jobs due to the
+                    <h1 id="description-title">Welcome to <br><span class="title">Air Tutor.</span></h1>
+                    <p id="description-paragraph"> As students are being forced into online learning and many are losing
+                        their jobs due to the
                         pandemic,
                         we, the developers of Air Tutor, created an application that helps both students and tutors in
                         this time of need.
-                    </p><br>
+                    </p>
 
                     <div class="signup-button">Sign in with Google</div>
                     <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
@@ -162,7 +163,8 @@
         </div>
 
         <div class="signup-content">
-            <h1>Sign up for Air Tutor today.</h1>
+            <h1>What are you waiting for?<br>
+                Sign up for Air Tutor today.</h1>
             <a class="signup-button">Sign in with Google</a>
         </div>
     </div>
@@ -183,6 +185,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
         </script>
     <!--Optional JS-->
+
     <script>
         document.getElementById('shareBtn').onclick = function () {
             FB.ui({
@@ -192,6 +195,7 @@
             }, function (response) { });
         }
     </script>
+
     <script src="/scripts/index.js"></script>
     <script src="/scripts/signup_1.js"></script>
 </body>

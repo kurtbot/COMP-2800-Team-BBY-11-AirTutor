@@ -8,8 +8,6 @@ $(document).ready(function () {
     $("signout").click(signOut);
 })
 
-
-
 /**
  * Shows the current logged in user's name on the nav bar
  * Real-time updates the credits a user has in their account
@@ -54,12 +52,12 @@ function updateMessage() {
             if (change.type === "added" || change.type === "modified") {
                 if (change.doc.data().studentid == firebase.auth().currentUser.uid) {
                     if (change.doc.data().unreadstudent == true) {
-                        $("#new-message").text("Message*").css("color", "red");
+                        $("#new-message").text("Message*").css("color", "orange");
                     }
                 }
                 if (change.doc.data().tutorid == firebase.auth().currentUser.uid) {
                     if (change.doc.data().unreadtutor == true) {
-                        $("#new-message").text("Message*").css("color", "red");
+                        $("#new-message").text("Message*").css("color", "orange");
                     }
                 }
             }
@@ -81,12 +79,12 @@ function understood() {
     $("#warning").fadeOut("slow");
 }
 
-/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+/* Set the width of the side navigation to 250px */
 function openNav() {
     document.getElementById("main-sidenav").style.width = "250px";
 }
 
-/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+/* Set the width of the side navigation to 0*/
 function closeNav() {
     document.getElementById("main-sidenav").style.width = "0";
 }

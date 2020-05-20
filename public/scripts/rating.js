@@ -1,10 +1,17 @@
+/**
+ * Grabs the user id of the other user attending the session with current user
+ * using a query string split from the URL
+ * @return user id of other user
+ */
 function queryResult() {
     let queryString = decodeURIComponent(window.location.search);
     let queries = queryString.split("?");
     let id = queries[1];
     return id;
 }
-
+/**
+ * Loads functions when the document has been fully loaded.
+ */
 $(document).ready(function () {
     $("#yes-button").click(clickYes);
     $("#no-button").click(clickNo);
@@ -53,24 +60,21 @@ async function submitNoReview() {
 
     })
     // Remove local storage data and go to home page
-    promise.then(result =>{
-        localStorage.removeItem("creditxfer")
-        localStorage.removeItem("request")
-        localStorage.removeItem("session")
-        localStorage.removeItem("schedule")
-        localStorage.removeItem("chat")
-        window.location.href = "/home"
-        console.log("step 2")
+    promise.then(function(){
+        storageDump();
     })
 
 }
 
-
+/**
+ * Submits the review and stores it to the tutor's database and takes credits from
+ * user's account and transfers to tutor. Adds one to tutor user's total answered questions
+ * and clears all information from local storage, returning user to home page.
+ * 
+ */
 function reviewSubmit() {
     firebase.auth().onAuthStateChanged(function (user) {
         let promise = new Promise((res, rej) =>{
-            
-        
             let amount = parseInt(localStorage.getItem("creditxfer"));
             let minus = amount * (-1);
             let decrement = firebase.firestore.FieldValue.increment(minus);
@@ -87,7 +91,6 @@ function reviewSubmit() {
                 answeredQuestion: up
             }, {merge: true})
             let request = localStorage.getItem("request");
-            console.log(request)
             let professional = document.getElementById("pro").value;
             let teaching = document.getElementById("teaching-qual").value;
             let reviewedAccount = db.collection("users/").doc(queryResult());
@@ -106,20 +109,24 @@ function reviewSubmit() {
         })
         // Remove local storage data and go to home page
         promise.then(function(){
-            localStorage.removeItem("creditxfer")
-            localStorage.removeItem("request")
-            localStorage.removeItem("session")
-            localStorage.removeItem("schedule")
-            localStorage.removeItem("chat")
-            window.location.href="/home";
+            storageDump();
         })
         
     })
 
-
-
-
 }
+/**
+ * Clears all items in local storage and goes back to the home page
+ */
+function storageDump() {
+    localStorage.removeItem("creditxfer")
+    localStorage.removeItem("request")
+    localStorage.removeItem("session")
+    localStorage.removeItem("schedule")
+    localStorage.removeItem("chat")
+    window.location.href="/home";
+}
+
 
 /**
  * Delete the session, schedule, and chat history between these two users for this meeting.

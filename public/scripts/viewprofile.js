@@ -1,10 +1,20 @@
-userInfo();
-viewRating();
-studentInfo();
-tutorInfo();
-bestSubject();
-viewPic();
+/**
+ * Loads function after document is fully loaded
+ */
+$(document).ready(function(){
+    userInfo();
+    viewRating();
+    studentInfo();
+    tutorInfo();
+    bestSubject();
+    viewPic();
+})
 
+/**
+ * Grabs the user id of the other user attending the session with current user
+ * using a query string split from the URL
+ * @return user id of other user
+ */
 function queryResult() {
     let queryString = decodeURIComponent(window.location.search);
     let queries = queryString.split("?");
@@ -13,7 +23,9 @@ function queryResult() {
 }
 
 /**
- * Shows the user information of the user.
+ * Shows the user's basic information.
+ * @param queryResult()
+ *          returns the user id of the targetted user on page load
  */
 function userInfo() {
     db.collection("users/").doc(queryResult())
@@ -37,7 +49,11 @@ function userInfo() {
             }
         })
 }
-
+/**
+ * Shows the user's student information if available.
+ * @param queryResult()
+ *          returns the user id of the targetted user on page load
+ */
 function studentInfo() {
     let dbref = db.collection("users/").doc(queryResult());
     dbref.get()
@@ -57,7 +73,11 @@ function studentInfo() {
 
 }
 
-
+/**
+ * Shows the user's tutor information if available.
+ * @param queryResult()
+ *          returns the user id of the targetted user on page load
+ */
 function tutorInfo() {
     let dbref = db.collection("users/").doc(queryResult());
 
@@ -72,10 +92,13 @@ function tutorInfo() {
         })
 }
 
-
+/**
+ * Shows the user's best subject if available.
+ * @param queryResult()
+ *          returns the user id of the targetted user on page load
+ */
 function bestSubject() {
     let dbref = db.collection("users/").doc(queryResult());
-
     dbref.get()
         .then(snap => {
             let subject = snap.data().subject;
@@ -84,21 +107,22 @@ function bestSubject() {
                 $("#subject").show();
                 $("#subject").text("Best Subject: " + subject);
             }
-
         })
-
 }
 /** 
- * View Ratings
+ * View Ratings of the targetted user
  */
 function viewRating() {
     averagePro();
     averageTQ();
-
 }
-
 /** 
  * Reads all the professional ratings using a promise then stores all snapshots of the scores in an array
+ *  * I made this code for a similar project in COMP 1800 Sunny Side Cooking to average ratings
+ * found in a database
+ * 
+ * @author Dylan Sung
+ * @see https://github.com/dys907/Sunny-Side-Cooking
  * @return array with all the read professionalism
  */
 async function getAllProReviews() {
@@ -127,7 +151,7 @@ function averagePro() {
             counter = 1;
         }
         let average = sum / counter;
-        if (average !=0) {
+        if (average != 0) {
             $("#pro").text("Professionalism: " + average.toFixed(1));
         } else {
             $("#norate").text("This is a new tutor!")
@@ -138,6 +162,11 @@ function averagePro() {
 
 /** 
  * Reads all the teaching quality ratings using a promise then stores all snapshots of the scores in an array
+ *  * I made this code for a similar project in COMP 1800 Sunny Side Cooking to average ratings
+ * found in a database
+ * 
+ * @author Dylan Sung
+ * @see https://github.com/dys907/Sunny-Side-Cooking
  * @return array with all the read teaching quality
  */
 async function getAllTQReviews() {
@@ -166,26 +195,22 @@ function averageTQ() {
             counter = 1;
         }
         let average = sum / counter;
-        if (average !=0){
+        if (average != 0) {
             $("#tq").text("Teaching Quality: " + average.toFixed(1));
         }
-
     });
 }
-
+/**
+ * Displays the image file found in database for the targetted user.
+ */
 function viewPic() {
-        const dbref = db.collection("users/").doc(queryResult())
-        
-        dbref.get()
-            .then(snap => {
-                let picture = snap.data().profilePic;
+    const dbref = db.collection("users/").doc(queryResult())
+    dbref.get()
+        .then(snap => {
+            let picture = snap.data().profilePic;
 
-                if (picture != "" && picture != undefined) {
-                    $("#imagefile").attr("src", picture );
-                }
-
-            })
-
-    
-
+            if (picture != "" && picture != undefined) {
+                $("#imagefile").attr("src", picture);
+            }
+        })
 }

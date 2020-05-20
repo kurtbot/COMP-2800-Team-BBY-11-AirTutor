@@ -81,12 +81,18 @@ input, textarea, label, select {
 }
 
 #submit-button {
-    background-color: #283b42;
+    background-color: #1D6A96;
     color:#f1f1f1;
 }
-
+#submit-button:hover {
+    color:#85b8cb;
+}
 #return-button {
     background-color: #17A38B;
     color:#f1f1f1;
+}
+
+#return-button:hover {
+    color:#85b8cb
 }
 

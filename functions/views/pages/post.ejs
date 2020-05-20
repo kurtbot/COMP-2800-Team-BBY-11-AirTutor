@@ -27,7 +27,8 @@
     <h1>Student requests</h1>
 
     <!-- Bootstrap dropdown select form to pick filtered subject -->
-    <h3>Filter by subject</h3>
+    <h3 class="mx-3">Filter by subject</h3>
+    <div class="mx-3">
     <select class="form-control" id="subjectchoice">
         <option>All</option>
         <option>My Posts</option>
@@ -44,7 +45,8 @@
         <option>French</option>
         <option>Other (Please specify in details)</option>
     </select>
-    <button id="filter">Filter</button>
+    </div>
+    <button id="filter" class="mx-3 my-3">Filter</button>
     <p id = "nopost"><i>There are currently no posts here</i></p>
     <!-- Where the posts are displayed -->
     <div id="posts" class="mb-5">

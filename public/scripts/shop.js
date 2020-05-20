@@ -8,28 +8,52 @@ $(document).ready(function () {
      * Buys 500 credits on click.
      */
     $("#buy-5").click(function () {
+        if (clickable) {
         purchase(buy5())
+        clickable = false;
+        setTimeout(function () {
+            clickable = true;
+        }, timer);
+    }
     });
 
     /**
      * Buys 1100 credits on click.
      */
     $("#buy-10").click(function () {
-        purchase(buy10())
+        if (clickable) {
+            purchase(buy10())
+            clickable = false;
+            setTimeout(function () {
+                clickable = true;
+            }, timer);
+        }
     });
 
     /**
      * Buys 2300 credits on click.
      */
     $("#buy-20").click(function () {
-        purchase(buy20())
+        if (clickable) {
+            purchase(buy20())
+            clickable = false;
+            setTimeout(function () {
+                clickable = true;
+            }, timer);
+        }
     });
 
     /**
      * Buys 6000 credits on click.
      */
     $("#buy-50").click(function () {
-        purchase(buy50())
+        if (clickable) {
+            purchase(buy50())
+            clickable = false;
+            setTimeout(function () {
+                clickable = true;
+            }, timer);
+        }
     });
 })
 
@@ -43,14 +67,10 @@ $(document).ready(function () {
  *          and prints the amount added.
  */
 function purchase(amount) {
-    if (clickable) {
+
         $("#success").text("You have successfully purchased " + amount + " credits");
         $("#success").show().delay(timer).fadeOut('slow');
-        clickable = false;
-        setTimeout(function () {
-            clickable = true;
-        }, timer);
-    }
+
 }
 
 /**

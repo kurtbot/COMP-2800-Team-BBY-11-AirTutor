@@ -3,6 +3,7 @@
 }
 
 .sidenav {
+    overflow: hidden;
     height: 100%;
     /* 100% Full-height */
     width: 0;

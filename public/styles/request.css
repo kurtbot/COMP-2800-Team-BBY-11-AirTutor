@@ -1,19 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-body:not(.navbar navbar-expand-md navbar-light bg-light) {
-    padding: 20px;
+* {
+    box-sizing: border-box;
 }
 
 body {
+    margin: 0;
+    font-family: 'Roboto', Arial;
     background-color: #f1f1f1;
-    font-family: "Raleway";
+    color: #262834;
 }
 
-h1, h2, h3, h4, h5 {
-    font-family: "Raleway";
-    font-weight: 500;
-    color: #283b42;
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: #85b6cb;
+    font-family: 'Raleway';
+    font-weight: bolder;
 }
 
 #request, #confirm-request, #schedule, #content {
@@ -21,8 +25,15 @@ h1, h2, h3, h4, h5 {
 }
 
 input, button, textarea, select {
-    border-radius: 10px;
     border-style: solid;
     border-color: #ced4da;
-    border-width: 1.25px;
+}
+
+i {
+    color: #85b6cb;
+}
+
+label {
+    font-family: 'Raleway';
+    font-weight: 500;
 }

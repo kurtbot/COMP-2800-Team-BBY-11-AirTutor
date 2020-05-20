@@ -25,16 +25,6 @@ p {
     font-size: 12pt;
 }
 
-h3, #subjectchoice, #filter {
-    margin-left: 32px;
-    margin-right: 32px;
-}
-
-#subjectchoice {
-    width: 95%;
-    margin-bottom: 8px;
-}
-
 #filter {
     outline: none;
 }

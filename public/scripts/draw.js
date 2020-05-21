@@ -1,3 +1,9 @@
+/**
+ * Canvas drawing functionality.
+ * Source: https://socket.io/demos/whiteboard/
+ */
+
+
 // Brush colour and size
 var colour = '#000000';
 var strokeWidth = 5;

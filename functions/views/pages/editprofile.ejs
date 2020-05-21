@@ -22,7 +22,7 @@
 
 
     <aside>
-        <!--Nav Bar -->
+        <!--NavBar Bootstrap classes used -->
         <%- include("../partials/navbar.ejs") %>
         <div class="nav flex-column nav-pills mx-4" id="legend" role="tablist" aria-orientation="vertical">
             <a class="nav-link active" id="general-button" href="" data-toggle="pill" role="tab"
@@ -36,13 +36,13 @@
         </div>
     </aside>
 
-
+    <!--Dropdown menus for different selectors-->
     <main>
         <div id="header-text">
             <h1>Edit profile</h1>
         </div>
         <div id="forms">
-
+            <!--General Information-->
             <div id="general">
                 <h4 class="text-center">Edit your general account information here!</h4>
 
@@ -52,12 +52,12 @@
                 <textarea class='form-control' rows="4" cols="40" id="bioField" name="bio"
                     placeholder="Description. Tell us something about yourself!"></textarea>
             </div>
-
+            <!--Student information-->
             <div id="student">
                 <h4 class="text-center">Edit your student information here</h4>
                 <%- include("../partials/studentselector.ejs") %>
             </div>
-
+            <!--Tutor information-->
             <div id="tutor">
                 <h4 class="text-center">Edit your tutor information here</h4>
                 <p class="text-center">If you are a student and want to also tutor, you should fill in this information
@@ -65,7 +65,7 @@
                 <%- include("../partials/nonstudentselector.ejs") %>
 
             </div>
-
+            <!--File picker and image displayer -->
             <div id="pro-pic">
                 <h4>Choose a new profile picture</h4>
                 <p class="text-center my-0">This will be see in your profile page</p>

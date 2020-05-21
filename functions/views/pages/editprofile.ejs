@@ -46,8 +46,8 @@
             <div id="general">
                 <h4 class="text-center">Edit your general account information here!</h4>
 
-                <%- include("../partials/countryselector.ejs") %>
-                <%- include("../partials/languageselector.ejs") %>
+                <%- include("../partials/countryselector.ejs") %> <br>
+                <%- include("../partials/languageselector.ejs") %> <br>
                 <label for="bio">Bio:</label>
                 <textarea class='form-control' rows="4" cols="40" id="bioField" name="bio"
                     placeholder="Description. Tell us something about yourself!"></textarea>
@@ -82,8 +82,8 @@
 
             <p class="text-center" id="success">Your changes have been saved!</p>
             <div class="text-center">
-                <button id="submit-button" class="btn px-1 my-5 mx-2">Update Profile</button>
-                <button id="return-button" class="btn px-1 my-5 mx-2">Go to Profile</button>
+                <button id="submit-button" class="btn px-2 my-4 mx-1">Update Profile</button>
+                <button id="return-button" class="btn px-2 my-4 mx-1">Go to Profile</button>
             </div>
 
         </div>

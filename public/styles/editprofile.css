@@ -8,11 +8,15 @@ body {
 }
 
 h1, h2, h3, h4, h5 {
-    padding-top: 10px;
     color: #283b42;
     text-align: center;
     font-family: "Raleway";
-    font-weight: 600;
+}
+
+h1 {
+    padding-top: 32px;
+    text-decoration: underline;
+    text-decoration-color: #85b6cb;
 }
 
 h5 {
@@ -20,13 +24,12 @@ h5 {
 }
 
 #forms {
-    margin: 10px;
+    margin: 32px;
 }
 
 input, textarea, label, select {
-    margin: 10px;
     margin-left: 0px;
-    padding: 5px;
+    padding: 8px;
 }
 
 #student {
@@ -41,10 +44,17 @@ input, textarea, label, select {
     display:none;
 }
 
+#legend {
+    margin-top: 32px;
+}
 
 @media only screen and (max-width: 600px) {
     .forms {
         width: 100%;
+    }
+
+    #forms {
+        margin: 16px;
     }
 }
 
@@ -65,7 +75,6 @@ input, textarea, label, select {
 #preview {
     display:block;
     margin:auto;
-    width: 160px;
     height: 200px;
 }
 
@@ -98,4 +107,7 @@ input, textarea, label, select {
 
 aside{
     margin-top: 70px;
+}
+#submit-button, #return-button {
+    border-radius: 24px;
 }

@@ -1,12 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+body {
+    margin: 0;
+    font-family: 'Roboto', Arial;
+    background-color: #f1f1f1;
+    color: #262834;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-decoration: underline;
+    text-decoration-color: #85b6cb;
+    font-family: 'Raleway';
+    font-weight: bolder;
+}
+
 .navbar {
     font-family: "Raleway";
 }
 
 body {
     background-color: #f1f1f1;
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
 }
 
 #container {
@@ -19,9 +38,9 @@ body {
     display:block;
     text-align: center;
     font-family: "Roboto";
-    border: solid black 2px;
-    width: 320px;
+    border: solid #85b6cb 10px;
     height: 400px;
+    border-radius: 50%;
 }
 
 h1, h2, h3, h4, h5 {
@@ -32,6 +51,10 @@ h1, h2, h3, h4, h5 {
 
 #bio-container {
     margin-bottom:35px;
+}
+
+#edit {
+    background-color: #1d6a96;
 }
 
 @media (max-width:800px) {

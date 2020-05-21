@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
 body {
   background-color: #f1f1f1;
   font-family: "Raleway";
@@ -55,6 +54,7 @@ p {
 }
 
 /* Add a card effect for articles */
+
 .card {
   text-align: center;
   margin-bottom: 20px;
@@ -104,7 +104,7 @@ p {
   cursor: pointer;
 }
 
-.dir > img {
+.dir>img {
   padding: 0px;
 }
 
@@ -124,20 +124,28 @@ hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
-  border-top: 1px solid rgba(0, 0, 0, .1)
-}
-
-hr {
+  border-top: 1px solid rgba(0, 0, 0, .1);
   box-sizing: content-box;
   height: 0;
   overflow: visible
 }
 
-@media only screen and (min-width: 900px) {
+@media (min-width: 800px) {
   #home-content {
     flex-direction: row;
   }
+
   #leftcolumn {
-    width: 50%
+    width: 50%;
+  }
+  
+  #rightcolumn {
+    width: 50%;
+  }
+}
+
+@media (max-width: 800px) {
+  #rightcolumn {
+    margin-left: 32px;
   }
 }

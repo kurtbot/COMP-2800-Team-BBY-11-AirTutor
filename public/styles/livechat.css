@@ -91,3 +91,12 @@ header{
     top: 0;
     background-color: white;
 }
+
+#menu-svg {
+    color: #1d6a96;
+    position: fixed;
+    z-index: 4;
+    margin: 16px;
+    height: 32px;
+    width: 32px;
+}

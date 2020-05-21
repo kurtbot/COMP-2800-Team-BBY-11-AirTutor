@@ -6,13 +6,23 @@ nav {
 }
 
 body {
-    font-family: "Roboto";
+    font-family: "Raleway";
     padding-left: 0px;
     padding-right: 0px;
     background-color: white;
 }
 
-h1, h2, h3, h4, h5 {
+h3, h4, h5 {
+    padding-top: 10px;
+    color: #283b42;
+    text-align: center;
+    font-family: "Raleway";
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: #85b6cb;
+}
+
+h2{
     padding-top: 10px;
     color: #283b42;
     text-align: center;
@@ -24,6 +34,7 @@ header{
     position: sticky;
     top: 0;
     background-color: white;
+    padding-top: 50px;
 }
 
 #sub{
@@ -49,12 +60,18 @@ header{
     background-color: var(--bg-primary-light);
 }
 
+
+
 .send-btn {
     flex-grow: 1;
     border: none;
-    background-color: var(--bg-secondary-light);
     font-size: 1.5rem;
     color: var(--text-primary-light);
+    border-radius: 24px;
+    background-color: #1d6a96;
+    color: #f1f1f1;
+    margin-left: 16px;
+    margin-right: 16px;
 }
 
 .chat-input {
@@ -64,7 +81,8 @@ header{
     border-style: solid;
     border: none;
     padding: 0.5rem;
-    min-width: 200px
+    min-width: 200px;
+    margin-left: 16px;
 }
 
 /* scheduler button */
@@ -73,9 +91,9 @@ header{
     margin: 10px 0;
     border-radius: 0.5rem;
     border: none;
-    background-color: var(--bg-secondary-light);
+    background-color:  #1d6a96;
     font-size: 1.5rem;
-    color: var(--text-primary-light);
+    color: white;
     line-height: 3rem;
     display: none;
 }
@@ -92,8 +110,18 @@ header{
     max-width: 300px;
     max-height: 50px;
     border: 1px solid var(--text-primary-light);
-    background-color: lightgoldenrodyellow;
+    background-color: #bed4f7;
     margin: auto;
     display: flex;
     justify-content: center;
+}
+
+
+#menu-svg {
+    color: #1d6a96;
+    position: fixed;
+    z-index: 4;
+    margin: 16px;
+    height: 32px;
+    width: 32px;
 }

@@ -13,8 +13,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="./styles/base.css">
-    <link rel="stylesheet" href="./styles/messaging.css">
     <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="./styles/messaging.css">
 
     <!-- Icons -->
     <%- include("../partials/favicon.ejs") %>  
@@ -24,9 +24,10 @@
     <!-- Main Content -->
     <div>
         <div id="topbox">
+            <!--Nav Bar -->
+            <%- include("../partials/navbar.ejs") %>
             <header>
-                <!--Nav Bar -->
-                <%- include("../partials/navbar.ejs") %>
+
                 <div id="sub">
                     <!-- Who the user is messaging -->
                     <div id="namepic"  class="text-center"><h2 id="who"></h2>
@@ -35,7 +36,9 @@
                     <!-- Request topic for this chatroom -->
                     <h4 id="what" class="text-center"></h4>
                     <!-- Schedule meeting button, only shown for student side -->
-                    <button class="schedule-btn btn-block" onclick="window.location.href = '/schedule';">Schedule a Session</button>
+                    <div class="mx-1">
+                        <button class="schedule-btn form-control" onclick="window.location.href = '/schedule';">Schedule a Session</button>
+                    </div>
                 </div>
             </header>
             <!-- Where messages are displayed -->
@@ -47,7 +50,7 @@
         </div>
         <!-- Input box and send button -->
         <div class="chat-inputs">
-            <input class="chat-input" type="text" placeholder="Enter Message / Read">
+            <input class="chat-input" type="text" placeholder="Enter Message">
             <input class="send-btn" type="button" value="Send">
         </div>
     </div>

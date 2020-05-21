@@ -55,13 +55,19 @@ Technologies that were used for this project:
 If you want to be a developer for this project:
 1. Clone the repository
 1. Install the dependencies using:
-```npm install```
+	```
+	npm install
+	```
 1. In the repository directory using the terminal window
 Install firebase hosting:
-```npm install -g firebase-tools```
+	```
+	npm install -g firebase-tools
+	```
 1. Login to your firebase/google account
 1. Deploy using:
-	```firebase serve```
+	```
+	firebase serve
+	```
 1. Open http://localhost:5000 with your browser
 
 ## Database Configurations
@@ -71,87 +77,7 @@ Our project uses [Firebase](https://firebase.google.com/) as our database. If yo
 Content of the project folder:
 
 ```
- Top level of project folder: 
-├── .firebaserc               # 
-├── .gitignore              # Git ignore file
-├── database.rules.json             # 
-├── firebase.json              # 
-├── firebase-debug.json              # 
-├── firebase.indexes.json               # 
-├── firestore.rules              # 
-├── storage.rules              # 
 
-It has the following subfolders:
-├── .firebase                # Folder for firebase
-	/hosting.cHVibGlj.cache		#
-├── .git                     # Folder for git repo
-├── functions                     # 
-	├── views		#
-		├── pages
-			/aboutus.ejs
-		├── partials
-├── public                    # Folder for static contents
-	├── scripts
-	├── src
-		├── home
-		
-		├── index
-	├── styles
-	/404.html
-
-
- Top level of project folder: 
-├── .gitignore               # Git ignore file
-├── 404.html                 # File for error
-├── account.html             # displays user stats and contributions
-├── index.html               # landing HTML file
-├── login.html               # login HTML file
-├── main.html                # after logged in, you can make search results for recipes
-├── recipe.html              # displays the recipe chosen from the result page. Shows review ratings
-├── review.html              # reviews the recipe from recipe page
-├── reviewcomplete.html      # confirms that the review has been submitted and rewards experience
-├── searchresult.html        # shows the results from the database query
-├── upload1.html             # allows you to enter data to create a cooking recipe
-├── uploadcomplete.html      # confirms that the upload has been submitted and rewards experience
-├── uploadrecipe.html        # shows you a mock up of the recipe page that will appear in search
-└── README.md
-
-It has the following subfolders:
-├── .firebase                # Folder for firebase
-├── .git                     # Folder for git repo
-├── images                   # Folder for images
-	/chef.png				 # Account page stock profile picture. Taken from https://www.pinterest.com
-	/foodhold.jpg 			 # Placeholder picture for all recipe page images. Taken from https://www.fiverr.com
-	/logo_navbar.png		 # Logo image used on all nav-bars and footers. Commissioned by Francis Sapanta
-	/logo_nobg.png			 # Landing page logo. Commissioned by Francis Sapanta
-	/logo_nobg_small.png	 # Placeholder image for all search result cards. Also used for upload complete page. Comisssioned by Francis Sapanta
-	/slide1.png				 # Placeholder image for jumbotron images. One of two, taken from https://www.delish.com
-	/slide2.png				 # Placeholder image for jumbotron images. Two of two, taken from https://www.wallpaperflare.com
-├── scripts                  # Folder for scripts
-    /account.js              # This is where all account.html functions are located
-	/firebase_api_sunnyside.js 	# This is the file that accesses the firebase api for sunny side cooking
-	/main.js              	 # This is where all the main.html functions are located
-	/recipe.js               # This is where all the recipe.html functions are located
-	/results.js              # This is where all the searchresult.html functions are located
-	/review.js               # This is where all the review.html functions are located
-	/reviewcomplete.js       # This is where all the reviewcomplete.html functions are located
-	/upload.js               # This is where all the upload1.html functions are located
-	/uploadcomplete.js       # This is where all the uploadcomplete.html functions are located
-	/uploadrecipe.js         # This is where all the uploadrecipe.html functions are located
-├── styles                   # Folder for styles
-	/account.css         	 # This is where all the account.html styling is located
-	/landing.css             # This is where all the index.html styling is located
-	/main.css                # This is where all the main.html syling is located
-	/recipe.css              # This is where all the recipe.html styling is located
-	/review.css              # This is where all the review.html and reviewcomplete.html styling is located
-	/searchresult.css        # This is where all the searchresult.html styling is located
-	/upload.css         	 # This is where all the upload1.html, uploadcomplete.html and uploadrecipe.html styling is located
-
-Firebase hosting files: 
-├── .firebaserc              # Firebase file
-├── firebase.json            # Firebase file
-├── firestore.indexes.json   # Firebase file
-├── firestore.rules          # Rules for read/write to firestore
 ```
 
 

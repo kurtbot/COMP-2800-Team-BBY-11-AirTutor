@@ -4,7 +4,7 @@
 $(document).ready(function () {
     userInfo();
     updateMessage();
-    $("signout").click(signOut);
+    $("#signout").click(signOut);
 })
 
 /**
@@ -45,7 +45,15 @@ function userInfo() {
  * Signs the user out of their account.
  */
 function signOut() {
-    firebase.auth().signOut();
+    let promise = new Promise((res, rej) => {
+        firebase.auth().signOut();
+        res('sign out')
+    })
+
+    promise.then(function(res) {
+        console.log(res);
+        window.location.href = '/';
+    })
 }
 
 /**

@@ -11,3 +11,10 @@ function getCurrentUser() {
 function getUserName() {
     return firebase.auth().currentUser.displayName;
 }
+
+$(document).ready(function() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if(user == undefined)
+            window.location.href = '/';
+    })
+})

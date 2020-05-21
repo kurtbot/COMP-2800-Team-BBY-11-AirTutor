@@ -3,8 +3,10 @@ Comp 2800 BBY Group 1
 * [Third party APIs](#third-party-apis)
 * [Soaring Eagles BBY Team 11](#soaring-eagles-bby-team-11)
 * [General Info](#general-info)
-* [Technologies](#technologies)
+* [Technologies and Languages](#technologies-and-languages)
+* [IDE](#ide)
 * [Database Configurations](#database-configurations)
+* [Testing](#testing)
 * [Content](#content)
 * [Getting Started As a Developer](#getting-started-as-a-developer)
 
@@ -46,7 +48,7 @@ The features of this project include:
 
 [`Back to top`](#air-tutor)
 
-## Technologies
+## Technologies and Languages
 Technologies that were used for this project:
 * Firebase Hosting
 * Firebase Firestore Database
@@ -56,6 +58,11 @@ Technologies that were used for this project:
 * JavaScript
 * Bootstrap 
 * SourceTree
+
+[`Back to top`](#air-tutor)
+
+## IDE
+You are allowed to use any IDEs that can modify HTML, CSS, JS and EJS files. For the most optimized experience, [Visual Studio Code](https://code.visualstudio.com/) is preferred. 
 
 [`Back to top`](#air-tutor)
 

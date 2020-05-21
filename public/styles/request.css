@@ -76,3 +76,12 @@ label {
     }
 }
 
+.yes{
+    background-color: #1D6A96;
+    color: #f1f1f1;
+}
+
+.no{
+    background-color: #962C30;
+    color: #f1f1f1
+}

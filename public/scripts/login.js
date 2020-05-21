@@ -1,3 +1,6 @@
+/**
+ * Logs the user in using their email and password which should be on the database 
+ */
 function login() {
 
     var email = document.getElementById('emailLoginField').value;
@@ -14,8 +17,6 @@ function login() {
                 var errorMessage = error.message;
 
                 window.alert('Error : ' + errorMessage);
-                // document.getElementById('loginHelp').innerText = 'Error : ' + errorMessage;
-                // ...
             });
     }
 

@@ -110,18 +110,9 @@ header{
     max-width: 300px;
     max-height: 50px;
     border: 1px solid var(--text-primary-light);
-    background-color: #bed4f7;
+    background-color: #6FB9E3;
     margin: auto;
     display: flex;
     justify-content: center;
 }
 
-
-#menu-svg {
-    color: #1d6a96;
-    position: fixed;
-    z-index: 4;
-    margin: 16px;
-    height: 32px;
-    width: 32px;
-}

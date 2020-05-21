@@ -1,8 +1,17 @@
- body {
-     padding-left: 0;
-     padding-right: 0;
-     background-color: #f1f1f1;
- }
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+nav {
+    font-family: "Raleway";
+}
+
+body {
+    font-family: "Raleway";
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:#f1f1f1;
+}
+ 
 
  .hover {
      background-color: #85b8cb;

@@ -5,7 +5,7 @@ nav {
 }
 
 body {
-    font-family: "Roboto";
+    font-family: "Raleway";
     padding-left: 0px;
     padding-right: 0px;
     background-color: white;
@@ -16,7 +16,8 @@ h1, h2, h3, h4, h5 {
     color: #283b42;
     text-align: center;
     font-family: "Raleway";
-    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: #85b6cb;
 }
 
 /* 
@@ -31,12 +32,15 @@ h1, h2, h3, h4, h5 {
     margin-top: auto;
     display: flex;
     flex-direction: column;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
 }
 
 
 
 .chat-window{
-    padding: 0px 10px
+    padding: 0px 10px;
 }
 
 
@@ -53,9 +57,13 @@ h1, h2, h3, h4, h5 {
 .send-btn {
     flex-grow: 1;
     border: none;
-    background-color: var(--bg-secondary-light);
     font-size: 1.5rem;
     color: var(--text-primary-light);
+    border-radius: 24px;
+    background-color: #1d6a96;
+    color: #f1f1f1;
+    margin-left: 16px;
+    margin-right: 16px;
 }
 
 .chat-input {
@@ -65,7 +73,8 @@ h1, h2, h3, h4, h5 {
     border-style: solid;
     border: none;
     padding: 0.5rem;
-    min-width: 200px
+    min-width: 200px;
+    margin-left: 16px;
 }
 
 /* scheduler button */
@@ -76,7 +85,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .chat-log{
-    margin-bottom: 70px
+    margin-bottom: 70px;
 }
 
 header{

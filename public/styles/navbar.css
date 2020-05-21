@@ -9,7 +9,7 @@
     /* 0 width - change this with JavaScript */
     position: fixed;
     /* Stay in place */
-    z-index: 3;
+    z-index: 999;
     /* Stay on top */
     top: 0;
     left: 0;

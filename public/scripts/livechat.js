@@ -62,11 +62,10 @@ function createMessage(newbox, outerbox, sender){
     // CSS if this message is sent by this user
     if (firebase.auth().currentUser.uid == sender){
         $(newbox).css({
-            "background-color":"rgb(69, 223, 110)",
-            "border":" rgb(69, 223, 110) solid 1px",
+            "background-color":"#85b8cb",
             "border-radius":"10px",
             "margin":"3px",
-            "padding":"5px",
+            "padding":"8px",
             "color":"black"
         })
         $(outerbox).css({
@@ -76,10 +75,9 @@ function createMessage(newbox, outerbox, sender){
     } else {
         $(newbox).css({
             "background-color":"rgb(237 237 237)",
-            "border":"rgb(237 237 237) solid 1px",
             "border-radius":"10px",
             "margin":"5px",
-            "padding":"5px",
+            "padding":"8px",
             "color":"black"
         })
         $(outerbox).css({

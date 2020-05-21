@@ -36,11 +36,11 @@ p {
 
 #imagefile {
     display:block;
-    text-align: center;
     font-family: "Roboto";
     border: solid #85b6cb 10px;
-    height: 400px;
+    height: 270px;
     border-radius: 50%;
+    margin: auto;
 }
 
 h1, h2, h3, h4, h5 {
@@ -49,23 +49,19 @@ h1, h2, h3, h4, h5 {
     color: #283b42;
 }
 
-#bio-container {
-    margin-bottom:35px;
-}
-
 #edit {
     background-color: #1d6a96;
+    margin: 64px 0px;
+    font-size: 14pt;
+    margin-bottom: 64px;
 }
 
 @media (max-width:800px) {
-    #imagefile {
-        margin: auto;
-        
-    }
     #profile {
         margin-top: 10px;
         text-align: center;
     }
+
     #bio-container {
         text-align: center;
     }

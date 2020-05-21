@@ -108,11 +108,15 @@ header{
 
 #namepic {
     max-width: 300px;
-    max-height: 50px;
+    max-height: 100px;
     border: 1px solid var(--text-primary-light);
     background-color: #6FB9E3;
     margin: auto;
     display: flex;
     justify-content: center;
+    overflow-wrap: break-word;
 }
 
+#what {
+    overflow-wrap: break-word;
+}

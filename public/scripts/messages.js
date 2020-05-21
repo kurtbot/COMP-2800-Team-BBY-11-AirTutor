@@ -52,14 +52,15 @@ function loadMessages(){
  */
 function createMessage(roomID, tutorid, studentid, tutor, student, unreadtutor, unreadstudent, topicstr, latestTime, requestid){    
     let str = tutorid == firebase.auth().currentUser.uid? student : tutor;
-    let name = $("<b></b>").html("User: " + str).css({
+    let name = $("<b></b>").html(str).css({
         "display": "inline-block",
         "width": "20%",
         "margin-left": "3%",
     })
     let topic = $("<span></span>").html("Topic: " + topicstr).css({
         "display": "inline-block",
-        "width": "40%"
+        "width": "40%",
+        "overflow":"hidden"
     })
     let msgtime = $("<span></span>").html(latestTime).css({
         "display": "inline-block",

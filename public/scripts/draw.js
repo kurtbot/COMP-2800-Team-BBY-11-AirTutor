@@ -32,7 +32,11 @@ let coordsJsonArr = []
 
 // Drawing functions
 
-const continueStroke = newPoint => {
+/**
+ * Continues to draw the stroke based 
+ * @param {Array} newPoint 
+ */
+function onContinueStroke(newPoint) {
     ctx.beginPath();
     ctx.moveTo(0, 0);
     ctx.moveTo(latestPoint[0], latestPoint[1]);
@@ -64,7 +68,7 @@ const continueStroke = newPoint => {
 
 // Event helpers
 
-const beginStroke = point => {
+function onBeginStroke(point) {
     drawing = true;
     latestPoint = point;
 };
@@ -74,38 +78,58 @@ const mouseButtonIsDown = buttons => (BUTTON & buttons) === BUTTON;
 
 // Event handlers
 
-const mouseMove = evt => {
+/**
+ * the mouse move event is triggered when the user is moving while drawing at the same time
+ * @param {MouseEvent} evt 
+ */
+function onMoveMouse(evt) {
     if (!drawing) {
         return;
     }
-    continueStroke([evt.offsetX, evt.offsetY]);
+    onContinueStroke([evt.offsetX, evt.offsetY]);
 };
 
-const mouseDown = evt => {
+/**
+ * the mouse down event triggers when the mouse is pressed
+ * @param {MouseEvent} evt 
+ */
+function onDownMouse(evt) {
     if (drawing) {
         return;
     }
     evt.preventDefault();
-    canvas.addEventListener("mousemove", mouseMove, false);
-    beginStroke([evt.offsetX, evt.offsetY]);
+    canvas.addEventListener("mousemove", onMoveMouse, false);
+    onBeginStroke([evt.offsetX, evt.offsetY]);
 };
 
-const mouseEnter = evt => {
+/**
+ * the on enter mouse event
+ * @param {MouseEvent} evt 
+ */
+function onEnterMouse(evt) {
     if (!mouseButtonIsDown(evt.buttons) || drawing) {
         return;
     }
-    mouseDown(evt);
+    onDownMouse(evt);
 };
 
-const endStroke = evt => {
+/**
+ * the on end stroke event triggers when the user is not drawing
+ * @param {MouseEvent} evt 
+ */
+function onEndStroke(evt) {
     if (!drawing) {
         return;
     }
     drawing = false;
-    evt.currentTarget.removeEventListener("mousemove", mouseMove, false);
+    evt.currentTarget.removeEventListener("mousemove", onMoveMouse, false);
 };
 
-const getTouchPoint = evt => {
+/**
+ * the get touch coords gets the position of the user's click
+ * @param {MouseEvent} evt 
+ */
+function getTouchCoords(evt) {
     if (!evt.currentTarget) {
         return [0, 0];
     }
@@ -114,24 +138,36 @@ const getTouchPoint = evt => {
     return [touch.clientX - rect.left, touch.clientY - rect.top];
 };
 
-const touchStart = evt => {
+/**
+ * the mouse down event triggers when the mouse is pressed
+ * @param {MouseEvent} evt 
+ */
+function onStartTouch(evt) {
     if (drawing) {
         return;
     }
     evt.preventDefault();
     console.log('hello');
 
-    beginStroke(getTouchPoint(evt));
+    onBeginStroke(getTouchCoords(evt));
 };
 
-const touchMove = evt => {
+/**
+ * the mouse move event is triggered when the user is moving while drawing at the same time
+ * @param {MouseEvent} evt 
+ */
+function onMoveTouch(evt) {
     if (!drawing) {
         return;
     }
-    continueStroke(getTouchPoint(evt));
+    onContinueStroke(getTouchCoords(evt));
 };
 
-const touchEnd = evt => {
+/**
+ * the on end stroke event triggers when the user is not drawing
+ * @param {MouseEvent} evt 
+ */
+function onEndTouch(evt) {
     drawing = false;
     firebase.database().ref('sessionrooms/' + queryResult() + '/canvasData').set({
         canvasData: coordsJsonArr
@@ -141,7 +177,7 @@ const touchEnd = evt => {
 
 // Firebase Draw Events
 
-const DrawUpdate = (pairPoints) => {
+function DrawUpdate(pairPoints) {
     var w = canvas.width;
     var h = canvas.height;
     let lastPoint;
@@ -162,23 +198,23 @@ const DrawUpdate = (pairPoints) => {
 const setup = () => {
 
     // Mobile 
-    canvas.addEventListener("touchstart", touchStart, false);
-    canvas.addEventListener("touchend", touchEnd, false);
-    canvas.addEventListener("touchcancel", touchEnd, false);
-    canvas.addEventListener("touchmove", touchMove, false);
+    canvas.addEventListener("touchstart", onStartTouch, false);
+    canvas.addEventListener("touchend", onEndTouch, false);
+    canvas.addEventListener("touchcancel", onEndTouch, false);
+    canvas.addEventListener("touchmove", onMoveTouch, false);
 
     // Register event handlers
 
-    canvas.addEventListener("mousedown", mouseDown, false);
-    canvas.addEventListener("mouseup", endStroke, false);
-    canvas.addEventListener("mouseout", endStroke, false);
-    canvas.addEventListener("mouseenter", mouseEnter, false);
+    canvas.addEventListener("mousedown", onDownMouse, false);
+    canvas.addEventListener("mouseup", onEndStroke, false);
+    canvas.addEventListener("mouseout", onEndStroke, false);
+    canvas.addEventListener("mouseenter", onEnterMouse, false);
 
     let brushes = document.getElementsByClassName('brush');
     console.log(brushes);
     for (let i = 0; i < 3; i++) {
         brushes[i].addEventListener('click', function () {
-            
+
             switch (i) {
                 case 0:
                     document.querySelector('.small').innerHTML = '✓';
@@ -198,7 +234,7 @@ const setup = () => {
                 default:
                     break;
             }
-            
+
             strokeWidth = brushSize[i];
             console.log(strokeWidth);
         })
@@ -207,7 +243,7 @@ const setup = () => {
     let colorsDom = document.getElementsByClassName('color');
     console.log(colorsDom);
     for (let i = 0; i < 6; i++) {
-        
+
         colorsDom[i].addEventListener('click', function () {
             console.log(colorsDom[i].className);
 
@@ -240,18 +276,18 @@ const setup = () => {
                 default:
                     break;
             }
-            
-            colour = colours[colorKey];            
+
+            colour = colours[colorKey];
         })
     }
 
 
-    sessionRef.on('value', function(snapshot) {
+    sessionRef.on('value', function (snapshot) {
         coordsJsonArr.concat(snapshot.val()['canvasData']);
         DrawUpdate(snapshot.val()['canvasData']);
     })
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     setup();
 })

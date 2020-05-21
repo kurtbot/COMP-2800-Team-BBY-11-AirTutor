@@ -4,7 +4,8 @@
 
 #content {
     margin-left: 64px;
-    margin-right: 64px; 
+    margin-right: 64px;
+    text-align: center;
 }
 
 #login-button {

@@ -68,6 +68,10 @@ function onContinueStroke(newPoint) {
 
 // Event helpers
 
+/**
+ * On begin stroke set the selected point as current point
+ * @param {Array} point 
+ */
 function onBeginStroke(point) {
     drawing = true;
     latestPoint = point;
@@ -139,7 +143,7 @@ function getTouchCoords(evt) {
 };
 
 /**
- * the mouse down event triggers when the mouse is pressed
+ * the touch down event triggers when the mouse is pressed
  * @param {MouseEvent} evt 
  */
 function onStartTouch(evt) {
@@ -153,7 +157,7 @@ function onStartTouch(evt) {
 };
 
 /**
- * the mouse move event is triggered when the user is moving while drawing at the same time
+ * the touch move event is triggered when the user is moving while drawing at the same time
  * @param {MouseEvent} evt 
  */
 function onMoveTouch(evt) {
@@ -164,7 +168,7 @@ function onMoveTouch(evt) {
 };
 
 /**
- * the on end stroke event triggers when the user is not drawing
+ * the on end touch event triggers when the user is not drawing
  * @param {MouseEvent} evt 
  */
 function onEndTouch(evt) {
@@ -177,6 +181,10 @@ function onEndTouch(evt) {
 
 // Firebase Draw Events
 
+/**
+ * DrawUpdate runs whenever the database is updated
+ * @param {JSON} pairPoints 
+ */
 function DrawUpdate(pairPoints) {
     var w = canvas.width;
     var h = canvas.height;
@@ -195,7 +203,10 @@ function DrawUpdate(pairPoints) {
     }
 }
 
-const setup = () => {
+/**
+ * sets the document listeners
+ */
+function setup() {
 
     // Mobile 
     canvas.addEventListener("touchstart", onStartTouch, false);
@@ -210,6 +221,7 @@ const setup = () => {
     canvas.addEventListener("mouseout", onEndStroke, false);
     canvas.addEventListener("mouseenter", onEnterMouse, false);
 
+    // adds click event listeners to the brush sizes
     let brushes = document.getElementsByClassName('brush');
     console.log(brushes);
     for (let i = 0; i < 3; i++) {
@@ -240,6 +252,7 @@ const setup = () => {
         })
     }
 
+    // adds click event listeners to the palette
     let colorsDom = document.getElementsByClassName('color');
     console.log(colorsDom);
     for (let i = 0; i < 6; i++) {
@@ -281,13 +294,16 @@ const setup = () => {
         })
     }
 
-
+    // updates when the value in the real time database changes
     sessionRef.on('value', function (snapshot) {
         coordsJsonArr.concat(snapshot.val()['canvasData']);
         DrawUpdate(snapshot.val()['canvasData']);
     })
 }
 
+/**
+ * Runs the setup when the document is ready
+ */
 $(document).ready(function () {
     setup();
 })

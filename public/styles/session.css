@@ -52,9 +52,6 @@ canvas {
     border-radius: 50%;
     height: 4rem;
     width: 4rem;
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: center; */
 }
 
 .buttonItem>svg {

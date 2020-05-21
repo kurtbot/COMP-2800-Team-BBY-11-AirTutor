@@ -87,19 +87,6 @@
     z-index: 4;
 }
 
-
-/* Modal design */
-
-/* #myModal {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background-color: aquamarine;
-    transform: translate(-50%, -50%);
-    transition: top 500ms;
-} */
-
 /* The Modal (background) */
 .modal {
     display: none;

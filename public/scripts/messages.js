@@ -66,7 +66,9 @@ function createMessage(roomID, tutorid, studentid, tutor, student, unreadtutor, 
         "display": "inline-block",
         "width": "30%"
     })
-    let del = $("<input type=image>").click(function () {deleteChat(roomID)}).attr("src", "./src/no.png").css({
+    // Image Source: https://imgbin.com/
+    let del = $("<input type=image>").click(function () {deleteChat(roomID)})
+    .attr("src", "./src/no.png").css({
         "position": "absolute",
         "right": "20px",
         "width": "20px",

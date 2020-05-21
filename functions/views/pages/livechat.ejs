@@ -18,6 +18,16 @@
     <link rel="stylesheet" href="./styles/livechat.css">
     <link rel="stylesheet" href="./styles/navbar.css">
 
+    <style>
+        #menu-svg {
+            color: #1d6a96;
+            position: fixed;
+            z-index: 4;
+            margin: 16px;
+            height: 32px;
+            width: 32px;
+        }
+    </style>
 
     <!-- Icons -->
     <%- include("../partials/favicon.ejs") %>
@@ -26,9 +36,9 @@
 <body>
     <!-- Main Content -->
     <div>
+        <%- include("../partials/navbar.ejs") %>
         <header>
             <!--Nav Bar -->
-            <%- include("../partials/navbar.ejs") %>
             <!-- Title of this page -->
             <h1 class="text-center" id="who">Live Chat</h1>
         </header>

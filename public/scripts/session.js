@@ -1,5 +1,4 @@
 /**
- * 
  * Peer.js Documentation: https://peerjs.com/docs.html#api
  */
 var peer = new Peer({ key: 'lwjd5qra8257b9' });
@@ -99,19 +98,6 @@ function tutorTest() {
 
     createRoomSnapshot();
 }
-
-/**
- * 
- */
-videoDom.addEventListener('play', function () {
-    var $this = this; //cache
-    (function loop() {
-        if (!$this.paused && !$this.ended) {
-            canvasContext.drawImage($this, 0, 0);
-            setTimeout(loop, 1000 / 30); // drawing at 30fps
-        }
-    })();
-}, 0);
 
 /**
  * The create room snapshot is used to automatically call the other user when they enter the room.
@@ -250,7 +236,7 @@ const micMuteBtn = document.querySelector('#mic-mute-btn');
 const phoneCallBtn = document.querySelector('#phone-call-btn');
 
 /**
- * 
+ * Add canvas brush events to open and close the palette
  */
 canvasBrushBtn.addEventListener('click', function () {
     openPalette();
@@ -258,7 +244,7 @@ canvasBrushBtn.addEventListener('click', function () {
 
 
 /**
- * 
+ * Add mic mute events to the mic mute button
  */
 let muted = false;
 micMuteBtn.addEventListener('click', function () {
@@ -276,6 +262,10 @@ micMuteBtn.addEventListener('click', function () {
         });
     }
 })
+
+/**
+ * When the user clicks on the hang up button, they are redirected to either the rating page if they're a student or to the home page if they are a student
+ */
 phoneCallBtn.addEventListener('click', gotoNext)
 
 console.log('loaded event listeners');
@@ -293,6 +283,7 @@ function closePalette() {
     document.getElementById("palette").style.height = "0";
 }
 
+/* Closes the palette on load */
 $(document).ready(function () {
     closePalette();
 })

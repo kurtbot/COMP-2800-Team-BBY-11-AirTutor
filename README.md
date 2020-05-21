@@ -234,29 +234,41 @@ Content of the project folder:
 
 ## Getting Started As a Developer 
 If you want to be a developer for this project:
-1. Clone the repository
-2. Install node.js at https://nodejs.org
-3. Install node.js local modules using:
+
+### Prerequisites
+1. Install node.js at https://nodejs.org
+
+The following will require you to use a terminal. For our app we used [Visual Studio Code](https://code.visualstudio.com/)'s Terminal. ([See IDEs](#ide))
+
+2. On the terminal, Install node.js local modules using:
 ```
 npm install npm -g
 ```
-4. Install the dependencies using:
+
+### Setting up the project
+1. Clone the repository to your desired folder.
+2. Using a terminal/command line window, go to the project directory folder and run the following:
+
 ```
+npm install npm -g
+npm install -g firebase-tools
+cd ./functions
 npm install
 ```
-5. In the repository directory, install firebase-tools using the terminal window:
-```
-npm install -g firebase-tools
-```
-7. Login to your firebase/google account
+
+### Running the Project
+1. Login to your firebase/google account
 ```
 firebase login
 ```
-8. Deploy using:
+2. Deploy using:
 ```
 firebase serve
 ```
-9. Open http://localhost:5000 with your browser
+3. At this point, the terminal should dislpay `hosting: Serving hosting files from: public`. Open http://localhost:5000 with your browser
 
 [`Back to top`](#air-tutor)
+
+
+
 

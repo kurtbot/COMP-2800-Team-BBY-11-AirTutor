@@ -10,16 +10,25 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="styles/post.css">
     <link rel="stylesheet" href="./styles/footer.css">
-    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="./styles/navbar.css">
+
+    <!-- Favicon -->
     <%- include("../partials/favicon.ejs") %>
 </head>
 
 <body>
     <!--Nav Bar -->
     <%- include("../partials/navbar.ejs") %>
-    <h3>Filter by Subject</h3>
+
+    <h1 class="mt-5">Student requests</h1>
+
+    <!-- Bootstrap dropdown select form to pick filtered subject -->
+    <h3 class="mx-3">Filter by subject</h3>
+    <div class="mx-3">
     <select class="form-control" id="subjectchoice">
         <option>All</option>
         <option>My Posts</option>
@@ -36,11 +45,12 @@
         <option>French</option>
         <option>Other (Please specify in details)</option>
     </select>
-    <button id="filter">Filter</button>
-
+    </div>
+    <button id="filter" class="mx-3 my-3">Filter</button>
+    <p id = "nopost"><i>There are currently no posts here</i></p>
+    <!-- Where the posts are displayed -->
     <div id="posts" class="mb-5">
         <div id="posts-dat">
-
         </div>
     </div>
     <!--Footer-->
@@ -50,8 +60,6 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
     <script src="scripts/firebase.js"></script>
-    <!-- Optional JavaScript -->
-    <script src="scripts/navbar.js"></script>
     <script src="scripts/firebase-main.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -61,7 +69,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-
+    <!-- Optional JavaScript -->
+    <script src="scripts/navbar.js"></script>
     <script src="scripts/post.js"></script>
 
 

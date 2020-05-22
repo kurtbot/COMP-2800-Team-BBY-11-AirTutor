@@ -7,7 +7,6 @@ nav {
 
 body {
     font-family: 'Roboto';
-    padding: 10px;
 }
 
 .outer {
@@ -25,7 +24,7 @@ h1, h2, h3, h4 {
 }
 
 .bio {
-    padding: 20px;
+    padding: 40px;
     font-size: 11pt;
 }
 

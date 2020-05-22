@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="styles/request.css">
-  <link rel="stylesheet" href="./styles/footer.css">
   <link rel="stylesheet" href="styles/navbar.css">
   <%- include("../partials/favicon.ejs") %>
 </head>
@@ -20,107 +19,119 @@
   <!--Nav Bar -->
   <%- include("../partials/navbar.ejs") %>
 
-  <div id="schedule">
+  <div id="schedule" class="mt-5">
     <h1>Schedule a Session</h1>
-    <p>Date: </p>
-    <input type="date" id="date">
-    <hr>
-    <p>Start Time: </p>
+    <div class="innerform innerfill">
+      <p>Date: <i id="require1">* required</i></p>
+      <!-- Datepicker -->
+      <input type="date" id="date" class="form-control">
+      <hr>
+      <p>Start Time: </p>
+      <!-- Bootstrap dropdown select form to pick an hour -->
+      <select class="hour start" id="start-hour">
+        <option>01</option>
+        <option>02</option>
+        <option>03</option>
+        <option>04</option>
+        <option>05</option>
+        <option>06</option>
+        <option>07</option>
+        <option>08</option>
+        <option>09</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+      </select>
+      <!-- Bootstrap dropdown select form to pick a minute -->
+      <select class="minute start" id="start-minute">
+        <option>00</option>
+        <option>05</option>
+        <option>10</option>
+        <option>15</option>
+        <option>20</option>
+        <option>25</option>
+        <option>30</option>
+        <option>35</option>
+        <option>40</option>
+        <option>45</option>
+        <option>50</option>
+        <option>55</option>
+      </select>
+      <!-- Bootstrap dropdown select form to pick AM or PM -->
+      <select class="am-pm start" id="start-ap">
+        <option>AM</option>
+        <option>PM</option>
+      </select>
+      <p>End Time: </p>
+      <!-- Bootstrap dropdown select form to pick an hour -->
+      <select class="hour end" id="end-hour">
+        <option>01</option>
+        <option>02</option>
+        <option>03</option>
+        <option>04</option>
+        <option>05</option>
+        <option>06</option>
+        <option>07</option>
+        <option>08</option>
+        <option>09</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+      </select>
+      <!-- Bootstrap dropdown select form to pick a minute -->
+      <select class="minute end" id="end-minute">
+        <option>00</option>
+        <option>05</option>
+        <option>10</option>
+        <option>15</option>
+        <option>20</option>
+        <option>25</option>
+        <option>30</option>
+        <option>35</option>
+        <option>40</option>
+        <option>45</option>
+        <option>50</option>
+        <option>55</option>
+      </select>
+      <!-- Bootstrap dropdown select form to pick AM or PM -->
+      <select class="am-pm end" id="end-ap">
+        <option>AM</option>
+        <option>PM</option>
+      </select>
+      <hr>
+      <p>Title: <i id="require2">* required</i><br><textarea type="text" id="title" class="form-control"></textarea></p>
+      <p>Tutor Name: <br><textarea type="text" id="name" readonly class="form-control"></textarea></p>
+      <p>Credit Reward: </p>
+      <!-- Bootstrap dropdown select form to pick a credit reward for this session -->
+      <select id="credit">
+        <option>100</option>
+        <option>200</option>
+        <option>300</option>
+        <option>400</option>
+        <option>500</option>
+        <option>600</option>
+        <option>700</option>
+        <option>800</option>
+        <option>900</option>
+        <option>1000</option>
+      </select>
+    </div>
 
-    <select class="hour start" id="start-hour">
-      <option>01</option>
-      <option>02</option>
-      <option>03</option>
-      <option>04</option>
-      <option>05</option>
-      <option>06</option>
-      <option>07</option>
-      <option>08</option>
-      <option>09</option>
-      <option>10</option>
-      <option>11</option>
-      <option>12</option>
-    </select>
-    <select class="minute start" id="start-minute">
-      <option>00</option>
-      <option>05</option>
-      <option>10</option>
-      <option>15</option>
-      <option>20</option>
-      <option>25</option>
-      <option>30</option>
-      <option>35</option>
-      <option>40</option>
-      <option>45</option>
-      <option>50</option>
-      <option>55</option>
-    </select>
-    <select class="am-pm start" id="start-ap">
-      <option>AM</option>
-      <option>PM</option>
-    </select>
-    <p>End Time: </p>
-    <select class="hour end" id="end-hour">
-      <option>01</option>
-      <option>02</option>
-      <option>03</option>
-      <option>04</option>
-      <option>05</option>
-      <option>06</option>
-      <option>07</option>
-      <option>08</option>
-      <option>09</option>
-      <option>10</option>
-      <option>11</option>
-      <option>12</option>
-    </select>
-    <select class="minute end" id="end-minute">
-      <option>00</option>
-      <option>05</option>
-      <option>10</option>
-      <option>15</option>
-      <option>20</option>
-      <option>25</option>
-      <option>30</option>
-      <option>35</option>
-      <option>40</option>
-      <option>45</option>
-      <option>50</option>
-      <option>55</option>
-    </select>
-    <select class="am-pm end" id="end-ap">
-      <option>AM</option>
-      <option>PM</option>
-    </select>
+    <br>
     <hr>
-    <p>Title: <input type="text" id="title"></p>
-    <p>Tutor Name: <input type="text" id="name"></p>
-    <p>Credit Reward: </p>
-    <select id="credit">
-      <option>100</option>
-      <option>200</option>
-      <option>300</option>
-      <option>400</option>
-      <option>500</option>
-      <option>600</option>
-      <option>700</option>
-      <option>800</option>
-      <option>900</option>
-      <option>1000</option>
-    </select>
-
-    <p><input type="checkbox">Send me an email about this session</p>
-    <button type="button" class="btn btn-danger" id="cancel">Cancel</button>
-    <button type="button" class="btn btn-success" id="submit">Submit</button>
+    <div class="text-center my-4">
+      <button type="button" class="btn no" id="cancel">Cancel</button>
+      <button type="button" class="btn yes" id="submit">Submit</button>
+    </div>
 
   </div>
-  <!--Footer-->
-  <!-- <%- include("../partials/footer.ejs") %> -->
+
   <!-- Firebase javascripts -->
   <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
   <script src="scripts/firebase.js"></script>
+  <script src="scripts/firebase-main.js"></script>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

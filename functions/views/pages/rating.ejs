@@ -13,7 +13,7 @@
     <!--My own CSS-->
     <link rel="stylesheet" type="text/css" href="styles/rating.css">
     <link rel="stylesheet" type="text/css" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="styles/navbar.css">
     <%- include("../partials/favicon.ejs") %>
 </head>
 
@@ -30,11 +30,11 @@
 
     <!--Content-->
     <div class="text-center">
-        <button type="button" class="btn btn-primary btn-lg mx-4 px-5" id="yes-button" data-toggle="button"
+        <button type="button" class="btn btn-primary btn-lg mx-4 px-4" id="yes-button" data-toggle="button"
             aria-pressed="false" autocomplete="off">
             Yes
         </button>
-        <button type="button" class="btn btn-primary btn-lg mx-4 px-5" id="no-button" data-toggle="button"
+        <button type="button" class="btn btn-primary btn-lg mx-4 px-4" id="no-button" data-toggle="button"
             aria-pressed="false" autocomplete="off">
             No
         </button>
@@ -59,6 +59,11 @@
                 <div class="p-2">5</div>
             </div>
             <input id="teaching-qual" type="range" class="custom-range" min="0" max="4" value="2">
+            <h4>Delete the chatroom with this tutor (select no if you want to contact this tutor again!)</h4>
+            <select class="form-control" id="deletechat">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
         </div>
 
         <div class="mx-2">
@@ -96,6 +101,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
     <script src="scripts/firebase.js"></script>
+    <script src="scripts/firebase-main.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

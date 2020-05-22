@@ -7,60 +7,60 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Libraries -->
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Styles -->
     <link rel="stylesheet" href="./styles/base.css">
-    <link rel="stylesheet" href="./styles/messaging.css">
-    <link rel="stylesheet" href="./styles/footer.css">
     <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="./styles/messaging.css">
 
     <!-- Icons -->
     <%- include("../partials/favicon.ejs") %>  
 </head>
 
 <body>
-
-
     <!-- Main Content -->
-
     <div>
         <div id="topbox">
+            <!--Nav Bar -->
+            <%- include("../partials/navbar.ejs") %>
             <header>
-                    <!--Nav Bar -->
 
-    <%- include("../partials/navbar.ejs") %>
-    <div id="sub">
-        <div id="namepic"  class="text-center"><h2 id="who"></h2>
-        <img src="./src/profile.png" id="profile">
-        </div>
-        <h4 id="what" class="text-center"></h4>
-        <button class="schedule-btn btn-block" onclick="window.location.href = '/schedule';">Schedule a Session</button>
-    </div>
-        </header>
-        <div class="messaging-box">
-            <div class="chat-window">
-                <div class="chat-log"></div>
+                <div id="sub">
+                    <!-- Who the user is messaging -->
+                    <div id="namepic"  class="text-center"><h2 id="who"></h2>
+                        <!-- Source: https://www.flaticon.com/ -->
+                        <img src="./src/profile.png" id="profile">
+                    </div>
+                    <!-- Request topic for this chatroom -->
+                    <h4 id="what" class="text-center"></h4>
+                    <!-- Schedule meeting button, only shown for student side -->
+                    <div class="mx-3">
+                        <button class="schedule-btn form-control" onclick="window.location.href = '/schedule';">Schedule a Session</button>
+                    </div>
+                </div>
+            </header>
+            <!-- Where messages are displayed -->
+            <div class="messaging-box">
+                <div class="chat-window">
+                    <div class="chat-log"></div>
+                </div>
             </div>
-
         </div>
-    </div>
+        <!-- Input box and send button -->
         <div class="chat-inputs">
             <input class="chat-input" type="text" placeholder="Enter Message">
             <input class="send-btn" type="button" value="Send">
         </div>
     </div>
-    <!--Footer-->
-    <!-- <%- include("../partials/footer.ejs") %> -->
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
     <script src="scripts/firebase.js"></script>
+    <script src="scripts/firebase-main.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -70,7 +70,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-            <!-- Optional JavaScript -->
+    <!-- Optional JavaScript -->
     <script src="scripts/navbar.js"></script>
     <script src="scripts/messaging.js"></script>
 </body>

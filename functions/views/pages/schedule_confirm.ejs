@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="styles/request.css">
-    <link rel="stylesheet" href="./styles/footer.css">
     <link rel="stylesheet" href="styles/navbar.css">
     <%- include("../partials/favicon.ejs") %>
 </head>
@@ -21,33 +20,37 @@
     <%- include("../partials/navbar.ejs") %>
 
     <!--Content-->
-    <div id="content">
-        <h1>Confirm Your Schedule</h1>
-        <p>Date: <span id="date"></span></p>
-        <p>Start Time: <span id="start"></span></p>
-        <p>End Time: <span id="end"></span></p>
-        <p>Title: <span id="title"></span></p>
-        <p>Student Name: <span id="name"></span></p>
-
-        <button type="button" class="btn btn-danger" id="back">Back</button>
-        <button type="button" class="btn btn-success" id="confirm">Confirm</button>
+    <div id="content" class="confirmform mt-5">
+        <!-- Display info that user entered in schedule page -->
+        <h1 class="text-center">Confirm Your Schedule</h1>
+        <div class="innerform">
+            <p class="text-center my-4">Date: <span id="date"></span></p>
+            <p class="text-center my-4">Start Time: <span id="start"></span></p>
+            <p class="text-center my-4">End Time: <span id="end"></span></p>
+            <p class="text-center my-4">Title: <span id="title"></span></p>
+            <p class="text-center my-4">Tutor Name: <span id="name"></span></p>
+            <p class="text-center my-4">Credit: <span id="credit"></span></p>
+        </div>
+        <div class="text-center my-4">
+            <button type="button" class="btn no" id="back">Back</button>
+            <button type="button" class="btn yes" id="confirm">Confirm</button>
+        </div>
     </div>
 
-    <!--Footer-->
-    <!-- <%- include("../partials/footer.ejs") %> -->
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
     <script src="scripts/firebase.js"></script>
+    <script src="scripts/firebase-main.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+        </script>
     <!-- Optional JavaScript -->
     <script src="scripts/navbar.js"></script>
     <script src="scripts/schedule_confirm.js"></script>

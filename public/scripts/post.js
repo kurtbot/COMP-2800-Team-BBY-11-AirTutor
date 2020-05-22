@@ -1,271 +1,154 @@
-let postsOrder = db.collection("posts/");
-postsOrder.orderBy("time").onSnapshot(function (snapshot) {
-  snapshot.docChanges().forEach(function (change) {
-    if (change.type === "added") {
-      let post = change.doc.id;
-      let posttopic = change.doc.data().title;
-      let title = change.doc.data().title;
-      let targetUserName = change.doc.data().studentname;
-      let targetUser = change.doc.data().studentid;
-      let grade = change.doc.data().grade;
-      let subject = change.doc.data().subject;
-      let date = change.doc.data().date;
-      let detail = change.doc.data().details;
-      let card = document.createElement("div");
-      card.setAttribute("id", post);
-      // card.setAttribute("class", "card bg-light text-black mx-3 my-2");
-      card.setAttribute("class", "card mx-3 my-2")
-      $(card).css({
-        "background-color":"rgb(154, 219, 250)",
-        "color":"rgb(40, 59, 66)",
-        "border":"5px ridge rgb(108, 202, 247)",
-        "font-weight":"bold"
-      })
-      let box = document.createElement("div");
-      box.setAttribute("class", "card-body");
-      let p1 = document.createElement("h4");
-      p1.innerHTML = title;
-      box.appendChild(p1);
-      let p2 = document.createElement("p");
-      p2.innerHTML = subject + ", Grade " + grade;
-      box.appendChild(p2);
-      let p3 = document.createElement("p");
-      p3.innerHTML = detail;
-      box.appendChild(p3);
-      let p4 = document.createElement("p");
-      p4.innerHTML = targetUserName;
-      box.appendChild(p4);
-      let p5 = document.createElement("p");
-      p5.innerHTML = date;
+// Display all existing posts when document is ready
+$(document).ready(loadPost);
 
-      box.appendChild(p5);
-
-      let btnbox = $("<div></div>");
-      btnbox.css({
-        "display":"flex",
-        "justify-content":"space-between"
-      })
-      let btn = document.createElement("button");
-      btn.innerHTML = "Message";
-      btn.onclick = function () {
-        let d = new Date();
-        localStorage.setItem("studentid", targetUser);
-        localStorage.setItem("studentname", targetUserName);
-
-        let currentUser = firebase.auth().currentUser.uid;
-        let currentUserName = firebase.auth().currentUser.displayName;
-        localStorage.setItem("tutorid", currentUser);
-        localStorage.setItem(
-          "tutorname",
-          firebase.auth().currentUser.displayName
-        );
-
-        let chatrooms = db.collection("chatrooms");
-        let exist = false;
-        chatrooms.get().then((querySnap) => {
-          querySnap.forEach(function (doc) {
-            let u1 = doc.data().tutorid;
-            let u2 = doc.data().studentid;
-            let q = doc.data().requestid;
-            if (u1 == currentUser && u2 == targetUser && q == post) {
-              exist = true;
-              localStorage.setItem("roomID", doc.id);
-              localStorage.setItem("requestID", doc.data().requestid);
-            }
-          });
-          if (!exist) {
-            chatrooms
-              .add({
-                tutorid: currentUser,
-                studentid: targetUser,
-                tutorname: currentUserName,
-                studentname: targetUserName,
-                requestid: post,
-                topic: posttopic,
-                time: d,
-              })
-              .then(function (docRef) {
-                
-                localStorage.setItem("roomID", docRef.id);
-                localStorage.setItem("requestID", post);
-              })
-              .then(function () {
-                window.location.href = "/messaging";
-              });
-          } else {
-            window.location.href = "/messaging";
-          }
-        });
-      };
-
-      $(btnbox).append($(btn))
-
-      if (firebase.auth().currentUser.uid == change.doc.data().studentid){
-        let del = $("<button>Delete</button>")
-
-        $(del).click(function(){
-          if (confirm("Are you sure you want to delete this post?")){
-          
-          
-            db.collection("posts").doc(change.doc.id).delete()
-
-          }
-        })
-        $(btnbox).append($(del))
-        $(btn).css({
-          "visibility":"hidden"
-        })
-
-      }
-
-
-
-
-      $(box).append($(btnbox))
-      card.appendChild(box);
-      $("#posts-dat").prepend(card);
-    }
-    if (change.type === "removed") {
-      $("#" + change.doc.id).remove();
-    }
-  });
+// Display relevant posts when filtered
+$("#filter").click(function () {
+  $(".card").remove();
+  loadPost();
 });
 
-$("#filter").click(function () {
-  let filtersubject = $("#subjectchoice").val();
-
-  console.log(filtersubject);
-  $(".card").remove();
+/**
+ * Create the posts.
+ * Read through the database for posts, and create them as cards to be displayed.
+ */
+function loadPost() {
   let postsOrder = db.collection("posts/");
   postsOrder.orderBy("time").onSnapshot(function (snapshot) {
     snapshot.docChanges().forEach(function (change) {
+      // When a post is added to the database, create a post on this page
       if (change.type === "added") {
         let post = change.doc.id;
         let posttopic = change.doc.data().title;
-        let title = change.doc.data().title;
         let targetUserName = change.doc.data().studentname;
         let targetUser = change.doc.data().studentid;
-        let grade = change.doc.data().grade;
         let subject = change.doc.data().subject;
-        let date = change.doc.data().date;
-        let detail = change.doc.data().details;
-        let card = document.createElement("div");
-        card.setAttribute("id", post);
-        card.setAttribute("class", "card mx-3 my-2")
-        $(card).css({
-          "background-color":"rgb(154, 219, 250)",
-          "color":"rgb(40, 59, 66)",
-          "border":"5px ridge rgb(108, 202, 247)",
-          "font-weight":"bold"
-        })
-        let box = document.createElement("div");
-        box.setAttribute("class", "card-body");
-        let p1 = document.createElement("h4");
-        p1.innerHTML = title;
-        box.appendChild(p1);
-        let p2 = document.createElement("p");
-        p2.innerHTML = subject + ", Grade " + grade;
-        box.appendChild(p2);
-        let p3 = document.createElement("p");
-        p3.innerHTML = detail;
-        box.appendChild(p3);
-        let p4 = document.createElement("p");
-        p4.innerHTML = targetUserName;
-        box.appendChild(p4);
-        let p5 = document.createElement("p");
-        p5.innerHTML = date;
-
-        box.appendChild(p5);
-        let btnbox = $("<div></div>");
-        btnbox.css({
-          "display":"flex",
-          "justify-content":"space-between"
-        })
-        let btn = document.createElement("button");
-        btn.innerHTML = "Message";
-        btn.onclick = function () {
-          let d = new Date();
-          localStorage.setItem("studentid", targetUser);
-          localStorage.setItem("studentname", targetUserName);
-
-          let currentUser = firebase.auth().currentUser.uid;
-          let currentUserName = firebase.auth().currentUser.displayName;
-          localStorage.setItem("tutorid", currentUser);
-          localStorage.setItem(
-            "tutorname",
-            firebase.auth().currentUser.displayName
-          );
-
-          let chatrooms = db.collection("chatrooms");
-          let exist = false;
-          chatrooms.get().then((querySnap) => {
-            querySnap.forEach(function (doc) {
-              let u1 = doc.data().tutorid;
-              let u2 = doc.data().studentid;
-              let q = doc.data().requestid;
-              if (u1 == currentUser && u2 == targetUser && q == post) {
-                exist = true;
-                localStorage.setItem("roomID", doc.id);
-              }
-            });
-            if (!exist) {
-              chatrooms
-                .add({
-                  tutorid: currentUser,
-                  studentid: targetUser,
-                  tutorname: currentUserName,
-                  studentname: targetUserName,
-                  requestid: post,
-                  topic: posttopic,
-                  time: d,
-                })
-                .then(function (docRef) {
-                  
-                  localStorage.setItem("roomID", docRef.id);
-                })
-                .then(function () {
-                  window.location.href = "/messaging";
-                });
-            } else {
-              window.location.href = "/messaging";
-            }
-          });
-        };
-        $(btnbox).append($(btn))
-
-        if (firebase.auth().currentUser.uid == change.doc.data().studentid){
-          let del = $("<button>Delete</button>")
-  
-          $(del).click(function(){
-            if (confirm("Are you sure you want to delete this post?")){
-            
-            
-              db.collection("posts").doc(change.doc.id).delete()
-  
-            }
-          })
-          $(btnbox).append($(del))
-          $(btn).css({
-            "visibility":"hidden"
-          })
-
-        }
-  
-  
-  
-  
-        $(box).append($(btnbox))
-        if ((filtersubject == subject) || (filtersubject == "All"  ||  (filtersubject == "My Posts" && firebase.auth().currentUser.uid == change.doc.data().studentid))) {
-
-          card.appendChild(box);
-          if (!document.getElementById(post)){
-          $("#posts-dat").prepend(card);
-          }
-        }
+        let card = $("<div></div>").attr({ id: post, class: "card mx-3 my-2" }).css({
+          "background-color": "#85b8cb",
+          "color": "#262834",
+          "border-radius": "20px",
+          "margin-bottom":"8px"
+        });
+        let box = $("<div></div>").attr("class", "card-body");
+        let p1 = $("<h4></h4>").html(posttopic);
+        let p2 = $("<p></p>").html(subject + ", Grade " + change.doc.data().grade);
+        let p3 = $("<p></p>").html(change.doc.data().details);
+        let p4 = $("<p></p>").html(targetUserName);
+        let p5 = $("<p></p>").html(change.doc.data().date);
+        let btnbox = $("<div></div>").css({
+          "display": "flex",
+          "justify-content": "space-between"
+        });
+        let btn = $("<button></button>").html("Message").click(function () {clickbtn(post, posttopic, targetUserName, targetUser);});
+        createPost(btnbox, btn, card, box, p1, p2, p3, p4, p5, targetUser, subject, post);
       }
+      // When a post is removed from the database, remove the post from this page
       if (change.type === "removed") {
         $("#" + change.doc.id).remove();
       }
     });
+    if ($(".card").length == 0){
+      $("#nopost").show();
+    } else {
+      $("#nopost").hide();
+    }
   });
-});
+}
+
+/**
+ * When the Message button is clicked, redirect to the chatroom with the messaging target.
+ * @param {*} post the post's document id
+ * @param {*} posttopic the post's topic
+ * @param {*} targetUserName the poster's name
+ * @param {*} targetUser the poster's user id
+ */
+function clickbtn(post, posttopic, targetUserName, targetUser) {
+  let d = new Date();
+  localStorage.setItem("studentid", targetUser);
+  localStorage.setItem("studentname", targetUserName);
+  localStorage.setItem("tutorid",  firebase.auth().currentUser.uid);
+  localStorage.setItem("tutorname", firebase.auth().currentUser.displayName);
+  let exist = false;
+  // Look for the chatroom between these two users on this post in the database.
+  db.collection("chatrooms").get().then((querySnap) => {
+    querySnap.forEach(function (doc) {
+      let u1 = doc.data().tutorid;
+      let u2 = doc.data().studentid;
+      let q = doc.data().requestid;
+      // If the chatroom exists, save its roomID and requestid (the post's id).
+      if (u1 == firebase.auth().currentUser.uid && u2 == targetUser && q == post) {
+        exist = true;
+        localStorage.setItem("roomID", doc.id);
+        localStorage.setItem("requestID", doc.data().requestid);
+      }
+    });
+    // If the chatroom does not exist, create it in the database.
+    if (!exist) {
+      db.collection("chatrooms").add({
+        tutorid:  firebase.auth().currentUser.uid,
+        studentid: targetUser,
+        tutorname: firebase.auth().currentUser.displayName,
+        studentname: targetUserName,
+        requestid: post,
+        topic: posttopic,
+        time: d
+      })
+      .then(function (docRef) {
+        localStorage.setItem("roomID", docRef.id);
+        localStorage.setItem("requestID", post);
+      })
+      .then(function () {
+        // Redirect to newly created messaging page with the poster
+        window.location.href = "/messaging";
+      });
+    } else {
+      // Redirect to existing messaging page with the poster
+      window.location.href = "/messaging";
+    }
+  });
+}
+
+/**
+ * Append this post onto the page.
+ * @param {*} btnbox flexbox for the buttons
+ * @param {*} btn message button
+ * @param {*} card the post body
+ * @param {*} box the card body inside the post
+ * @param {*} p1 h4 element for post topic
+ * @param {*} p2 p element for post subject
+ * @param {*} p3 p element for post details
+ * @param {*} p4 p element for poster name
+ * @param {*} p5 p element for posted date
+ * @param {*} targetUser poster user id
+ * @param {*} subject post subject
+ * @param {*} post post id
+ */
+function createPost(btnbox, btn, card, box, p1, p2, p3, p4, p5, targetUser, subject, post) {
+  $(btnbox).append(btn);
+  // If this post is made by the current user, add a delete button and hide the message button.
+  if (firebase.auth().currentUser.uid == targetUser) {
+    // Delete button to remove the post
+    let del = $("<button>Delete</button>").click(function () {
+      if (confirm("Are you sure you want to delete this post?")) {
+        db.collection("posts").doc(post).delete();
+      }
+    });
+    $(btnbox).append(del);
+    $(btn).css({
+      "visibility": "hidden",
+    });
+  }
+  $(box).append(p1, p2, p3, p4, p5, btnbox);
+  let filtersubject = $("#subjectchoice").val();
+  // Check if this post should be added onto the page based on the filter.
+  if (
+    filtersubject == subject ||
+    filtersubject == "All" ||
+    (filtersubject == "My Posts" &&
+      firebase.auth().currentUser.uid == targetUser)
+  ) {
+    $(card).append(box);
+    if (!document.getElementById(post)) {
+      $("#posts-dat").prepend(card);
+    }
+  }
+}

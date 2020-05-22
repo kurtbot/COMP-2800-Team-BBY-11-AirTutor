@@ -1,5 +1,9 @@
 $('.signup-button').click(signInWithGoogle);
 
+/**
+ * Google signin.
+ * Source: https://firebase.google.com/docs/auth/web/google-signin
+ */
 function signInWithGoogle() {
     firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
         .then(function () {

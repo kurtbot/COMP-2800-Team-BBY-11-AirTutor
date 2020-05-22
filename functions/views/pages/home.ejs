@@ -11,81 +11,64 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type = "text/css" href="styles/home.css">
-    <link rel="stylesheet" type="text/css" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/navbar.css">
+
+    <!-- Home styling -->
+    <link rel="stylesheet" type="text/css" href="./styles/home.css">
+    <link rel="stylesheet" type="text/css" href="./styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./styles/footer.css">
+
+    <script src="/scripts/fbscript.js"></script>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <!-- Favicon -->
     <%- include("../partials/favicon.ejs") %>
 </head>
 
 <body>
-     <!--Nav Bar -->
-     <%- include("../partials/navbar.ejs") %>
+    <!--Nav Bar -->
+    <%- include("../partials/navbar.ejs") %>
+    <!-- Home page content -->
+    <div id="home-content">
+        <!-- Welcome message with user name and profile picture -->
+        <div id="leftcolumn">
+            <!-- Source: https://www.flaticon.com/  -->
+            <img id="profilePic" src="./src/profile-white.png">
+            <h1 class="text-center">Welcome, <br><span id="username">user</span>!</h1>
+            <h5 class="text-center">You currently have <span id="count"></span> meetings scheduled.</h5>
+        </div>
 
-
-
-    <div id="home-content" class="mb-5">
-        <h1 style="text-align: center;">Welcome, <span id="username">user</span>!</h1>
-        <!-- <div class="row">
-            <div class="leftcolumn">
-                <div class="card">
-                    <h2>Reminder</h2>
-                    <h3 style="padding-top: 0px; padding-bottom: 10px" ;>Just a reminder that you have a meeting<br>
-                        with <span class="user">some
-                            user</span> at <span class="time">this time</span>!</h3>
-                    <p>Title: <span class="user">title</span><br>
-                        User: <span class="user">user</span><br>
-                        Time: <span class="time">time</span></p>
+        <!-- Where reminders of scheduled meetings are displayed -->
+        <div id="rightcolumn">
+            <div class="card" id="prompt">
+                <!-- This message displays if user has no meetings -->
+                <h1>Connect with others!</h1>
+                <div id="box">
+                    <div class="dir" onclick="window.location.href = '/request';">
+                        <!-- Source: https://fontawesome.com/  -->
+                        <img class="icon" src="./src/home/home-request.png">
+                        <p>Make a request and let others message you...</p>
+                    </div>
+                    <div class="dir" onclick="window.location.href = '/post';">
+                        <!-- Source: https://fontawesome.com/  -->
+                        <img class="icon" src="./src/home/home-msg.png">
+                        <p>or message someone who made a post!</p>
+                    </div>
                 </div>
             </div>
-            <div class="leftcolumn">
-                <div class="card">
-                    <h2>Reminder</h2>
-                    <h3 style="padding-top: 0px; padding-bottom: 10px" ;>Just a reminder that you have a meeting<br>
-                        with
-                        <span id="user">some
-                            user</span> at <span id="time">this time</span>!</h3>
-                    <p>Title: <span class="user">title</span><br>
-                        User: <span class="user">user</span><br>
-                        Time: <span class="time">time</span></p>
-                </div>
-            </div>
-            <div class="leftcolumn">
-                <div class="card">
-                    <h2>Reminder</h2>
-                    <h3 style="padding-top: 0px; padding-bottom: 10px" ;>Just a reminder that you have a meeting<br>
-                        with
-                        <span id="user">some
-                            user</span> at <span id="time">this time</span>!</h3>
-                    <p>Title: <span class="user">title</span><br>
-                        User: <span class="user">user</span><br>
-                        Time: <span class="time">time</span></p>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- <div class="rightcolumn">
-            <div class="side">
-                <div class="card">
-                    <h2>Last week, you</h2>
-                    <p>Met with <span id="number">number of </span><span id="type">users</span> <br>
-                        Received <span id="number-of-ratings">number</span> five-star ratings <br>
-                        Interacted with <span id="number-of-interactions">number</span> users</p>
-                </div>
-            </div>
-        </div> -->
+        </div>
     </div>
 
-     <!--Footer-->
+    <!--Footer-->
+    <%- include("../partials/footer.ejs") %>
 
-     <%- include("../partials/footer.ejs") %>
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
     <script src="scripts/firebase.js"></script>
+    <script src="scripts/firebase-main.js"></script>
 
     <!-- Optional JavaScript -->
-    <script src="scripts/navbar.js"></script>
+    <script src="./scripts/navbar.js"></script>
     <script src="./scripts/logout.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -97,8 +80,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="./scripts/home.js"></script>
-
-
 </body>
 
 </html>

@@ -1,51 +1,6 @@
 $(document).ready(function () {
     $("#yes-button").click(clickYes);
     $("#no-button").click(clickNo);
-})
-
-
-// Check if student
-
-let isStudent = false;
-
-// I'm a Student
-function clickYes() {
-    $('#student').show();
-    $('#submit').show();
-    $('#subjectField').prop('selectedIndex', 0);
-    $('#subjectField').trigger('change');
-    $('#educationCompField').prop('selectedIndex', 0);
-    $('#educationCompField').trigger('change');
-    $('#not-student').hide();
-    $('#yes-button').css('background-color', '#85b8cb');
-    $('#no-button').css('background-color', '#1d6a96');
-    updateSubmit();
-    isStudent = true;
-}
-
-// I'm a Tutor
-function clickNo() {
-    $('#not-student').show();
-    $('#submit').show();
-    $('#gradeField').prop('selectedIndex', 0);
-    $('#gradeField').trigger('change');
-    $('#educationField').prop('selectedIndex', 0);
-    $('#educationField').trigger('change');
-    $('#student').hide();
-    $('#no-button').css('background-color', '#85b8cb');
-    $('#yes-button').css('background-color', '#1d6a96');
-    updateSubmit();
-    isStudent = false;
-}
-
-let gradeField = false;
-let educationField = false;
-let subjectField = false;
-let educationCompField = false;
-let languageField = false;
-let countryField = false;
-
-$(document).ready(function () {
 
     // ==============================
     // Student
@@ -97,6 +52,11 @@ $(document).ready(function () {
     })
 
 
+    // ==============================
+    // Both User Types
+    // ==============================
+
+    // listen for language field changes
     $('#languageField').change(function () {
         if ($(this).val())
             languageField = true;
@@ -106,6 +66,8 @@ $(document).ready(function () {
         updateSubmit();
     })
 
+
+    // listen for country field changes
     $('#countryField').change(function () {
         if ($(this).val())
             countryField = true;
@@ -118,7 +80,63 @@ $(document).ready(function () {
     updateSubmit();
 })
 
-// Update the submit button
+
+/**
+ * Used to check if the user is a student or not
+ */
+let isStudent = false;
+
+/**
+ * Used to check if the following fields are filled out
+ */
+let gradeField = false;
+let educationField = false;
+let subjectField = false;
+let educationCompField = false;
+let languageField = false;
+let countryField = false;
+
+/**
+ * The function is triggered when the user is a student
+ */
+function clickYes() {
+    $('#student').show();
+    $('#submit').show();
+    $('#subjectField').prop('selectedIndex', 0);
+    $('#subjectField').trigger('change');
+    $('#educationCompField').prop('selectedIndex', 0);
+    $('#educationCompField').trigger('change');
+    $('#not-student').hide();
+    $('#yes-button').css('background-color', '#85b8cb');
+    $('#no-button').css('background-color', '#1d6a96');
+    updateSubmit();
+    isStudent = true;
+}
+
+/**
+ * The function is triggered when the user is a tutor
+ */
+function clickNo() {
+    $('#not-student').show();
+    $('#submit').show();
+    $('#gradeField').prop('selectedIndex', 0);
+    $('#gradeField').trigger('change');
+    $('#educationField').prop('selectedIndex', 0);
+    $('#educationField').trigger('change');
+    $('#student').hide();
+    $('#no-button').css('background-color', '#85b8cb');
+    $('#yes-button').css('background-color', '#1d6a96');
+    updateSubmit();
+    isStudent = false;
+}
+
+
+
+
+
+/**
+ * The function will update the submit button based on the current input of the user
+ */
 function updateSubmit() {
 
     let studentComplete = (gradeField && educationField);
@@ -138,6 +156,9 @@ function updateSubmit() {
 
 }
 
+/**
+ * Signs up the user based on their answer whether they're a student or not
+ */
 function signup() {
 
     if (isStudent) {
@@ -148,6 +169,9 @@ function signup() {
 
 }
 
+/**
+ * Signs up the user as a student
+ */
 function signupAsStudent() {
 
     let gradeData = $('#gradeField').val();
@@ -178,7 +202,9 @@ function signupAsStudent() {
 
 }
 
-
+/**
+ * Signs up the user as a tutor
+ */
 function signupAsTutor() {
 
     let subjectData = $('#subjectField').val();

@@ -1,19 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-body:not(.navbar navbar-expand-md navbar-light bg-light) {
-    padding: 20px;
-}
 
 body {
+    margin: 0;
+    font-family: 'Roboto', Arial;
     background-color: #f1f1f1;
-    font-family: "Raleway";
+    color: #262834;
 }
 
-h1, h2, h3, h4, h5 {
-    font-family: "Raleway";
-    font-weight: 500;
-    color: #283b42;
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: #85b6cb;
+    font-family: 'Raleway';
+    font-weight: bolder;
 }
 
 #request, #confirm-request, #schedule, #content {
@@ -21,8 +22,66 @@ h1, h2, h3, h4, h5 {
 }
 
 input, button, textarea, select {
-    border-radius: 10px;
     border-style: solid;
     border-color: #ced4da;
-    border-width: 1.25px;
+}
+
+i {
+    color: #073fb0
+}
+
+label {
+    font-family: 'Raleway';
+    font-weight: 500;
+}
+
+.confirmform{
+    max-width: 1000px;
+    margin: auto;
+}
+
+.innerform{
+    background-color: rgb(136, 199, 236);
+    padding: 30px 30px;
+    border-radius: 50px;
+    box-shadow: 5px 5px;
+}
+
+.innerfill{
+    padding: 40px 40px;
+}
+
+@media only screen and (min-width: 1000px){
+    .innerform > *{
+        font-size: 30px;
+    }
+    .innerform textarea, .innerform select {
+        font-size: 30px;
+    }
+}
+@media only screen and (min-width: 500px) and (max-width: 1000px){
+    .innerform > *{
+        font-size: 25px;
+    }
+    .innerform textarea, .innerform select {
+        font-size: 25px;
+    }
+}
+@media only screen and (max-width: 500px){
+    .innerform > *{
+        font-size: 20px;
+    }
+    .innerform textarea, .innerform select {
+        font-size: 20px;
+    }
+}
+
+.yes{
+    background-color: #1D6A96;
+    color: #f1f1f1;
+}
+
+.no{
+    background-color: #962C30;
+    color: #f1f1f1
 }

@@ -3,6 +3,9 @@ const mb = 1048576;
 let file = [];
 let changed = true;
 
+/**
+ * Runs functions after document is loaded.
+ */
 $(document).ready(function () {
     $("#general-button").click(generalTab);
     $("#student-button").click(studentTab);
@@ -10,32 +13,13 @@ $(document).ready(function () {
     $("#picture-button").click(pictureTab)
     $("#submit-button").click(submit);
     $("#return-button").click(returnHome);
-    $("#customFile").on("change", function (e) {
-
-        const uploaded = this.files[0];
-        const fileType = uploaded['type'];
-        const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
-
-
-        if ($.inArray(fileType, validImageTypes) < 0) {
-            alert("Not a valid filetype. Use gif, jpeg or png");
-            changed = false;
-        } else {
-            if (uploaded.size <= mb) {
-                file = e.target.files;
-                console.log(file);
-                changed = true;
-                previewImage();
-
-            } else {
-                alert("Please choose a file that is smaller than 1 MB");
-                changed = false;
-            }
-        }
+    $("#customFile").on("change", function (event) {
+        fileUpload(event);
     })
     $(".custom-file-input").on("change", displayFile);
-
-
+    /**
+     * Confirmation message for user so they don't lose information on page leave
+     */
     $(window).bind('beforeunload', function () {
         return ' Are you sure you want to leave?'
     })
@@ -98,65 +82,80 @@ function write() {
     })
 }
 /**
- * Checks which form fields are filled with appropriate forms
+ * Checks which form fields are filled with appropriate forms and saves the changes into an object
  */
 function checkField() {
     let changes = {};
-    if ($("#bioField").val() != undefined
-        && $("#bioField").val() != null
-        && $("#bioField").val().trim() != "") {
-        changes['bio'] = $("#bioField").val();
-    }
-
-    if ($("#countryField").val() != undefined
-        && $("#countryField").val() != null
-        && $("#countryField").val().trim() != "") {
-        changes['country'] = $("#countryField").val();
-    }
-
-    if ($("#languageField").val() != undefined
-        && $("#languageField").val() != null
-        && $("#languageField").val().trim() != "") {
-        changes['language'] = $("#languageField").val();
-    }
-
-    if ($("#educationField").val() != undefined
-        && $("#educationField").val() != null
-        && $("#educationField").val().trim() != "") {
-        changes['education'] = $("#educationField").val();
-    }
-
-    if ($("#gradeField").val() != undefined
-        && $("#gradeField").val() != null
-        && $("#gradeField").val().trim() != "") {
-        changes['grade'] = $("#gradeField").val();
-    }
-
-    if ($("#educationCompField").val() != undefined
-        && $("#educationCompField").val() != null
-        && $("#educationCompField").val().trim() != "") {
-        changes['educationcompleted'] = $("#educationCompField").val();
-    }
-
-    if ($("#subjectField").val() != undefined
-        && $("#subjectField").val() != null
-        && $("#subjectField").val().trim() != "") {
-        changes['subject'] = $("#subjectField").val();
-    }
+    checker("bioField", changes, 'bio');
+    checker("countryField", changes, 'country');
+    checker("languageField", changes, 'language');
+    checker("educationField", changes, 'education');
+    checker("gradeField", changes, 'grade');
+    checker("educationCompField", changes, 'educationcompleted');
+    checker("subjectField", changes, 'subject');
     return changes;
 }
 
 /**
- * Displays file name
+ * Checks if a field has been modified and adds its value to a JSON object
+ * @param {String} field
+ *          The html form field that is being checked 
+ * @param {object} change    
+ *          The object that holds all the changes going through
+ * @param {String} changeComp
+ *          The key of the change object being added
+ */
+function checker(field, change, changeComp) {
+    console.log($("#" + field).val());
+    if ($("#" + field).val() != undefined
+        && $("#" + field).val() != null
+        && $("#" + field).val().trim() != "") {
+        change[changeComp] = $("#" + field).val();
+    }
+}
+/**
+ * Checks if an uploaded file is the right file type and under the 1MB limit. If they
+ * are, the image is displayed on the profile.
+ * I found snippets of this code on stackoverflow.com
+ * 
+ * @author Hoyen
+ * @see https://stackoverflow.com/questions/29805909/jquery-how-to-check-if-uploaded-file-is-an-image-without-checking-extensions
+ * 
+ * @param {*} event
+ *              On event the function will target the file picker 
+ */
+function fileUpload(e) {
+    const uploaded = e.target.files[0];
+    const fileType = uploaded['type'];
+    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+
+    if ($.inArray(fileType, validImageTypes) < 0) {
+        alert("Not a valid filetype. Use gif, jpeg or png");
+        changed = false;
+    } else {
+        if (uploaded.size <= mb) {
+            file = e.target.files;
+            changed = true;
+            previewImage();
+        } else {
+            alert("Please choose a file that is smaller than 1 MB");
+            changed = false;
+        }
+    }
+}
+
+/**
+ * Displays file name after it has been loaded by the file picker
  */
 function displayFile() {
     if (changed) {
         let fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     }
-
 }
-
+/**
+ * Gives a preview of the image submitted into the file picker.
+ */
 function previewImage() {
     const fileCheck = file[0];
     if (fileCheck) {
@@ -169,7 +168,10 @@ function previewImage() {
     }
 
 }
-
+/**
+ * Uploads the image placed into the FileList and writes a profile URL to the database and also stores 
+ * it to firebase storage.
+ */
 async function uploadImage() {
     if (file.length != 0) {
         let filePath = firebase.auth().currentUser.uid + '/' + 'profilepic';
@@ -184,7 +186,9 @@ async function uploadImage() {
             })
     }
 }
-
+/**
+ * Returns user to the profile page
+ */
 function returnHome() {
     window.location.href = "/profile"
 }

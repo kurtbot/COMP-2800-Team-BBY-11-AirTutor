@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Messaging</title>
+    <title>Live Chat</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,45 +14,43 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/base.css">
+    <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/livechat.css">
-    <link rel="stylesheet" href="./styles/footer.css">
+
 
     <!-- Icons -->
-    <%- include("../partials/favicon.ejs") %>  
+    <%- include("../partials/favicon.ejs") %>
 </head>
 
 <body>
-    <!--Nav Bar -->
-
-
-
     <!-- Main Content -->
-
     <div>
-        <header>
+        <!--Nav Bar -->
         <%- include("../partials/navbar.ejs") %>
-        <h2 class="text-center" id = "who">Live Chat</h2>
-    </header>
+        <header>
+            <!-- Title of this page -->
+            <h1 class="text-center" id="who">Live Chat</h1>
+        </header>
 
         <div class="messaging-box">
+            <!-- Where chat messages are displayed -->
             <div class="chat-window">
                 <div class="chat-log"></div>
             </div>
+            <!-- Input box and send button -->
             <div class="chat-inputs">
                 <input class="chat-input" type="text" placeholder="Enter Message">
                 <input class="send-btn" type="button" value="Send">
             </div>
         </div>
     </div>
-    <!--Footer-->
-    <!-- <%- include("../partials/footer.ejs") %> -->
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
     <script src="scripts/firebase.js"></script>
+    <script src="scripts/firebase-main.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -62,7 +60,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-            <!-- Optional JavaScript -->
+    <!-- Optional JavaScript -->
     <script src="scripts/navbar.js"></script>
     <script src="scripts/livechat.js"></script>
 </body>

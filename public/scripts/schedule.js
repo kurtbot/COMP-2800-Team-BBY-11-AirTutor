@@ -1,4 +1,4 @@
-
+// Get current date
 let d = new Date();
 let month = d.getMonth() + 1 + "";
 let day = d.getDate() + "";
@@ -12,12 +12,12 @@ if (month.length == 1){
 if (day.length == 1){
     day = "0" + day;
 }
-
-console.log(day)
+// Set the datepicker's value as current date
 $("#date").val(year + "-" + month + "-" + day);
-
+// Set the tutor name as tutor named passed from local storage
 $("#name").val(localStorage.getItem("teacher"));
 
+// If local storage already have the following info, display them
 if (localStorage.getItem("date") != null){
     $("#date").val(localStorage.getItem("date"));
 }
@@ -58,20 +58,49 @@ if (localStorage.getItem("credit") != null){
     $("#credit").val(localStorage.getItem("credit"));
 }
 
+/**
+ * Clicking cancel leaves the schedule page and goes back to messaging page
+ */
 $("#cancel").click(function(){
     window.location.href = "/messaging";
 })
 
+/**
+ * Clicking submit leads to a confirmation page, where the entered info is displayed
+ */
 $("#submit").click(function(){
-    let startHour = $("#start-hour").val();
-    let startMinute = $("#start-minute").val();
-    let startAP = $("#start-ap").val();
-    let start = startHour + ":" + startMinute + " " + startAP;
-    
-    let endHour = $("#end-hour").val();
-    let endMinute = $("#end-minute").val();
-    let endAP = $("#end-ap").val();
-    let end = endHour + ":" + endMinute + " " + endAP;
+    // Check if date and title (required fields) are filled
+    let condition1 = $("#date").val().trim();
+    let condition2 = $("#title").val().trim();
+    if (condition1 && condition2){
+        // Get the start and end time of the meeting
+        let startHour = $("#start-hour").val();
+        let startMinute = $("#start-minute").val();
+        let startAP = $("#start-ap").val();
+        let start = startHour + ":" + startMinute + " " + startAP;
+        let endHour = $("#end-hour").val();
+        let endMinute = $("#end-minute").val();
+        let endAP = $("#end-ap").val();
+        let end = endHour + ":" + endMinute + " " + endAP;
+        goConfirm(startHour, startMinute, startAP, start, endHour, endMinute, endAP, end);
+    // Alert user to fill the required fields if they are not filled
+    } else {
+        showMissing(condition1, condition2)
+        alert("Please fill out the required fields")
+    }
+});
+/**
+ * Save the values into local storage to be displayed on confirmation page
+ * @param {*} startHour starting hour of meeting
+ * @param {*} startMinute starting minute of meeting
+ * @param {*} startAP starting time - AM or PM for meeting
+ * @param {*} start starting time
+ * @param {*} endHour ending hour of meeting
+ * @param {*} endMinute ending minute of meeting
+ * @param {*} endAP ending time - AM or PM for meeting
+ * @param {*} end ending time
+ */
+function goConfirm(startHour, startMinute, startAP, start, endHour, endMinute, endAP, end){
     localStorage.setItem("date", $("#date").val());
     localStorage.setItem("startHour", startHour);
     localStorage.setItem("startMinute", startMinute);
@@ -84,5 +113,32 @@ $("#submit").click(function(){
     localStorage.setItem("title", $("#title").val());
     localStorage.setItem("name", $("#name").val());
     localStorage.setItem("credit", $("#credit").val());
+    // Go to confirmation page
     window.location.href="/schedule_confirm";
-});
+}
+
+/**
+ * Turn the missing required field red.
+ * @param {*} condition1 if the date field is filled
+ * @param {*} condition2 if the title field is filled
+ */
+function showMissing(condition1, condition2){
+    if (!condition1){
+        $("#require1").css({
+            "color":"red"
+        })
+    } else {
+        $("#require1").css({
+            "color":"#073fb0"
+        })
+    }
+    if (!condition2){
+        $("#require2").css({
+            "color":"red"
+        })
+    } else {
+        $("#require2").css({
+            "color":"#073fb0"
+        })
+    }
+}

@@ -10,8 +10,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Styling -->
     <link rel="stylesheet" type="text/css" href="styles/request.css">
-    <link rel="stylesheet" type="text/css" href="styles/footer.css">
     <link rel="stylesheet" href="styles/navbar.css">
     <%- include("../partials/favicon.ejs") %>
 </head>
@@ -20,27 +20,27 @@
     <!--Nav Bar -->
     <%- include("../partials/navbar.ejs") %>
 
-
-    <div id="confirm-request">
-        <h1 class="my-5">Confirm Your Request</h1>
-        <p class="text-center my-5">Title: <span id="retitle"></span></p>
-        <p class="text-center my-5">Subject: <span id="subject"></span></p>
-        <p class="text-center my-5">Grade: <span id="grade"></span></p>
-        <p class="text-center my-5">Details: <span id="details"></span></p>
+    <!-- Display info that user entered in request page -->
+    <div id="confirm-request" class="confirmform mt-5">
+        <h1 class="text-center">Confirm your request</h1>
+        <div class="innerform">
+            <p class="text-center my-5">Title: <span id="retitle"></span></p>
+            <p class="text-center my-5">Subject: <span id="subject"></span></p>
+            <p class="text-center my-5">Grade: <span id="grade"></span></p>
+            <p class="text-center my-5">Details: <span id="details"></span></p>
+        </div>
         <div class="text-center my-5">
-            <button type="button" class="btn btn-danger" id="back">Back</button>
-            <button type="button" class="btn btn-success" id="confirm">Confirm</button>
+            <button type="button" class="btn no" id="back">Back</button>
+            <button type="button" class="btn yes" id="confirm">Confirm</button>
         </div>
     </div>
 
-    <!--Footer-->
-
-    <!-- <%- include("../partials/footer.ejs") %> -->
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
     <script src="scripts/firebase.js"></script>
+    <script src="scripts/firebase-main.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -50,7 +50,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-            <!-- Optional JavaScript -->
+    <!-- Optional JavaScript -->
     <script src="scripts/navbar.js"></script>
     <script src="scripts/request_confirm.js"></script>
 </body>

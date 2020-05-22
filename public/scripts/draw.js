@@ -1,6 +1,12 @@
+/**
+ * Canvas drawing functionality.
+ * Source: https://socket.io/demos/whiteboard/
+ */
+
+
 // Brush colour and size
-const colour = "#3d34a5";
-const strokeWidth = 5;
+var colour = '#000000';
+var strokeWidth = 5;
 
 // Drawing state
 let latestPoint;
@@ -8,53 +14,44 @@ let drawing = false;
 
 // Set up our drawing context
 const canvas = document.getElementById("canvas");
-const context = canvas.getContext("2d");
-context.canvas.width = window.innerWidth;
-context.canvas.height = window.innerHeight;
-// function draw() {
-//     var ctx = (a canvas context);
+const ctx = canvas.getContext("2d");
+ctx.canvas.width = window.innerWidth;
+ctx.canvas.height = window.innerHeight;
 
-//     //...drawing code...
-// }
+// Colors
 
+var colours = {
+    black: '#000000',
+    white: '#ffffff',
+    red: '#ff0000',
+    blue: '#0000ff',
+    yellow: '#ffff00',
+    green: '#00ff00',
+}
+
+var brushSize = [5, 15, 25];
 
 console.log('draw.js loaded');
-
-
-/**
- * 
- * 
- * i
- * {
- *      old: {x: 0, y: 0},
- *      new: {x: 0, y: 0}
- * },
- * i+1
- * {
- *      old: {x: 0, y: 0},
- *      new: {x: 0, y: 0}
- * },
- * 
- * 
- * 
- */
-
 
 var sessionRef = firebase.database().ref('sessionrooms/' + queryResult() + '/canvasData');
 let coordsJsonArr = []
 
 // Drawing functions
 
-const continueStroke = newPoint => {
-    context.beginPath();
-    context.moveTo(0,0);
-    context.moveTo(latestPoint[0], latestPoint[1]);
-    context.strokeStyle = colour;
-    context.lineWidth = strokeWidth;
-    context.lineCap = "round";
-    context.lineJoin = "round";
-    context.lineTo(newPoint[0], newPoint[1]);
-    context.stroke();
+/**
+ * Continues to draw the stroke based 
+ * @param {Array} newPoint 
+ */
+function onContinueStroke(newPoint) {
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.moveTo(latestPoint[0], latestPoint[1]);
+    ctx.strokeStyle = colour;
+    ctx.lineWidth = strokeWidth;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.lineTo(newPoint[0], newPoint[1]);
+    ctx.stroke();
 
 
     var w = canvas.width;
@@ -64,16 +61,24 @@ const continueStroke = newPoint => {
     coordsJsonArr.push({
         old: { x: latestPoint[0] / w, y: latestPoint[1] / h },
         new: { x: newPoint[0] / w, y: newPoint[1] / h },
+        colour: colour,
+        strokeWidth: strokeWidth,
     })
 
     latestPoint = newPoint;
 
-
+    firebase.database().ref('sessionrooms/' + queryResult() + '/canvasData').set({
+        canvasData: coordsJsonArr
+    });
 };
 
 // Event helpers
 
-const startStroke = point => {
+/**
+ * On begin stroke set the selected point as current point
+ * @param {Array} point 
+ */
+function onBeginStroke(point) {
     drawing = true;
     latestPoint = point;
 };
@@ -83,41 +88,58 @@ const mouseButtonIsDown = buttons => (BUTTON & buttons) === BUTTON;
 
 // Event handlers
 
-const mouseMove = evt => {
+/**
+ * the mouse move event is triggered when the user is moving while drawing at the same time
+ * @param {MouseEvent} evt 
+ */
+function onMoveMouse(evt) {
     if (!drawing) {
         return;
     }
-    continueStroke([evt.offsetX, evt.offsetY]);
+    onContinueStroke([evt.offsetX, evt.offsetY]);
 };
 
-const mouseDown = evt => {
+/**
+ * the mouse down event triggers when the mouse is pressed
+ * @param {MouseEvent} evt 
+ */
+function onDownMouse(evt) {
     if (drawing) {
         return;
     }
     evt.preventDefault();
-    canvas.addEventListener("mousemove", mouseMove, false);
-    startStroke([evt.offsetX, evt.offsetY]);
+    canvas.addEventListener("mousemove", onMoveMouse, false);
+    onBeginStroke([evt.offsetX, evt.offsetY]);
 };
 
-const mouseEnter = evt => {
+/**
+ * the on enter mouse event
+ * @param {MouseEvent} evt 
+ */
+function onEnterMouse(evt) {
     if (!mouseButtonIsDown(evt.buttons) || drawing) {
         return;
     }
-    mouseDown(evt);
+    onDownMouse(evt);
 };
 
-const endStroke = evt => {
+/**
+ * the on end stroke event triggers when the user is not drawing
+ * @param {MouseEvent} evt 
+ */
+function onEndStroke(evt) {
     if (!drawing) {
         return;
     }
     drawing = false;
-    evt.currentTarget.removeEventListener("mousemove", mouseMove, false);
-    firebase.database().ref('sessionrooms/' + queryResult() + '/canvasData').set({
-        canvasData: coordsJsonArr
-    });
+    evt.currentTarget.removeEventListener("mousemove", onMoveMouse, false);
 };
 
-const getTouchPoint = evt => {
+/**
+ * the get touch coords gets the position of the user's click
+ * @param {MouseEvent} evt 
+ */
+function getTouchCoords(evt) {
     if (!evt.currentTarget) {
         return [0, 0];
     }
@@ -126,24 +148,36 @@ const getTouchPoint = evt => {
     return [touch.clientX - rect.left, touch.clientY - rect.top];
 };
 
-const touchStart = evt => {
+/**
+ * the touch down event triggers when the mouse is pressed
+ * @param {MouseEvent} evt 
+ */
+function onStartTouch(evt) {
     if (drawing) {
         return;
     }
     evt.preventDefault();
     console.log('hello');
 
-    startStroke(getTouchPoint(evt));
+    onBeginStroke(getTouchCoords(evt));
 };
 
-const touchMove = evt => {
+/**
+ * the touch move event is triggered when the user is moving while drawing at the same time
+ * @param {MouseEvent} evt 
+ */
+function onMoveTouch(evt) {
     if (!drawing) {
         return;
     }
-    continueStroke(getTouchPoint(evt));
+    onContinueStroke(getTouchCoords(evt));
 };
 
-const touchEnd = evt => {
+/**
+ * the on end touch event triggers when the user is not drawing
+ * @param {MouseEvent} evt 
+ */
+function onEndTouch(evt) {
     drawing = false;
     firebase.database().ref('sessionrooms/' + queryResult() + '/canvasData').set({
         canvasData: coordsJsonArr
@@ -153,68 +187,129 @@ const touchEnd = evt => {
 
 // Firebase Draw Events
 
-const DrawUpdate = (pairPoints) => {
+/**
+ * DrawUpdate runs whenever the database is updated
+ * @param {JSON} pairPoints 
+ */
+function DrawUpdate(pairPoints) {
     var w = canvas.width;
     var h = canvas.height;
-    console.log("pairPoints: ", pairPoints);
     let lastPoint;
-    context.strokeStyle = colour;
-    context.lineWidth = strokeWidth;
-    context.lineCap = "round";
-    context.lineJoin = "round";
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
     for (let i = 0; i < pairPoints.length; i++) {
-        context.beginPath();
-        context.moveTo(pairPoints[i].old.x * w, pairPoints[i].old.y * h);
-        context.lineTo(pairPoints[i].new.x * w, pairPoints[i].new.y * h);
-        context.stroke();
-        context.closePath()
-        console.log('draw');
-
-    }
-}
-
-const DrawUpdatePoint = (points) => {
-    console.log("pairPoints: ", points);
-    for (let i = 0; i < points.length; i++) {
-        context.beginPath();
-        context.moveTo(points[i].old.x, points[0].old.y);
-        context.strokeStyle = colour;
-        context.lineWidth = strokeWidth;
-        context.lineCap = "round";
-        context.lineJoin = "round";
-        context.lineTo(points[i].new.x, points[i].new.y);
-        context.stroke();
+        ctx.strokeStyle = pairPoints[i].colour;
+        ctx.lineWidth = pairPoints[i].strokeWidth;
+        ctx.beginPath();
+        ctx.moveTo(pairPoints[i].old.x * w, pairPoints[i].old.y * h);
+        ctx.lineTo(pairPoints[i].new.x * w, pairPoints[i].new.y * h);
+        ctx.stroke();
+        ctx.closePath()
         console.log('draw');
     }
 }
 
-const setup = () => {
-    canvas.addEventListener("touchstart", touchStart, false);
-    canvas.addEventListener("touchend", touchEnd, false);
-    canvas.addEventListener("touchcancel", touchEnd, false);
-    canvas.addEventListener("touchmove", touchMove, false);
+/**
+ * sets the document listeners
+ */
+function setup() {
+
+    // Mobile 
+    canvas.addEventListener("touchstart", onStartTouch, false);
+    canvas.addEventListener("touchend", onEndTouch, false);
+    canvas.addEventListener("touchcancel", onEndTouch, false);
+    canvas.addEventListener("touchmove", onMoveTouch, false);
 
     // Register event handlers
 
-    canvas.addEventListener("mousedown", mouseDown, false);
-    canvas.addEventListener("mouseup", endStroke, false);
-    canvas.addEventListener("mouseout", endStroke, false);
-    canvas.addEventListener("mouseenter", mouseEnter, false);
+    canvas.addEventListener("mousedown", onDownMouse, false);
+    canvas.addEventListener("mouseup", onEndStroke, false);
+    canvas.addEventListener("mouseout", onEndStroke, false);
+    canvas.addEventListener("mouseenter", onEnterMouse, false);
 
-    // db.collection("sessionrooms/").doc(queryResult()).onSnapShot(function (snapshot) {
-    //     snapshot.docChanges().forEach(change => {
-    //         if (change.type === 'modified') {
-    //             // updatePage() function
-    //         }
-    //     })
-    // })
+    // adds click event listeners to the brush sizes
+    let brushes = document.getElementsByClassName('brush');
+    console.log(brushes);
+    for (let i = 0; i < 3; i++) {
+        brushes[i].addEventListener('click', function () {
 
+            switch (i) {
+                case 0:
+                    document.querySelector('.small').innerHTML = '✓';
+                    document.querySelector('.medium').innerHTML = ' ';
+                    document.querySelector('.large').innerHTML = ' ';
+                    break;
+                case 1:
+                    document.querySelector('.small').innerHTML = ' ';
+                    document.querySelector('.medium').innerHTML = '✓';
+                    document.querySelector('.large').innerHTML = ' ';
+                    break;
+                case 2:
+                    document.querySelector('.small').innerHTML = ' ';
+                    document.querySelector('.medium').innerHTML = ' ';
+                    document.querySelector('.large').innerHTML = '✓';
+                    break;
+                default:
+                    break;
+            }
+
+            strokeWidth = brushSize[i];
+            console.log(strokeWidth);
+        })
+    }
+
+    // adds click event listeners to the palette
+    let colorsDom = document.getElementsByClassName('color');
+    console.log(colorsDom);
+    for (let i = 0; i < 6; i++) {
+
+        colorsDom[i].addEventListener('click', function () {
+            console.log(colorsDom[i].className);
+
+            let colorKey = colorsDom[i].className.split(' ')[1];
+            switch (i) {
+                case 0:
+                    document.querySelector('.black').innerHTML = '✓';
+                    $('.white, .red, .blue, .yellow, .green').text(' ');
+                    break;
+                case 1:
+                    document.querySelector('.white').innerHTML = '✓';
+                    $('.black, .red, .blue, .yellow, .green').text(' ');
+                    break;
+                case 2:
+                    document.querySelector('.red').innerHTML = '✓';
+                    $('.white, .black, .blue, .yellow, .green').text(' ');
+                    break;
+                case 3:
+                    document.querySelector('.blue').innerHTML = '✓';
+                    $('.white, .red, .black, .yellow, .green').text(' ');
+                    break;
+                case 4:
+                    document.querySelector('.yellow').innerHTML = '✓';
+                    $('.white, .red, .blue, .black, .green').text(' ');
+                    break;
+                case 5:
+                    document.querySelector('.green').innerHTML = '✓';
+                    $('.white, .red, .blue, .yellow, .black').text(' ');
+                    break;
+                default:
+                    break;
+            }
+
+            colour = colours[colorKey];
+        })
+    }
+
+    // updates when the value in the real time database changes
     sessionRef.on('value', function (snapshot) {
-        // console.log(snapshot.val());
-
+        coordsJsonArr.concat(snapshot.val()['canvasData']);
         DrawUpdate(snapshot.val()['canvasData']);
-    });
+    })
 }
 
-
-setup();
+/**
+ * Runs the setup when the document is ready
+ */
+$(document).ready(function () {
+    setup();
+})

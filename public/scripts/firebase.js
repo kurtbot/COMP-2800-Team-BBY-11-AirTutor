@@ -1,4 +1,5 @@
 // Your web app's Firebase configuration
+// API key from firebase
 var firebaseConfig = {
   apiKey: "AIzaSyDJLNq4eK0WpuBfYkTsLoVLB4hGMYwXKQw",
   authDomain: "airtutormvp.firebaseapp.com",

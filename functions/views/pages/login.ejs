@@ -11,33 +11,32 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-  <link rel="stylesheet" href="./styles/signup.css">
+
+  <!-- Styling CSS -->
+  <link rel="stylesheet" href="/styles/base.css" />
+  <link rel="stylesheet" href="/styles/login.css" />
+
+  <!-- Favicon partial -->
   <%- include("../partials/favicon.ejs") %>
 </head>
 
 <body>
-  <div>
-    <h3> Log in</h3>
+  <div id="content">
+    <img src="src/index/login.png" id="login-img">
+    <h1>Login to your Air Tutor account</h1>
+
     <div class="form-group">
       <label for=""></label>
       <input type="email" name="emailLoginField" id="emailLoginField" class="form-control" placeholder=""
         aria-describedby="helpId">
-      <small id="helpId" class="text-muted">Email</small>
-    </div>
-    <div class="form-group">
+      <small id="helpId" class="form-text text-muted">Email</small>
       <label for=""></label>
       <input type="password" class="form-control" name="passwordLoginField" id="passwordLoginField"
         aria-describedby="emailHelpId" placeholder="">
       <small id="emailHelpId" class="form-text text-muted">Password</small>
     </div>
-    <button type="submit" onclick="login()">Login</button>
+    <button type="submit" id="login-button" onclick="login()">Log in</button>
   </div>
-
-  <!-- The surrounding HTML is left untouched by FirebaseUI.
-     Your app may use that space for branding, controls and other customizations.-->
-  <h1>Welcome to Air Tutor</h1>
-  <div id="firebaseui-auth-container"></div>
-  <div id="loader">Loading...</div>
 
   <!-- Firebase javascripts -->
   <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
@@ -45,7 +44,6 @@
   <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
   <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
   <script src="scripts/firebase.js"></script>
-
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -55,82 +53,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+
   <!-- Optional JavaScript -->
   <script src="./scripts/login.js"></script>
-
-  <!-- <script>
-    // Initialize the FirebaseUI Widget using Firebase.
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-    ui.start('#firebaseui-auth-container', {
-      signInOptions: [
-        firebase.auth.EmailAuthProvider.PROVIDER_ID
-      ],
-      // Other config options...
-    });
-    ui.start('#firebaseui-auth-container', {
-      signInOptions: [
-        {
-          provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          requireDisplayName: true
-        }
-      ]
-    });
-    ui.start('#firebaseui-auth-container', {
-      signInOptions: [
-        {
-          provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD
-        }
-      ],
-      // Other config options...
-    });
-    // Is there an email link sign-in?
-    if (ui.isPendingRedirect()) {
-      ui.start('#firebaseui-auth-container', uiConfig);
-    }
-    // This can also be done via:
-    if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
-      ui.start('#firebaseui-auth-container', uiConfig);
-    }
-    ui.start('#firebaseui-auth-container', {
-      signInOptions: [
-        {
-          provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
-          // Allow the user the ability to complete sign-in cross device,
-          // including the mobile apps specified in the ActionCodeSettings
-          // object below.
-          forceSameDevice: false,
-          // Used to define the optional firebase.auth.ActionCodeSettings if
-          // additional state needs to be passed along request and whether to open
-          // the link in a mobile app if it is installed.
-          emailLinkSignIn: function () {
-            return {
-              // Additional state showPromo=1234 can be retrieved from URL on
-              // sign-in completion in signInSuccess callback by checking
-              // window.location.href.
-              url: 'https://www.example.com/completeSignIn?showPromo=1234',
-              // Custom FDL domain.
-              dynamicLinkDomain: 'example.page.link',
-              // Always true for email link sign-in.
-              handleCodeInApp: true,
-              // Whether to handle link in iOS app if installed.
-              iOS: {
-                bundleId: 'com.example.ios' //not applicable
-              },
-              // Whether to handle link in Android app if opened in an Android
-              // device.
-              android: {
-                packageName: 'com.example.android', //not applicable
-                installApp: true,
-                minimumVersion: '12'
-              }
-            };
-          }
-        }
-      ]
-    });
-  </script> -->
 </body>
 
 </html>

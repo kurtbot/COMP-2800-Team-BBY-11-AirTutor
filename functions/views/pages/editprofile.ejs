@@ -18,16 +18,12 @@
 </head>
 
 <body>
-    <!--Nav Bar -->
-    <%- include("../partials/navbar.ejs") %>
 
-    <header>
-        <div id="header-text">
-            <h1>Edit profile</h1>
-        </div>
-    </header>
+
 
     <aside>
+        <!--NavBar Bootstrap classes used -->
+        <%- include("../partials/navbar.ejs") %>
         <div class="nav flex-column nav-pills mx-4" id="legend" role="tablist" aria-orientation="vertical">
             <a class="nav-link active" id="general-button" href="" data-toggle="pill" role="tab"
                 aria-controls="v-pills-home" aria-selected="true">General</a>
@@ -35,32 +31,33 @@
                 aria-controls="v-pills-profile" aria-selected="false">Student</a>
             <a class="nav-link" id="tutor-button" data-toggle="pill" href="" role="tab" aria-controls="v-pills-messages"
                 aria-selected="false">Tutor </a>
-            <a class="nav-link" id="picture-button" data-toggle="pill" href="" role="tab" aria-controls="v-pills-messages"
-                aria-selected="false">Profile Picture </a>
+            <a class="nav-link" id="picture-button" data-toggle="pill" href="" role="tab"
+                aria-controls="v-pills-messages" aria-selected="false">Profile Picture </a>
         </div>
     </aside>
 
-
+    <!--Dropdown menus for different selectors-->
     <main>
-
-
+        <div id="header-text">
+            <h1>Edit profile</h1>
+        </div>
         <div id="forms">
-
+            <!--General Information-->
             <div id="general">
                 <h4 class="text-center">Edit your general account information here!</h4>
 
-                <%- include("../partials/countryselector.ejs") %>
-                <%- include("../partials/languageselector.ejs") %>
+                <%- include("../partials/countryselector.ejs") %> <br>
+                <%- include("../partials/languageselector.ejs") %> <br>
                 <label for="bio">Bio:</label>
                 <textarea class='form-control' rows="4" cols="40" id="bioField" name="bio"
                     placeholder="Description. Tell us something about yourself!"></textarea>
             </div>
-
+            <!--Student information-->
             <div id="student">
                 <h4 class="text-center">Edit your student information here</h4>
                 <%- include("../partials/studentselector.ejs") %>
             </div>
-
+            <!--Tutor information-->
             <div id="tutor">
                 <h4 class="text-center">Edit your tutor information here</h4>
                 <p class="text-center">If you are a student and want to also tutor, you should fill in this information
@@ -68,24 +65,27 @@
                 <%- include("../partials/nonstudentselector.ejs") %>
 
             </div>
-
+            <!--File picker and image displayer -->
             <div id="pro-pic">
                 <h4>Choose a new profile picture</h4>
                 <p class="text-center my-0">This will be see in your profile page</p>
                 <p class="text-center my-1"><i>Limitations: jpg, png and gif only. Under 1MB</i></p>
                 <img src="./src/profile.png" id="preview">
                 <p class="text-center">Preview Here</p>
-                <form class = "my-1">
-                    <div  class="custom-file my-1">
-                      <input type="file" class="custom-file-input" id="customFile">
-                      <label class="custom-file-label" for="customFile">Choose file</label>
+                <form class="my-1">
+                    <div class="custom-file my-1">
+                        <input type="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
-                  </form>
+                </form>
             </div>
 
             <p class="text-center" id="success">Your changes have been saved!</p>
-            <button id="submit-button" class="btn btn-primary my-5 mx-2">Update Profile</button>
-            <button id="return-button" class="btn btn-success my-5 mx-4">Go to Profile</button>
+            <div class="text-center">
+                <button id="submit-button" class="btn px-2 my-4 mx-1">Update Profile</button>
+                <button id="return-button" class="btn px-2 my-4 mx-1">Go to Profile</button>
+            </div>
+
         </div>
     </main>
 
@@ -99,6 +99,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-storage.js"></script>
     <script src="scripts/firebase.js"></script>
+    <script src="scripts/firebase-main.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

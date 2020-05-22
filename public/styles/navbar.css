@@ -1,3 +1,145 @@
 #warning {
-    display:none;
+    display: none;
+}
+
+.sidenav {
+    height: 100%;
+    /* 100% Full-height */
+    width: 0;
+    /* 0 width - change this with JavaScript */
+    position: fixed;
+    /* Stay in place */
+    z-index: 999;
+    /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #1d6a96;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    /* Disable horizontal scroll */
+    padding-top: 60px;
+    /* Place content 60px from the top */
+    transition: 1s;
+    /* 1 second transition effect to slide in the sidenav */
+}
+
+.sidenav::-webkit-scrollbar {
+    width: 0.25rem;
+}
+
+.sidenav::-webkit-scrollbar-track {
+    background: #1d6a96;
+}
+
+.sidenav::-webkit-scrollbar-thumb {
+    background: #85b8cb;
+    border-radius: 5px;
+}
+
+/* The navigation menu links */
+
+.sidenav a {
+    font-family: 'Raleway';
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 12pt;
+    font-weight: 500;
+    color: #f1f1f1;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav .fb-share-button {
+    padding: 8px 8px 8px 32px;
+}
+.sidenav .tw-share-button {
+    padding: 8px 8px 8px 32px;
+}
+
+/* When you mouse over the navigation links, change their color */
+
+.sidenav a:hover {
+    color: #85b6cb;
+}
+
+/* Position and style the close button (top right corner) */
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main-content {
+    transition: margin-left .5s;
+}
+
+#menu-svg {
+    color: #1d6a96;
+    margin: 16px;
+    height: 32px;
+    width: 32px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    /* margin: auto; */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* The Close Button */
+#close-understood {
+    color: #f1f1f1;
+    background-color: #962C30;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }

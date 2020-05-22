@@ -9,14 +9,17 @@
     <title>Air Tutor</title>
 
     <!-- My style sheets -->
-    <link rel="stylesheet" type="text/css" href="/styles/index.css">
+    <link rel="stylesheet" type="text/css" href="./styles/index.css">
 
     <%- include("../partials/favicon.ejs") %>
+
 </head>
 
 <body>
+    <!-- Source : https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav -->
     <div id="main-sidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/">Air Tutor</a>
         <a href="/login">Sign in</a>
         <a href="/aboutus2">About</a>
         <a href="/faq2">FAQ</a>
@@ -24,26 +27,33 @@
 
     <!-- Use any element to open the sidenav -->
     <header id="header-content">
-        <span id="menu-button" onclick="openNav()"><svg aria-hidden="true" id="menu-svg" focusable="false"
-                data-prefix="fas" data-icon="paper-plane" class="svg-inline--fa fa-paper-plane fa-w-16" role="img"
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path fill="currentColor" d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9
-                    13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9
-                    33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z">
+        <!-- Burger Menu -->
+        <span id="menu-button" onclick="openNav()">
+            <!-- Source: https://fontawesome.com/  -->
+            <svg aria-hidden="true" focusable="false" id="menu-svg" data-prefix="fas" data-icon="bars"
+                class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512">
+                <path fill="currentColor"
+                    d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z">
                 </path>
+            </svg>
+            <path fill="currentColor" d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9
+    13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9
+    33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z">
+            </path>
             </svg>
         </span>
 
         <div id="description-content">
             <div class="row">
                 <div class="column" class="description-column">
-                    <h1>Welcome to <br><span class="title">Air Tutor.</span></h1>
-
-                    <p> As students are being forced into online learning and many are losing their jobs due to the
+                    <h1 id="description-title">Welcome to <br><span class="title">Air Tutor.</span></h1>
+                    <p id="description-paragraph"> As students are being forced into online learning and many are losing
+                        their jobs due to the
                         pandemic,
                         we, the developers of Air Tutor, created an application that helps both students and tutors in
                         this time of need.
-                    </p><br>
+                    </p>
 
                     <div class="signup-button">Sign in with Google</div>
                 </div>
@@ -63,6 +73,7 @@
             <div class="row">
                 <div class="column">
                     <div class="features-img">
+                        <!-- Source: https://undraw.co/ -->
                         <img src="src/index/posting-feature.png">
                     </div>
 
@@ -74,6 +85,7 @@
 
                 <div class="column">
                     <div class="features-img">
+                        <!-- Source: https://undraw.co/ -->
                         <img src="src/index/scheduling-feature.png">
                     </div>
 
@@ -86,6 +98,7 @@
 
                 <div class="column">
                     <div class="features-img">
+                        <!-- Source: https://undraw.co/ -->
                         <img src="src/index/collaboration-feature.png">
                     </div>
 
@@ -102,6 +115,7 @@
             <div class="row">
                 <div class="column">
                     <div class="testimonials-img">
+                        <!-- Source: https://unsplash.com/ -->
                         <img src="src/index/testimonial1.jpg">
                     </div>
                     <p>"As a student, I really feel like I'm learning the material now, thanks to the help of my tutors
@@ -113,6 +127,7 @@
 
                 <div class="column">
                     <div class="testimonials-img">
+                        <!-- Source: https://unsplash.com/ -->
                         <img src="src/index/testimonial2.jpg">
                     </div>
                     <p>"As a tutor, I sure am grateful that Air Tutor allows me to use every possible tool I might need
@@ -124,6 +139,7 @@
 
                 <div class="column">
                     <div class="testimonials-img">
+                        <!-- Source: https://unsplash.com/ -->
                         <img src="src/index/testimonial3.jpg">
                     </div>
                     <p>"As a student, I am glad that I can message and receive messages from tutors whenever I need the
@@ -136,7 +152,8 @@
         </div>
 
         <div class="signup-content">
-            <h1>Sign up for Air Tutor today.</h1>
+            <h1>What are you waiting for?<br>
+                Sign up for Air Tutor today!</h1>
             <a class="signup-button">Sign in with Google</a>
         </div>
     </div>
@@ -155,6 +172,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
         </script>
+        
     <!--Optional JS-->
     <script src="/scripts/index.js"></script>
     <script src="/scripts/signup_1.js"></script>

@@ -1,23 +1,7 @@
-body{ 
+body {
     margin: 0;
     padding: 0;
     background-color: black
-}
-
-#layer1 {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    background-color: red;
-}
-
-#layer2 {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    background-color: yellow;
 }
 
 #layer3 {
@@ -68,19 +52,134 @@ canvas {
     border-radius: 50%;
     height: 4rem;
     width: 4rem;
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: center; */
 }
 
-.buttonItem > svg {
+.buttonItem>svg {
     transform: scale(0.6);
     height: 4rem;
     width: 4rem;
     fill: var(--text-primary-dark);
 }
 
-.buttonItem:nth-child(4) {
+.buttonItem:nth-child(3) {
     background-color: rgb(187, 20, 20);
 }
 
+/* Color Palette */
+
+#palette-trigger {
+    position: fixed;
+    z-index: 0;
+    background-color: rgba(100, 100, 100, 0.5);
+    height: 0;
+    width: 100%;
+    transition: height var(--transition-speed);
+}
+
+#palette {
+    position: fixed;
+    z-index: 1;
+    border-radius: 0 0 10px 10px;
+    /* padding: 1rem; */
+    background-color: var(--bg-primary-dark);
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    color: var(--bg-primary-light);
+    transition: height var(--transition-speed);
+}
+
+.palette-title {
+    margin-bottom: 10px;
+}
+
+div#colors {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+div.color {
+    text-align: center;
+    display: block;
+    flex-grow: 1;
+    border-radius: 5px;
+}
+
+div.black {
+    background-color: #000000;
+    color: white;
+}
+
+div.white {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+div.red {
+    background-color: #ff0000;
+    color: white;
+}
+
+div.blue {
+    background-color: #0000ff;
+    color: #ffffff;
+}
+
+div.yellow {
+    background-color: #ffff00;
+    color: #000000;
+}
+
+div.green {
+    background-color: #005500;
+    color: white;
+}
+
+div#brush-size {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+div.brush {
+    background-color: #000000;
+    display: block;
+    text-align: center;
+    border-radius: 50%;
+}
+
+div.xsmall {
+    width: 1rem;
+    height: 1rem;
+}
+
+div.small {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+div.medium {
+    width: 2rem;
+    height: 2rem;
+}
+
+div.large {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+div.xlarge {
+    width: 3rem;
+    height: 3rem;
+}
+
+div#palette-done {
+    width: 100%;
+    background-color: var(--text-secondary-dark);
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 0 2px;
+}

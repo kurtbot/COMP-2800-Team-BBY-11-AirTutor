@@ -12,29 +12,48 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/about.css">
-    <link rel="stylesheet" href="./styles/footer.css">
+    <link rel="stylesheet" href="styles/about2.css">
     <%- include("../partials/favicon.ejs") %>
 </head>
 
 <body>
+    <!-- Source: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav -->
+    <div id="main-sidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/">Air Tutor</a>
+        <a href="/login">Sign in</a>
+        <a href="/aboutus2">About</a>
+        <a href="/faq2">FAQ</a>
+    </div>
 
-    <!-- Header -->
-    <header>
-        <h1 class="text-center my-5">About Us</h1>
+    <header id="header-content">
+        <!-- Burger Menu -->
+        <span id="menu-button" onclick="openNav()">
+            <!-- Source: https://fontawesome.com/  -->
+            <svg aria-hidden="true" focusable="false" id="menu-svg" data-prefix="fas" data-icon="bars"
+                class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512">
+                <path fill="currentColor"
+                    d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z">
+                </path>
+            </svg>
+            <path fill="currentColor" d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9
+    13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9
+    33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z">
+            </path>
+            </svg>
+        </span>
     </header>
 
     <!--Content-->
     <div class="text">
-        <!-- <p>Welcome to our application. We are Air Tutor, a group of students who are looking for a solution to
-            mainstream online learning.
-            <br> We want to spread education faster than COVID-19! </p> -->
-
-        <h3>Spreading education faster than COVID-19.</h3>
+        <h1>About us</h1>
+        <h2>Spreading education faster than COVID-19.</h2>
         <p style="padding-left: 20px; padding-right: 20px;">As students are being forced into online learning
             and many are losing their jobs due to the pandemic,
             we, the developers of Air Tutor, decided that we would like to aid both students and tutors in this time of
             need. We created Air Tutor, an online tutoring platform where students will be provided all the educational
-            assistance they need and tutors will be incentivized for all the amazing work they do. </p><br>
+            assistance they need and tutors will be incentivized for all the amazing work they do. </p><br><br>
     </div>
 
     <div class="container mb-5">
@@ -86,58 +105,6 @@
         </div>
     </div>
 
-    <!-- <div class="outer">
-        <div id="bio1" class="bio">
-            <h3>Dylan Sung</h3>
-            <img class="picture" src="./src/rsz_saltbae.jpg">
-            <p class="description">Dylan has gone through more career paths than he would have liked, but he’s here
-                to
-                stay. He enjoys the feeling of cabin fever as it’s somehow motivated him to pick up new hobbies such
-                as
-                gardening, table tennis and hosting online symposiums. He hopes to come out of quarantine speaking a
-                new
-                language (undecided). </p>
-        </div>
-
-        <div id="bio2" class="bio">
-            <h3>Chris Raganit</h3>
-            <img class="picture" src="./src/chris.jpg">
-            <p class="description">Like any CST student, Chris codes and studies until the ungodly hours of the
-                dawn.
-                When she is not doing schoolwork, she likes jamming on her bass guitar, slamming root beer floats
-                with
-                the boys, playing video games, and working on a very ambitious series of fantasy novels. After
-                receiving
-                her diploma, Chris intends on pursuing a degree in UI design and chasing her longtime dream of being
-                a writer.</p>
-        </div>
-
-        <div id="bio3" class="bio">
-            <h3>Kurt Milan</h3>
-            <img class="picture" src="./src/kurt.jpg">
-            <p class="description">Kurt Milan is a Computer Systems Technology student in BCIT. After he finishes
-                CST,
-                he plans on becoming a game programmer. When he is not working, he programs games or plays games,
-                plays
-                the guitar, piano, or ukulele, or hangs out with friends. </p>
-        </div>
-
-        <div id="bio4" class="bio">
-            <h3>Vicly Cao</h3>
-            <img class="picture" src="./src/vicly.jpg">
-            <p class="description"> Vicly spent a few years studying math and physics, then realized that's not what
-                she
-                wants her career to be on. Now she is a CST student at BCIT trying to become a programmer. She feels
-                accomplished when her friends and family like the websites she made. When she is free, she likes
-                playing
-                games with her friends, reading detective stories, and building wooden and plastic models.</p>
-        </div>
-    </div> -->
-
-
-    <!-- Footer -->
-    <%- include("../partials/footer.ejs") %>
-
     <!-- Firebase javascripts -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
@@ -153,7 +120,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
         </script>
     <!-- Optional JavaScript -->
-    <script src="./scripts/navbar.js"></script>
+    <script src='./scripts/faq2.js'></script>
 </body>
 
 </html>

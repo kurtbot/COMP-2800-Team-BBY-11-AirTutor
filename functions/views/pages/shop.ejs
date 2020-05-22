@@ -10,9 +10,11 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
   <link rel="stylesheet" type="text/css" href="styles/shop.css">
   <link rel="stylesheet" type="text/css" href="styles/footer.css">
   <link rel="stylesheet" href="styles/navbar.css">
+
   <%- include("../partials/favicon.ejs") %>
 </head>
 
@@ -22,50 +24,56 @@
 
   <!--Header-->
   <header>
-    <h1 class="text-center my-3">Add More Credits!</h1>
+    <h1 class="text-center mb-3 mt-5">Add More Credits!</h1>
   </header>
 
   <!--Content-->
+  <h2 id="success"></h2>
+
   <div id="content">
     <div class="my-5 mx-2">
       <div class="row">
         <div class="col-sm-6 col-lg-3 my-2">
           <div class="card mb-3">
+            <!-- Source: https://sergiovado27.blogspot.com/ -->
             <img class="card-img-top" src="./src/money1.png" alt="placeholder">
             <div class="card-body">
               <h3 class="card-title">$5 package</h3>
               <p class="card-text">Add 500 credits in your account</p>
-              <button class="card-link btn btn-primary" id="buy-5">Buy</button>
+              <button class="card-link px-5 btn btn-primary" id="buy-5">Buy</button>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-lg-3 my-2">
           <div class="card mb-3">
+            <!-- Source: http://icon-library.com/ -->
             <img class="card-img-top" src="./src/money2.png" alt="placeholder">
             <div class="card-body">
               <h3 class="card-title">$10 package</h3>
               <p class="card-text">Add 1100 credits in your account</p>
-              <button class="card-link btn btn-primary" id="buy-10">Buy</button>
+              <button class="card-link px-5 btn btn-primary" id="buy-10">Buy</button>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-lg-3 my-2">
           <div class="card mb-3">
+            <!-- Source: http://clipart-library.com/ -->
             <img class="card-img-top" src="./src/money3.png" alt="placeholder">
             <div class="card-body">
               <h3 class="card-title">$20 package</h3>
               <p class="card-text">Add 2300 credits in your account</p>
-              <button class="card-link btn btn-primary" id="buy-20">Buy</button>
+              <button class="card-link px-5 btn btn-primary" id="buy-20">Buy</button>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-lg-3 my-2">
           <div class="card mb-3">
+            <!-- Source: https://www.geitu.net/ -->
             <img class="card-img-top" src="./src/money4.png" alt="placeholder">
             <div class="card-body">
               <h3 class="card-title">$50 package</h3>
               <p class="card-text">Add 6000 credits in your account</p>
-              <button class="card-link btn btn-primary" id="buy-50">Buy</button>
+              <button class="card-link px-5 btn btn-primary" id="buy-50">Buy</button>
             </div>
           </div>
         </div>
@@ -73,7 +81,8 @@
     </div>
   </div>
 
-  <h2 class="text-center my-5" id="success"></h2>
+
+
 
   <!--Footer-->
 
@@ -83,15 +92,16 @@
   <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
   <script src="scripts/firebase.js"></script>
+  <script src="scripts/firebase-main.js"></script>
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
+  </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-      <!-- Optional JavaScript -->
+  </script>
+  <!-- Optional JavaScript -->
   <script src="scripts/navbar.js"></script>
   <script src="scripts/shop.js"></script>
 </body>

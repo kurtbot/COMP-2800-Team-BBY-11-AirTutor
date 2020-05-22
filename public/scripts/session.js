@@ -1,18 +1,9 @@
-
+/**
+ * Peer.js Documentation: https://peerjs.com/docs.html#api
+ */
 var peer = new Peer({ key: 'lwjd5qra8257b9' });
-// var peer = new Peer({
-//     key: 'lwjd5qra8257b9', 
-//     config: {
-//         'iceServers': [
-//             { url: 'stun:stun1.l.google.com:19302' },
-//             {
-//                 url: 'turn:numb.viagenie.ca',
-//                 credential: 'muazkh',
-//                 username: 'webrtc@live.com'
-//             }
-//         ]
-//     }
-// });
+let tutor;
+let student;
 var peerID;
 peer.on('open', function (id) {
     console.log('My peer ID is: ' + id);
@@ -20,15 +11,19 @@ peer.on('open', function (id) {
     tutorTest();
 });
 
+/**
+ * Gets the query of the page url
+ */
 function queryResult() {
     let queryString = decodeURIComponent(window.location.search);
     let queries = queryString.split("?");
     let id = queries[1];
     return id;
 }
-let tutor;
-let student;
 
+/**
+ * Passes the info into the rating page
+ */
 db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
     credit = doc.data().credit;
     tutor = doc.data().tutorid;
@@ -37,20 +32,25 @@ db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
     localStorage.setItem("request", doc.data().requestid)
     localStorage.setItem("session", doc.id)
     localStorage.setItem("schedule", doc.data().scheduleid)
+    localStorage.setItem("chat", doc.data().chatroom)
 })
 
+/**
+ * Redirects the user after click on the hang up button
+ */
 function gotoNext() {
     firebase.auth().onAuthStateChanged(function (user) {
-            if (user.uid == tutor) {
-                window.location.href = "/home"
-            } else {
-                window.location.href = "/rating" + "?" + tutor;
-
-            }
-        
+        if (user.uid == tutor) {
+            window.location.href = "/home"
+        } else {
+            window.location.href = "/rating" + "?" + tutor;
+        }
     })
 }
 
+/**
+ * Checks if the user is a tutor
+ */
 function checkIfTutor() {
     let isTutor = false;
     firebase.auth().onAuthStateChanged(function (user) {
@@ -64,8 +64,8 @@ function checkIfTutor() {
 
 // Media Stream Elements
 const canvasDom = document.querySelector('canvas');
-const canvasContext = canvasDom.getContext('2d');
-const canvasStream = canvasDom.captureStream(60);
+const canvasContext = canvas.getContext('2d');
+const canvasStream = canvas.captureStream(60);
 const audioDom = document.querySelector('audio');
 const videoDom = document.querySelector('video');
 
@@ -74,6 +74,9 @@ const videoDom = document.querySelector('video');
 var mediaStream;
 var conn;
 
+/**
+ * Is called once every time the user enters the session room
+ */
 function tutorTest() {
     db.collection("sessionrooms/").doc(queryResult()).get().then(function (doc) {
         isTutor = (firebase.auth().currentUser.uid == doc.data().tutorid);
@@ -96,16 +99,9 @@ function tutorTest() {
     createRoomSnapshot();
 }
 
-videoDom.addEventListener('play', function () {
-    var $this = this; //cache
-    (function loop() {
-        if (!$this.paused && !$this.ended) {
-            canvasContext.drawImage($this, 0, 0);
-            setTimeout(loop, 1000 / 30); // drawing at 30fps
-        }
-    })();
-}, 0);
-
+/**
+ * The create room snapshot is used to automatically call the other user when they enter the room.
+ */
 function createRoomSnapshot() {
     db.collection("sessionrooms/").doc(queryResult()).onSnapshot(function (doc) {
 
@@ -114,7 +110,7 @@ function createRoomSnapshot() {
         if (firebase.auth().currentUser.uid == doc.data().tutorid) {
 
             console.log('Im a tutor');
-            
+
             // if student's peer id changes
             if (doc.data().studentCallId !== '') {
 
@@ -123,8 +119,8 @@ function createRoomSnapshot() {
                 // =======================
                 conn = peer.connect(doc.data().studentCallId);
                 conn.on('open', function () {
-                    // conn.send('hi from tutor');
-                    conn.send({stream : canvasStream});
+                    conn.send('hi from tutor');
+                    // conn.send({ stream: canvasStream });
                 })
 
                 call(doc.data().studentCallId);
@@ -152,11 +148,15 @@ function createRoomSnapshot() {
     })
 }
 
+/**
+ * Calls the user based on their peerID which is saved from the database
+ * @param {String} peerID 
+ */
 function call(peerID) {
 
     navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
 
-        canvasDom.captureStream().getTracks().forEach(track => {
+        canvas.captureStream().getTracks().forEach(track => {
             stream.addTrack(track);
         })
         mediaStream = stream;
@@ -171,7 +171,7 @@ function call(peerID) {
                 audio.play();
             }
             console.log(remoteStream);
-            
+
             // videoDom.srcObject = remoteStream;
             // videoDom.onloadedmetadata = function (e) {
             //     console.log('now playing the videooooo');
@@ -185,7 +185,9 @@ function call(peerID) {
 
 }
 
-// answer call
+/**
+ * Listens for a incoming call and answers it.
+ */
 peer.on('call', function (mediaConnection) {
     navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(function (stream) {
         mediaStream = stream;
@@ -214,55 +216,37 @@ peer.on('call', function (mediaConnection) {
     });
 });
 
-// Create Connection
+/**
+ * Used to check if a connection is made between the student and the tutor
+ */
 peer.on('connection', function (conn) {
     console.log('connected to: ' + conn);
     console.log(conn);
     conn.on('data', function (data) {
         console.log(data);
-
-        if (data['stream']) {
-            console.log('checking data stream');
-            // videoDom.srcObject = data['stream'];
-            // videoDom.onloadedmetadata = function (e) {
-            //     console.log('now playing the video');
-            //     videoDom.play();
-            // }
-        }
     })
 
 })
 
 
 // Buttons
-const screenShareBtn = document.querySelector('#screen-share-btn');
+// const screenShareBtn = document.querySelector('#screen-share-btn');
 const canvasBrushBtn = document.querySelector('#canvas-brush-btn');
 const micMuteBtn = document.querySelector('#mic-mute-btn');
 const phoneCallBtn = document.querySelector('#phone-call-btn');
 
-screenShareBtn.addEventListener('click', function () {
-    // if (videoDom.style.display == 'none') {
-    //     videoDom.style.display = 'block';
-    // } else {
-    //     videoDom.style.display = 'none';
-    // }
-
-    // let imageDat = context.getImageData(0, 0, canvasDom.width, canvasDom.height);
-    // db.collection("sessionrooms/").doc(queryResult()).update({
-    //     canvasData: points
-    // })
-})
-
+/**
+ * Add canvas brush events to open and close the palette
+ */
 canvasBrushBtn.addEventListener('click', function () {
-    if (canvasDom.style.display == 'none') {
-        canvasDom.style.display = 'block';
-    } else {
-        canvasDom.style.display = 'none';
-    }
+    openPalette();
 })
 
-let muted = false;
 
+/**
+ * Add mic mute events to the mic mute button
+ */
+let muted = false;
 micMuteBtn.addEventListener('click', function () {
     if (muted == false) {
         micMuteBtn.style.backgroundColor = "rgb(187, 20, 20)";
@@ -279,7 +263,27 @@ micMuteBtn.addEventListener('click', function () {
     }
 })
 
+/**
+ * When the user clicks on the hang up button, they are redirected to either the rating page if they're a student or to the home page if they are a student
+ */
 phoneCallBtn.addEventListener('click', gotoNext)
 
-
 console.log('loaded event listeners');
+
+
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+function openPalette() {
+    document.getElementById("palette-trigger").style.height = "100%";
+    document.getElementById("palette").style.height = "auto";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+function closePalette() {
+    document.getElementById("palette-trigger").style.height = "0";
+    document.getElementById("palette").style.height = "0";
+}
+
+/* Closes the palette on load */
+$(document).ready(function () {
+    closePalette();
+})
